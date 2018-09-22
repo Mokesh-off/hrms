@@ -1,0 +1,30 @@
+#header{
+    background: #f5f1ed;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 50px;
+}
+.headerText{
+    margin-top: 18px;
+}
+#header > .logo{
+    color: #39ce0d;
+    font-size: 35px;
+    padding: 30px;
+    cursor: default;
+
+}
+
+#header > .profile{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: -23px;
+    margin-right: 50px;
+    color: #39ce0d;
+    cursor: pointer;
+}
+
+ #header .profile:hover{
+    color: white ;
+}

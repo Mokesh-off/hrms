@@ -1,0 +1,35 @@
+.sidenav {
+  width: 15vw;
+  position: fixed;
+  background: #b9b7b7;
+  overflow-x: hidden;
+  padding: 0;
+  height: 88vh;
+  margin-top: 50px;
+
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+  background-color: yellow;
+}
+
+button {
+    padding: 15px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: all 1s ease-in;
+  }
+
+button:hover{
+  background-color: #ffe4c4;
+}
