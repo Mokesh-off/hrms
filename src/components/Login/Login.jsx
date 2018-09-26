@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import './Login.css'
 // import LoginContainer from '../../containers/LoginContainer';
 // /home/tringapps/reactApp/hrms/src/containers/LoginContainer.jsx
-import {Store} from '../../Store/Store';
+// import {Store} from '../../Store/Store';
 
 ///home/tringapps/reactApp/hrms/src/Store/Store.jsx
 
@@ -37,12 +37,19 @@ class Login extends Component {
   setNew () {
     this.setState({Submit :this.state.Submit= true });
 
-    var newVar= JSON.parse(localStorage.getItem('Employee'));
-    
-    newVar.map((Emp,i)=>
-      this.state.email === Emp.EmailId && this.state.password === Emp.Password 
-      && this.setCurrentUser(Emp.EmpId) && console.log('new console.......')
-      )
+    var newVar= JSON.parse(localStorage.getItem('Data'));
+    console.log('new var:'+JSON.stringify(newVar));
+    newVar=newVar.Employee
+    newVar.forEach(index => {
+      console.log('index value:'+index.EmailId);
+            this.state.email === index.EmailId && this.state.password === index.Password 
+      && this.setCurrentUser(index.EmpId) && console.log('new console.......')
+    });
+    // newVar.map((Emp,i)=>
+    //   console.log(Emp.Employee.EmailId),
+    //   this.state.email === Emp.Employee.EmailId && this.state.password === Emp.Email.Password 
+    //   && this.setCurrentUser(Emp.EmpId) && console.log('new console.......')
+    // )
   }
 
   dismissError() {
