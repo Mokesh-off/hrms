@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
 import './Login.css'
+// import LoginContainer from '../../containers/LoginContainer';
+// /home/tringapps/reactApp/hrms/src/containers/LoginContainer.jsx
+import {Store} from '../../Store/Store';
 
+///home/tringapps/reactApp/hrms/src/Store/Store.jsx
 
 class Login extends Component {
   constructor (props) {
@@ -10,21 +14,36 @@ class Login extends Component {
       Submit: false,
       email: '',
       password: '',
-      error: '',      
+      error: '',
+      login:[] ,
+      currentUserId:''
     }
-    this.setNew = this.setNew.bind(this)
-
-    this.handlePassChange = this.handlePassChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.dismissError = this.dismissError.bind(this);
+    
+    this.handlePassChange = this.handlePassChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.dismissError = this.dismissError.bind(this)
+    this.setCurrentUser=this.setCurrentUser.bind(this)
   };
-
-  setNew () {
-    this.setState({ Submit: this.state.Submit = true })
+  
+  setCurrentUser(b){
+    console.log('b value------'+b);
+    this.setState({currentUserId : this.state.currentUserId=b});
+    console.log('current user id---------'+this.state.currentUserId);
+    localStorage.setItem('currentUserId',JSON.stringify(this.state.currentUserId));
   }
 
 
+  setNew () {
+    this.setState({Submit :this.state.Submit= true });
+
+    var newVar= JSON.parse(localStorage.getItem('Employee'));
+    
+    newVar.map((Emp,i)=>
+      this.state.email === Emp.EmailId && this.state.password === Emp.Password 
+      && this.setCurrentUser(Emp.EmpId) && console.log('new console.......')
+      )
+  }
 
   dismissError() {
     this.setState({ error: '' });
@@ -42,9 +61,7 @@ class Login extends Component {
     }
     
     else if (this.state.email && this.state.password){
-        //alert("Login Successfull");
-        this.setNew();
-        console.log(this.state.Submit);
+         this.setNew.call(this)
     }
   }
 
@@ -61,32 +78,29 @@ class Login extends Component {
   }
 
   render () {
-
-    if (this.state.Submit) {
-      console.log('dashboard');
+    if (this.state.currentUserId!='') {
       return <Redirect to='/dashboard' />
     }
-
-
-    return (
-
-           <div>
-            <div class="bodylogin"></div>
-            <div class="headerlogin">
+    else{
+      return (
+        <div>
+          <div class="bodylogin"></div>
+          <div class="headerlogin">
             <div><span>tring</span>apps</div>
-            </div>
-            <br />
-            <div class="login">
-              <form onSubmit={this.handleSubmit}>
-                <input type="email" placeholder="Email" data-test="email" value={this.state.email} onChange={this.handleEmailChange} />
-                <input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
-                <input type="submit" value="Login" data-test="submit"/>
-               </form>
-               <p><a className="alogin" href="#">Forgot Username or Password?</a></p>
-            </div>
-          </div>  
-          
-    );
+          </div>
+          <br />
+          <div class="login">
+            <form onSubmit={this.handleSubmit}>
+              <input type="email" placeholder="Email" data-test="email" value={this.state.email} onChange={this.handleEmailChange} />
+              <input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
+              <input type="submit" value="Login" data-test="submit"/>
+            </form>
+            <p><a className="alogin" href="#">Forgot Username or Password?</a></p>
+          </div>
+      </div> 
+      );
+    }
+   }
   }
-}
+
 export default Login;
