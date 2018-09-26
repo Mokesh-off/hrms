@@ -2,18 +2,30 @@ import React, {Component} from 'react';
 import './SideNav.css';
 
 class SideNav extends Component{
+constructor(props){
+  super(props)
+  this.state={
+    employeeVisibility : ''
+  }
+}
+
+componentWillMount(){
+  var visibilityVar= JSON.parse(localStorage.getItem('currentUserRole'));
+  (visibilityVar==='Employee')&&
+  this.setState({ employeeVisibility: this.state.employeeVisibility='employeeCss'})
+  }
 
   render(){
     return(
       <div className='sidenav'>
-        <button>Profile</button>
+        <button>Home</button>
         <button>Leave</button>
         <button>Leave Request</button>
-        <button>Leave Approval</button>
+        <button className={this.state.employeeVisibility}>Leave Approval</button>
         <button>My Leave</button>
-        <button>Leave Records</button>
+        <button className={this.state.employeeVisibility}>Leave Records</button>
         <button>Leave Policy</button>
-        <button>Leave plan</button>
+        <button className={this.state.employeeVisibility}>Leave plan</button>
       </div>
     )
   }
