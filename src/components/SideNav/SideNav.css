@@ -19,7 +19,7 @@
 
 .sidenav a:hover {
   color: #064579;
-  background-color: yellow;
+  background-color:#ffe4c4;
 }
 
 .sidenav > button {
@@ -31,6 +31,7 @@
   }
 
 .sidenav button:hover{
+<<<<<<< HEAD
   background-color: #ffe4c4;
 }
 
@@ -43,5 +44,10 @@
   
 }
 .sidenav .link:hover{
+=======
+>>>>>>> develop
   background-color: #ffe4c4;
+}
+.employeeCss{
+  display: none;
 }

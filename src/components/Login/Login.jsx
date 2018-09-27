@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
 import './Login.css'
-// import LoginContainer from '../../containers/LoginContainer';
-// /home/tringapps/reactApp/hrms/src/containers/LoginContainer.jsx
-// import {Store} from '../../Store/Store';
-
-///home/tringapps/reactApp/hrms/src/Store/Store.jsx
 
 class Login extends Component {
   constructor (props) {
@@ -16,7 +11,9 @@ class Login extends Component {
       password: '',
       error: '',
       login:[] ,
-      currentUserId:''
+      currentUserId:'',
+      currentUserRole:'',
+      currentUserName:''
     }
     
     this.handlePassChange = this.handlePassChange.bind(this)
@@ -26,30 +23,24 @@ class Login extends Component {
     this.setCurrentUser=this.setCurrentUser.bind(this)
   };
   
-  setCurrentUser(b){
-    console.log('b value------'+b);
-    this.setState({currentUserId : this.state.currentUserId=b});
-    console.log('current user id---------'+this.state.currentUserId);
+  setCurrentUser(userId,userRole,userName){
+    this.setState({currentUserId : this.state.currentUserId=userId});
+    this.setState({currentUserRole : this.state.currentUserRole=userRole});
+    this.setState({currentUserName : this.state.currentUserName=userName});
     localStorage.setItem('currentUserId',JSON.stringify(this.state.currentUserId));
+    localStorage.setItem('currentUserRole',JSON.stringify(this.state.currentUserRole));
+    localStorage.setItem('currentUserName',JSON.stringify(this.state.currentUserName));
   }
 
 
   setNew () {
     this.setState({Submit :this.state.Submit= true });
-
     var newVar= JSON.parse(localStorage.getItem('Data'));
-    console.log('new var:'+JSON.stringify(newVar));
     newVar=newVar.Employee
     newVar.forEach(index => {
-      console.log('index value:'+index.EmailId);
             this.state.email === index.EmailId && this.state.password === index.Password 
-      && this.setCurrentUser(index.EmpId) && console.log('new console.......')
+      && this.setCurrentUser(index.EmpId,index.Role,index.EmpName)
     });
-    // newVar.map((Emp,i)=>
-    //   console.log(Emp.Employee.EmailId),
-    //   this.state.email === Emp.Employee.EmailId && this.state.password === Emp.Email.Password 
-    //   && this.setCurrentUser(Emp.EmpId) && console.log('new console.......')
-    // )
   }
 
   dismissError() {
@@ -85,12 +76,16 @@ class Login extends Component {
   }
 
   render () {
-    if (this.state.currentUserId!='') {
+    // if (this.state.currentUserId!='') {
+    //   return <Redirect to='/dashboard' />
+    // }
+    if(JSON.parse(localStorage.getItem('currentUserId'))!==null){
       return <Redirect to='/dashboard' />
     }
     else{
       return (
         <div>
+          {console.log(JSON.parse(localStorage.getItem('currentUserId')))}
           <div class="bodylogin"></div>
           <div class="headerlogin">
             <div><span>tring</span>apps</div>
