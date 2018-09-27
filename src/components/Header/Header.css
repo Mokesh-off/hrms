@@ -4,14 +4,17 @@
     width: 100%;
     top: 0;
     height: 50px;
+    display: flex;
+    justify-content: space-between;
 }
 .headerText{
     margin-top: 18px;
 }
+
 #header > .logo{
     color: #39ce0d;
     font-size: 35px;
-    padding: 30px;
+    padding: 5px;
     cursor: default;
 
 }
@@ -27,4 +30,35 @@
 
  #header .profile:hover{
     color: white ;
+}
+
+.dropdown-content {
+    text-align: center;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    cursor: pointer;
+}
+.profile-main-outer:hover .dropdown-content {
+    display: block;
+}
+img{
+ height: 30px;
+ width: 30px;
+ border-radius: 50%;
+}
+.profile-main-outer{
+    cursor: pointer;
+}
+.profile-outer{
+    display: flex;
+}
+.profile-img{
+    padding: 10px;
+}
+.profile-name{
+    padding: 18px;
 }

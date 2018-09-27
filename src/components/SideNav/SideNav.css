@@ -19,10 +19,10 @@
 
 .sidenav a:hover {
   color: #064579;
-  background-color: yellow;
+  background-color:#ffe4c4;
 }
 
-button {
+.sidenav button {
     padding: 15px;
     width: 100%;
     border: none;
@@ -30,6 +30,9 @@ button {
     transition: all 1s ease-in;
   }
 
-button:hover{
+.sidenav button:hover{
   background-color: #ffe4c4;
+}
+.employeeCss{
+  display: none;
 }
