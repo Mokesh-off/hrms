@@ -41,10 +41,9 @@ componentWillMount(){
       <div className='sidenav'>
         <button>Home</button>
         <button>Leave</button>
-        <button>Leave Request</button>
         {/* <Link to="/leaverequests"><button className="link">Leave Approval</button></Link> */}
         <button onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
-        <Link to='/leaverequest'><button>Leave Request</button></Link>
+        <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
         <button>My Leave</button>
         <button className={this.state.employeeVisibility} 
         onClick={e=>this.navigation(e,'/leaveRecords')}>Leave Records</button>

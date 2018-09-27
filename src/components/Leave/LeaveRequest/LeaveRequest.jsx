@@ -162,7 +162,8 @@ class LeaveRequest extends React.Component {
     holidayList=holidayList.holidays;
 
     return(
-      <div className="main">
+      <div className='rightContent'>
+      <div className="leaveRequestMain">
         <div className="container">
           <form >
             <div className="row">
@@ -252,6 +253,7 @@ class LeaveRequest extends React.Component {
           </form>
         </div>
       </div>
+      </div>//rightContainer done
     );
   }
 }
