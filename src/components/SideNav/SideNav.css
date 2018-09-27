@@ -22,7 +22,7 @@
   background-color: yellow;
 }
 
-button {
+.sidenav > button {
     padding: 15px;
     width: 100%;
     border: none;
@@ -30,6 +30,18 @@ button {
     transition: all 1s ease-in;
   }
 
-button:hover{
+.sidenav button:hover{
+  background-color: #ffe4c4;
+}
+
+.link{
+  padding: 15px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  transition: all 1s ease-in;
+  
+}
+.sidenav .link:hover{
   background-color: #ffe4c4;
 }

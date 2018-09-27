@@ -1,0 +1,113 @@
+.main {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container {
+    border-radius: 5px;
+    border: 1px solid #0043ff;
+    background-color: white;
+    padding: 20px;
+    width: 46%;
+    /* height: 25%; */
+    position: absolute;
+    text-align: center;
+}
+
+input[type=text],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+input[type=date] {
+    width: 100%;
+    font-size: 15px;
+    height: 4vh;
+}
+
+select {
+    width: 100%;
+    height: 40px;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #1739e4;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 19px;
+    cursor: pointer;
+    text-align: center;
+}
+
+input[type=reset] {
+    background-color: #1739e4;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 19px;
+    cursor: pointer;
+    text-align: center;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+input[type=submit]:hover {
+    background-color: red;
+}
+
+.row-2 {
+    border: 1px solid black;
+    display: inline-flex;
+    float: right;
+    width: 75%;
+    margin-top: 0px;
+}
+
+.row-3 {
+    display: inline-flex;
+    border: 1px solid black;
+    float: right;
+    width: 75%;
+    margin-top: 0px;
+    height: 23vh
+}
+
+.row-1 {
+    float: left;
+    /* width: 25%; */
+    margin-top: 6px;
+    border: none
+}
+
+.row:after {
+    content: " ";
+    display: table;
+    clear: both;
+    padding: 1%;
+}
+
+.Dp {
+    float: left;
+    width: 100%;
+    margin-top: 0px;
+}
+
+.Res {
+    width: 100%;
+}
+.back{
+    margin-left: 50%;
+}

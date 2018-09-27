@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SideNav from '../SideNav/SideNav';
-//import LeaveRequests from '../LeaveApproval/LeaveRequests';
+import LeaveRequests from '../LeaveApproval/LeaveRequests';
 class Dashboard extends Component{
   render(){
     return(
@@ -10,7 +10,7 @@ class Dashboard extends Component{
         <Header />
         <SideNav />
         <Footer />
-       
+       <LeaveRequests/>
       </div>
     )
   }
