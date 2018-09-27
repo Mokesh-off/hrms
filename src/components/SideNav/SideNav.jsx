@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import './SideNav.css';
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect,Link} from "react-router-dom";
 //import LeaveApprovals from './LeaveApproval'
 
 class SideNav extends Component{
@@ -18,17 +17,21 @@ constructor(props){
 navigation(e,link){
   this.setState({navFlag:this.state.navFlag=link})
   console.log(this.state.navFlag)
+  console.log('navigation')
 }
   
 componentWillMount(){
   var visibilityVar= JSON.parse(localStorage.getItem('currentUserRole'));
   (visibilityVar==='Employee')&&
   this.setState({ employeeVisibility: this.state.employeeVisibility='employeeCss'})
+  //this.setState({navFlag:this.state.navFlag=''})
   }
 
   render(){
-   if (this.state.navFlag!=='') 
+   if (this.state.navFlag!='') 
+   {
         return <Redirect to={this.state.navFlag} />;
+   }
 
     return(
       <div className='sidenav'>
@@ -36,7 +39,7 @@ componentWillMount(){
         <button>Leave</button>
         <button>Leave Request</button>
         {/* <Link to="/leaverequests"><button className="link">Leave Approval</button></Link> */}
-        <button className="link" onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
+        <button onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
         <Link to='/leaverequest'><button>Leave Request</button></Link>
         <button>My Leave</button>
         <button className={this.state.employeeVisibility}>Leave Records</button>

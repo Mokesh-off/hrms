@@ -23,8 +23,7 @@ class App extends Component {
         <Route exact strict path = "/leaverequest" component = {LeaveReq}/>
       </div>
   </Router>
- 
-      </div>
+ </div>
     );
   }
 }

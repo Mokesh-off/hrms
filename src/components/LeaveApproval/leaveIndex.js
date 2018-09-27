@@ -3,18 +3,18 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SideNav from '../SideNav/SideNav';
 import LeaveRequests from '../LeaveApproval/LeaveRequests';
-class Dashboard extends Component{
+class LeaveIndex extends Component{
   render(){
     return(
       <div>
         <Header />
         <SideNav />
         <Footer />
-       <LeaveRequests/>
+        <LeaveRequests/>
       </div>
     )
   }
 
 }
 
-export default Dashboard
+export default LeaveIndex

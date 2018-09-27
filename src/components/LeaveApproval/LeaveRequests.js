@@ -19,7 +19,10 @@ class LeaveRequests extends Component {
             console.log('obj.....' + obj)
             var req=obj;
     return (
-      <div>  
+      <div> 
+        <div className="back">
+           <NavLink to='/dashboard'><button>Back</button></NavLink>
+      </div>   
       <div>
      <Router>
        <div>
@@ -34,9 +37,7 @@ class LeaveRequests extends Component {
     </div>
   </Router>    
   </div>
-    <div className="back">
-    <NavLink to='/dashboard'><button>Back</button></NavLink>
-</div>  
+    
 </div>  
   
     );
