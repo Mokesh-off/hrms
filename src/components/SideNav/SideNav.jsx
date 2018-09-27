@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import './SideNav.css';
 
 class SideNav extends Component{
@@ -20,7 +21,7 @@ componentWillMount(){
       <div className='sidenav'>
         <button>Home</button>
         <button>Leave</button>
-        <button>Leave Request</button>
+        <Link to='/leaverequest'><button>Leave Request</button></Link>
         <button className={this.state.employeeVisibility}>Leave Approval</button>
         <button>My Leave</button>
         <button className={this.state.employeeVisibility}>Leave Records</button>
