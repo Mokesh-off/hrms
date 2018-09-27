@@ -14,7 +14,6 @@ class Header extends Component{
     localStorage.removeItem('currentUserName');
     localStorage.removeItem('currentUserRole');
     this.setState({logOut:this.state.logOut=true})
-    console.log('logout function');
   }
   render(){
     if(this.state.logOut){
