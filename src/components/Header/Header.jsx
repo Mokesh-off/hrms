@@ -23,9 +23,20 @@ class Header extends Component {
     var userName = JSON.parse(localStorage.getItem("currentUserName"));
     return (
       <div id="header">
+<<<<<<< HEAD
         <span className="logo">tringapps</span>
         <div className="profile-icon">
           <span className="profile">{userName}</span>
+=======
+        <div className="logo">tringapps</div>
+        <div className='profile-main-outer'>
+          <div className='profile-outer'>
+            <div className='profile-img'>
+              <img src={require("../../Assets/images/profile_icon.png")}></img>
+            </div>
+            <div className='profile-name'>{userName}</div>
+          </div>
+>>>>>>> develop
           <div className="dropdown-content">
             <span onClick={this.logOutFunction}>Logout</span>
           </div>
