@@ -8,14 +8,15 @@ class LeaveRequest extends React.Component {
       super(props)
       this.state = {
         EmpId: '',
-        TotalDays: moment(),
+        TotalDays: '',
         FromDate: moment(),
-        ToDate: '',
+        ToDate: moment(),
         LeaveType: '',
         LeaveReason: ' ',
-        ReqestId: 0,
-        flag: false,
-        holidays : JSON.parse( localStorage.getItem('holidays'))
+        ReqestId: moment(),
+        status:''
+        // flag: false,
+        // holidays : JSON.parse( localStorage.getItem('holidays'))
       }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,46 +26,70 @@ class LeaveRequest extends React.Component {
     this.isHoliday = this.isHoliday.bind(this)
   }
   handleChange =(e)=> {
-    console.log(e.target.name , e.target.value);
+    // console.log(e.target.name , e.target.value);
     this.setState({[e.target.name]: e.target.value})
   }
   DateFromChange(date) {
-    console.log(this.state.FromDate);
-    this.setState({FromDate : this.state.FromDate = date });
+    console.log(date);
+    this.setState({FromDate: date });
   }
   DateToChange(date) {
     this.setState({ToDate : this.state.ToDate = date });
-    console.log('dateTOchange');
+
+    // this.setState({ToDate : this.state.ToDate = date }, () => {
+
+    // });
+
+    // console.log('dateTOchange');
     this.numOfDays();
   }
   handleSubmit (event){
     event.preventDefault();
-    console.log('.....onsubmit......');
-    console.log(JSON.stringify(this.state)+' onsubmit');
-    var data = [];
-    data.push(this.state);
-    var value= JSON.parse(localStorage.getItem('LeaveRequest'));
-    (value[0] === null || value[0] === undefined)? (null) :
-      (this.setState({ReqestId : this.state.ReqestId = value[0].ReqestId})
-    );
-    console.log(value);
-    console.log(this.state.ReqestId);
-    this.setState({ReqestId : this.state.ReqestId += 1});
+    // console.log('.....onsubmit......');
+    // console.log(JSON.stringify(this.state)+' onsubmit');
+    // var data = [];
+    // data.push(this.state);
+    // var value= JSON.parse(localStorage.getItem('Data'));
+    // (value.leaveRequest[0] === null || value.leaveRequest[0] === undefined) ? (null) :
+    //   (this.setState({ReqestId : this.state.ReqestId = value.leaveRequest[0].ReqestId})
+    // );
+
+    // console.log(value.leaveRequest+" ............LeaveReq............");
+    // // console.log(this.state.ReqestId);
+    // this.setState({ReqestId : this.state.ReqestId += 1});
+    // var currentUser = localStorage.getItem('currentUserId');
+    // this.setState({EmpId : this.state.EmpId = currentUser});
+    // data.push(value);
+    // localStorage.setItem('Data.leaveRequest',JSON.stringify(data));
+    // this.calldispatch.call(this);
+    var data = JSON.parse(localStorage.getItem('Data'));
     var currentUser = localStorage.getItem('currentUserId');
-    this.setState({EmpId : this.state.EmpId = currentUser});
-    data.push(value);
-    localStorage.setItem('LeaveRequest',JSON.stringify(data));
-    this.calldispatch.call(this);
+    if (data.leaveRequest) {
+      this.setState({EmpId: currentUser}, () => {
+        data.leaveRequest[data.leaveRequest.length] = this.state
+        // console.log('data', JSON.stringify(data))
+        localStorage.setItem('Data', JSON.stringify(data));
+      });
+    } else {
+      data['leaveRequest'] = []
+      this.setState({EmpId: currentUser}, () => {
+        // data.leaveRequest.push(this.state)
+        data.leaveRequest[data.leaveRequest.length] = this.state
+        // console.log('data', JSON.stringify(data))
+        localStorage.setItem('Data', JSON.stringify(data));
+      });
+    }
   }
+  
   calldispatch () {
     console.log('calldispatch');
     this.setState({
       EmpId: '',
-      TotalDays: '',
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
-      LeaveReason: ' '
+      LeaveReason: ' ',
+      TotalDays: ''
     });
   }
   isWeekday = (date) => {
@@ -77,7 +102,7 @@ class LeaveRequest extends React.Component {
     // (mm < 10 ) ? (mm = ())
     
     const flag= this.isHoliday(yyyy+'/'+mm+'/'+dd);
-     console.log(flag);
+    //  console.log(flag);
   //   holidays.find( (holiday) =>
   //   (date===holiday)? (this.setState({flag: this.state.flag = true})) : (null)
   // );
@@ -91,17 +116,17 @@ class LeaveRequest extends React.Component {
     const newdate = date;
     const holidays =JSON.parse( localStorage.getItem('holidays'));
     // const string = JSON.stringify(holidays);
-    console.log(holidays + "holiday List");
+    // console.log(holidays + "holiday List");
     var status;
     for(var i=0;i<= holidays.length;i++){
-      console.log(holidays[i]);
-      if(new Date(holidays[i]).getTime() == new Date(newdate).getTime()){
+      // console.log(holidays[i]);
+      if(new Date(holidays[i]).getTime() === new Date(newdate).getTime()){
         status = true
       }else{
         status = false
       }
     }
-    console.log(status);
+    // console.log(status);
     // holidays.map( (ho,i) => {
     //   //console.log(ho);
     //   //console.log('date:'+newdate);
@@ -113,7 +138,7 @@ class LeaveRequest extends React.Component {
     // return(flag);
   }
   numOfDays=() => {
-    console.log('numOfDays');
+    // console.log('numOfDays');
     var start = this.state.FromDate._d;
     this.setState({start : this.state.FromDate._d});
     var end  = this.state.ToDate._d
@@ -122,7 +147,7 @@ class LeaveRequest extends React.Component {
     end  = new Date(end);
     var count = 0;
     while(loop <= end){
-      console.log(loop + "" + end); 
+      // console.log(loop + "" + end); 
       (loop.getDay()=== 0 || loop.getDay() === 6)?
         (null) : (count++);  
       console.log(count + " count");        
@@ -132,6 +157,10 @@ class LeaveRequest extends React.Component {
     this.setState({TotalDays: count});
   }
   render(){
+    var holidayList = JSON.parse(localStorage.getItem('Data'));
+    holidayList=holidayList.holidays;
+    console.log(holidayList);
+
     return(
       <div className="main">
         <div className="container">
@@ -168,7 +197,7 @@ class LeaveRequest extends React.Component {
                   showDisabledMonthNavigation
                   onChange={e=>this.DateFromChange(e)}
                   yearDropdownItemNumber={2}
-                  excludeDates = {this.state.holidays}
+                  excludeDates = {holidayList}
                   // value={this.state.From}
                   isClearable={true}
                   placeholderText="Select a weekday"
@@ -192,7 +221,7 @@ class LeaveRequest extends React.Component {
                   maxDate={moment(this.state.FromDate).add(24, "months")}
                   showDisabledMonthNavigation
                   yearDropdownItemNumber={2}
-                  excludeDates = {this.state.holidays}
+                  excludeDates = {holidayList}
                   isClearable={true}
                   placeholderText="Select a weekday"
                   name="To"/>
