@@ -33,7 +33,7 @@ class SideNav extends Component {
         <button className={this.state.employeeVisibility}>Leave Records</button>
         <button onClick={this.props.onSubmit} id="LeavePolicy">
           Leave Policy
-        </button>{" "}
+        </button>
         <button className={this.state.employeeVisibility}>Leave plan</button>
       </div>
     );
