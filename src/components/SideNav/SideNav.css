@@ -22,7 +22,7 @@
   background-color:#ffe4c4;
 }
 
-.sidenav button {
+.sidenav > button {
     padding: 15px;
     width: 100%;
     border: none;
@@ -31,6 +31,21 @@
   }
 
 .sidenav button:hover{
+<<<<<<< HEAD
+  background-color: #ffe4c4;
+}
+
+.link{
+  padding: 15px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  transition: all 1s ease-in;
+  
+}
+.sidenav .link:hover{
+=======
+>>>>>>> develop
   background-color: #ffe4c4;
 }
 .employeeCss{
