@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SideNav from '../SideNav/SideNav';
-import DummyComponent from './DummyComponent'
-import { Redirect } from 'react-router-dom';
-
-
+//import LeaveRequests from '../LeaveApproval/LeaveRequests';
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 class Dashboard extends Component{
 
   render(){
@@ -14,11 +12,15 @@ class Dashboard extends Component{
     }
     return(
 
+
+
       <div>
         {console.log(JSON.parse(localStorage.getItem('currentUserId')))}
         <Header />
         <SideNav />    
         <Footer />
+      
+
       </div>
     )
   }
