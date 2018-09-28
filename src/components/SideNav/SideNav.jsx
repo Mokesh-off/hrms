@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './SideNav.css';
 import { BrowserRouter as Router, Route, Redirect,Link} from "react-router-dom";
 //import LeaveApprovals from './LeaveApproval'
-
+import Popup from 'reactjs-popup'
 class SideNav extends Component{
 constructor(props){
   super(props)
@@ -15,8 +15,11 @@ constructor(props){
 }
 
 navigation(e,link){
-  this.setState({navFlag:this.state.navFlag=link})
-  console.log(this.state.navFlag)
+  console.log(window.location.pathname, link)
+  if (window.location.pathname !== link) {
+    console.log('if condition executed')
+    this.setState({navFlag: link})
+  } 
   console.log('navigation')
 }
   
@@ -28,23 +31,24 @@ componentWillMount(){
   }
 
   render(){
-   if (this.state.navFlag!='') 
+   if (this.state.navFlag) 
    {
         return <Redirect to={this.state.navFlag} />;
    }
 
     return(
       <div className='sidenav'>
-        <button>Home</button>
+        <button onClick={e=>this.navigation(e,'/dashboard')}>Home</button>
         <button>Leave</button>
         <button>Leave Request</button>
         {/* <Link to="/leaverequests"><button className="link">Leave Approval</button></Link> */}
-        <button onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
+        <button onClick={e=>this.navigation(e,'/leaverec')}>Leave Approval</button>
         <Link to='/leaverequest'><button>Leave Request</button></Link>
-        <button>My Leave</button>
+        <button onClick={e=>this.navigation(e,'/myLeaves')}>My Leave</button>
         <button className={this.state.employeeVisibility}>Leave Records</button>
         <button>Leave Policy</button>
         <button className={this.state.employeeVisibility}>Leave plan</button>
+        <button onClick={e=>this.navigation(e,'/pendingleaves')}>Pending Leave </button>
       </div>
     )
   }
