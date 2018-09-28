@@ -96,18 +96,19 @@ class LeaveRequest extends React.Component {
     const day = date._d.getDay();
     //console.log(date);
     //console.log(day);
-    const dd = date._d.getDate();
-    const mm = date._d.getMonth();
-    const yyyy = date._d.getFullYear();
-    // (mm < 10 ) ? (mm = ())
+    // const dd = date._d.getDate();
+    // const mm = date._d.getMonth();
+    // const yyyy = date._d.getFullYear();
+    // // (mm < 10 ) ? (mm = ())
     
-    const flag= this.isHoliday(yyyy+'/'+mm+'/'+dd);
+    // const flag= this.isHoliday(yyyy+'/'+mm+'/'+dd);
     //  console.log(flag);
   //   holidays.find( (holiday) =>
   //   (date===holiday)? (this.setState({flag: this.state.flag = true})) : (null)
   // );
-  ;
-    return day !== 0 && day !== 6 && day !== flag
+  // ;
+    return day !== 0 && day !== 6 
+    
   }
   isHoliday(date) {
     // const dt= date()
@@ -159,10 +160,10 @@ class LeaveRequest extends React.Component {
   render(){
     var holidayList = JSON.parse(localStorage.getItem('Data'));
     holidayList=holidayList.holidays;
-    console.log(holidayList);
 
     return(
-      <div className="main">
+      <div className='rightContent'>
+      <div className="leaveRequestMain">
         <div className="container">
           <form >
             <div className="row">
@@ -252,6 +253,7 @@ class LeaveRequest extends React.Component {
           </form>
         </div>
       </div>
+      </div>//rightContainer done
     );
   }
 }
