@@ -95,12 +95,14 @@ navigation(e,Link){
           <button>My Leave</button>
           <button className={this.state.employeeVisibility} 
           onClick={e=>this.navigation(e,'/leaveRecords')}>Leave Records</button>
-          <button>Leave Policy</button>
-          <button className={this.state.employeeVisibility}>Leave plan</button>
           <button onClick={this.props.onSubmit} id="LeavePolicy">
           {" "}
           Leave Policy
-         </button>
+        </button>
+        <button 
+          className={this.state.employeeVisibility}
+          onClick={e => this.navigation(e, "/leavePlan")}>Leave plan
+        </button>
         </div>
       </div>
     );
