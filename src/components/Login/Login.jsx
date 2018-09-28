@@ -76,12 +76,16 @@ class Login extends Component {
   }
 
   render () {
+    // if (this.state.currentUserId!='') {
+    //   return <Redirect to='/dashboard' />
+    // }
     if(JSON.parse(localStorage.getItem('currentUserId'))!==null){
       return <Redirect to='/dashboard' />
     }
     else{
       return (
         <div>
+          {console.log(JSON.parse(localStorage.getItem('currentUserId')))}
           <div class="bodylogin"></div>
           <div class="headerlogin">
             <div><span>tring</span>apps</div>
@@ -93,6 +97,7 @@ class Login extends Component {
               <input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
               <input type="submit" value="Login" data-test="submit"/>
             </form>
+            <p><a className="alogin" href="#">Forgot Username or Password?</a></p>
           </div>
       </div> 
       );

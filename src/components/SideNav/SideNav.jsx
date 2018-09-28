@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './SideNav.css';
+
+//import LeaveApprovals from './LeaveApproval'
 
 class SideNav extends Component{
 constructor(props){
@@ -36,6 +38,16 @@ navigation(e,Link){
   this.setState({navFlag:this.state.navFlag=Link})
 }
 
+  // class SideNav extends Component {
+  //   constructor(props) {
+  //     super(props);
+  //     this.state = {
+  //       navFlag: "",
+  //       employeeVisibility: ""
+  //     };
+  //     this.navigation = this.navigation.bind(this);
+  //   }
+
   componentWillMount() {
     var visibilityVar = JSON.parse(localStorage.getItem("currentUserRole"));
     visibilityVar === "Employee" &&
@@ -43,7 +55,22 @@ navigation(e,Link){
         employeeVisibility: (this.state.employeeVisibility = "employeeCss")
       });
 
+    // componentWillMount(){
+    //   var visibilityVar= JSON.parse(localStorage.getItem('currentUserRole'));
+    //   (visibilityVar==='Employee')&&
+    //   this.setState({ employeeVisibility: this.state.employeeVisibility='employeeCss'})
+
+    //   }
   }
+  // constructor(props){
+  //   super(props)
+  //   this.state={
+  //   navFlag:'',
+  //   employeeVisibility : ''
+
+  //  }
+  //  this.navigation=this.navigation.bind(this)
+  // }
 
   navigation(e, link) {
     this.setState({ navFlag: (this.state.navFlag = link) });

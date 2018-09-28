@@ -5,7 +5,7 @@ import SideNav from "../SideNav/SideNav";
 import LeavePolicy from "../LeavePolicy/LeavePolicy";
 // import DummyComponent from "./DummyComponent";
 // import { Redirect } from "react-router-dom";
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +28,7 @@ class Dashboard extends Component {
     }
     return (
       <div>
+        {console.log(JSON.parse(localStorage.getItem("currentUserId")))}
         <Header />
         <SideNav onSubmit={this.onSubmit} />
         {this.state.clickComponent !== null ? <LeavePolicy /> : null}
