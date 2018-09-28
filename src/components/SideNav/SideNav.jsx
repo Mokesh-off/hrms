@@ -9,11 +9,31 @@ constructor(props){
   super(props)
   this.state={
     navFlag:'',
-    employeeVisibility : ''
+    employeeVisibility : '',
+    showButtons:'sidenavHide',
+    cssShape:'triangle-right'
   }
   this.navigation=this.navigation.bind(this)
+  this.showButtonsFunction=this.showButtonsFunction.bind(this)
 }
-
+showButtonsFunction(){
+  console.log('showbuttons called')
+  if(this.state.showButtons==='sidenavHide'){
+    console.log('if condition')
+    return this.setState(
+      {showButtons:this.state.showButtons='sidenavDisplay sidenav',
+      cssShape:this.state.cssShape='triangle-down'}
+      
+      )
+  }
+  else if(this.state.showButtons==='sidenavDisplay sidenav'){
+    console.log('else-if condition')
+    return this.setState(
+      {showButtons:this.state.showButtons='sidenavHide',
+      cssShape:this.state.cssShape='triangle-right'}
+    )
+  }
+}
 navigation(e,Link){  
   this.setState({navFlag:this.state.navFlag=Link})
 }
@@ -40,15 +60,19 @@ componentWillMount(){
     return(
       <div className='sidenav'>
         <button>Home</button>
-        <button>Leave</button>
-        {/* <Link to="/leaverequests"><button className="link">Leave Approval</button></Link> */}
-        <button onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
-        <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
-        <button>My Leave</button>
-        <button className={this.state.employeeVisibility} 
-        onClick={e=>this.navigation(e,'/leaveRecords')}>Leave Records</button>
-        <button>Leave Policy</button>
-        <button className={this.state.employeeVisibility}>Leave plan</button>
+
+        <button onClick={()=>this.showButtonsFunction()}>
+        <span className={this.state.cssShape}></span> Leave</button>    
+        
+        <div className= {this.state.showButtons} >
+          <button onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
+          <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
+          <button>My Leave</button>
+          <button className={this.state.employeeVisibility} 
+          onClick={e=>this.navigation(e,'/leaveRecords')}>Leave Records</button>
+          <button>Leave Policy</button>
+          <button className={this.state.employeeVisibility}>Leave plan</button>
+        </div>
       </div>
     )
   }
