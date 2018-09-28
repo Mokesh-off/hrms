@@ -90,13 +90,13 @@ navigation(e,Link){
         <span className={this.state.cssShape}></span> Leave</button>    
         
         <div className= {this.state.showButtons} >
-          <button onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
-          <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
+         <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
+          <button onClick={e=>this.navigation(e,'/leaverequests')}
+          className={this.state.employeeVisibility} >Leave Approval</button>
           <button>My Leave</button>
           <button className={this.state.employeeVisibility} 
           onClick={e=>this.navigation(e,'/leaveRecords')}>Leave Records</button>
-          <button>Leave Policy</button>
-          <button className={this.state.employeeVisibility}>Leave plan</button>
+          <button>Leave plan</button>
           <button onClick={this.props.onSubmit} id="LeavePolicy">
           {" "}
           Leave Policy
