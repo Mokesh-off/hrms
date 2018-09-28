@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
 import { Link, Redirect } from 'react-router-dom';
 import './SideNav.css';
 
-=======
-import './SideNav.css';
-import { BrowserRouter as Router, Route, Redirect,Link} from "react-router-dom";
->>>>>>> develop
 //import LeaveApprovals from './LeaveApproval'
 
 class SideNav extends Component{
@@ -85,25 +80,6 @@ componentWillMount(){
     }
     return (
       <div className="sidenav">
-<<<<<<< HEAD
-        <button>Home</button>
-
-        <button onClick={()=>this.showButtonsFunction()}>
-        <span className={this.state.cssShape}></span> Leave</button>    
-        
-        <div className= {this.state.showButtons} >
-         <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
-          <button onClick={e=>this.navigation(e,'/leaverequests')}
-          className={this.state.employeeVisibility} >Leave Approval</button>
-          <button>My Leave</button>
-          <button className={this.state.employeeVisibility} 
-          onClick={e=>this.navigation(e,'/leaveRecords')}>Leave Records</button>
-          <button>Leave plan</button>
-          <button onClick={this.props.onSubmit} id="LeavePolicy">
-          {" "}
-          Leave Policy
-         </button>
-=======
         <button onClick={e=>this.navigation(e,'/dashboard')}>Home</button>
         <button onClick={()=>this.showButtonsFunction()}>
         <span className={this.state.cssShape}></span> Leave</button>            
@@ -119,7 +95,6 @@ componentWillMount(){
             className={this.state.employeeVisibility}
             onClick={e => this.navigation(e, "/leavePlan")}>Leave plan
           </button>
->>>>>>> develop
         </div>
       </div>
     );
