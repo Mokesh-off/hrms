@@ -1,16 +1,17 @@
+
 import React, {Component} from 'react';
 import './SideNav.css';
 import { BrowserRouter as Router, Route, Redirect,Link} from "react-router-dom";
 //import LeaveApprovals from './LeaveApproval'
-import Popup from 'reactjs-popup'
+
 class SideNav extends Component{
 constructor(props){
   super(props)
   this.state={
   navFlag:'',
   employeeVisibility : ''
+   }
 
- }
  this.navigation=this.navigation.bind(this)
 }
 
@@ -47,10 +48,8 @@ componentWillMount(){
         <button onClick={e=>this.navigation(e,'/myLeaves')}>My Leave</button>
         <button className={this.state.employeeVisibility}>Leave Records</button>
         <button>Leave Policy</button>
-        <button className={this.state.employeeVisibility}>Leave plan</button>
-        <button onClick={e=>this.navigation(e,'/pendingleaves')}>Pending Leave </button>
       </div>
-    )
+    );
   }
 }
 

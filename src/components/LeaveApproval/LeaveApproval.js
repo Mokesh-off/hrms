@@ -3,17 +3,14 @@ import './LeaveApproval.css'
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import Popup from 'reactjs-popup'
 class LeaveApproval extends Component{
-  constructor(props){
+   constructor(props){
     super(props)
       this.state={
              open:false,
              status:'',
              LeaveRecord:JSON.parse(localStorage.getItem('Data'))
           }
-
-          
-          
-  }
+     }
   closePopup(e){
     this.setState({ open : false });
   }

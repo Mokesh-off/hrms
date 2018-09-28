@@ -15,6 +15,7 @@ class PendingLeaves extends Component {
     return(
       
       <div className='leaveRecord'>
+      <h2>Pending Leaves</h2>
         <table>
            <thead className='thead1'>
              <tr className='thead1'>
