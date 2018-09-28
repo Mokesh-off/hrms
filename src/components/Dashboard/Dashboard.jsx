@@ -4,8 +4,8 @@ import Footer from "../Footer/Footer";
 import SideNav from "../SideNav/SideNav";
 import LeavePolicy from "../LeavePolicy/LeavePolicy";
 // import DummyComponent from "./DummyComponent";
-import { Redirect } from "react-router-dom";
-
+// import { Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
