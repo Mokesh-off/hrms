@@ -9,11 +9,11 @@ class Header extends Component {
     };
     this.logOutFunction = this.logOutFunction.bind(this);
   }
-  logOutFunction() {
-    localStorage.removeItem("currentUserId");
-    localStorage.removeItem("currentUserName");
-    localStorage.removeItem("currentUserRole");
-    this.setState({ logOut: (this.state.logOut = true) });
+  logOutFunction(){
+    localStorage.removeItem('currentUserId');
+    localStorage.removeItem('currentUserName');
+    localStorage.removeItem('currentUserRole');
+    this.setState({logOut:this.state.logOut=true})
   }
   render() {
     if (this.state.logOut) {
