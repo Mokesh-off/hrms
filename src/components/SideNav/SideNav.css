@@ -19,7 +19,7 @@
 
 .sidenav a:hover {
   color: #064579;
-  background-color:#ffe4c4;
+  background-color: #e6ffff;
 }
 
 .sidenav button{
@@ -29,10 +29,11 @@
   cursor: pointer;
   transition: all 1s ease-in;
   text-align: unset;
+  outline: none;
 }
 
 .sidenav button:hover{
-  background-color: #ffe4c4;
+  background-color:  #e6ffff;
 }
 
 .link{
@@ -50,13 +51,13 @@
   display: none;
 }
 .sidenavHide{
-  overflow: hidden;
   height: 0;
+  overflow: hidden;
   display: none;
 }
 .sidenavDisplay{
-  overflow: hidden;
   height: 60vh;
+  overflow: hidden;
   margin-top: 0px !important;
 }
 .triangle-right {
