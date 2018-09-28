@@ -80,6 +80,7 @@ class Login extends Component {
     //   return <Redirect to='/dashboard' />
     // }
     if(JSON.parse(localStorage.getItem('currentUserId'))!==null){
+      console.log('dfadfads')
       return <Redirect to='/dashboard' />
     }
     else{
