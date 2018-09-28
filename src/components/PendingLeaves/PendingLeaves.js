@@ -8,10 +8,11 @@ class PendingLeaves extends Component {
     }
 }
 
-
-  render() {
+ render() {
     let id=JSON.parse(localStorage.getItem('currentUserId'))
-    //alert(id);
+      
+
+
     return(
       
       <div className='leaveRecord'>

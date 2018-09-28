@@ -79,7 +79,7 @@ class LeaveApproval extends Component{
                  </tr>
              </tbody>
            </table><br></br>
-           <NavLink to="/leaverec"><button>Back</button> </NavLink>
+           <NavLink to="/leavelist"><button>Back</button> </NavLink>
            <Popup  open={this.state.open} closeOnDocumentClick  modal>
             <div>   
               <span>{this.state.status} successfully</span><br></br>
