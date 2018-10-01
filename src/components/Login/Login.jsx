@@ -98,7 +98,6 @@ class Login extends Component {
               <input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
               <input type="submit" value="Login" data-test="submit"/>
             </form>
-            <p><a className="alogin" href="#">Forgot Username or Password?</a></p>
           </div>
       </div> 
       );
