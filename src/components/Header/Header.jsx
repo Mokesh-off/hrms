@@ -44,10 +44,11 @@ class Header extends Component {
         <div className="logo">tringapps</div>
         <div className="profile-main-outer">
           <div className="profile-outer">
-            <div className="profile-img">
-              <button onClick={e => this.navigation(e, "/profileIndex")}>
-                <img src={require("../../Assets/images/profile_icon.png")} />
-              </button>
+            <div
+              className="profile-img"
+              onClick={e => this.navigation(e, "/profileIndex")}
+            >
+              <img src={require("../../Assets/images/profile_icon.png")} />
             </div>
             <div className="profile-name">{userName}</div>
           </div>

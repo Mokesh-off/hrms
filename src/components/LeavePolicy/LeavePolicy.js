@@ -1,13 +1,5 @@
 import React, { Component } from "react";
 import "./LeavePolicy.css";
-// import { Link } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
-
-// import LeavePOlicyIndex from "./LeavePolicyIndex";
-// import Header from "../Header/Header";
-// import SideNav from "../SideNav/SideNav";
-
-// import LeaveList from "../LeaveList/LeaveList";
 
 class LeavePolicy extends Component {
   constructor(props) {
