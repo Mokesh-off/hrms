@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import './SideNav.css';
-import { BrowserRouter as Router, Route, Redirect,Link} from "react-router-dom";
+
 //import LeaveApprovals from './LeaveApproval'
 
 class SideNav extends Component{
