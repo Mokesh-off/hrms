@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
 import "./LeavePolicy.css";
-
-// import LeaveList from "../LeaveList/LeaveList";
 
 class LeavePolicy extends Component {
   constructor(props) {
@@ -28,49 +24,49 @@ class LeavePolicy extends Component {
         id: 1,
         Type: "Planned Leave",
         Name: "Casual Leave",
-        Days: 7,
+        Days: "7",
         Terms: "7 days for 12 months service"
       },
       {
         id: 2,
         Type: "Leave without pay",
         Name: "Leave without pay",
-        Days: 5,
+        Days: "5",
         Terms: "5 days for 12 months service"
       },
       {
         id: 3,
         Type: "SL",
         Name: "Sick Leave",
-        Days: 10,
+        Days: "10",
         Terms: "10 days for 12 months service"
       },
       {
         id: 4,
         Type: "Maternity Leave",
         Name: "Maternity Leave",
-        Days: 180,
+        Days: "180",
         Terms: "180 days for 12 months service"
       },
       {
         id: 5,
         Type: "Earned Leave or Privilege leave",
         Name: "Earned Leave or Privilege leave",
-        Days: 12,
+        Days: "12",
         Terms: "12 days for 12 months service"
       },
       {
         id: 6,
         Type: "National Holiday",
         Name: "National Holiday",
-        Days: 3,
+        Days: "3",
         Terms: "3 days for 12 months service"
       },
       {
         id: 7,
         Type: "Paternity leave",
         Name: "Paternity leave",
-        Days: 3,
+        Days: "3",
         Terms: "3 days for 12 months service"
       }
     ],
@@ -152,43 +148,34 @@ class LeavePolicy extends Component {
     // console.log("value", data.Employee);
     if (role === "Employer") {
       return (
-        <div className="Policy">
-          <h1 className="header">
+        <div className="policy">
+          <h1 className="headerLeavePolicy">
             <textarea>Leave Policy(2018)</textarea>
           </h1>
 
           <table id="leavePolicy">
-            {" "}
             <thead>
-              <tr>
-                <th>
-                  <textarea>Leave Type</textarea>
-                </th>{" "}
-                <th>
-                  <textarea>Leave Name</textarea>
-                </th>
-                <th>
-                  <textarea>NO.of Days</textarea>
-                </th>
-                <th>
-                  <textarea>Terms</textarea>
-                </th>
+              <tr className="thead1">
+                <th className="tdStyle"> Leave Type</th>
+                <th className="tdStyle">Leave Name</th>
+                <th className="tdStyle">NO.of Days</th>
+                <th className="tdStyle">Terms</th>
               </tr>
             </thead>
             <tbody>
               {this.state.leavePolicyJSON.map((data, i) => (
                 <tr key={data.id}>
-                  <td>
-                    <textarea>{data.Type}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Type}</textarea>
                   </td>
-                  <td>
-                    <textarea>{data.Name}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Name}</textarea>
                   </td>
-                  <td>
-                    <textarea>{data.Days}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Days}</textarea>
                   </td>
-                  <td>
-                    <textarea>{data.Terms}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Terms}</textarea>
                   </td>
                 </tr>
               ))}
@@ -198,27 +185,27 @@ class LeavePolicy extends Component {
       );
     } else {
       return (
-        <div className="Policy">
+        <div className="policy">
           <h1 className="header">Leave Policy(2018)</h1>
 
           <table id="leavePolicy">
             <thead>
-              <tr>
-                <th>Leave Type</th>
-                <th>Leave Name</th>
-                <th>NO.of Days</th>
-                <th>Terms</th>
+              <tr className="thead1">
+                <th className="tdStyle">Leave Type</th>
+                <th className="tdStyle">Leave Name</th>
+                <th className="tdStyle">NO.of Days</th>
+                <th className="tdStyle">Terms</th>
               </tr>
             </thead>
 
             <tbody>
               {this.state.leavePolicyJSON.map((data, i) => (
                 <tr key={data.id}>
-                  <td>{data.Type}</td>
+                  <td className="tdStyle">{data.Type}</td>
 
-                  <td>{data.Name}</td>
-                  <td>{data.Days}</td>
-                  <td>{data.Terms}</td>
+                  <td className="tdStyle"> {data.Name}</td>
+                  <td className="tdStyle">{data.Days}</td>
+                  <td className="tdStyle">{data.Terms}</td>
                 </tr>
               ))}
             </tbody>
