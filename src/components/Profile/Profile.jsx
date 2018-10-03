@@ -10,20 +10,29 @@ export default class Profile extends React.Component {
     this.change = this.change.bind(this);
   }
 
+<<<<<<< Updated upstream
   /* --   Onchange Function   -- */
 
+=======
+>>>>>>> Stashed changes
   change(e, i) {
     var item = {
       value: e.target.value,
       name: e.target.name,
       targetIndex: i
     };
+<<<<<<< Updated upstream
 
     /*--    Storing values in LocalStorage    --*/
 
     const newObject = this.state.Data.Employee.map((data, j) => {
       for (var key in data) {
         if (key === item.name && j === item.targetIndex) {
+=======
+    const newObject = this.state.Data.Employee.map((data, j) => {
+      for (var key in data) {
+        if (key == item.name && j == item.targetIndex) {
+>>>>>>> Stashed changes
           data[key] = item.value;
         }
       }
@@ -35,7 +44,10 @@ export default class Profile extends React.Component {
 
   render() {
     let empId = JSON.parse(localStorage.getItem("currentUserId"));
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     return (
       /* --    User Profile   -- */
 
