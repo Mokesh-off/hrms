@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import SideNav from "../SideNav/SideNav";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
+import { BrowserRouter as Redirect } from "react-router-dom";
 import LeaveRequests from "../LeaveApproval/LeaveRequests";
-// import LeaveApproval from '../LeaveApproval/LeaveApproval';
+
 import PendingLeaves from "../PendingLeaves/PendingLeaves";
 
 class Dashboard extends Component {
@@ -23,18 +21,12 @@ class Dashboard extends Component {
     if (JSON.parse(localStorage.getItem("currentUserRole")) === "Employer") {
       return (
         <div>
-          <Header />
-          <Footer />
-          <SideNav />
           <LeaveRequests />
         </div>
       );
     } else {
       return (
         <div>
-          <Header />
-          <Footer />
-          <SideNav />
           <PendingLeaves />
         </div>
       );

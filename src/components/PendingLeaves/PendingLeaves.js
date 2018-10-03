@@ -43,4 +43,4 @@ class PendingLeaves extends Component {
   }
 }
 
-export default PendingLeaves ;
+export default PendingLeaves 

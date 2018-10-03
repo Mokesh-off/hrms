@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Header.css";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -9,9 +9,6 @@ class Header extends Component {
       navflag: ""
     };
     this.logOutFunction = this.logOutFunction.bind(this);
-  }
-  componentWillMount() {
-    var visibilityVar = JSON.parse(localStorage.getItem("currentUserRole"));
   }
 
   logOutFunction() {
@@ -28,7 +25,6 @@ class Header extends Component {
       this.setState({ navflag: link });
       this.setState({ navFlag: (this.state.navFlag = link) });
     }
-    console.log("navigation");
   }
 
   render() {
@@ -43,15 +39,15 @@ class Header extends Component {
       <div id="header">
         <div className="logo">tringapps</div>
         <div className="profile-main-outer">
-          <div className="profile-outer">
-            <div
-              className="profile-img"
-              onClick={e => this.navigation(e, "/profileIndex")}
-            >
-              <img src={require("../../Assets/images/profile_icon.png")} />
+          <Link to="/profileIndex" className="profile-outer">
+            <div className="profile-outer">
+              <div className="profile-img">
+                <img src={require("../../Assets/images/profile_icon.png")} />
+              </div>
+              <div className="profile-name">{userName}</div>
             </div>
-            <div className="profile-name">{userName}</div>
-          </div>
+          </Link>
+
           <div className="dropdown-content">
             <span onClick={this.logOutFunction}>Logout</span>
           </div>

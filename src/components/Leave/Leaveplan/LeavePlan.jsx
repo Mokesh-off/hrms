@@ -9,23 +9,16 @@ class LeavePlan extends Component {
       Holiday: JSON.parse(localStorage.getItem("Data"))
     };
     this.change = this.change.bind(this);
-    // this.Add = this.Add.bind(this);
   }
   change(e, i) {
-    // console.log(e, i + "e  &   i");
-    // console.log(e.target.value);
-    // console.log(e.target.name);
     var item = {
       value: e.target.value,
       name: e.target.name,
       targetIndex: i
     };
-    console.log(item);
     const newObject = this.state.Holiday.holidayList.map((holiday, j) => {
       for (var key in holiday) {
         if (key == item.name && j == item.targetIndex) {
-          console.log(j);
-          console.log(holiday);
           holiday[key] = item.value;
         }
       }
@@ -34,7 +27,6 @@ class LeavePlan extends Component {
     this.setState({ [this.state.Holiday.holidayList]: newObject });
     localStorage.setItem("Data", JSON.stringify(this.state.Holiday));
   }
-
   render() {
     var role = localStorage.getItem("currentUserRole");
     if (role === "Employee") {
@@ -95,7 +87,6 @@ class LeavePlan extends Component {
               ))}
             </tbody>
           </table>
-          {/* <button type="button" value = "Add" onClick = {this.Add} >Add</button> */}
         </div>
       );
     }
