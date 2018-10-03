@@ -37,23 +37,6 @@ class LeaveRequest extends React.Component {
   }
   handleSubmit (event){
     event.preventDefault();
-    // console.log('.....onsubmit......');
-    // console.log(JSON.stringify(this.state)+' onsubmit');
-    // var data = [];
-    // data.push(this.state);
-    // var value= JSON.parse(localStorage.getItem('Data'));
-    // (value.leaveRequest[0] === null || value.leaveRequest[0] === undefined) ? (null) :
-    //   (this.setState({ReqestId : this.state.ReqestId = value.leaveRequest[0].ReqestId})
-    // );
-
-    // console.log(value.leaveRequest+" ............LeaveReq............");
-    // // console.log(this.state.ReqestId);
-    // this.setState({ReqestId : this.state.ReqestId += 1});
-    // var currentUser = localStorage.getItem('currentUserId');
-    // this.setState({EmpId : this.state.EmpId = currentUser});
-    // data.push(value);
-    // localStorage.setItem('Data.leaveRequest',JSON.stringify(data));
-    // this.calldispatch.call(this);
     var data = JSON.parse(localStorage.getItem('Data'));
     var currentUserId = localStorage.getItem('currentUserId');
     var currentUser = localStorage.getItem('currentUser');
@@ -73,7 +56,7 @@ class LeaveRequest extends React.Component {
   }
   
   calldispatch () {
-    // console.log('calldispatch');
+
     this.setState({
       EmpId: '',
       FromDate: moment(),
@@ -108,7 +91,7 @@ class LeaveRequest extends React.Component {
     holidayList=holidayList.holidays;
 
     return(
-      <div className='rightContent'>
+      // <div className='rightContent'>
       <div className="leaveRequestMain">
         <div className="container">
           <form >
@@ -196,7 +179,7 @@ class LeaveRequest extends React.Component {
           </form>
         </div>
       </div>
-      </div>//rightContainer done
+      // </div>//rightContainer done
     );
   }
 }
