@@ -70,7 +70,6 @@ class App extends Component {
                   path="/leaveplan"
                   component={HolidayIndex}
                 />
-
                 <Route
                   exact
                   strict
