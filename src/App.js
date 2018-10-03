@@ -13,8 +13,8 @@ import SideNav from './components/SideNav/SideNav'
 import LeaveRequest from './components/Leave/LeaveRequest/LeaveRequest'
 import PendingLeaves from './components/PendingLeaves/PendingLeaves'
 import LeaveRequests from './components/LeaveApproval/LeaveRequests'
-import LeavePolicyIndex from "./components/LeavePolicy/LeavePolicyIndex ";
-import ProfileIndex from "./components/Profile/ProfileIndex";
+import LeavePolicyIndex from './components/LeavePolicy/LeavePolicyIndex '
+import ProfileIndex from './components/Profile/ProfileIndex'
 
 class App extends Component {
   render () {
@@ -35,9 +35,8 @@ class App extends Component {
                 <Route exact strict path='/pendingleaves' component={PendingLeaves} />
                 <Route exact strict path='/leaveRecords' component={LeaveRecord} />
                 <Route exact strict path='/leaveplan' component={HolidayIndex} />
-
-              <Route exact strict path="/leavePolicy" component={LeavePolicyIndex} />
-              <Route exact strict path="/profileIndex" component={ProfileIndex} />
+                <Route exact strict path='/leavePolicy' component={LeavePolicyIndex} />
+                <Route exact strict path='/profileIndex' component={ProfileIndex} />
 
               </Switch>
             </div>

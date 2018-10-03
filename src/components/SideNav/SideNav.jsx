@@ -18,13 +18,13 @@ class SideNav extends Component {
     console.log('showbuttons called')
     if (this.state.showButtons === 'sidenavHide') {
       console.log('if condition')
-      return this.setState(
+      this.setState(
         { showButtons: this.state.showButtons = 'sidenavDisplay sidenav',
           cssShape: this.state.cssShape = 'triangle-down' }
       )
     } else if (this.state.showButtons === 'sidenavDisplay sidenav') {
       console.log('else-if condition')
-      return this.setState(
+      this.setState(
         { showButtons: this.state.showButtons = 'sidenavHide',
           cssShape: this.state.cssShape = 'triangle-right' }
       )
@@ -78,7 +78,6 @@ class SideNav extends Component {
             <button className={this.state.employeeVisibility}>Leave plan
             </button>
           </Link>
-
         </div>
       </div>
     )
