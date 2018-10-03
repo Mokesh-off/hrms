@@ -7,6 +7,9 @@ import LeaveIndex from './components/LeaveApproval/leaveIndex';
 import LeaveReq from './components/Leave/LeaveRequest/index';
 import LeaveRecordIndex from './components/LeaveRecord/LeaveRecordIndex';
 import HolidayIndex from './components/Leave/Leaveplan/Index'
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import SideNav from './components/SideNav/SideNav';
 
 class App extends Component {
 
@@ -14,6 +17,8 @@ class App extends Component {
     return (
       <div>
   <Router>
+    <Header/>
+    <SideNav/>
       <div>
         <Switch>
         <Route exact strict path="/" component={Login} />
@@ -24,6 +29,7 @@ class App extends Component {
         <Route exact strict path = "/leaveplan" component = {HolidayIndex} />
         </Switch>
       </div>
+    <Footer/>
   </Router>
  </div>
     );

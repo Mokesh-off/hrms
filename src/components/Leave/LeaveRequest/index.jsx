@@ -8,10 +8,7 @@ class LeaveReq extends Component{
   render(){
     return(
       <div>
-        <Header />
-        <SideNav />
         <LeaveRequest/>
-        <Footer />
       </div>
     )
   }

@@ -8,12 +8,15 @@ import "./LeavePolicy.css";
 class LeavePolicy extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      clickComponent: null,
+      isEmployer: true,
+      isOpen: false
+  };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  state = {
-    clickComponent: null
-  };
+  
 
   onSubmit(e) {
     e.preventDefault();
@@ -21,116 +24,6 @@ class LeavePolicy extends Component {
     this.setState({ clickComponent: e.currentTarget.id });
   }
 
-  state = {
-    isEmployer: true,
-    leavePolicyJSON: [
-      {
-        id: 1,
-        Type: "Planned Leave",
-        Name: "Casual Leave",
-        Days: 7,
-        Terms: "7 days for 12 months service"
-      },
-      {
-        id: 2,
-        Type: "Leave without pay",
-        Name: "Leave without pay",
-        Days: 5,
-        Terms: "5 days for 12 months service"
-      },
-      {
-        id: 3,
-        Type: "SL",
-        Name: "Sick Leave",
-        Days: 10,
-        Terms: "10 days for 12 months service"
-      },
-      {
-        id: 4,
-        Type: "Maternity Leave",
-        Name: "Maternity Leave",
-        Days: 180,
-        Terms: "180 days for 12 months service"
-      },
-      {
-        id: 5,
-        Type: "Earned Leave or Privilege leave",
-        Name: "Earned Leave or Privilege leave",
-        Days: 12,
-        Terms: "12 days for 12 months service"
-      },
-      {
-        id: 6,
-        Type: "National Holiday",
-        Name: "National Holiday",
-        Days: 3,
-        Terms: "3 days for 12 months service"
-      },
-      {
-        id: 7,
-        Type: "Paternity leave",
-        Name: "Paternity leave",
-        Days: 3,
-        Terms: "3 days for 12 months service"
-      }
-    ],
-    isOpen: false
-  };
-  state = {
-    isEmployer: false,
-    leavePolicyJSON: [
-      {
-        id: 1,
-        Type: "Planned Leave",
-        Name: "Casual Leave",
-        Days: "7",
-        Terms: "7 days for 12 months service"
-      },
-      {
-        id: 2,
-        Type: "Leave without pay",
-        Name: "Leave without pay",
-        Days: "5",
-        Terms: "5 days for 12 months service"
-      },
-      {
-        id: 3,
-        Type: "SL",
-        Name: "Sick Leave",
-        Days: "10",
-        Terms: "10 days for 12 months service"
-      },
-      {
-        id: 4,
-        Type: "Maternity Leave",
-        Name: "Maternity Leave",
-        Days: "180",
-        Terms: "180 days for 12 months service"
-      },
-      {
-        id: 5,
-        Type: "Earned Leave or Privilege leave",
-        Name: "Earned Leave or Privilege leave",
-        Days: "12",
-        Terms: "12 days for 12 months service"
-      },
-      {
-        id: 6,
-        Type: "National Holiday",
-        Name: "National Holiday",
-        Days: "3",
-        Terms: "3 days for 12 months service"
-      },
-      {
-        id: 7,
-        Type: "Paternity leave",
-        Name: "Paternity leave",
-        Days: "3",
-        Terms: "3 days for 12 months service"
-      }
-    ],
-    isOpen: false
-  };
 
   render() {
     var data = JSON.parse(localStorage.getItem("Data"));

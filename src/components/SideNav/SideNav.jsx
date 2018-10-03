@@ -91,7 +91,9 @@ navigation(e,Link){
         
         <div className= {this.state.showButtons} >
           <button onClick={e=>this.navigation(e,'/leaverequests')}>Leave Approval</button>
-          <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
+          <Link to = '/leaverequest'>
+            <button onClick={e=>this.navigation(e,'/leaverequest')}> Leave Request</button>
+          </Link>
           <button>My Leave</button>
           <button className={this.state.employeeVisibility} 
           onClick={e=>this.navigation(e,'/leaveRecords')}>Leave Records</button>
@@ -100,7 +102,7 @@ navigation(e,Link){
           Leave Policy
         </button>
         <button 
-          className={this.state.employeeVisibility}
+          // className={this.state.employeeVisibility}
           onClick={e => this.navigation(e, "/leavePlan")}>Leave plan
         </button>
         </div>
