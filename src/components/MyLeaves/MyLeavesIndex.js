@@ -8,9 +8,6 @@ class MyLeavesIndex extends Component{
   render(){
     return(
       <div>
-        <Header />
-        <SideNav />
-        <Footer />
         <MyLeaves/>
       </div>
     )

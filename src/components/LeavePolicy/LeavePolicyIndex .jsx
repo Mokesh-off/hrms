@@ -9,10 +9,7 @@ class LeavePolicyIndex extends Component {
   render() {
     return (
       <div>
-        <Header />
-        <SideNav />
         <LeavePolicy />
-        <Footer />
       </div>
     );
   }
