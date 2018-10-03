@@ -7,29 +7,38 @@ export default class Profile extends React.Component {
     this.state = {
       Data: JSON.parse(localStorage.getItem("Data"))
     };
+    this.change = this.change.bind(this);
+  }
+
+  /* --   Onchange Function   -- */
+
+  change(e, i) {
+    var item = {
+      value: e.target.value,
+      name: e.target.name,
+      targetIndex: i
+    };
+
+    /*--    Storing values in LocalStorage    --*/
+
+    const newObject = this.state.Data.Employee.map((data, j) => {
+      for (var key in data) {
+        if (key === item.name && j === item.targetIndex) {
+          data[key] = item.value;
+        }
+      }
+      return data;
+    });
+    this.setState({ [this.state.Data.Employee]: newObject });
+    localStorage.setItem("Data", JSON.stringify(this.state.Data));
   }
 
   render() {
-    // var data = JSON.parse(localStorage.getItem("Data"));
-    // var employee = data.Employee;
-    // console.log(employee);
-    // console.log(this.state.data.Employee.EmpId);
-
     let empId = JSON.parse(localStorage.getItem("currentUserId"));
-    let empName = JSON.parse(localStorage.getItem("currentUserName"));
-    console.log(empId);
-    console.log(empName);
-    // let role = "";
-    // data.Employee.map((list, index) => {
-    //   console.log(data.Employee.EmpName);
-    // console.log("Role", list.Role);
-    // if (list.EmpId === empId) {
-    //   role = list.Role;
-    // }
-    // });
 
-    // if (role === "Employer") {
     return (
+      /* --    User Profile   -- */
+
       <div className="profile">
         <h1 className="UserProfile">User Profile</h1>
         <form className="profileForm">
@@ -46,8 +55,7 @@ export default class Profile extends React.Component {
                   {data.Role}
                   <br />
                   <label>Employee Domain</label>
-                  {data.Dep}
-                  <br />
+                  {data.Dep} <br />
                   <label>E-mail Id</label>
                   {data.EmailId}
                   <br />
@@ -55,16 +63,26 @@ export default class Profile extends React.Component {
                   {data.Password}
                   <br />
                   <label>Employee Contact Number</label>
-                  {data.ContactNum}
+                  <textarea
+                    className="textArea"
+                    name="ContactNum"
+                    onChange={e => this.change(e, i)}
+                  >
+                    {data.ContactNum}
+                  </textarea>
                   <br />
                   <label>Date of Birth</label>
-                  {data.Dob}
-                  <br />
+                  {data.Dob} <br />
                   <label>Date of Joining</label>
-                  {data.Doj}
-                  <br />
+                  {data.Doj} <br />
                   <label>Employee Address</label>
-                  {data.Address}
+                  <textarea
+                    className="textArea"
+                    name="Address"
+                    onChange={e => this.change(e, i)}
+                  >
+                    {data.Address}{" "}
+                  </textarea>
                 </div>
               ) : (
                 ""
@@ -75,4 +93,3 @@ export default class Profile extends React.Component {
     );
   }
 }
-// }

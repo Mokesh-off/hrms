@@ -12,9 +12,9 @@ class LeavePlan extends Component {
     // this.Add = this.Add.bind(this);
   }
   change(e, i) {
-    console.log(e, i + "e  &   i");
-    console.log(e.target.value);
-    console.log(e.target.name);
+    // console.log(e, i + "e  &   i");
+    // console.log(e.target.value);
+    // console.log(e.target.name);
     var item = {
       value: e.target.value,
       name: e.target.name,
@@ -34,39 +34,7 @@ class LeavePlan extends Component {
     this.setState({ [this.state.Holiday.holidayList]: newObject });
     localStorage.setItem("Data", JSON.stringify(this.state.Holiday));
   }
-  // this.setState({[e.target.name] :e.target.value})
-  // console.log(holiday)
-  // this.setState({holiday.date : e.target.value})
-  // this.setState({[e.target.name] :e.target.value}, () => {
-  // data.leaveRequest[data.leaveRequest.length] = this.state
-  // localStorage.setItem('Data', JSON.stringify(this.state.Holiday));
-  // })
-  // }
-  // });
-  // localStorage.setItem('Data', JSON.stringify(this.state.Holiday));
-  // Add () {
-  //   console.log ('ADD function');
-  //   <tr key={holiday[i]} className="tr">
-  //     <td className="tr" >
-  //       <textarea name="date"
-  //         onChange= {e => this.change(e,i) }>
 
-  //       </textarea>
-  //     </td>
-  //     <td className="tr" >
-  //       <textarea name="day"
-  //         onChange = {e => this.change(e,i)}>
-
-  //       </textarea>
-  //     </td>
-  //     <td className="tr" >
-  //       <textarea name="occasion"
-  //         onChange = {e => this.change(e,i)}>
-
-  //       </textarea>
-  //     </td>
-  //   </tr>
-  // }
   render() {
     var role = localStorage.getItem("currentUserRole");
     if (role === "Employee") {
