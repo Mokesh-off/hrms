@@ -2,23 +2,19 @@ import React, { Component } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SideNav from "../SideNav/SideNav";
-import Profile from "../Profile/Profile";
+import LeavePolicy from "./LeavePolicy";
 
-class ProfileIndex extends Component {
+class LeavePolicyIndex extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <Header />
         <SideNav />
-        <Profile />
+        <LeavePolicy />
         <Footer />
-=======
-        <Profile />
->>>>>>> develop
       </div>
     );
   }
 }
 
-export default ProfileIndex;
+export default LeavePolicyIndex;

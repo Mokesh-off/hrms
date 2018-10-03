@@ -47,4 +47,4 @@ class LeaveRequests extends Component {
   }
 }
 
-export default LeaveRequests 
+export default LeaveRequests;

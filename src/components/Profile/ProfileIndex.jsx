@@ -8,14 +8,10 @@ class ProfileIndex extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <Header />
         <SideNav />
         <Profile />
         <Footer />
-=======
-        <Profile />
->>>>>>> develop
       </div>
     );
   }
