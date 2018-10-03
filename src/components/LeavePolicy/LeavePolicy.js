@@ -1,9 +1,5 @@
-import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
-import "./LeavePolicy.css";
-
-// import LeaveList from "../LeaveList/LeaveList";
+import React, { Component } from 'react'
+import './LeavePolicy.css'
 
 class LeavePolicy extends Component {
   constructor(props) {
@@ -17,7 +13,6 @@ class LeavePolicy extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(e.currentTarget.id);
     this.setState({ clickComponent: e.currentTarget.id });
   }
 
@@ -134,22 +129,13 @@ class LeavePolicy extends Component {
 
   render() {
     var data = JSON.parse(localStorage.getItem("Data"));
-    // var leavePolicy = JSON.parse(localStorage.getItem("LeavePolicy"));
     let empId = JSON.parse(localStorage.getItem("currentUserId"));
-    console.log(empId);
     let role = "";
     data.Employee.map((list, index) => {
-      // console.log("Role", list.Role);
       if (list.EmpId === empId) {
         role = list.Role;
       }
     });
-    console.log("Role", role);
-    // console.log(data);
-    // let employee = localStorage.getItem("Employee");
-    // console.log(employee);
-    // let role = localStorage.getItem("Role");
-    // console.log("value", data.Employee);
     if (role === "Employer") {
       return (
         <div className="Policy">
@@ -231,11 +217,3 @@ class LeavePolicy extends Component {
 
 export default LeavePolicy;
 
-// <Router>
-// <Switch>
-//   <Route exact path="/" component={LeavePolicy} />
-//   <Route path="/leaveList" component={leaveList} />
-// </Switch>
-// </Router>
-
-// {this.state.clickComponent !== null ? <LeaveList /> : null}

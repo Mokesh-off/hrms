@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import SideNav from '../SideNav/SideNav';
+import SideNav from '../SideNav/SideNav'
 import LeaveRecord from './LeaveRecord'
-class LeaveRecordIndex extends Component{
-  render(){
-    return(
-        <div>
+class LeaveRecordIndex extends Component {
+  render () {
+    return (
+      <div>
         <Header />
-        <SideNav />    
+        <SideNav />
         <Footer />
         <LeaveRecord />
-        </div>
-        )
+      </div>
+    )
   }
 }
-export default LeaveRecordIndex;
+export default LeaveRecordIndex

@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import SideNav from '../SideNav/SideNav';
-import  PendingLeaves from '../PendingLeaves/PendingLeaves';
+import SideNav from '../SideNav/SideNav'
+import PendingLeaves from '../PendingLeaves/PendingLeaves'
 
-class PendingLeavesIndex extends Component{
-  render(){
-    return(
+class PendingLeavesIndex extends Component {
+  render () {
+    return (
       <div>
         <Header />
         <SideNav />
         <Footer />
-        <PendingLeaves/>
+        <PendingLeaves />
       </div>
     )
   }
-
 }
 
-export default  PendingLeavesIndex
+export default PendingLeavesIndex
