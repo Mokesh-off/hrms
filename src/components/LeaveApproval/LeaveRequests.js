@@ -1,47 +1,50 @@
-import React, { Component } from 'react';
-import './LeaveRequests.css';
+import React, { Component } from "react";
+import "./LeaveRequests.css";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import LeaveApprovals from './LeaveApproval'
+import LeaveApprovals from "./LeaveApproval";
 
 class LeaveRequests extends Component {
-  state={
-    currentRequestID:''
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentRequestID: "",
+      LeaveRecord: JSON.parse(localStorage.getItem("Data"))
+    };
+  }
+  sendReqId(e, i) {
+    //alert(i)
+    localStorage.setItem("currentRequestID", i);
   }
 
-    sendReqId(e,i){
-         localStorage.setItem('currentRequestID',i)
-    }
-  
-     render() {
-          //  // localStorage.setItem('LeaveData',JSON.stringify(this.state))
-            console.log('From Leave Req...'+localStorage.getItem('LeaveData'))
-           let obj=JSON.parse(localStorage.getItem('LeaveData'))
-            console.log('obj.....' + obj)
-            var req=obj;
+  render() {
+    // {console.log(this.state.LeaveRecord.leaveRequest)}
     return (
-      <div> 
-        <div className="back">
-           <NavLink to='/dashboard'><button>Back</button></NavLink>
-      </div>   
-      <div>
-     <Router>
-       <div>
-          <div className="tab">
-              {req.map((req,i)=><ul key={i}>
-              <li> {req.EmpId} {req.Name} {req.LeaveType}<NavLink to="/approvals">
-                 <button  onClick={e=>this.sendReqId(e,i)}>view</button>
-              </NavLink></li><hr></hr>
-          </ul>)}
+      <div className="leaveRecord">
+        <table>
+          <thead className="thead1">
+            <tr className="thead1">
+              <td className="tdStyle">EmpId</td>
+              <td className="tdStyle">LeaveType</td>
+              <td className="tdStyle">&nbsp;</td>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.LeaveRecord.leaveRequest.map((record, i) => (
+              <tr key={i} className="tdStyle">
+                <td className="tdStyle">{record.EmpId}</td>
+                <td className="tdStyle">{record.LeaveType}</td>
+                <td className="tdStyle">
+                  <NavLink to="/approvals">
+                    <button onClick={e => this.sendReqId(e, i)}>View</button>
+                  </NavLink>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <Route exact path="/approvals" component={LeaveApprovals} />
-    </div>
-  </Router>    
-  </div>
-    
-</div>  
-  
     );
   }
 }
 
-export default LeaveRequests ;
+export default LeaveRequests 

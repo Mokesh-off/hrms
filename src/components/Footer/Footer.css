@@ -1,10 +1,10 @@
 #footer{
-    background: #f5f1ed;
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    height: 40px;
-    color: #39ce0d;
-    cursor: default;
+  background: #f5f1ed;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 40px;
+  color: #39ce0d;
+  cursor: default;
 }

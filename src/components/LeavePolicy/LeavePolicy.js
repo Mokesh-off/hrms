@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
 import "./LeavePolicy.css";
-
-// import LeaveList from "../LeaveList/LeaveList";
 
 class LeavePolicy extends Component {
   constructor(props) {
@@ -45,43 +41,34 @@ class LeavePolicy extends Component {
     // console.log("value", data.Employee);
     if (role === "Employer") {
       return (
-        <div className="Policy">
-          <h1 className="header">
+        <div className="policy">
+          <h1 className="headerLeavePolicy">
             <textarea>Leave Policy(2018)</textarea>
           </h1>
 
           <table id="leavePolicy">
-            {" "}
             <thead>
-              <tr>
-                <th>
-                  <textarea>Leave Type</textarea>
-                </th>{" "}
-                <th>
-                  <textarea>Leave Name</textarea>
-                </th>
-                <th>
-                  <textarea>NO.of Days</textarea>
-                </th>
-                <th>
-                  <textarea>Terms</textarea>
-                </th>
+              <tr className="thead1">
+                <th className="tdStyle"> Leave Type</th>
+                <th className="tdStyle">Leave Name</th>
+                <th className="tdStyle">NO.of Days</th>
+                <th className="tdStyle">Terms</th>
               </tr>
             </thead>
             <tbody>
               {this.state.leavePolicyJSON.map((data, i) => (
                 <tr key={data.id}>
-                  <td>
-                    <textarea>{data.Type}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Type}</textarea>
                   </td>
-                  <td>
-                    <textarea>{data.Name}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Name}</textarea>
                   </td>
-                  <td>
-                    <textarea>{data.Days}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Days}</textarea>
                   </td>
-                  <td>
-                    <textarea>{data.Terms}</textarea>
+                  <td className="tdStyle">
+                    <textarea className="tdStyle">{data.Terms}</textarea>
                   </td>
                 </tr>
               ))}
@@ -91,27 +78,27 @@ class LeavePolicy extends Component {
       );
     } else {
       return (
-        <div className="Policy">
+        <div className="policy">
           <h1 className="header">Leave Policy(2018)</h1>
 
           <table id="leavePolicy">
             <thead>
-              <tr>
-                <th>Leave Type</th>
-                <th>Leave Name</th>
-                <th>NO.of Days</th>
-                <th>Terms</th>
+              <tr className="thead1">
+                <th className="tdStyle">Leave Type</th>
+                <th className="tdStyle">Leave Name</th>
+                <th className="tdStyle">NO.of Days</th>
+                <th className="tdStyle">Terms</th>
               </tr>
             </thead>
 
             <tbody>
               {this.state.leavePolicyJSON.map((data, i) => (
                 <tr key={data.id}>
-                  <td>{data.Type}</td>
+                  <td className="tdStyle">{data.Type}</td>
 
-                  <td>{data.Name}</td>
-                  <td>{data.Days}</td>
-                  <td>{data.Terms}</td>
+                  <td className="tdStyle"> {data.Name}</td>
+                  <td className="tdStyle">{data.Days}</td>
+                  <td className="tdStyle">{data.Terms}</td>
                 </tr>
               ))}
             </tbody>
