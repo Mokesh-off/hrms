@@ -8,22 +8,15 @@ class LeavePolicy extends Component {
     };
     this.change = this.change.bind(this);
   }
-<<<<<<< Updated upstream:src/components/LeavePolicy/LeavePolicy.jsx
 
   /*--   Onchange Function   --*/
 
   change(e, i) {
-=======
-  change(e, i) {
-    console.log(e.target.value);
-    console.log(e.target.name);
->>>>>>> Stashed changes:src/components/LeavePolicy/LeavePolicy.js
     var item = {
       value: e.target.value,
       name: e.target.name,
       targetIndex: i
     };
-<<<<<<< Updated upstream:src/components/LeavePolicy/LeavePolicy.jsx
 
     /*--   Storing values in LocalStorage   --*/
 
@@ -43,27 +36,6 @@ class LeavePolicy extends Component {
   render() {
     var data = JSON.parse(localStorage.getItem("Data"));
     let empId = JSON.parse(localStorage.getItem("currentUserId"));
-=======
-    const newObject = this.state.LeavePolicy.leavePolicyJSON.map(
-      (leavePolicy, j) => {
-        for (var key in leavePolicy) {
-          if (key == item.name && j == item.targetIndex) {
-            leavePolicy[key] = item.value;
-          }
-        }
-        return leavePolicy;
-      }
-    );
-    this.setState({ [this.state.LeavePolicy.leavePolicyJSON]: newObject });
-    localStorage.setItem("Data", JSON.stringify(this.state.LeavePolicy));
-  }
-
-  render() {
-    var data = JSON.parse(localStorage.getItem("Data"));
-
-    let empId = JSON.parse(localStorage.getItem("currentUserId"));
-
->>>>>>> Stashed changes:src/components/LeavePolicy/LeavePolicy.js
     let role = "";
     data.Employee.map((list, index) => {
       if (list.EmpId === empId) {
@@ -71,11 +43,8 @@ class LeavePolicy extends Component {
       }
     });
 
-<<<<<<< Updated upstream:src/components/LeavePolicy/LeavePolicy.jsx
     /*--   Employer Execution part    --*/
 
-=======
->>>>>>> Stashed changes:src/components/LeavePolicy/LeavePolicy.js
     if (role === "Employer") {
       return (
         <div className="policy">
