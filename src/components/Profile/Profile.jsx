@@ -81,7 +81,7 @@ export default class Profile extends React.Component {
                     name="Address"
                     onChange={e => this.change(e, i)}
                   >
-                    {data.Address}{" "}
+                    {data.Address}
                   </textarea>
                 </div>
               ) : (
