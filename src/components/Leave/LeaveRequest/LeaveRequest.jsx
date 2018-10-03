@@ -13,7 +13,7 @@ class LeaveRequest extends React.Component {
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
-      LeaveReason: '',
+      LeaveReason: ' ',
       ReqestId: moment(),
       status: '',
       comment: ''
@@ -23,37 +23,61 @@ class LeaveRequest extends React.Component {
     this.DateFromChange = this.DateFromChange.bind(this)
     this.DateToChange = this.DateToChange.bind(this)
     this.numOfDays = this.numOfDays.bind(this)
+    this.validation = this.validation.bind(this)
   }
-  handleChange (e) {
+  validation () { //  validating the input values
+    if (this.state.EmpId === '' && this.state.TotalDays === '' && this.state.FromDate === '' &&
+      this.state.ToDate === '' && this.state.LeaveType === '' && this.state.LeaveReason === '') {
+      alert("Fields can't be empty ")
+      return (false)
+    }
+    if (this.state.FromDate._d >= this.state.ToDate._d) {
+      alert('From date need to be proper')
+      return (false)
+    }
+    if (this.state.TotalDays === '^[0-9]*$') {
+      alert('Only numbers in this field')
+      return (false)
+    }
+    return (true)
+  }
+  handleChange (e) { // To set the values to the state
     this.setState({ [e.target.name]: e.target.value })
   }
-  DateFromChange (date) {
+  DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date })
   }
-  DateToChange (date) {
+  DateToChange (date) { // Update the To date from the User input
     this.setState({ ToDate: this.state.ToDate = date })
     this.numOfDays()
   }
   handleSubmit (event) {
+    // Calling the validation function and
+    // Updating the value to the Local storage
     event.preventDefault()
-    var data = JSON.parse(localStorage.getItem('Data'))
-    var currentUserId = localStorage.getItem('currentUserId')
-    var currentUser = localStorage.getItem('currentUser')
-    if (data.leaveRequest) {
-      this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
-        data.leaveRequest[data.leaveRequest.length] = this.state
-        localStorage.setItem('Data', JSON.stringify(data))
-      })
-    } else {
-      data['leaveRequest'] = []
-      this.setState({ EmpId: currentUserId }, () => {
-        data.leaveRequest[data.leaveRequest.length] = this.state
-        localStorage.setItem('Data', JSON.stringify(data))
-      })
+    this.validation()
+    if (this.validation()) {
+      var data = JSON.parse(localStorage.getItem('Data'))
+      var currentUserId = localStorage.getItem('currentUserId')
+      var currentUser = localStorage.getItem('currentUser')
+      if (data.leaveRequest) {
+        // checked the key is present. If it's present than append the value
+        this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
+          data.leaveRequest[data.leaveRequest.length] = this.state
+          localStorage.setItem('Data', JSON.stringify(data))
+        })
+      } else {
+        // If not then create a key and append the value
+        data['leaveRequest'] = []
+        this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
+          data.leaveRequest[data.leaveRequest.length] = this.state
+          localStorage.setItem('Data', JSON.stringify(data))
+        })
+      }
     }
   }
-
   calldispatch () {
+    // set the functions to its initial state
     this.setState({
       EmpId: '',
       FromDate: moment(),
@@ -64,10 +88,12 @@ class LeaveRequest extends React.Component {
     })
   }
   isWeekday (date) {
+    // To block the weekdays in the calendar
     const day = date._d.getDay()
     return day !== 0 && day !== 6
   }
   numOfDays () {
+    // To generate number of holiday days
     var start = this.state.FromDate._d
     this.setState({ start: this.state.FromDate._d })
     var end = this.state.ToDate._d
@@ -75,8 +101,18 @@ class LeaveRequest extends React.Component {
     var loop = new Date(start)
     end = new Date(end)
     var count = 0
+    var flag = false
+    var holiday = JSON.parse(localStorage.getItem('Data'))
+    holiday = holiday.holidays
     while (loop <= end) {
-      (loop.getDay() === 0 || loop.getDay() === 6) ? null : count++
+      var yyyy = loop.getFullYear()
+      var mm = loop.getDay()
+      var d = loop.getDate()
+      var date = yyyy + '-' + mm + '-' + d
+      flag = holiday.map((ho) => // To check it's holiday
+        (ho === date)
+      );
+      (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
       var newDate = loop.setDate(loop.getDate() + 1)
       loop = new Date(newDate)
     }
@@ -96,11 +132,11 @@ class LeaveRequest extends React.Component {
                   <label htmlFor='drop'>Type</label>
                 </div>
                 <div className='row-2'>
-                  <select name='LeaveType' value={this.state.LeaveType} onChange={e => this.handleChange(e)}>
+                  <select name='LeaveType' value={this.state.LeaveType} onChange={this.handleChange}>
                     <option value='' disabled>select your option</option>
                     <option value='Casual Leave'>Casual Leave</option>
-                    <option value='Emergency Leave'>Emergency Leave</option>
-                    <option value='Sick Leave'>Sick leave</option>
+                    <option value='Emergency leave'>Emergency Leave</option>
+                    <option value='Sick leave'>Sick leave</option>
                     <option value='Earned Leave'>Earned Leave</option>
                     <option value='maternity Leave'>maternity Leave</option>
                     <option value='Other Leave'>Other Leave</option>
@@ -169,13 +205,13 @@ class LeaveRequest extends React.Component {
               </div>
               <div className='row' >
                 <button
-                  id='submit' onClick={this.handleSubmit}>Submit
+                  className='Button' onClick={this.handleSubmit}>Submit
                 </button>
               </div>
             </form>
           </div>
         </div>
-      </div>
+      </div>// rightContainer done
     )
   }
 }

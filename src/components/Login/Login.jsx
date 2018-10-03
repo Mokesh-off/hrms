@@ -37,7 +37,8 @@ class Login extends Component {
     var newVar = JSON.parse(localStorage.getItem('Data'))
     newVar = newVar.Employee
     newVar.forEach(index => {
-      this.state.email === index.EmailId && this.state.password === index.Password && this.setCurrentUser(index.EmpId, index.Role, index.EmpName)
+      this.state.email === index.EmailId && this.state.password === index.Password &&
+      this.setCurrentUser(index.EmpId, index.Role, index.EmpName)
     })
   }
 
@@ -49,13 +50,13 @@ class Login extends Component {
     evt.preventDefault()
 
     if (!this.state.email) {
-      window.alert('Email is required')
+      alert('Email is required')
     }
 
     if (!this.state.password) {
-      window.alert('Password is required')
+      alert('Password is required')
     } else if (this.state.email && this.state.password) {
-      this.setNew(this)
+      this.setNew.call(this)
     }
   }
 
@@ -77,18 +78,18 @@ class Login extends Component {
     } else {
       return (
         <div>
-          <div className='bodylogin' />
-          <div className='headerlogin'>
+          {console.log(JSON.parse(localStorage.getItem('currentUserId')))}
+          <div class='bodylogin' />
+          <div class='headerlogin'>
             <div><span>tring</span>apps</div>
           </div>
           <br />
-          <div className='login'>
+          <div class='login'>
             <form onSubmit={this.handleSubmit}>
               <input type='email' placeholder='Email' data-test='email' value={this.state.email} onChange={this.handleEmailChange} />
               <input type='password' placeholder='Password' data-test='password' value={this.state.password} onChange={this.handlePassChange} />
               <input type='submit' value='Login' data-test='submit' />
             </form>
-            <p><a className='alogin' href='#'>Forgot Username or Password?</a></p>
           </div>
         </div>
       )

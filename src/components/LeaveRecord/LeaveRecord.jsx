@@ -8,10 +8,8 @@ class LeaveRecord extends Component {
       LeaveRecord: JSON.parse(localStorage.getItem('Data'))
     }
   }
-
   render () {
     return (
-
       <div className='leaveRecord'>
         <table>
           <thead className='thead1'>
@@ -28,7 +26,6 @@ class LeaveRecord extends Component {
           <tbody>
             {
               this.state.LeaveRecord.leaveRequest.map((record, i) =>
-
                 <tr key={record[i]} className='tdStyle' >
                   <td className='tdStyle'>{record.EmpId}</td>
                   <td className='tdStyle'>{record.LeaveType}</td>
@@ -37,8 +34,7 @@ class LeaveRecord extends Component {
                   <td className='tdStyle'>{record.TotalDays}</td>
                   <td className='tdStyle'>{record.status}</td>
                   <td className='tdStyle'>{record.LeaveReason}</td>
-                </tr>
-              )
+                </tr>)
             }
           </tbody>
         </table>

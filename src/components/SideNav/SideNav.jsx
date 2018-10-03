@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import './SideNav.css'
-import { Redirect } from 'react-router-dom'
 
 class SideNav extends Component {
   constructor (props) {
@@ -15,33 +15,33 @@ class SideNav extends Component {
     this.showButtonsFunction = this.showButtonsFunction.bind(this)
   }
   showButtonsFunction () {
+    console.log('showbuttons called')
     if (this.state.showButtons === 'sidenavHide') {
+    
       this.setState(
         { showButtons: this.state.showButtons = 'sidenavDisplay sidenav',
           cssShape: this.state.cssShape = 'triangle-down' }
-
       )
     } else if (this.state.showButtons === 'sidenavDisplay sidenav') {
+    
       this.setState(
         { showButtons: this.state.showButtons = 'sidenavHide',
           cssShape: this.state.cssShape = 'triangle-right' }
       )
     }
   }
-  componentWillMount () {
-    var visibilityVar = JSON.parse(localStorage.getItem('currentUserRole'))
-    visibilityVar === 'Employee' &&
-      this.setState({
-        employeeVisibility: (this.state.employeeVisibility = 'employeeCss')
-      })
-
-    this.navigation = this.navigation.bind(this)
-  }
 
   navigation (e, link) {
     if (window.location.pathname !== link) {
       this.setState({ navFlag: link })
     }
+    console.log('navigation')
+  }
+
+  componentWillMount () {
+    var visibilityVar = JSON.parse(localStorage.getItem('currentUserRole'));
+    (visibilityVar === 'Employee') &&
+    this.setState({ employeeVisibility: this.state.employeeVisibility = 'employeeCss' })
   }
 
   render () {
@@ -54,17 +54,28 @@ class SideNav extends Component {
         <button onClick={() => this.showButtonsFunction()}>
           <span className={this.state.cssShape} /> Leave</button>
         <div className={this.state.showButtons} >
-          <button className={this.state.employeeVisibility}
-            onClick={e => this.navigation(e, '/leavelist')}>Leave Approval</button>
 
-          <button onClick={e => this.navigation(e, '/leaverequest')}> Leave Request</button>
-          <button onClick={e => this.navigation(e, '/myLeaves')}>My Leave</button>
-          <button className={this.state.employeeVisibility}
-            onClick={e => this.navigation(e, '/leaveRecords')}>Leave Records
-          </button>
-          <button onClick={this.props.onSubmit} id='LeavePolicy'>Leave Policy</button>
-          <button onClick={e => this.navigation(e, '/leavePlan')}>Leave plan
-          </button>
+          <Link to='/leavelist' >
+            <button className={this.state.employeeVisibility}>Leave Approval</button>
+          </Link>
+          <Link to='/leaverequest'>
+            <button className={this.state.employeeVisibility}> Leave Request</button>
+          </Link>
+          <Link to='/MyLeaves'>
+            <button>My Leave</button>
+          </Link>
+          <Link to='/leaveRecords'>
+            <button className={this.state.employeeVisibility}>Leave Records</button>
+          </Link>
+          <Link to='/LeavePolicy'>
+            <button >
+            Leave Policy
+            </button>
+          </Link>
+          <Link to='/leaveplan'>
+            <button className={this.state.employeeVisibility}>Leave plan
+            </button>
+          </Link>
         </div>
       </div>
     )
