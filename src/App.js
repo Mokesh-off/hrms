@@ -13,7 +13,7 @@ import SideNav from "./components/SideNav/SideNav";
 import LeaveRequest from "./components/Leave/LeaveRequest/LeaveRequest";
 import PendingLeaves from "./components/PendingLeaves/PendingLeaves";
 import LeaveRequests from "./components/LeaveApproval/LeaveRequests";
-import LeavePolicyIndex from "./components/LeavePolicy/LeavePolicyIndex ";
+import LeavePolicyIndex from "./components/LeavePolicy/LeavePolicyIndex";
 import ProfileIndex from "./components/Profile/ProfileIndex";
 
 class App extends Component {
