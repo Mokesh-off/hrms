@@ -74,11 +74,11 @@ class Login extends Component {
 
   render () {
     if (JSON.parse(localStorage.getItem('currentUserId')) !== null) {
-      return <Redirect to='/dashboard' />
+      window.location.replace('/dashboard')
     } else {
       return (
         <div>
-          {console.log(JSON.parse(localStorage.getItem('currentUserId')))}
+
           <div class='bodylogin' />
           <div class='headerlogin'>
             <div><span>tring</span>apps</div>

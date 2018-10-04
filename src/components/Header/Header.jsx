@@ -6,7 +6,7 @@ class Header extends Component {
     super(props)
     this.state = {
       logOut: false,
-      navflag: ''
+      navFlag: ''
     }
     this.logOutFunction = this.logOutFunction.bind(this)
   }
@@ -22,17 +22,18 @@ class Header extends Component {
     console.log(window.location.pathname, link)
     if (window.location.pathname !== link) {
       console.log('if condition executed')
-      this.setState({ navflag: link })
       this.setState({ navFlag: (this.state.navFlag = link) })
     }
   }
 
   render () {
-    if (this.state.navflag != '') {
-      return <Redirect to={this.state.navflag} />
-    }
+    // if (this.state.navFlag != '') {
+    //   <Redirect to={this.state.navFlag} />
+    //   this.setState({ navFlag: (this.state.navFlag = '') })
+    // }
     if (this.state.logOut) {
-      return <Redirect to='/' />
+      // return <Redirect exact strict to='/' />
+      window.location.assign('/');
     }
     var userName = JSON.parse(localStorage.getItem('currentUserName'))
     return (
@@ -47,7 +48,7 @@ class Header extends Component {
               </div>
               <div className='profile-name'>{userName}</div>
             </div>
-          </Link>
+          </Link> 
 
           <div className='dropdown-content'>
             <span onClick={this.logOutFunction}>Logout</span>

@@ -22,7 +22,6 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Header />
             <SideNav />
             <div>
               <Switch>
@@ -37,10 +36,9 @@ class App extends Component {
                 <Route exact strict path='/leaveplan' component={HolidayIndex} />
                 <Route exact strict path='/leavePolicy' component={LeavePolicyIndex} />
                 <Route exact strict path='/profileIndex' component={ProfileIndex} />
-
               </Switch>
             </div>
-            <Footer />
+       
           </div>
         </Router>
       </div>

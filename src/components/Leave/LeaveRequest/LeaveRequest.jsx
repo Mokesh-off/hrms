@@ -47,25 +47,6 @@ class LeaveRequest extends React.Component {
   DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date })
   }
-<<<<<<< HEAD
-  handleSubmit (event){
-    event.preventDefault();
-    var data = JSON.parse(localStorage.getItem('Data'));
-    var currentUserId = localStorage.getItem('currentUserId');
-    var currentUser = localStorage.getItem('currentUser');
-    if (data.leaveRequest) {
-      
-      this.setState({EmpId: currentUserId, EmpName : currentUser}, () => {
-        data.leaveRequest[data.leaveRequest.length] = this.state
-        localStorage.setItem('Data', JSON.stringify(data));
-      });
-    } else {
-      data['leaveRequest'] = []
-      this.setState({EmpId: currentUserId}, () => {
-        data.leaveRequest[data.leaveRequest.length] = this.state
-        localStorage.setItem('Data', JSON.stringify(data));
-      });
-=======
   DateToChange (date) { // Update the To date from the User input
     this.setState({ ToDate: this.state.ToDate = date })
     this.numOfDays()
@@ -93,15 +74,10 @@ class LeaveRequest extends React.Component {
           localStorage.setItem('Data', JSON.stringify(data))
         })
       }
->>>>>>> develop
     }
   }
   calldispatch () {
-<<<<<<< HEAD
-
-=======
     // set the functions to its initial state
->>>>>>> develop
     this.setState({
       EmpId: '',
       FromDate: moment(),
@@ -146,54 +122,6 @@ class LeaveRequest extends React.Component {
     var holidayList = JSON.parse(localStorage.getItem('Data'))
     holidayList = holidayList.holidays
 
-<<<<<<< HEAD
-    return(
-      // <div className='rightContent'>
-      <div className="leaveRequestMain">
-        <div className="container">
-          <form >
-            <div className="row">
-              <div className="row-1">
-                <label htmlFor="drop">Type</label>
-              </div>
-              <div className="row-2">
-                <select name="LeaveType" value={this.state.LeaveType} onChange={e =>this.handleChange(e)}>
-                  <option value="" disabled>select your option</option>
-                  <option value="Casual Leave">Casual Leave</option>
-                  <option value="Emergency leave">Emergency Leave</option>
-                  <option value="Sick leave">Sick leave</option>
-                  <option value="Earned Leave">Earned Leave</option>
-                  <option value="maternity Leave">maternity Leave</option>
-                  <option value="Other Leave">Other Leave</option>
-                </select>
-              </div>
-            </div>
-            <div className="row">
-              <div className="row-1">
-                <label htmlFor="drop">From</label>
-              </div>
-              <div className="row-2" value={this.state.FromDate} name="From"   >
-                <DatePicker className="Dp"
-                  selected={this.state.FromDate}
-                  filterDate={this.isWeekday}
-                  showYearDropdown
-                  scrollableYearDropdown
-                  dateFormat="DD/MM/YYYY"
-                  minDate={moment()}
-                  maxDate={moment().add(24, "months")}
-                  showDisabledMonthNavigation
-                  onChange={e=>this.DateFromChange(e)}
-                  yearDropdownItemNumber={2}
-                  excludeDates = {holidayList}
-                  isClearable={true}
-                  placeholderText="Select a weekday"
-                  name="From"/>
-              </div>
-            </div>
-            <div className="row">
-              <div className="row-1">
-                <label htmlFor="drop">To</label>
-=======
     return (
       <div className='rightContent'>
         <div className='leaveRequestMain'>
@@ -214,7 +142,6 @@ class LeaveRequest extends React.Component {
                     <option value='Other Leave'>Other Leave</option>
                   </select>
                 </div>
->>>>>>> develop
               </div>
               <div className='row'>
                 <div className='row-1'>
@@ -284,14 +211,8 @@ class LeaveRequest extends React.Component {
             </form>
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-      // </div>//rightContainer done
-    );
-=======
       </div>// rightContainer done
     )
->>>>>>> develop
   }
 }
 export default LeaveRequest

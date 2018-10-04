@@ -4,7 +4,7 @@
   background: #b9b7b7;
   overflow-x: hidden;
   padding: 0;
-  height: 88vh;
+  height: 86vh;
   margin-top: 50px;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
@@ -18,22 +18,14 @@
   cursor: pointer;
   transition: all 1s ease-in;
   text-align: unset;
+  outline: none;
 }
-
-.sidenav button:hover{
-  background-color: #ffe4c4;
+button.btn:active, button.btn:focus, button.btn:target, button.btn:active:focus
+{
+  background-color: #ffe4c4 !important;
 }
-
-.link{
-  padding: 15px;
-  width: 100%;
-  border: none;
-  cursor: pointer;
-  transition: all 1s ease-in;
-  
-}
-.sidenav .link:hover{
-  background-color: #ffe4c4;
+.background{
+  background-color: #ffe4c4 !important;
 }
 .employeeCss{
   display: none;
@@ -43,7 +35,6 @@
   height: 0;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
-  /*display: none;*/
 }
 .sidenavDisplay{
   overflow: hidden;
