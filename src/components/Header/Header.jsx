@@ -5,9 +5,9 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      logOut: false,
-    }
-    this.logOutFunction = this.logOutFunction.bind(this)
+      logOut: false
+    };
+    this.logOutFunction = this.logOutFunction.bind(this);
   }
 
   logOutFunction() {
@@ -17,24 +17,23 @@ class Header extends Component {
     this.setState({ logOut: (this.state.logOut = true) });
   }
 
-  render () {
-
+  render() {
     if (this.state.logOut) {
-      window.location.assign('/');
+      window.location.assign("/");
     }
     var userName = JSON.parse(localStorage.getItem("currentUserName"));
     return (
       <div id="header">
         <div className="logo">tringapps</div>
         <div className="profile-main-outer">
-          <Link to="/profileIndex" className="profile-outer">
+          <Link to="/profile" className="profile-outer">
             <div className="profile-outer">
               <div className="profile-img">
                 <img src={require("../../Assets/images/profile_icon.png")} />
               </div>
               <div className="profile-name">{userName}</div>
             </div>
-          </Link> 
+          </Link>
 
           <div className="dropdown-content">
             <span onClick={this.logOutFunction}>Logout</span>
