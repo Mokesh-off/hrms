@@ -26,9 +26,11 @@ class LeaveRequest extends React.Component {
     this.validation = this.validation.bind(this)
   }
   validation () { //  validating the input values
-    if (this.state.EmpId === '' && this.state.TotalDays === '' && this.state.FromDate === '' &&
-      this.state.ToDate === '' && this.state.LeaveType === '' && this.state.LeaveReason === '') {
+    console.log('validation')
+    if (this.state.TotalDays === '' || this.state.FromDate === '' ||
+      this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
       alert("Fields can't be empty ")
+      console.log('empty')
       return (false)
     }
     if (this.state.FromDate._d >= this.state.ToDate._d) {
@@ -55,23 +57,22 @@ class LeaveRequest extends React.Component {
     // Calling the validation function and
     // Updating the value to the Local storage
     event.preventDefault()
-    this.validation()
     if (this.validation()) {
-      var data = JSON.parse(localStorage.getItem('Data'))
-      var currentUserId = localStorage.getItem('currentUserId')
-      var currentUser = localStorage.getItem('currentUser')
+      var data = JSON.parse(window.localStorage.getItem('Data'))
+      var currentUserId = window.localStorage.getItem('currentUserId')
+      var currentUser = window.localStorage.getItem('currentUser')
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
-          localStorage.setItem('Data', JSON.stringify(data))
+          window.localStorage.setItem('Data', JSON.stringify(data))
         })
       } else {
         // If not then create a key and append the value
         data['leaveRequest'] = []
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
-          localStorage.setItem('Data', JSON.stringify(data))
+          window.localStorage.setItem('Data', JSON.stringify(data))
         })
       }
     }
@@ -102,7 +103,7 @@ class LeaveRequest extends React.Component {
     end = new Date(end)
     var count = 0
     var flag = false
-    var holiday = JSON.parse(localStorage.getItem('Data'))
+    var holiday = JSON.parse(window.localStorage.getItem('Data'))
     holiday = holiday.holidays
     while (loop <= end) {
       var yyyy = loop.getFullYear()
@@ -119,7 +120,7 @@ class LeaveRequest extends React.Component {
     this.setState({ TotalDays: count })
   }
   render () {
-    var holidayList = JSON.parse(localStorage.getItem('Data'))
+    var holidayList = JSON.parse(window.localStorage.getItem('Data'))
     holidayList = holidayList.holidays
 
     return (
@@ -192,7 +193,7 @@ class LeaveRequest extends React.Component {
                   <label htmlFor='Number_of_Days'>Number_of_Days</label>
                 </div>
                 <div className='row-2' >
-                  <input type='text' value={this.state.TotalDays} onChange={e => this.handleChange(e)} id='TotalDays' size='40' name='TotalDays' />
+                  <input type='text' value={this.state.TotalDays} disabled id='TotalDays' size='40' name='TotalDays' />
                 </div>
               </div>
               <div className='row'>

@@ -8,7 +8,7 @@ class LeaveApproval extends Component {
     this.state = {
       open: false,
       status: '',
-      LeaveRecord: JSON.parse(localStorage.getItem('Data')),
+      LeaveRecord: JSON.parse(window.localStorage.getItem('Data')),
       pending: '',
       comment: ''
     }
@@ -21,9 +21,9 @@ class LeaveApproval extends Component {
   changeToReject (e) {
     let newState = Object.assign({}, this.state)
     console.log(newState)
-    let index = localStorage.getItem('currentRequestID')
+    let index = window.localStorage.getItem('currentRequestID')
     newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Rejected' })
   }
@@ -64,16 +64,16 @@ class LeaveApproval extends Component {
       }
     })
     this.setState({ [this.state.LeaveRecord.Employee]: newObject })
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
   }
 
   // Approve leave request
   changeToApprove (e) {
     let newState = Object.assign({}, this.state)
     console.log(newState)
-    let index = localStorage.getItem('currentRequestID')
+    let index = window.localStorage.getItem('currentRequestID')
     newState.LeaveRecord.leaveRequest[index].status = 'Approved'
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Approved' })
     this.reduceLeaves(index)
@@ -81,15 +81,15 @@ class LeaveApproval extends Component {
   //   for adding comments
   changeComment (e) {
     let newState = Object.assign({}, this.state)
-    let index = localStorage.getItem('currentRequestID')
+    let index = window.localStorage.getItem('currentRequestID')
     newState.LeaveRecord.leaveRequest[index].comment = e.target.value
     console.log(e.target.value)
     this.setState(newState)
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
   }
 
   render () {
-    let index = localStorage.getItem('currentRequestID')
+    let index = window.localStorage.getItem('currentRequestID')
     return (
     // Details of leave request
       <div className='leaveRecord'>
