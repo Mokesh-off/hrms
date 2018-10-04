@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import './Login.css'
 
 class Login extends Component {
@@ -74,7 +74,7 @@ class Login extends Component {
 
   render () {
     if (JSON.parse(localStorage.getItem('currentUserId')) !== null) {
-      return <Redirect to='/dashboard' />
+      window.location.replace('/dashboard')
     } else {
       return (
         <div>

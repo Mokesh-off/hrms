@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import './SideNav.css'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 
 class SideNav extends Component {
   constructor (props) {
@@ -52,6 +54,7 @@ class SideNav extends Component {
     }
     return (
       <div className='sidenav'>
+        <Header />
         <button onClick={e => this.navigation(e, '/dashboard')}>Home</button>
         <button onClick={() => this.showButtonsFunction()}>
           <span className={this.state.cssShape} /> Leave</button>
@@ -61,7 +64,7 @@ class SideNav extends Component {
             <button className={this.state.employeeVisibility}>Leave Approval</button>
           </Link>
           <Link to='/leaverequest'>
-            <button className={this.state.employeeVisibility}> Leave Request</button>
+            <button> Leave Request</button>
           </Link>
           <Link to='/MyLeaves'>
             <button>My Leave</button>
@@ -75,10 +78,11 @@ class SideNav extends Component {
             </button>
           </Link>
           <Link to='/leaveplan'>
-            <button className={this.state.employeeVisibility}>Leave plan
+            <button>Leave plan
             </button>
           </Link>
         </div>
+        <Footer />
       </div>
     )
   }

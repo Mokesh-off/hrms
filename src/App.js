@@ -7,8 +7,6 @@ import MyLeavesIndex from './components/MyLeaves/MyLeavesIndex'
 import ApprovalIndex from './components/LeaveApproval/ApprovalIndex'
 import LeaveRecord from './components/LeaveRecord/LeaveRecord'
 import HolidayIndex from './components/Leave/Leaveplan/Index'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
 import SideNav from './components/SideNav/SideNav'
 import LeaveRequest from './components/Leave/LeaveRequest/LeaveRequest'
 import PendingLeaves from './components/PendingLeaves/PendingLeaves'
@@ -22,7 +20,6 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Header />
             <SideNav />
             <div>
               <Switch>
@@ -40,7 +37,6 @@ class App extends Component {
 
               </Switch>
             </div>
-            <Footer />
           </div>
         </Router>
       </div>

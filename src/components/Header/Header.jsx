@@ -32,7 +32,7 @@ class Header extends Component {
       return <Redirect to={this.state.navflag} />
     }
     if (this.state.logOut) {
-      return <Redirect to='/' />
+      window.location.replace('/')
     }
     var userName = JSON.parse(localStorage.getItem('currentUserName'))
     return (

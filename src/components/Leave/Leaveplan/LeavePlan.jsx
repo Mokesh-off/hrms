@@ -38,7 +38,7 @@ class LeavePlan extends Component {
       return (
         <div className='Leaveplan'>
           <table>
-            <caption className='caption' >Holiday List</caption>
+            <caption className='captions' >Holiday List</caption>
             <thead className='thead1'>
               <tr className='thead1'>
                 <td className='tr'>Dates</td>
@@ -64,7 +64,7 @@ class LeavePlan extends Component {
       return (
         <div className='Leaveplan'>
           <table>
-            <caption>Holiday List</caption>
+            <caption className='captions'>Holiday List</caption>
             <thead className='thead1'>
               <tr className='thead1'>
                 <td className='tr'>Dates</td>
@@ -103,6 +103,7 @@ class LeavePlan extends Component {
             {
               close => (
                 <div id='sec'>
+                  <a id='closebtn' onClick={close}>&times;</a>
                   <AddingHoliday />
                 </div>
               )

@@ -26,9 +26,11 @@ class LeaveRequest extends React.Component {
     this.validation = this.validation.bind(this)
   }
   validation () { //  validating the input values
-    if (this.state.EmpId === '' && this.state.TotalDays === '' && this.state.FromDate === '' &&
-      this.state.ToDate === '' && this.state.LeaveType === '' && this.state.LeaveReason === '') {
+    console.log('validation')
+    if (this.state.TotalDays === '' || this.state.FromDate === '' ||
+      this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
       alert("Fields can't be empty ")
+      console.log('empty')
       return (false)
     }
     if (this.state.FromDate._d >= this.state.ToDate._d) {
@@ -55,7 +57,8 @@ class LeaveRequest extends React.Component {
     // Calling the validation function and
     // Updating the value to the Local storage
     event.preventDefault()
-    this.validation()
+    console.log('submit')
+    // this.validation()
     if (this.validation()) {
       var data = JSON.parse(localStorage.getItem('Data'))
       var currentUserId = localStorage.getItem('currentUserId')
@@ -192,7 +195,7 @@ class LeaveRequest extends React.Component {
                   <label htmlFor='Number_of_Days'>Number_of_Days</label>
                 </div>
                 <div className='row-2' >
-                  <input type='text' value={this.state.TotalDays} onChange={e => this.handleChange(e)} id='TotalDays' size='40' name='TotalDays' />
+                  <input type='text' value={this.state.TotalDays} disabled id='TotalDays' size='40' name='TotalDays' />
                 </div>
               </div>
               <div className='row'>
