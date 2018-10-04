@@ -89,14 +89,8 @@ class Login extends Component {
     } else {
       return (
         <div>
-<<<<<<< HEAD
-
-          <div class='bodylogin' />
-          <div class='headerlogin'>
-=======
           <div className='bodylogin' />
           <div className='headerlogin'>
->>>>>>> develop
             <div><span>tring</span>apps</div>
           </div>
           <br />

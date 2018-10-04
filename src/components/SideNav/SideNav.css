@@ -8,7 +8,7 @@
   margin-top: 50px;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
-
+  
 }
 
 .sidenav button{
@@ -19,7 +19,7 @@
   transition: all 1s ;
   text-align: unset;
   background-color:  rgb(63, 115, 198);
-  
+  outline: none;
 }
 
 .sidenav button:hover{
