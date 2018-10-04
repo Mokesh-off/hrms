@@ -15,7 +15,11 @@
 
 
 input[type=text], textarea {
+<<<<<<< HEAD
   width: 91%;
+=======
+  width: 92%;
+>>>>>>> develop
   padding: 12px;
   border-radius: 4px;
   resize: vertical;

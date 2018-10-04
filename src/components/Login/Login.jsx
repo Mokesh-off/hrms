@@ -78,7 +78,7 @@ class Login extends Component {
     } else {
       return (
         <div>
-          {console.log(JSON.parse(localStorage.getItem('currentUserId')))}
+
           <div class='bodylogin' />
           <div class='headerlogin'>
             <div><span>tring</span>apps</div>

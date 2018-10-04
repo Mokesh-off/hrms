@@ -8,7 +8,10 @@ class ProfileIndex extends Component {
   render() {
     return (
       <div>
+        <Header />
+        <SideNav />
         <Profile />
+        <Footer />
       </div>
     );
   }
