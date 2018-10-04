@@ -5,7 +5,6 @@ import Login from "./components/Login/Login";
 import Dashboard from "./components/Dashboard/Dashboard";
 import MyLeavesIndex from "./components/MyLeaves/MyLeavesIndex";
 import ApprovalIndex from "./components/LeaveApproval/ApprovalIndex";
-import LeaveRecord from "./components/LeaveRecord/LeaveRecord";
 import HolidayIndex from "./components/Leave/Leaveplan/Index";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -15,6 +14,7 @@ import PendingLeaves from "./components/PendingLeaves/PendingLeaves";
 import LeaveRequests from "./components/LeaveApproval/LeaveRequests";
 import LeavePolicy from "./components/LeavePolicy/LeavePolicy";
 import Profile from "./components/Profile/Profile";
+import LeaveRecord from "./components/LeaveRecord/LeaveRecord";
 
 class App extends Component {
   render() {
@@ -22,7 +22,6 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Header />
             <SideNav />
             <div>
               <Switch>
@@ -79,7 +78,6 @@ class App extends Component {
                 <Route exact strict path="/profile" component={Profile} />
               </Switch>
             </div>
-            <Footer />
           </div>
         </Router>
       </div>
