@@ -3,7 +3,7 @@
 	position: fixed;
 	width: 100%;
 	top: 0;
-	height: 50px;
+	height: 8vh;
 	display: flex;
 	justify-content: space-between;
 }
@@ -21,7 +21,7 @@
 #header > .profile{
 	display: flex;
 	flex-direction: row-reverse;
-	margin-top: -23px;
+	margin-top: -23px;	
 	margin-right: 50px;
 	color: #39ce0d;
 	cursor: pointer;
