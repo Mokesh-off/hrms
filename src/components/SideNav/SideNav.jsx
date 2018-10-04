@@ -38,16 +38,6 @@ class SideNav extends Component {
     }
   }
 
-<<<<<<< HEAD
-=======
-  navigation (e, link) {
-    if (window.location.pathname !== link) {
-      this.setState({ navFlag: link })
-    }
-    console.log('navigation')
-  }
-
->>>>>>> develop
   componentWillMount () {
     var visibilityVar = JSON.parse(localStorage.getItem('currentUserRole'))
     visibilityVar === 'Employee' &&
