@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { BrowserRouter as Redirect } from 'react-router-dom'
 import LeaveRequests from '../LeaveApproval/LeaveRequests'
 
 import PendingLeaves from '../PendingLeaves/PendingLeaves'

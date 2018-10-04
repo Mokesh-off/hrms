@@ -37,4 +37,18 @@
    box-shadow: 0px 2px 18px 0px rgba(82, 32, 32, 0.5);
    cursor: pointer;
  }
+
+ .backButton {
+   text-align: center;
+   cursor: pointer;
+ }
+ .RejectButton:hover {
+   background-color: red;
+  cursor: pointer;
+ }
+
  
+ .ApproveButton:hover {
+  background-color: green;
+  cursor: pointer;
+ }
