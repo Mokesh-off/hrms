@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
-import './LeavePolicy.css'
+import React, { Component } from "react";
+import "./LeavePolicy.css";
+import Modal from "react-awesome-modal";
+import LeaveDetails from "./LeaveDetails";
 class LeavePolicy extends Component {
   constructor (props) {
     super(props)
@@ -7,6 +9,18 @@ class LeavePolicy extends Component {
       LeavePolicy: JSON.parse(localStorage.getItem('Data'))
     }
     this.change = this.change.bind(this)
+  }
+
+  openModal() {
+    this.setState({
+      visible: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      visible: false
+    });
   }
 
   /* --   Onchange Function   -- */
@@ -52,11 +66,12 @@ class LeavePolicy extends Component {
 
           <table id='leavePolicy'>
             <thead>
-              <tr className='thead1'>
-                <th className='tdStyle'> Leave Type</th>
-                <th className='tdStyle'>Leave Name</th>
-                <th className='tdStyle'>NO.of Days</th>
-                <th className='tdStyle'>Terms</th>
+              <tr className="thead1">
+                <th className="tdStyle"> Leave Type</th>
+                <th className="tdStyle">Leave Name</th>
+                <th className="tdStyle">NO.of Days</th>
+                <th className="tdStyle">Terms</th>
+                <th className="tdStyle">Details</th>
               </tr>
             </thead>
             <tbody>
@@ -98,6 +113,31 @@ class LeavePolicy extends Component {
                       {data.Terms}
                     </textarea>
                   </td>
+                  <td className="tdStyle">
+                    <input
+                      type="button"
+                      value="view"
+                      onClick={() => this.openModal()}
+                    />
+                    <Modal
+                      visible={this.state.visible}
+                      width="800"
+                      height="500"
+                      margin-bottom="20"
+                      color="white"
+                      onClickAway={() => this.closeModal()}
+                    >
+                      <div id="modal">
+                        <LeaveDetails />
+                        <a
+                          href="javascript:void(0);"
+                          onClick={() => this.closeModal()}
+                        >
+                          Close
+                        </a>
+                      </div>
+                    </Modal>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -112,20 +152,46 @@ class LeavePolicy extends Component {
           <h1 className='header'>Leave Policy(2018)</h1>
           <table id='leavePolicy'>
             <thead>
-              <tr className='thead1'>
-                <th className='tdStyle'>Leave Type</th>
-                <th className='tdStyle'>Leave Name</th>
-                <th className='tdStyle'>NO.of Days</th>
-                <th className='tdStyle'>Terms</th>
+              <tr className="thead1">
+                <th className="tdStyle">Leave Type</th>
+                <th className="tdStyle">Leave Name</th>
+                <th className="tdStyle">NO.of Days</th>
+                <th className="tdStyle">Terms</th>
+                <th className="tdStyle">Details</th>
               </tr>
             </thead>
             <tbody>
               {this.state.LeavePolicy.leavePolicyJSON.map((data, i) => (
                 <tr key={data.id}>
-                  <td className='tdStyle'>{data.Type}</td>
-                  <td className='tdStyle'> {data.Name}</td>
-                  <td className='tdStyle'>{data.Days}</td>
-                  <td className='tdStyle'>{data.Terms}</td>
+                  <td className="tdStyle">{data.Type}</td>
+                  <td className="tdStyle"> {data.Name}</td>
+                  <td className="tdStyle">{data.Days}</td>
+                  <td className="tdStyle">{data.Terms}</td>
+                  <td className="tdStyle">
+                    <input
+                      type="button"
+                      value="view"
+                      onClick={() => this.openModal()}
+                    />
+                    <Modal
+                      visible={this.state.visible}
+                      width="800"
+                      height="500"
+                      margin-bottom="20"
+                      color="white"
+                      onClickAway={() => this.closeModal()}
+                    >
+                      <div id="modal">
+                        <LeaveDetails />
+                        <a
+                          href="javascript:void(0);"
+                          onClick={() => this.closeModal()}
+                        >
+                          Close
+                        </a>
+                      </div>
+                    </Modal>
+                  </td>
                 </tr>
               ))}
             </tbody>

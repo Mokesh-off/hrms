@@ -57,6 +57,7 @@ class LeaveRequests extends Component {
           </thead>
           <tbody>
             {this.state.LeaveRecord.map((record, i) => {
+<<<<<<< HEAD
               return this.state.deletedRow.indexOf(record.ReqestId) === -1
                 ? <tr key={i} className='tdStyle'>
                   <td className='tdStyle'>{record.EmpId}</td>
@@ -69,6 +70,23 @@ class LeaveRequests extends Component {
                   </td>
                 </tr>
                 : ''
+=======
+              return this.state.deletedRow.indexOf(record.ReqestId) === -1 ? (
+                <tr key={i} className="tdStyle">
+                  <td className="tdStyle">{record.EmpId}</td>
+                  <td className="tdStyle">{record.LeaveType}</td>
+                  <td className="tdStyle">
+                    <NavLink to="/approvals">
+                      <button onClick={e => this.sendReqId(e, i)}>View</button>
+                    </NavLink>
+                    <span>&nbsp;</span>
+                    <button onClick={e => this.delete(e, i)}>Delete</button>
+                  </td>
+                </tr>
+              ) : (
+                ""
+              );
+>>>>>>> develop
             })}
           </tbody>
         </table>

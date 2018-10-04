@@ -7,12 +7,11 @@ class LeavePlan extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      Holiday: JSON.parse(localStorage.getItem('Data'))
-    }
-    this.change = this.change.bind(this)
+      Holiday: JSON.parse(window.localStorage.getItem("Data"))
+    };
+    this.change = this.change.bind(this);
   }
-  change (e, i) {
-    // To Update the value to the Local Storage
+  change (e, i) { // To Update the value to the Local Storage
     var item = {
       // Created an obj for the target value
       value: e.target.value,
@@ -30,16 +29,16 @@ class LeavePlan extends Component {
     })
     // To append the value to the Local storage
     this.setState({ [this.state.Holiday.holidayList]: newObject })
-    localStorage.setItem('Data', JSON.stringify(this.state.Holiday))
+    window.localStorage.setItem('Data', JSON.stringify(this.state.Holiday))
   }
   render () {
-    var role = JSON.parse(localStorage.getItem('currentUserRole'))
+    var role = JSON.parse(window.localStorage.getItem('currentUserRole'))
     // According to the role the view will be different
     if (role === 'Employee') {
       return (
         <div className='Leaveplan'>
           <table>
-            <caption className='caption'>Holiday List</caption>
+            <caption className='captions' >Holiday List</caption>
             <thead className='thead1'>
               <tr className='thead1'>
                 <td className='tr'>Dates</td>
@@ -63,7 +62,7 @@ class LeavePlan extends Component {
       return (
         <div className='Leaveplan'>
           <table>
-            <caption>Holiday List</caption>
+            <caption className='captions'>Holiday List</caption>
             <thead className='thead1'>
               <tr className='thead1'>
                 <td className='tr'>Dates</td>
@@ -72,45 +71,41 @@ class LeavePlan extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.Holiday.holidayList.map((holiday, i) => (
-                <tr key={holiday[i]} className='tr'>
-                  <td className='tr'>
-                    <textarea
-                      name='date'
-                      className='textarea'
-                      onChange={e => this.change(e, i)}
-                    >
-                      {holiday.date}
-                    </textarea>
-                  </td>
-                  <td className='tr'>
-                    <textarea
-                      name='day'
-                      className='textarea'
-                      onChange={e => this.change(e, i)}
-                    >
-                      {holiday.day}
-                    </textarea>
-                  </td>
-                  <td className='tr'>
-                    <textarea
-                      name='occasion'
-                      className='textarea'
-                      onChange={e => this.change(e, i)}
-                    >
-                      {holiday.occasion}
-                    </textarea>
-                  </td>
-                </tr>
-              ))}
+              {
+                this.state.Holiday.holidayList.map((holiday, i) =>
+                  <tr key={holiday[i]} className='tr'>
+                    <td className='tr' >
+                      <textarea name='date' className='textarea'
+                        onChange={e => this.change(e, i)}>
+                        {holiday.date}
+                      </textarea>
+                    </td>
+                    <td className='tr' >
+                      <textarea name='day' className='textarea'
+                        onChange={e => this.change(e, i)}>
+                        {holiday.day}
+                      </textarea>
+                    </td>
+                    <td className='tr' >
+                      <textarea name='occasion' className='textarea'
+                        onChange={e => this.change(e, i)}>
+                        {holiday.occasion}
+                      </textarea>
+                    </td>
+                  </tr>
+                )
+              }
             </tbody>
           </table>
-          <Popup trigger={<button className='popUpButton'>Add</button>} modal>
-            {close => (
-              <div id='sec'>
-                <AddingHoliday />
-              </div>
-            )}
+          <Popup trigger={<button className='popUpButton' >Add</button>} modal>
+            {
+              close => (
+                <div id='sec'>
+                  <a id='closebtn' onClick={close}>&times;</a>
+                  <AddingHoliday />
+                </div>
+              )
+            }
           </Popup>
         </div>
       )

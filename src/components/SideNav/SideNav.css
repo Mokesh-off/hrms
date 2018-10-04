@@ -4,7 +4,7 @@
   background: rgb(21, 53, 104);
   overflow-x: hidden;
   padding: 0;
-  height: 88vh;
+  height: 86vh;
   margin-top: 50px;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
@@ -35,8 +35,8 @@
   transition: all 1s ease-in;
   
 }
-.sidenav .link:hover{
-  background-color: #ffe4c4;
+.background{
+  background-color: #ffe4c4 !important;
 }
 .employeeCss{
   display: none;

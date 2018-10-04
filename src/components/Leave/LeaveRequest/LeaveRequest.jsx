@@ -63,6 +63,7 @@ class LeaveRequest extends React.Component {
   }
   DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date })
+    this.numOfDays()
   }
   DateToChange (date) { // Update the To date from the User input
     this.setState({ ToDate: this.state.ToDate = date })
@@ -72,11 +73,10 @@ class LeaveRequest extends React.Component {
     // Calling the validation function and
     // Updating the value to the Local storage
     event.preventDefault()
-    this.validation()
     if (this.validation()) {
-      var data = JSON.parse(localStorage.getItem('Data'))
-      var currentUserId = localStorage.getItem('currentUserId')
-      var currentUser = localStorage.getItem('currentUser')
+      var data = JSON.parse(window.localStorage.getItem('Data'))
+      var currentUserId = window.localStorage.getItem('currentUserId')
+      var currentUser = window.localStorage.getItem('currentUser')
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
@@ -115,6 +115,9 @@ class LeaveRequest extends React.Component {
   }
   numOfDays () {
     // To generate number of holiday days
+    if (this.state.FromDate === null || this.state.ToDate === null){
+      return this.setState({ TotalDays: 0 })
+    }
     var start = this.state.FromDate._d
     this.setState({ start: this.state.FromDate._d })
     var end = this.state.ToDate._d
@@ -123,7 +126,7 @@ class LeaveRequest extends React.Component {
     end = new Date(end)
     var count = 0
     var flag = false
-    var holiday = JSON.parse(localStorage.getItem('Data'))
+    var holiday = JSON.parse(window.localStorage.getItem('Data'))
     holiday = holiday.holidays
     while (loop <= end) {
       var yyyy = loop.getFullYear()
@@ -140,7 +143,7 @@ class LeaveRequest extends React.Component {
     this.setState({ TotalDays: count })
   }
   render () {
-    var holidayList = JSON.parse(localStorage.getItem('Data'))
+    var holidayList = JSON.parse(window.localStorage.getItem('Data'))
     holidayList = holidayList.holidays
 
     return (
