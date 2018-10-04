@@ -6,7 +6,6 @@
 	height: 8vh;
 	display: flex;
 	justify-content: space-between;
-	z-index: 1;
 }
 .headerText{
 	margin-top: 18px;

@@ -138,3 +138,9 @@ html,body{
 	border-radius: 18px;
 	border: 1px solid #cfcece;
   }
+  html,body{
+	  overflow: hidden;
+  }
+  .parent{
+	  z-index: 3;
+  }
