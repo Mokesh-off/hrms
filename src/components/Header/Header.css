@@ -1,9 +1,9 @@
 #header{
-	background: #f5f1ed;
+	background: rgb(21, 53, 104);
 	position: fixed;
 	width: 100%;
 	top: 0;
-	height: 50px;
+	height: 8vh;
 	display: flex;
 	justify-content: space-between;
 }
@@ -12,7 +12,7 @@
 }
 
 #header > .logo{
-	color: #39ce0d;
+	color: rgb(204, 104, 32);
 	font-size: 35px;
 	padding: 5px;
 	cursor: default;
@@ -21,7 +21,7 @@
 #header > .profile{
 	display: flex;
 	flex-direction: row-reverse;
-	margin-top: -23px;
+	margin-top: -23px;	
 	margin-right: 50px;
 	color: #39ce0d;
 	cursor: pointer;
@@ -62,4 +62,5 @@ img{
 }
 .profile-name{
   padding: 18px;
+  color: #f9f9f9;
 }

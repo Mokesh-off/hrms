@@ -34,7 +34,6 @@ class Header extends Component {
               <div className='profile-name'>{userName}</div>
             </div>
           </Link>
-
           <div className='dropdown-content'>
             <span onClick={this.logOutFunction}>Logout</span>
           </div>

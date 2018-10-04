@@ -8,7 +8,7 @@ class LeaveApproval extends Component {
     this.state = {
       open: false,
       status: '',
-      LeaveRecord: JSON.parse(window.localStorage.getItem('Data')),
+      LeaveRecord: JSON.parse(localStorage.getItem('Data')),
       pending: '',
       comment: ''
     }
@@ -64,7 +64,7 @@ class LeaveApproval extends Component {
       }
     })
     this.setState({ [this.state.LeaveRecord.Employee]: newObject })
-    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
   }
 
   // Approve leave request
@@ -81,11 +81,11 @@ class LeaveApproval extends Component {
   //   for adding comments
   changeComment (e) {
     let newState = Object.assign({}, this.state)
-    let index = window.localStorage.getItem('currentRequestID')
+    let index = localStorage.getItem('currentRequestID')
     newState.LeaveRecord.leaveRequest[index].comment = e.target.value
     console.log(e.target.value)
     this.setState(newState)
-    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
   }
 
   render () {
@@ -122,7 +122,7 @@ class LeaveApproval extends Component {
             <tr>
               <td>Comment</td>
               <td><input type='text' onChange={e => this.changeComment(e)}
-                value={this.state.LeaveRecord.leaveRequest[index].comment} size='50' /></td>
+                value={this.state.LeaveRecord.leaveRequest[index].comment} size='30' /></td>
             </tr>
           </tbody>
         </table><br />

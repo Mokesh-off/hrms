@@ -4,8 +4,8 @@ import Popup from 'reactjs-popup'
 import AddingHoliday from './AddingHoliday'
 
 class LeavePlan extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       Holiday: JSON.parse(window.localStorage.getItem("Data"))
     };
@@ -17,7 +17,7 @@ class LeavePlan extends Component {
       value: e.target.value,
       name: e.target.name,
       targetIndex: i
-    };
+    }
     const newObject = this.state.Holiday.holidayList.map((holiday, j) => {
       for (var key in holiday) {
         // Check the target value and item name is same
@@ -48,19 +48,19 @@ class LeavePlan extends Component {
             </thead>
             <tbody>
               {this.state.Holiday.holidayList.map((holiday, i) => (
-                <tr key={holiday[i]} className="tr">
-                  <td className="tr">{holiday.date}</td>
-                  <td className="tr">{holiday.day}</td>
-                  <td className="tr">{holiday.occasion}</td>
+                <tr key={holiday[i]} className='tr'>
+                  <td className='tr'>{holiday.date}</td>
+                  <td className='tr'>{holiday.day}</td>
+                  <td className='tr'>{holiday.occasion}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      );
+      )
     } else {
       return (
-        <div className="Leaveplan">
+        <div className='Leaveplan'>
           <table>
             <caption className='captions'>Holiday List</caption>
             <thead className='thead1'>
@@ -112,4 +112,4 @@ class LeavePlan extends Component {
     }
   }
 }
-export default LeavePlan;
+export default LeavePlan

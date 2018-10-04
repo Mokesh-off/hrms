@@ -6,8 +6,8 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 class SideNav extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       navFlag: '',
       employeeVisibility: '',
@@ -129,8 +129,8 @@ class SideNav extends Component {
         </div>
         <Footer />
       </div>
-    );
+    )
   }
 }
 
-export default SideNav;
+export default SideNav
