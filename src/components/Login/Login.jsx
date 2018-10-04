@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import './Login.css'
+import Popup from 'reactjs-popup'
 
 class Login extends Component {
   constructor (props) {
@@ -13,7 +14,9 @@ class Login extends Component {
       login: [],
       currentUserId: '',
       currentUserRole: '',
-      currentUserName: ''
+      currentUserName: '',
+      errText: '',
+      open: false
     }
 
     this.handlePassChange = this.handlePassChange.bind(this)
@@ -37,8 +40,11 @@ class Login extends Component {
     var newVar = JSON.parse(localStorage.getItem('Data'))
     newVar = newVar.Employee
     newVar.forEach(index => {
-      this.state.email === index.EmailId && this.state.password === index.Password &&
-      this.setCurrentUser(index.EmpId, index.Role, index.EmpName)
+      if (this.state.email === index.EmailId && this.state.password === index.Password) {
+        this.setCurrentUser(index.EmpId, index.Role, index.EmpName)
+      } else {
+        this.setState({ open: true, errText: 'Invalid User' })
+      }
     })
   }
 
@@ -46,17 +52,22 @@ class Login extends Component {
     this.setState({ error: '' })
   }
 
+  closeModal (e) {
+    this.setState({ open: false })
+  }
+
   handleSubmit (evt) {
     evt.preventDefault()
 
-    if (!this.state.email) {
-      alert('Email is required')
-    }
-
-    if (!this.state.password) {
-      alert('Password is required')
+    if (this.state.email === '' && this.state.password === '') {
+      this.setState({ open: true })
+      this.setState({ errText: 'Enter Email and password' })
+    } else if (!this.state.email) {
+      this.setState({ open: true, errText: 'Email is required' })
+    } else if (!this.state.password) {
+      this.setState({ open: true, errText: 'Password is required' })
     } else if (this.state.email && this.state.password) {
-      this.setNew.call(this)
+      this.setNew(this)
     }
   }
 
@@ -78,18 +89,32 @@ class Login extends Component {
     } else {
       return (
         <div>
+<<<<<<< HEAD
 
           <div class='bodylogin' />
           <div class='headerlogin'>
+=======
+          <div className='bodylogin' />
+          <div className='headerlogin'>
+>>>>>>> develop
             <div><span>tring</span>apps</div>
           </div>
           <br />
-          <div class='login'>
+          <div className='login'>
             <form onSubmit={this.handleSubmit}>
               <input type='email' placeholder='Email' data-test='email' value={this.state.email} onChange={this.handleEmailChange} />
               <input type='password' placeholder='Password' data-test='password' value={this.state.password} onChange={this.handlePassChange} />
               <input type='submit' value='Login' data-test='submit' />
             </form>
+
+            <Popup open={this.state.open}>
+              <div className='modal'>
+                <a className='close' onClick={e => this.closeModal(e)}>
+                      &times;
+                </a>
+                {this.state.errText}
+              </div>
+            </Popup>
           </div>
         </div>
       )

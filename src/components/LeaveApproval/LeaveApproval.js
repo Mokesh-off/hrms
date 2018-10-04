@@ -21,9 +21,9 @@ class LeaveApproval extends Component {
   changeToReject (e) {
     let newState = Object.assign({}, this.state)
     console.log(newState)
-    let index = localStorage.getItem('currentRequestID')
+    let index = window.localStorage.getItem('currentRequestID')
     newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Rejected' })
   }
@@ -71,9 +71,9 @@ class LeaveApproval extends Component {
   changeToApprove (e) {
     let newState = Object.assign({}, this.state)
     console.log(newState)
-    let index = localStorage.getItem('currentRequestID')
+    let index = window.localStorage.getItem('currentRequestID')
     newState.LeaveRecord.leaveRequest[index].status = 'Approved'
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Approved' })
     this.reduceLeaves(index)
@@ -89,7 +89,7 @@ class LeaveApproval extends Component {
   }
 
   render () {
-    let index = localStorage.getItem('currentRequestID')
+    let index = window.localStorage.getItem('currentRequestID')
     return (
     // Details of leave request
       <div className='leaveRecord'>
@@ -122,7 +122,7 @@ class LeaveApproval extends Component {
             <tr>
               <td>Comment</td>
               <td><input type='text' onChange={e => this.changeComment(e)}
-                value={this.state.LeaveRecord.leaveRequest[index].comment} size='50' /></td>
+                value={this.state.LeaveRecord.leaveRequest[index].comment} size='30' /></td>
             </tr>
           </tbody>
         </table><br />
