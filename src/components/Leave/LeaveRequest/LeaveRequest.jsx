@@ -48,6 +48,7 @@ class LeaveRequest extends React.Component {
   }
   DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date })
+    this.numOfDays()
   }
   DateToChange (date) { // Update the To date from the User input
     this.setState({ ToDate: this.state.ToDate = date })
@@ -95,6 +96,9 @@ class LeaveRequest extends React.Component {
   }
   numOfDays () {
     // To generate number of holiday days
+    if (this.state.FromDate === null || this.state.ToDate === null) {
+      return this.setState({ TotalDays: 0 })
+    }
     var start = this.state.FromDate._d
     this.setState({ start: this.state.FromDate._d })
     var end = this.state.ToDate._d
