@@ -115,15 +115,6 @@ class LeaveApproval extends Component {
               <td className='tdStyle'>{this.state.LeaveRecord.leaveRequest[index].LeaveReason}</td>
               <td className='tdStyle'>
 
-<<<<<<< HEAD
-                <button value='Rejected' onClick={e => this.changeToReject(e)}>Reject</button><span>&nbsp;</span>
-                <button value='Approved' onClick={e => this.change(e)}>Approve</button>
-              </td>
-            </tr>
-          </tbody>
-        </table><br />
-        <NavLink to='/leavelist'><button>Back</button> </NavLink>
-=======
                 <button className='RejectButton' onClick={e => this.changeToReject(e)}>Reject</button><span>&nbsp;</span>
                 <button className='ApproveButton' onClick={e => this.changeToApprove(e)}>Approve</button>
               </td>
@@ -138,7 +129,6 @@ class LeaveApproval extends Component {
         <div className='backButton'>
           <NavLink to='/leavelist'><button>Back</button> </NavLink>
         </div>
->>>>>>> develop
         <Popup open={this.state.open} closeOnDocumentClick modal>
           <div>
             <span>{this.state.status} successfully</span><br />

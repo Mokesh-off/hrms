@@ -26,17 +26,11 @@ class LeaveRequest extends React.Component {
     this.validation = this.validation.bind(this)
   }
   validation () { //  validating the input values
-<<<<<<< HEAD
     console.log('validation')
     if (this.state.TotalDays === '' || this.state.FromDate === '' ||
       this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
       alert("Fields can't be empty ")
       console.log('empty')
-=======
-    if (this.state.EmpId === '' && this.state.TotalDays === '' && this.state.FromDate === '' &&
-      this.state.ToDate === '' && this.state.LeaveType === '' && this.state.LeaveReason === '') {
-      alert("Fields can't be empty ")
->>>>>>> develop
       return (false)
     }
     if (this.state.FromDate._d >= this.state.ToDate._d) {
