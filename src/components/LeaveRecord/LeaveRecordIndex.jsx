@@ -2,19 +2,17 @@ import React, { Component } from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SideNav from '../SideNav/SideNav'
-import PendingLeaves from '../PendingLeaves/PendingLeaves'
-
-class PendingLeavesIndex extends Component {
+import LeaveRecord from './LeaveRecord'
+class LeaveRecordIndex extends Component {
   render () {
     return (
       <div>
         <Header />
         <SideNav />
         <Footer />
-        <PendingLeaves />
+        <LeaveRecord />
       </div>
     )
   }
 }
-
-export default PendingLeavesIndex
+export default LeaveRecordIndex
