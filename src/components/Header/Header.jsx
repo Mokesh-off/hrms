@@ -39,7 +39,7 @@ class Header extends Component {
       <div id="header">
         <div className="logo">tringapps</div>
         <div className="profile-main-outer">
-          <Link to="/profileIndex" className="profile-outer">
+          <Link to="/profile" className="profile-outer">
             <div className="profile-outer">
               <div className="profile-img">
                 <img src={require("../../Assets/images/profile_icon.png")} />
