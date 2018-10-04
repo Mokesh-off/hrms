@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 class SideNav extends Component {
+  
   constructor (props) {
     super(props)
     this.state = {
