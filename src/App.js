@@ -25,57 +25,18 @@ class App extends Component {
               <Switch>
                 <Route exact strict path='/' component={Login} />
                 <Route exact strict path='/dashboard' component={Dashboard} />
-                <Route
-                  exact
-                  strict
-                  path='/leavelist'
-                  component={LeaveRequests}
-                />
-                <Route
-                  exact
-                  strict
-                  path='/leaverequest'
-                  component={LeaveRequest}
-                />
-                <Route
-                  exact
-                  strict
-                  path='/myLeaves'
-                  component={MyLeavesIndex}
-                />
-                <Route
-                  exact
-                  strict
-                  path='/approvals'
-                  component={ApprovalIndex}
-                />
-                <Route
-                  exact
-                  strict
-                  path='/pendingleaves'
-                  component={PendingLeaves}
-                />
-                <Route
-                  exact
-                  strict
-                  path='/leaveRecords'
-                  component={LeaveRecord}
-                />
-                <Route
-                  exact
-                  strict
-                  path='/leaveplan'
-                  component={HolidayIndex}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/leavePolicy"
-                  component={LeavePolicy}
-                />
-                <Route exact strict path="/profile" component={Profile} />
+                <Route exact strict path='/leavelist' component={LeaveRequests} />
+                <Route exact strict path='/leaverequest' component={LeaveRequest} />
+                <Route exact strict path='/myLeaves' component={MyLeavesIndex} />
+                <Route exact strict path='/approvals' component={ApprovalIndex} />
+                <Route exact strict path='/pendingleaves' component={PendingLeaves} />
+                <Route exact strict path='/leaveRecords' component={LeaveRecord} />
+                <Route exact strict path='/leaveplan' component={HolidayIndex} />
+                <Route exact strict path='/leavePolicy' component={LeavePolicy} />
+                <Route exact strict path='/profile' component={Profile} />
               </Switch>
             </div>
+       
           </div>
         </Router>
       </div>
