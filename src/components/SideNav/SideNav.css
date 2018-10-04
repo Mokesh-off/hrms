@@ -1,10 +1,10 @@
 .sidenav {
   width: 15vw;
   position: fixed;
-  background: #b9b7b7;
+  background: rgb(21, 53, 104);
   overflow-x: hidden;
   padding: 0;
-  height: 88vh;
+  height: 87vh;
   margin-top: 50px;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
@@ -16,12 +16,15 @@
   width: 100%;
   border: none;
   cursor: pointer;
-  transition: all 1s ease-in;
+  transition: all 1s ;
   text-align: unset;
+  background-color:  rgb(63, 115, 198);
+  
 }
 
 .sidenav button:hover{
-  background-color: #ffe4c4;
+  background: rgb(21, 53, 104);
+  color: white
 }
 
 .link{
@@ -32,8 +35,8 @@
   transition: all 1s ease-in;
   
 }
-.sidenav .link:hover{
-  background-color: #ffe4c4;
+.background{
+  background-color: #ffe4c4 !important;
 }
 .employeeCss{
   display: none;
@@ -43,6 +46,7 @@
   height: 0;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
+  background-color:  rgb(63, 115, 198);
   /*display: none;*/
 }
 .sidenavDisplay{
@@ -51,6 +55,7 @@
   margin-top: 0px !important;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
+ background-color:  rgb(63, 115, 198);
 }
 .triangle-right {
 	width: 0;

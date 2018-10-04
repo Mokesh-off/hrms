@@ -3,6 +3,8 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 import './LeaveRequest.css'
+import Popup from 'reactjs-popup'
+
 class LeaveRequest extends React.Component {
   constructor (props) {
     super(props)
@@ -16,7 +18,9 @@ class LeaveRequest extends React.Component {
       LeaveReason: ' ',
       ReqestId: moment(),
       status: '',
-      comment: ''
+      comment: '',
+      open: '',
+      errText: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,26 +30,40 @@ class LeaveRequest extends React.Component {
     this.validation = this.validation.bind(this)
   }
   validation () { //  validating the input values
-    if (this.state.EmpId === '' && this.state.TotalDays === '' && this.state.FromDate === '' &&
-      this.state.ToDate === '' && this.state.LeaveType === '' && this.state.LeaveReason === '') {
-      alert("Fields can't be empty ")
+    if (this.state.TotalDays === '' || this.state.FromDate === '' ||
+      this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
+      this.setState({ open: true, errText: 'Fields can not be empty ' })
+       // alert("Fields can't be empty ")
       return (false)
     }
+
     if (this.state.FromDate._d >= this.state.ToDate._d) {
-      alert('From date need to be proper')
+     this.setState({ open: true, errText: 'From date need to be proper ' })
+      // alert('From date need to be proper')
       return (false)
     }
     if (this.state.TotalDays === '^[0-9]*$') {
-      alert('Only numbers in this field')
+      this.setState({ open: true, errText: 'Only numbers in this field' })
+      //alert('Only numbers in this field')
       return (false)
     }
+    // if (!this.state.FromDate._d.match(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i)) {
+    //   alert('date need to be in the formet of (yyyy-mm-dd)')
+    //   return (false)
+    // }
     return (true)
   }
+
+  closeModal (e) {
+    this.setState({ open: false })
+  }
+
   handleChange (e) { // To set the values to the state
     this.setState({ [e.target.name]: e.target.value })
   }
   DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date })
+    this.numOfDays()
   }
   DateToChange (date) { // Update the To date from the User input
     this.setState({ ToDate: this.state.ToDate = date })
@@ -55,16 +73,16 @@ class LeaveRequest extends React.Component {
     // Calling the validation function and
     // Updating the value to the Local storage
     event.preventDefault()
-    this.validation()
     if (this.validation()) {
-      var data = JSON.parse(localStorage.getItem('Data'))
-      var currentUserId = localStorage.getItem('currentUserId')
-      var currentUser = localStorage.getItem('currentUser')
+      var data = JSON.parse(window.localStorage.getItem('Data'))
+      var currentUserId = window.localStorage.getItem('currentUserId')
+      var currentUser = window.localStorage.getItem('currentUser')
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
           localStorage.setItem('Data', JSON.stringify(data))
+          this.setState({ open: true, errText: 'Submmited successfully' })
         })
       } else {
         // If not then create a key and append the value
@@ -72,8 +90,11 @@ class LeaveRequest extends React.Component {
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
           localStorage.setItem('Data', JSON.stringify(data))
+          this.setState({ open: true, errText: 'Submmited successfully' })
         })
+      
       }
+
     }
   }
   calldispatch () {
@@ -94,6 +115,9 @@ class LeaveRequest extends React.Component {
   }
   numOfDays () {
     // To generate number of holiday days
+    if (this.state.FromDate === null || this.state.ToDate === null){
+      return this.setState({ TotalDays: 0 })
+    }
     var start = this.state.FromDate._d
     this.setState({ start: this.state.FromDate._d })
     var end = this.state.ToDate._d
@@ -102,7 +126,7 @@ class LeaveRequest extends React.Component {
     end = new Date(end)
     var count = 0
     var flag = false
-    var holiday = JSON.parse(localStorage.getItem('Data'))
+    var holiday = JSON.parse(window.localStorage.getItem('Data'))
     holiday = holiday.holidays
     while (loop <= end) {
       var yyyy = loop.getFullYear()
@@ -119,7 +143,7 @@ class LeaveRequest extends React.Component {
     this.setState({ TotalDays: count })
   }
   render () {
-    var holidayList = JSON.parse(localStorage.getItem('Data'))
+    var holidayList = JSON.parse(window.localStorage.getItem('Data'))
     holidayList = holidayList.holidays
 
     return (
@@ -192,7 +216,7 @@ class LeaveRequest extends React.Component {
                   <label htmlFor='Number_of_Days'>Number_of_Days</label>
                 </div>
                 <div className='row-2' >
-                  <input type='text' value={this.state.TotalDays} onChange={e => this.handleChange(e)} id='TotalDays' size='40' name='TotalDays' />
+                  <input type='text' value={this.state.TotalDays} disabled id='TotalDays' size='40' name='TotalDays' />
                 </div>
               </div>
               <div className='row'>
@@ -211,6 +235,15 @@ class LeaveRequest extends React.Component {
             </form>
           </div>
         </div>
+        <Popup open={this.state.open}>
+          <div className='modal'>
+            <a className='close' onClick={e => this.closeModal(e)}>
+                      &times;
+            </a>
+            {this.state.errText}
+          </div>
+        </Popup>
+
       </div>// rightContainer done
     )
   }

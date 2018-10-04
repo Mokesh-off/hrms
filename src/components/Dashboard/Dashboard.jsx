@@ -12,9 +12,10 @@ class Dashboard extends Component {
     }
   }
 
-  render () {
-    if (JSON.parse(localStorage.getItem('currentUserId')) === null) {
-      return <Redirect to='/' />
+  render() {
+    // redirect to login page if user didn't login
+    if (JSON.parse(localStorage.getItem("currentUserId")) === null) {
+      return <Redirect to="/" />;
     }
 
     if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
