@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LeavePolicy from "./LeavePolicy";
+import LeavePolicy from "./LeavePolicy.jsx";
 
 class LeavePolicyIndex extends Component {
   render() {

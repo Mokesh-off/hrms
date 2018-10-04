@@ -13,6 +13,7 @@ class Dashboard extends Component {
   }
 
   render () {
+    // redirect to login page if user didn't login
     if (JSON.parse(localStorage.getItem('currentUserId')) === null) {
       return <Redirect to='/' />
     }
