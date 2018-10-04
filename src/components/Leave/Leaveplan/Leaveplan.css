@@ -38,6 +38,7 @@ tr:hover {
     right: 11px;
     color: blue;
     font-size: 37px;
+    cursor: pointer;
 }
 .captions{
     font-size: 40px;

@@ -6,8 +6,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import MyLeavesIndex from "./components/MyLeaves/MyLeavesIndex";
 import ApprovalIndex from "./components/LeaveApproval/ApprovalIndex";
 import HolidayIndex from "./components/Leave/Leaveplan/Index";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import SideNav from "./components/SideNav/SideNav";
 import LeaveRequest from "./components/Leave/LeaveRequest/LeaveRequest";
 import PendingLeaves from "./components/PendingLeaves/PendingLeaves";
@@ -17,7 +15,7 @@ import Profile from "./components/Profile/Profile";
 import LeaveRecord from "./components/LeaveRecord/LeaveRecord";
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Router>
@@ -25,64 +23,25 @@ class App extends Component {
             <SideNav />
             <div>
               <Switch>
-                <Route exact strict path="/" component={Login} />
-                <Route exact strict path="/dashboard" component={Dashboard} />
-                <Route
-                  exact
-                  strict
-                  path="/leavelist"
-                  component={LeaveRequests}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/leaverequest"
-                  component={LeaveRequest}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/myLeaves"
-                  component={MyLeavesIndex}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/approvals"
-                  component={ApprovalIndex}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/pendingleaves"
-                  component={PendingLeaves}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/leaveRecords"
-                  component={LeaveRecord}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/leaveplan"
-                  component={HolidayIndex}
-                />
-                <Route
-                  exact
-                  strict
-                  path="/leavePolicy"
-                  component={LeavePolicy}
-                />
-                <Route exact strict path="/profile" component={Profile} />
+                <Route exact strict path='/' component={Login} />
+                <Route exact strict path='/dashboard' component={Dashboard} />
+                <Route exact strict path='/leavelist' component={LeaveRequests} />
+                <Route exact strict path='/leaverequest' component={LeaveRequest} />
+                <Route exact strict path='/myLeaves' component={MyLeavesIndex} />
+                <Route exact strict path='/approvals' component={ApprovalIndex} />
+                <Route exact strict path='/pendingleaves' component={PendingLeaves} />
+                <Route exact strict path='/leaveRecords' component={LeaveRecord} />
+                <Route exact strict path='/leaveplan' component={HolidayIndex} />
+                <Route exact strict path='/leavePolicy' component={LeavePolicy} />
+                <Route exact strict path='/profile' component={Profile} />
               </Switch>
             </div>
+       
           </div>
         </Router>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
