@@ -15,7 +15,6 @@ class SideNav extends Component {
     this.showButtonsFunction = this.showButtonsFunction.bind(this)
   }
   showButtonsFunction () {
-    console.log('showbuttons called')
     if (this.state.showButtons === 'sidenavHide') {
       this.setState(
         { showButtons: this.state.showButtons = 'sidenavDisplay sidenav',
@@ -33,7 +32,6 @@ class SideNav extends Component {
     if (window.location.pathname !== link) {
       this.setState({ navFlag: link })
     }
-    console.log('navigation')
   }
 
   componentWillMount () {
@@ -55,18 +53,17 @@ class SideNav extends Component {
           <span className={this.state.cssShape} /> Leave
         </button>
         <div className={this.state.showButtons}>
-          <Link to='/leavelist'>
+          <Link exact to='/leavelist'>
             <button className={this.state.employeeVisibility}>
               Leave Approval
             </button>
           </Link>
-          <Link to='/leaverequest'>
+          <Link exact to='/leaverequest'>
             <button >
-              {' '}
               Leave Request
             </button>
           </Link>
-          <Link to='/MyLeaves'>
+          <Link exact to='/MyLeaves'>
             <button>My Leave</button>
           </Link>
           <Link to='/leaveRecords'>

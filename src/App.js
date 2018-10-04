@@ -26,60 +26,60 @@ class App extends Component {
             <SideNav />
             <div>
               <Switch>
-                <Route exact strict path="/" component={Login} />
-                <Route exact strict path="/dashboard" component={Dashboard} />
+                <Route exact strict path='/' component={Login} />
+                <Route exact strict path='/dashboard' component={Dashboard} />
                 <Route
                   exact
                   strict
-                  path="/leavelist"
+                  path='/leavelist'
                   component={LeaveRequests}
                 />
                 <Route
                   exact
                   strict
-                  path="/leaverequest"
+                  path='/leaverequest'
                   component={LeaveRequest}
                 />
                 <Route
                   exact
                   strict
-                  path="/myLeaves"
+                  path='/myLeaves'
                   component={MyLeavesIndex}
                 />
                 <Route
                   exact
                   strict
-                  path="/approvals"
+                  path='/approvals'
                   component={ApprovalIndex}
                 />
                 <Route
                   exact
                   strict
-                  path="/pendingleaves"
+                  path='/pendingleaves'
                   component={PendingLeaves}
                 />
                 <Route
                   exact
                   strict
-                  path="/leaveRecords"
+                  path='/leaveRecords'
                   component={LeaveRecord}
                 />
                 <Route
                   exact
                   strict
-                  path="/leaveplan"
+                  path='/leaveplan'
                   component={HolidayIndex}
                 />
                 <Route
                   exact
                   strict
-                  path="/leavePolicy"
+                  path='/leavePolicy'
                   component={LeavePolicyIndex}
                 />
                 <Route
                   exact
                   strict
-                  path="/profileIndex"
+                  path='/profileIndex'
                   component={ProfileIndex}
                 />
               </Switch>
@@ -88,8 +88,8 @@ class App extends Component {
           </div>
         </Router>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

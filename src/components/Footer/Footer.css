@@ -1,10 +1,10 @@
 #footer{
-  background: #f5f1ed;
+  background: rgb(51, 52, 53);
   text-align: center;
   position: fixed;
   width: 100%;
   bottom: 0;
   height: 40px;
-  color: #39ce0d;
+  color: white;
   cursor: default;
 }

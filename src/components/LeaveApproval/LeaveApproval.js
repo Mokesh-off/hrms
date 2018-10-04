@@ -122,7 +122,7 @@ class LeaveApproval extends Component {
             <tr>
               <td>Comment</td>
               <td><input type='text' onChange={e => this.changeComment(e)}
-                value={this.state.LeaveRecord.leaveRequest[index].comment} size='50' /></td>
+                value={this.state.LeaveRecord.leaveRequest[index].comment} size='30' /></td>
             </tr>
           </tbody>
         </table><br />
