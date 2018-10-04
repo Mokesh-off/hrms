@@ -33,18 +33,18 @@ class LeaveRequest extends React.Component {
     if (this.state.TotalDays === '' || this.state.FromDate === '' ||
       this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
       this.setState({ open: true, errText: 'Fields can not be empty ' })
-       // alert("Fields can't be empty ")
+      // alert("Fields can't be empty ")
       return (false)
     }
 
     if (this.state.FromDate._d >= this.state.ToDate._d) {
-     this.setState({ open: true, errText: 'From date need to be proper ' })
+      this.setState({ open: true, errText: 'From date need to be proper ' })
       // alert('From date need to be proper')
       return (false)
     }
     if (this.state.TotalDays === '^[0-9]*$') {
       this.setState({ open: true, errText: 'Only numbers in this field' })
-      //alert('Only numbers in this field')
+      // alert('Only numbers in this field')
       return (false)
     }
     // if (!this.state.FromDate._d.match(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i)) {
@@ -81,7 +81,7 @@ class LeaveRequest extends React.Component {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
-          localStorage.setItem('Data', JSON.stringify(data))
+          window.localStorage.setItem('Data', JSON.stringify(data))
           this.setState({ open: true, errText: 'Submmited successfully' })
         })
       } else {
@@ -89,7 +89,7 @@ class LeaveRequest extends React.Component {
         data['leaveRequest'] = []
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
-          localStorage.setItem('Data', JSON.stringify(data))
+          window.localStorage.setItem('Data', JSON.stringify(data))
           this.setState({ open: true, errText: 'Submmited successfully' })
         })
       
