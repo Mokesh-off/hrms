@@ -54,19 +54,19 @@ class SideNav extends Component {
     ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
 
     if (window.location.pathname === '/leaveRecords') {
-      ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '#ffe4c4';
+      ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '#66a3ff';
     } else if (window.location.pathname === '/leaverequest') {
-      ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '#ffe4c4';
+      ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '#66a3ff';
     } else if (window.location.pathname === '/dashboard') {
-      ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#ffe4c4';
+      ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#66a3ff';
     } else if (window.location.pathname === '/leavelist') {
-      ReactDOM.findDOMNode(this.refs.leavelist).style.background = '#ffe4c4';
+      ReactDOM.findDOMNode(this.refs.leavelist).style.background = '#66a3ff';
     } else if (window.location.pathname === '/MyLeaves') {
-      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#ffe4c4';
+      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#66a3ff';
     } else if (window.location.pathname === '/LeavePolicy') {
-      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '#ffe4c4';
+      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '#66a3ff';
     } else if (window.location.pathname === '/leaveplan') {
-      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#ffe4c4';
+      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#66a3ff';
     }
   }
   componentDidMount() {

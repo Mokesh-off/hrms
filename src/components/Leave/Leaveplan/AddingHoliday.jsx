@@ -38,6 +38,7 @@ class AddingHoliday extends Component {
       //alert('please specify the Occasion')
       return (false)
     }
+    return (true)
   }
   closeModal (e) {
     this.setState({ open: false })
@@ -55,6 +56,7 @@ class AddingHoliday extends Component {
         holiday[holiday.length] = this.state
         localStorage.setItem('Data', JSON.stringify(data))
       }
+      this.setState({ open: true, errText:'Successfully submitted'})
     } else {
       this.setState({ open: true, errText:'data were incorrect....can not update the value'})
       //alert("data were incorrect....can't update the value")
