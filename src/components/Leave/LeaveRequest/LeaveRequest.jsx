@@ -76,7 +76,7 @@ class LeaveRequest extends React.Component {
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
       var currentUserId = window.localStorage.getItem('currentUserId')
-      var currentUser = window.localStorage.getItem('currentUser')
+      var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
@@ -104,7 +104,7 @@ class LeaveRequest extends React.Component {
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
-      LeaveReason: ' ',
+      LeaveReason: '',
       TotalDays: ''
     })
   }
