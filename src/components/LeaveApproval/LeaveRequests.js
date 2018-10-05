@@ -50,7 +50,7 @@ class LeaveRequests extends Component {
         <table>
           <thead className='thead1'>
             <tr className='thead1'>
-              <td className='tdStyle'>EmpId</td>
+              <td className='tdStyle'>Name</td>
               <td className='tdStyle'>LeaveType</td>
               <td className='tdStyle'>&nbsp;</td>
             </tr>
@@ -59,7 +59,7 @@ class LeaveRequests extends Component {
             {this.state.LeaveRecord.map((record, i) => {
               return this.state.deletedRow.indexOf(record.ReqestId) === -1
                 ? <tr key={i} className='tdStyle'>
-                  <td className='tdStyle'>{record.EmpId}</td>
+                  <td className='tdStyle'>{record.EmpName}</td>
                   <td className='tdStyle'>{record.LeaveType}</td>
                   <td className='tdStyle'>
                     <NavLink to='/approvals'>

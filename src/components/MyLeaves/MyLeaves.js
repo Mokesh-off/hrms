@@ -18,7 +18,7 @@ class MyLeaves extends Component {
         <table>
           <thead className='thead1'>
             <tr className='thead1'>
-              <td className='tdStyle'>EmpId</td>
+              <td className='tdStyle'>Name</td>
               <td className='tdStyle'>LeaveType</td>
               <td className='tdStyle'>FromDate</td>
               <td className='tdStyle'>ToDate</td>
@@ -31,7 +31,7 @@ class MyLeaves extends Component {
             {
               this.state.LeaveRecord.leaveRequest.map((record, i) =>
                 (record.EmpId == id) ? <tr key={i} className='tdStyle' >
-                  <td className='tdStyle'>{record.EmpId}</td>
+                  <td className='tdStyle'>{record.EmpName}</td>
                   <td className='tdStyle'>{record.LeaveType}</td>
                   <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
                   <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
