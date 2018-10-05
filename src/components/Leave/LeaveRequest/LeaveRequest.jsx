@@ -15,7 +15,7 @@ class LeaveRequest extends React.Component {
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
-      LeaveReason: ' ',
+      LeaveReason: '',
       ReqestId: moment(),
       status: '',
       comment: '',
