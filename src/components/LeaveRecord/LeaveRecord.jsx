@@ -25,6 +25,10 @@ class LeaveRecord extends Component {
           </thead>
           <tbody>
             {
+              
+              (this.state.LeaveRecord.leaveRequest===undefined||null||'')
+              ?''
+              :
               this.state.LeaveRecord.leaveRequest.map((record, i) =>
                 <tr key={record[i]} className='tdStyle' >
                   <td className='tdStyle'>{record.EmpId}</td>

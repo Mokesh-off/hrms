@@ -96,7 +96,7 @@ class LeaveApproval extends Component {
         <table>
           <thead className="thead1">
             <tr className="thead1">
-              <td className="tdStyle">EmpId</td>
+              <td className="tdStyle">Name</td>
               <td className="tdStyle">LeaveType</td>
               <td className="tdStyle">FromDate</td>
               <td className="tdStyle">ToDate</td>
@@ -108,7 +108,7 @@ class LeaveApproval extends Component {
           <tbody>
             <tr>
               <td className="tdStyle">
-                {this.state.LeaveRecord.leaveRequest[index].EmpId}
+                {this.state.LeaveRecord.leaveRequest[index].EmpName}
               </td>
               <td className="tdStyle">
                 {this.state.LeaveRecord.leaveRequest[index].LeaveType}
