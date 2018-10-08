@@ -81,6 +81,7 @@ class LeaveRequest extends React.Component {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
+          
           localStorage.setItem('Data', JSON.stringify(data))
           this.setState({ open: true, errText: 'Submmited successfully' })
         })
