@@ -12,6 +12,8 @@ class PendingLeaves extends Component {
   render () {
     let id = JSON.parse(localStorage.getItem('currentUserId'))
     let emp = this.state.LeavePolicy.Employee[id - 1]
+    console.log('....................'+emp);
+    console.log('....................'+emp.Employee);
     return (
       //  List of pending leaves for employee
       <div className='leaveRecord'>
@@ -27,7 +29,7 @@ class PendingLeaves extends Component {
 
             <tr className='tdStyle' >
               <td className='tdStyle'>Planed Leaves</td>
-              <td className='tdStyle'>{emp.PendingLeaves.Planed}</td>
+              <td className='tdStyle'>{emp.PendingLeaves.Planned}</td>
             </tr>
 
             <tr className='tdStyle'>

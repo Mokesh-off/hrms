@@ -1,9 +1,10 @@
 #header{
-	background: rgb(21, 53, 104);
+	background: #F8F8F8;
+    border: 1px solid #e7e7e7;
 	position: fixed;
 	width: 100%;
 	top: 0;
-	height: 8vh;
+	height: 8%;
 	display: flex;
 	justify-content: space-between;
 }
@@ -62,5 +63,5 @@ img{
 }
 .profile-name{
   padding: 18px;
-  color: #f9f9f9;
+  color: #337ab7;
 }
