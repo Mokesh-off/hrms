@@ -84,9 +84,9 @@ class LeaveRequest extends React.Component {
     return (true)
   }
 
-  // closeModal (e) {
-  //   this.setState({ open: false })
-  // }
+  closeModal (e) {
+    this.setState({ open: false })
+  }
 
   handleChange (e) { // To set the values to the state
     this.setState({ [e.target.name]: e.target.value })
@@ -199,101 +199,103 @@ class LeaveRequest extends React.Component {
     holidayList = holidayList.holidays
 
     return (
-      <div className='rightContainer' >
-        <div >
-          <h2>Leave Request</h2>
-          <form >
-            <div >
-              <div >
-                <label htmlFor='drop'>Type</label>
+      <div className='rightContent'>
+        <div className='leaveRequestMain'>
+          <div className='container'>
+            <h2>Leave Request</h2>
+            <form >
+              <div className='row'>
+                <div className='row-1'>
+                  <label htmlFor='drop'>Type</label>
+                </div>
+                <div className='row-2'>
+                  <select name='LeaveType' value={this.state.LeaveType} onChange={this.handleChange}>
+                    <option value='' disabled>select your option</option>
+                    <option value='Casual Leave'>Casual Leave</option>
+                    <option value='Emergency Leave'>Emergency Leave</option>
+                    <option value='Sick leave'>Sick leave</option>
+                    <option value='Earned Leave'>Earned Leave</option>
+                    <option value='LOP'>LOP</option>
+                    {/* <option value='Other Leave'>Other Leave</option> */}
+                  </select>
+                </div>
               </div>
-              <div>
-                <select name='LeaveType' value={this.state.LeaveType} onChange={this.handleChange}>
-                  <option value='' disabled>select your option</option>
-                  <option value='Casual Leave'>Casual Leave</option>
-                  <option value='Emergency Leave'>Emergency Leave</option>
-                  <option value='Sick leave'>Sick leave</option>
-                  <option value='Earned Leave'>Earned Leave</option>
-                  <option value='LOP'>LOP</option>
-                  {/* <option value='Other Leave'>Other Leave</option> */}
-                </select>
+              <div className='row'>
+                <div className='row-1'>
+                  <label htmlFor='drop'>From</label>
+                </div>
+                <div className='row-2' value={this.state.FromDate} name='From' >
+                  <DatePicker className='Dp'
+                    selected={this.state.FromDate}
+                    filterDate={this.isWeekday}
+                    showYearDropdown
+                    scrollableYearDropdown
+                    dateFormat='DD/MM/YYYY'
+                    minDate={moment()}
+                    maxDate={moment().add(24, 'months')}
+                    showDisabledMonthNavigation
+                    onChange={e => this.DateFromChange(e)}
+                    yearDropdownItemNumber={2}
+                    excludeDates={holidayList}
+                    isClearable
+                    placeholderText='Select a weekday'
+                    name='From' />
+                </div>
               </div>
-            </div>
-            <div >
-              <div >
-                <label htmlFor='drop'>From</label>
+              <div className='row'>
+                <div className='row-1'>
+                  <label htmlFor='drop'>To</label>
+                </div>
+                <div className='row-2' name='To' value={this.state.ToDate} >
+                  <DatePicker className='Dp'
+                    selected={this.state.ToDate}
+                    filterDate={this.isWeekday}
+                    showYearDropdown
+                    dateFormat='DD/MM/YYYY'
+                    onChange={e => this.DateToChange(e)}
+                    scrollableYearDropdown
+                    minDate={this.state.FromDate}
+                    maxDate={moment(this.state.FromDate).add(24, 'months')}
+                    showDisabledMonthNavigation
+                    yearDropdownItemNumber={2}
+                    excludeDates={holidayList}
+                    isClearable
+                    placeholderText='Select a weekday'
+                    name='To' />
+                </div>
               </div>
-              <div value={this.state.FromDate} name='From' >
-                <DatePicker className='Dp'
-                  selected={this.state.FromDate}
-                  filterDate={this.isWeekday}
-                  showYearDropdown
-                  scrollableYearDropdown
-                  dateFormat='DD/MM/YYYY'
-                  minDate={moment()}
-                  maxDate={moment().add(24, 'months')}
-                  showDisabledMonthNavigation
-                  onChange={e => this.DateFromChange(e)}
-                  yearDropdownItemNumber={2}
-                  excludeDates={holidayList}
-                  isClearable
-                  placeholderText='Select a weekday'
-                  name='From' />
+              <div className='row'>
+                <div className='row-1'>
+                  <label htmlFor='Number_of_Days'>Number_of_Days</label>
+                </div>
+                <div className='row-2' >
+                  <input type='text' value={this.state.TotalDays} disabled id='TotalDays' size='40' name='TotalDays' />
+                </div>
               </div>
-            </div>
-            <div >
-              <div >
-                <label htmlFor='drop'>To</label>
+              <div className='row'>
+                <div className='row-1'>
+                  <label htmlFor='drop'>Reason</label>
+                </div>
+                <div className='row-3' name='LeaveReason' value={this.state.LeaveReason} onChange={e => this.handleChange(e)}>
+                  <textarea placeholder='Reason' name='LeaveReason' />
+                </div>
               </div>
-              <div name='To' value={this.state.ToDate} >
-                <DatePicker className='Dp'
-                  selected={this.state.ToDate}
-                  filterDate={this.isWeekday}
-                  showYearDropdown
-                  dateFormat='DD/MM/YYYY'
-                  onChange={e => this.DateToChange(e)}
-                  scrollableYearDropdown
-                  minDate={this.state.FromDate}
-                  maxDate={moment(this.state.FromDate).add(24, 'months')}
-                  showDisabledMonthNavigation
-                  yearDropdownItemNumber={2}
-                  excludeDates={holidayList}
-                  isClearable
-                  placeholderText='Select a weekday'
-                  name='To' />
+              <div className='row' >
+                <button
+                  className='Button' onClick={this.handleSubmit}>Submit
+                </button>
               </div>
-            </div>
-            <div >
-              <div >
-                <label htmlFor='Number_of_Days'>Number_of_Days</label>
-              </div>
-              <div >
-                <input type='text' value={this.state.TotalDays} disabled id='TotalDays' size='40' name='TotalDays' />
-              </div>
-            </div>
-            <div >
-              <div >
-                <label htmlFor='drop'>Reason</label>
-              </div>
-              <div name='LeaveReason' value={this.state.LeaveReason} onChange={e => this.handleChange(e)}>
-                <textarea placeholder='Reason' name='LeaveReason' />
-              </div>
-            </div>
-            <div >
-              <button
-                onClick={this.handleSubmit}>Submit
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-        {/* <Popup open={this.state.open}>
+        <Popup open={this.state.open}>
           <div className='modal'>
             <a className='close' onClick={e => this.closeModal(e)}>
                       &times;
             </a>
             {this.state.errText}
           </div>
-        </Popup> */}
+        </Popup>
       </div>// rightContainer done
     )
   }

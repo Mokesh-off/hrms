@@ -1,15 +1,4 @@
-.rightContainer {
-  margin-left: 11%;
-  padding: 5%;
-}
-
-
-
-
-
-
-
-/* .leaveRequestMain{
+.leaveRequestMain{
   display: flex;
   justify-content: center;
   padding-top: 6%;
@@ -140,4 +129,4 @@ input[type=submit]:hover {
   width: 16px;
   top: 28%;
   right: -12px;
-} */
+}
