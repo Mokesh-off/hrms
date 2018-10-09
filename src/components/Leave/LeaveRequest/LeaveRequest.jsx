@@ -33,19 +33,49 @@ class LeaveRequest extends React.Component {
     if (this.state.TotalDays === '' || this.state.FromDate === '' ||
       this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
       this.setState({ open: true, errText: 'Fields can not be empty ' })
-       // alert("Fields can't be empty ")
+      // alert("Fields can't be empty ")
       return (false)
     }
-
     if (this.state.FromDate._d >= this.state.ToDate._d) {
-     this.setState({ open: true, errText: 'From date need to be proper ' })
+      this.setState({ open: true, errText: 'From date need to be proper ' })
       // alert('From date need to be proper')
       return (false)
     }
     if (this.state.TotalDays === '^[0-9]*$') {
       this.setState({ open: true, errText: 'Only numbers in this field' })
-      //alert('Only numbers in this field')
+      // alert('Only numbers in this field')
       return (false)
+    }
+    var data = JSON.parse(window.localStorage.getItem('Data'))
+    var currentUserId = window.localStorage.getItem('currentUserId')
+    this.setState({ EmpId: currentUserId })
+    data = data.Employee
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].EmpId === parseInt(currentUserId)) {
+        if (this.state.LeaveType === 'Casual Leave') {
+          // const numOfDays = this.state.TotalDays
+          if (data[i].PendingLeaves.Planned < this.state.TotalDays) {
+            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.Planned + ' number days' })
+            return false
+          }
+        } else if (this.state.LeaveType === 'Emergency Leave') {
+          if (this.state.TotalDays > data[i].PendingLeaves.EmergencyLeave) {
+            console.log(data[i].PendingLeaves.EmergencyLeave + '-----------' + this.state.TotalDays)
+            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.EmergencyLeave + ' number days' })
+            return (false)
+          }
+        } else if (this.state.LeaveType === 'Sick leave') {
+          if (this.state.TotalDays > data[i].PendingLeaves.Sick) {
+            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.Sick + ' number days' })
+            return (false)
+          }
+        } else if (this.state.LeaveType === 'Earned Leave') {
+          if (this.state.TotalDays > data[i].PendingLeaves.Privilage) {
+            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.Privilage + ' number days' })
+            return (false)
+          }
+        }
+      }
     }
     // if (!this.state.FromDate._d.match(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i)) {
     //   alert('date need to be in the formet of (yyyy-mm-dd)')
@@ -62,12 +92,14 @@ class LeaveRequest extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
   DateFromChange (date) { // Update the From date from user input
-    this.setState({ FromDate: date })
-    this.numOfDays()
+    this.setState({ FromDate: date }, () => {
+      this.numOfDays()
+    })
   }
   DateToChange (date) { // Update the To date from the User input
-    this.setState({ ToDate: this.state.ToDate = date })
-    this.numOfDays()
+    this.setState({ ToDate: this.state.ToDate = date }, () => {
+      this.numOfDays()
+    })
   }
   handleSubmit (event) {
     // Calling the validation function and
@@ -81,8 +113,8 @@ class LeaveRequest extends React.Component {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
-          
-          localStorage.setItem('Data', JSON.stringify(data))
+          window.localStorage.setItem('Data', JSON.stringify(data))
+          this.calldispatch()
           this.setState({ open: true, errText: 'Submmited successfully' })
         })
       } else {
@@ -90,22 +122,20 @@ class LeaveRequest extends React.Component {
         data['leaveRequest'] = []
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
-          localStorage.setItem('Data', JSON.stringify(data))
+          window.localStorage.setItem('Data', JSON.stringify(data))
+          this.calldispatch()
           this.setState({ open: true, errText: 'Submmited successfully' })
         })
-      
       }
-
     }
   }
   calldispatch () {
     // set the functions to its initial state
     this.setState({
-      EmpId: '',
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
-      LeaveReason: '',
+      LeaveReason: null,
       TotalDays: ''
     })
   }
@@ -116,7 +146,7 @@ class LeaveRequest extends React.Component {
   }
   numOfDays () {
     // To generate number of holiday days
-    if (this.state.FromDate === null || this.state.ToDate === null){
+    if (this.state.FromDate === null || this.state.ToDate === null) {
       return this.setState({ TotalDays: 0 })
     }
     var start = this.state.FromDate._d
@@ -129,19 +159,40 @@ class LeaveRequest extends React.Component {
     var flag = false
     var holiday = JSON.parse(window.localStorage.getItem('Data'))
     holiday = holiday.holidays
-    while (loop <= end) {
-      var yyyy = loop.getFullYear()
-      var mm = loop.getDay()
-      var d = loop.getDate()
-      var date = yyyy + '-' + mm + '-' + d
-      flag = holiday.map((ho) => // To check it's holiday
-        (ho === date)
-      );
-      (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
-      var newDate = loop.setDate(loop.getDate() + 1)
-      loop = new Date(newDate)
+    if (loop <= end) {
+      while (loop <= end) {
+        var yyyy = loop.getFullYear()
+        var mm = loop.getDay()
+        var d = loop.getDate()
+        var date = yyyy + '-' + mm + '-' + d
+        flag = holiday.map((ho) => // To check it's holiday
+          (ho === date)
+        );
+        (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
+        var newDate = loop.setDate(loop.getDate() + 1)
+        loop = new Date(newDate)
+      }
+      this.setState({ TotalDays: count })
+      return count
     }
-    this.setState({ TotalDays: count })
+    if (loop >= end) {
+      count = 0
+      while (loop >= end) {
+        var year = loop.getFullYear()
+        var mon = loop.getDay()
+        var da = loop.getDate()
+        var dat = year + '-' + mon + '-' + da
+        flag = holiday.map((ho) => // To check it's holiday
+          (ho === dat)
+        );
+        (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
+        var newDat = loop.setDate(loop.getDate() - 1)
+        loop = new Date(newDat)
+      }
+      this.setState({ TotalDays: count })
+      return count
+    }
+    // this.setState({ TotalDays: count })
   }
   render () {
     var holidayList = JSON.parse(window.localStorage.getItem('Data'))
@@ -151,6 +202,7 @@ class LeaveRequest extends React.Component {
       <div className='rightContent'>
         <div className='leaveRequestMain'>
           <div className='container'>
+            <h2>Leave Request</h2>
             <form >
               <div className='row'>
                 <div className='row-1'>
@@ -160,11 +212,11 @@ class LeaveRequest extends React.Component {
                   <select name='LeaveType' value={this.state.LeaveType} onChange={this.handleChange}>
                     <option value='' disabled>select your option</option>
                     <option value='Casual Leave'>Casual Leave</option>
-                    <option value='Emergency leave'>Emergency Leave</option>
+                    <option value='Emergency Leave'>Emergency Leave</option>
                     <option value='Sick leave'>Sick leave</option>
                     <option value='Earned Leave'>Earned Leave</option>
-                    <option value='maternity Leave'>maternity Leave</option>
-                    <option value='Other Leave'>Other Leave</option>
+                    <option value='LOP'>LOP</option>
+                    {/* <option value='Other Leave'>Other Leave</option> */}
                   </select>
                 </div>
               </div>
@@ -244,7 +296,6 @@ class LeaveRequest extends React.Component {
             {this.state.errText}
           </div>
         </Popup>
-
       </div>// rightContainer done
     )
   }
