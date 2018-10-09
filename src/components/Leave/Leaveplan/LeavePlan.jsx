@@ -18,11 +18,12 @@ class LeavePlan extends Component {
         console.log(j)
         console.log(i + '---------------------')
         console.log(JSON.stringify(this.state.Holiday.holidayList[i]))
-        this.state.Holiday.holidayList.splice(i, i)
+        this.state.Holiday.holidayList.splice(i, 1)
+        window.location.reload('/leaveplan')
       }
       // console.log(JSON.stringify(this.state.Holiday.holidayList) + '--------- afr if')
     }
-    console.log(JSON.stringify(this.state.Holiday) + '--------- afr for')
+    console.log(JSON.stringify(this.state.Holiday.holidayList) + '--------- afr for')
     window.localStorage.setItem('Data', JSON.stringify(this.state.Holiday))
     this.setState({ flag: true })
   }
@@ -91,22 +92,19 @@ class LeavePlan extends Component {
                 this.state.Holiday.holidayList.map((holiday, i) =>
                   <tr key={holiday[i]} className='tr'>
                     <td className='tr' >
-                      <textarea name='date' className='textarea'
-                        onChange={e => this.change(e, i)}>
-                        {holiday.date}
-                      </textarea>
+                      <input type='text' name='date' className='textarea'
+                        onChange={e => this.change(e, i)}
+                        value={holiday.date} />
                     </td>
                     <td className='tr' >
-                      <textarea name='day' className='textarea'
-                        onChange={e => this.change(e, i)}>
-                        {holiday.day}
-                      </textarea>
+                      <input type='text' name='day' className='textarea'
+                        onChange={e => this.change(e, i)}
+                        value={holiday.day} />
                     </td>
                     <td className='tr' >
-                      <textarea name='occasion' className='textarea'
-                        onChange={e => this.change(e, i)}>
-                        {holiday.occasion}
-                      </textarea>
+                      <input type='text' name='occasion' className='textarea'
+                        onChange={e => this.change(e, i)}
+                        value={holiday.occasion} />
                     </td>
                     <td className='tr'>
                       <input type='button' onClick={e => this.delete(e, i)} className='popUpButton' value='Delete' />
