@@ -14,13 +14,13 @@
 }
 
 
-input[type=text], textarea {
+/* input[type=text], textarea {
   width: 92%;
   padding: 12px;
   border-radius: 4px;
   resize: vertical;
   border: 1px solid whitesmoke;
-}
+} */
 input[type=date]{
   width: 97%;
   font-size: 15px;

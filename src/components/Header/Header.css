@@ -56,12 +56,16 @@ img{
 .profile-outer{
 	display: flex;
 	text-decoration: none;
-	color: black;
 }
+
 .profile-img{
   padding: 10px;
 }
 .profile-name{
   padding: 18px;
   color: #337ab7;
+}
+
+.profile-name:hover{
+  color: #23527c;
 }
