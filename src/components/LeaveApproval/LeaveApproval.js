@@ -16,6 +16,11 @@ class LeaveApproval extends Component {
   closePopup (e) {
     this.setState({ open: false })
   }
+  // componentDidMount () {
+  //   let data = JSON.parse(localStorage.getItem('Data'))
+  //   this.setState({ LeaveRecord: data.leaveRequest })
+  //   alert(this.state.LeaveRecord)
+  // }
 
   // Reject leave request
   changeToReject (e) {
@@ -38,6 +43,7 @@ class LeaveApproval extends Component {
     let leave2 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.Sick
     let leave3 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.PriL
     let newState = Object.assign({}, this.state)
+    // alert(emp + "" + type)
     const newObject = this.state.LeaveRecord.Employee.map((data, i) => {
       // Compare employee ID and change the respective pending leaves
       if (data.EmpId === emp) {
@@ -46,7 +52,7 @@ class LeaveApproval extends Component {
           leave > 0 ? leave = leave : leave = 0
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Planed = leave
         }
-        if (type === 'Emergency Leave') {
+        if (type === 'Emergency leave') {
           leave1 = leave1 - days
           leave1 > 0 ? leave1 = leave1 : leave1 = 0
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.LOP = leave1
@@ -106,24 +112,20 @@ class LeaveApproval extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className='tdStyle'>{this.state.LeaveRecord.leaveRequest[index].EmpId}</td>
-              <td className='tdStyle'>{this.state.LeaveRecord.leaveRequest[index].LeaveType}</td>
-              <td className='tdStyle'>{this.state.LeaveRecord.leaveRequest[index].FromDate.substr(0, 10)}</td>
-              <td className='tdStyle'>{this.state.LeaveRecord.leaveRequest[index].ToDate.substr(0, 10)}</td>
-              <td className='tdStyle'>{this.state.LeaveRecord.leaveRequest[index].TotalDays}</td>
-              <td className='tdStyle'>{this.state.LeaveRecord.leaveRequest[index].LeaveReason}</td>
-              <td className='tdStyle'>
-
-                <button className='RejectButton' onClick={e => this.changeToReject(e)}>Reject</button><span>&nbsp;</span>
-                <button className='ApproveButton' onClick={e => this.changeToApprove(e)}>Approve</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Comment</td>
-              <td><input type='text' onChange={e => this.changeComment(e)}
-                value={this.state.LeaveRecord.leaveRequest[index].comment} size='30' /></td>
-            </tr>
+            {this.state.LeaveRecord.leaveRequest.map((record, i) => {
+              <tr key={i} className='tdStyle'>
+                <td className='tdStyle'>{record.EmpId}</td>
+                <td className='tdStyle'>{record.LeaveType}</td>
+                <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
+                <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
+                <td className='tdStyle'>{record.TotalDays}</td>
+                <td className='tdStyle'>{record.LeaveReason}</td>
+                <td className='tdStyle'>
+                  <button className='RejectButton' onClick={e => this.changeToReject(e)}>Reject</button><span>&nbsp;</span>
+                  <button className='ApproveButton' onClick={e => this.changeToApprove(e)}>Approve</button>
+                </td>
+              </tr>
+            })}
           </tbody>
         </table><br />
         <div className='backButton'>

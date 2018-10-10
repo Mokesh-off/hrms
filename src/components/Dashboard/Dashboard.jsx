@@ -21,7 +21,7 @@ class Dashboard extends Component {
     if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
       return (
         <div>
-          <LeaveRequests />
+          <LeaveRequests/>
         </div>
       )
     } else {

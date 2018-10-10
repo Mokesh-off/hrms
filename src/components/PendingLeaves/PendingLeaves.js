@@ -11,11 +11,18 @@ class PendingLeaves extends Component {
 
   render () {
     let id = JSON.parse(localStorage.getItem('currentUserId'))
-    let emp = this.state.LeavePolicy.Employee[id - 1]
+    let emp
+    this.state.LeavePolicy.Employee.map((record, i) => {
+      if (id === record.EmpId) {
+        emp = record
+      }
+    })
+    // let emp = this.state.LeavePolicy.Employee[id - 1]
+    // iterate the loop and match id and EmpId
+    //  List of available leaves for employee
     return (
-      //  List of pending leaves for employee
       <div className='leaveRecord'>
-        <h2>Pending Leaves</h2>
+        <h2>Available Leaves</h2>
         <table>
           <thead className='thead1'>
             <tr className='thead1'>

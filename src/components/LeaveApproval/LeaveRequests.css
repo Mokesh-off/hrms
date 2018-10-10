@@ -38,3 +38,8 @@
    cursor: pointer;
  }
  
+.noRequset{
+  margin-top: 11%;
+  margin-left: 50%;
+  position: fixed;
+}

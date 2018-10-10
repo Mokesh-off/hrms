@@ -33,18 +33,18 @@ class LeaveRequest extends React.Component {
     if (this.state.TotalDays === '' || this.state.FromDate === '' ||
       this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
       this.setState({ open: true, errText: 'Fields can not be empty ' })
-       // alert("Fields can't be empty ")
+      // alert("Fields can't be empty ")
       return (false)
     }
 
     if (this.state.FromDate._d >= this.state.ToDate._d) {
-     this.setState({ open: true, errText: 'From date need to be proper ' })
+      this.setState({ open: true, errText: 'From date need to be proper ' })
       // alert('From date need to be proper')
       return (false)
     }
     if (this.state.TotalDays === '^[0-9]*$') {
       this.setState({ open: true, errText: 'Only numbers in this field' })
-      //alert('Only numbers in this field')
+      // alert('Only numbers in this field')
       return (false)
     }
     // if (!this.state.FromDate._d.match(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i)) {
@@ -76,7 +76,7 @@ class LeaveRequest extends React.Component {
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
       var currentUserId = window.localStorage.getItem('currentUserId')
-      var currentUser = window.localStorage.getItem('currentUser')
+      var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
@@ -92,9 +92,7 @@ class LeaveRequest extends React.Component {
           localStorage.setItem('Data', JSON.stringify(data))
           this.setState({ open: true, errText: 'Submmited successfully' })
         })
-      
       }
-
     }
   }
   calldispatch () {
@@ -113,9 +111,10 @@ class LeaveRequest extends React.Component {
     const day = date._d.getDay()
     return day !== 0 && day !== 6
   }
+
   numOfDays () {
     // To generate number of holiday days
-    if (this.state.FromDate === null || this.state.ToDate === null){
+    if (this.state.FromDate === null || this.state.ToDate === null) {
       return this.setState({ TotalDays: 0 })
     }
     var start = this.state.FromDate._d
