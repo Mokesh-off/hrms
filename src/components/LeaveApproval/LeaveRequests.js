@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import './LeaveRequests.css'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from 'react';
+import './LeaveRequests.css';
+import { NavLink } from 'react-router-dom';
 
 class LeaveRequests extends Component {
   constructor (props) {
@@ -9,7 +9,6 @@ class LeaveRequests extends Component {
       currentRequestID: '',
       LeaveRecord: [],
       deletedRow: []
-
     }
   }
 
@@ -57,18 +56,21 @@ class LeaveRequests extends Component {
           </thead>
           <tbody>
             {this.state.LeaveRecord.map((record, i) => {
-              return this.state.deletedRow.indexOf(record.ReqestId) === -1
-                ? <tr key={i} className='tdStyle'>
+              return this.state.deletedRow.indexOf(record.ReqestId) === -1 ? (
+                <tr key={i} className='tdStyle'>
                   <td className='tdStyle'>{record.EmpName}</td>
                   <td className='tdStyle'>{record.LeaveType}</td>
                   <td className='tdStyle'>
                     <NavLink to='/approvals'>
                       <button onClick={e => this.sendReqId(e, i)}>View</button>
-                    </NavLink><span>&nbsp;</span>
+                    </NavLink>
+                    <span>&nbsp;</span>
                     <button onClick={e => this.delete(e, i)}>Delete</button>
                   </td>
                 </tr>
-                : ''
+              ) : (
+                ''
+              )
             })}
           </tbody>
         </table>

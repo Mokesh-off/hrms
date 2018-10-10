@@ -1,58 +1,58 @@
-.rightComponent{
-    margin-top: 50px;
-    margin-left: 15vw;
-    margin-bottom:40px;
-    position: fixed;
-  }
-
-  input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
-  }
-
-.addUserMainContainer{
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-  }
-  .addUserMainContainer > .form{
-    margin: auto;
-    width: 45vw;
-    border: 1px solid;
-    border-radius: 5px;
-  }
-  .form > .row{
-    display: flex;
-    margin:10px;
-  }
-  .row > .left{
-    width: 10vw;
-    padding-left: 9vw;
-    margin-top: 8px;
-  }
-  .right > .box{
-    padding: 5px;
-    margin: 2px;
-    outline: none;
-    border: 1px solid;
-    border-radius: 0;
-  }
-  .rowSeven{
-    padding-left: 10vw;
-    padding-top: 2vw;
-  }
-  .rowSevenButton{
-    padding: 10px;
-    outline: none;
-    border: 1px solid;
-    cursor: pointer;
-  }
-
-input{
-  padding: 30px;
+.rightComponent {
+  margin-top: 50px;
+  margin-left: 15vw;
+  margin-bottom: 40px;
+  position: fixed;
 }
 
-.dobPadding{
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.addUserMainContainer {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+.addUserMainContainer > .form {
+  margin: auto;
+  width: 45vw;
+  border: 1px solid;
+  border-radius: 5px;
+}
+.form > .row {
+  display: flex;
+  margin: 10px;
+}
+.row > .left {
+  width: 10vw;
+  padding-left: 9vw;
+  margin-top: 8px;
+}
+.right > .box {
+  padding: 5px;
+  margin: 2px;
+  outline: none;
+  border: 1px solid;
+  border-radius: 0;
+}
+.rowSeven {
+  padding-left: 10vw;
+  padding-top: 2vw;
+}
+.rowSevenButton {
+  padding: 10px;
+  outline: none;
+  border: 1px solid;
+  cursor: pointer;
+}
+/* 
+input{
+  padding: 30px;
+} */
+
+.dobPadding {
   padding: 0 3.5px !important;
 }

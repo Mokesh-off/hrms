@@ -5,11 +5,6 @@
   padding-bottom: 3%;
 }
 
-/* .profile label {
-  width: 30%;
-  margin-left: 320px;
-} */
-
 .profile h1 {
   text-align: center;
 }
@@ -25,19 +20,17 @@
 .profileImage {
   height: 150px;
   width: 150px;
+  margin-left: 100px;
 }
 .input {
   margin-left: 100px;
   width: 50%;
-  /* /* width: 60%; */
-  /* padding-right: 215px; */
+  height: 50px;
 }
 
 .inputLabel {
   margin-left: 100px;
   width: 218px;
-  /* width: 30%; */
-  /* margin-left: 217px; */
 }
 
 hr {

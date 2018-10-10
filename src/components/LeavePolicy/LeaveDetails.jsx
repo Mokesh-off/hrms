@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./LeaveDetails.css";
+import React, { Component } from 'react';
+import './LeaveDetails.css';
 class LeaveDetails extends Component {
-  render() {
+  render () {
     return (
-      <div id="leaveList">
+      <div id='leaveList'>
         <p>
           <h1>Casual Leave</h1>
 
@@ -34,7 +34,6 @@ class LeaveDetails extends Component {
             employment through December 31 of that calendar year.
           </li>
         </p>
-
         <h1>Sick Leave</h1>
         <p>
           <li>
@@ -55,7 +54,6 @@ class LeaveDetails extends Component {
             appended with Loss of Pay.
           </li>
         </p>
-
         <p>
           <h1>Maternity Leave</h1>
           <li>
@@ -85,11 +83,13 @@ class LeaveDetails extends Component {
         </p>
         <p>
           <h1>Vacation Leave/Medical Leave</h1>
-          <li>An eligible employee may earn up to 9days each calendar year.</li>
+          <li>
+            An eligible employee may earn up to 9 days in each calendar year.
+          </li>
         </p>
       </div>
-    );
+    )
   }
 }
 
-export default LeaveDetails;
+export default LeaveDetails
