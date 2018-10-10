@@ -62,4 +62,5 @@ table{
     top: 0;
     float: right;
     font-size: 200%;
+    cursor: pointer;
 }
