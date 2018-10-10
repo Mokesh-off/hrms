@@ -1,11 +1,12 @@
 .sidenav {
   width: 15vw;
   position: fixed;
-  background: rgb(21, 53, 104);
+  background: #F8F8F8;
+  border: 1px solid #e7e7e7;
   overflow-x: hidden;
   padding: 0;
-  height: 87vh;
-  margin-top: 50px;
+  height: 86%;
+  margin-top: 4%;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
   
@@ -18,13 +19,13 @@
   cursor: pointer;
   transition: all 1s ;
   text-align: unset;
-  background-color:  rgb(63, 115, 198);
   outline: none;
+  color:#337ab7;
 }
 
 .sidenav button:hover{
-  background: rgb(21, 53, 104);
-  color: white
+  background:#EDEDED; 
+  color: #23527c;
 }
 
 .link{
@@ -46,8 +47,6 @@
   height: 0;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
-  background-color:  rgb(63, 115, 198);
-  /*display: none;*/
 }
 .sidenavDisplay{
   overflow: hidden;
@@ -55,14 +54,13 @@
   margin-top: 0px !important;
   -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
   transition: height 2s;
- background-color:  rgb(63, 115, 198);
 }
 .triangle-right {
 	width: 0;
   height: 0;
   display: inline-block;
 	border-top: 5px solid transparent;
-	border-left: 5px solid #555;
+	border-left: 5px solid #337ab7;
 	border-bottom: 5px solid transparent;
 }
 .triangle-down {
@@ -71,5 +69,8 @@
   display: inline-block;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-top: 5px solid #555;
+	border-top: 5px solid  #337ab7;
+}
+#divider{
+  border-bottom: 1px solid #337ab7;
 }

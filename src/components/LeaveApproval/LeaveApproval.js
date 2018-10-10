@@ -102,7 +102,7 @@ class LeaveApproval extends Component {
         <table>
           <thead className='thead1'>
             <tr className='thead1'>
-              <td className='tdStyle'>EmpId</td>
+              <td className='tdStyle'>Name</td>
               <td className='tdStyle'>LeaveType</td>
               <td className='tdStyle'>FromDate</td>
               <td className='tdStyle'>ToDate</td>
@@ -112,20 +112,21 @@ class LeaveApproval extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.LeaveRecord.leaveRequest.map((record, i) => {
-              <tr key={i} className='tdStyle'>
-                <td className='tdStyle'>{record.EmpId}</td>
-                <td className='tdStyle'>{record.LeaveType}</td>
-                <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
-                <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
-                <td className='tdStyle'>{record.TotalDays}</td>
-                <td className='tdStyle'>{record.LeaveReason}</td>
-                <td className='tdStyle'>
-                  <button className='RejectButton' onClick={e => this.changeToReject(e)}>Reject</button><span>&nbsp;</span>
-                  <button className='ApproveButton' onClick={e => this.changeToApprove(e)}>Approve</button>
-                </td>
-              </tr>
-            })}
+            {
+              this.state.LeaveRecord.leaveRequest.map((record, i) => {
+                <tr key={i} className='tdStyle'>
+                  <td className='tdStyle'>{record.EmpId}</td>
+                  <td className='tdStyle'>{record.LeaveType}</td>
+                  <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
+                  <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
+                  <td className='tdStyle'>{record.TotalDays}</td>
+                  <td className='tdStyle'>{record.LeaveReason}</td>
+                  <td className='tdStyle'>
+                    <button className='RejectButton' onClick={e => this.changeToReject(e)}>Reject</button><span>&nbsp;</span>
+                    <button className='ApproveButton' onClick={e => this.changeToApprove(e)}>Approve</button>
+                  </td>
+                </tr>
+              })}
           </tbody>
         </table><br />
         <div className='backButton'>

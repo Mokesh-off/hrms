@@ -34,7 +34,7 @@ class PendingLeaves extends Component {
 
             <tr className='tdStyle' >
               <td className='tdStyle'>Planed Leaves</td>
-              <td className='tdStyle'>{emp.PendingLeaves.Planed}</td>
+              <td className='tdStyle'>{emp.PendingLeaves.Planned}</td>
             </tr>
 
             <tr className='tdStyle'>
