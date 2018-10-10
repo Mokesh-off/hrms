@@ -15,15 +15,22 @@ class LeavePlan extends Component {
   delete (e, i) {
     for (var j = 0; j <= this.state.Holiday.holidayList.length; j++) {
       if (j === i) {
-        console.log(j)
-        console.log(i + '---------------------')
-        console.log(JSON.stringify(this.state.Holiday.holidayList[i]))
+        // console.log(j)
+        // console.log(i + '---------------------')
+        var date = this.state.Holiday.holidayList[i].date
+        console.log(date + '......................')
+        for (var k = 0; k <= this.state.Holiday.holidays.length; k++) {
+          if (this.state.Holiday.holidays[k] === date) {
+            console.log(this.state.Holiday.holidays[k], date)
+            this.state.Holiday.holidays.splice(k, 1)
+          }
+        }
         this.state.Holiday.holidayList.splice(i, 1)
-        window.location.reload('/leaveplan')
+        // window.location.reload('/leaveplan')
       }
       // console.log(JSON.stringify(this.state.Holiday.holidayList) + '--------- afr if')
     }
-    console.log(JSON.stringify(this.state.Holiday.holidayList) + '--------- afr for')
+    // console.log(JSON.stringify(this.state.Holiday.holidayList) + '--------- afr for')
     window.localStorage.setItem('Data', JSON.stringify(this.state.Holiday))
     this.setState({ flag: true })
   }
@@ -81,40 +88,40 @@ class LeavePlan extends Component {
             <caption className='captions'>Holiday List</caption>
             <thead className='thead1'>
               <tr className='thead1'>
-                <td className='tr'>Dates</td>
-                <td className='tr'>days</td>
-                <td className='tr'>Occasion</td>
-                <td className='tr'>Action</td>
+                <td className='trE'>Dates</td>
+                <td className='trE'>days</td>
+                <td className='trE'>Occasion</td>
+                <td className='trE'>Action</td>
               </tr>
             </thead>
             <tbody>
               {
                 this.state.Holiday.holidayList.map((holiday, i) =>
-                  <tr key={holiday[i]} className='tr'>
-                    <td className='tr' >
-                      <input type='text' name='date' className='textarea'
+                  <tr key={holiday[i]} className='trE'>
+                    <td className='trE' >
+                      <input type='text' name='date' className='levtextarea'
                         onChange={e => this.change(e, i)}
                         value={holiday.date} />
                     </td>
-                    <td className='tr' >
-                      <input type='text' name='day' className='textarea'
+                    <td className='trE' >
+                      <input type='text' name='day' className='levtextarea'
                         onChange={e => this.change(e, i)}
                         value={holiday.day} />
                     </td>
-                    <td className='tr' >
-                      <input type='text' name='occasion' className='textarea'
+                    <td className='trE' >
+                      <input type='text' name='occasion' className='levtextarea'
                         onChange={e => this.change(e, i)}
                         value={holiday.occasion} />
                     </td>
-                    <td className='tr'>
-                      <input type='button' onClick={e => this.delete(e, i)} className='popUpButton' value='Delete' />
+                    <td className='trE'>
+                      <input type='button' onClick={e => this.delete(e, i)} className='levbutton' value='Delete' />
                     </td>
                   </tr>
                 )
               }
             </tbody>
           </table>
-          <Popup trigger={<button className='popUpButton' >Add</button>} modal>
+          <Popup trigger={<button className='levAddbutton' >Add</button>} modal>
             {
               close => (
                 <div id='sec'>

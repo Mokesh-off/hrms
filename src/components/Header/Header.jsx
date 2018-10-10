@@ -35,8 +35,10 @@ class Header extends Component {
             </div>
           </Link>
           <div className='dropdown-content'>
-            <span onClick={this.logOutFunction}>Logout</span>
-            <Link to='/changepassword'> Change Password</Link>
+            <div>
+              <Link to='/changepassword' className='changePass'> Change Password</Link>
+            </div>
+            <input type='button' className='logoutbutton' onClick={this.logOutFunction} value='Logout' />
           </div>
         </div>
       </div>
