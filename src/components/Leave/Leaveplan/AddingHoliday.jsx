@@ -83,7 +83,7 @@ class AddingHoliday extends Component {
     var holidayList = JSON.parse(window.localStorage.getItem('Data'))
     holidayList = holidayList.holidays
     return (
-      <div>
+      <div className='adding'>
         <div className='calendar'>
           <DatePicker className='Dp'
             selected={this.state.date}
@@ -102,8 +102,12 @@ class AddingHoliday extends Component {
             name='date' />
         </div>
         <div>
-          <label htmlFor='Occasion'>Occasion : </label>
-          <input type='text' name='occasion' onChange={this.change} />
+          <div>
+            <label htmlFor='Occasion'>Occasion : </label>
+          </div>
+          <div>
+            <textarea type='text' name='occasion' onChange={this.change} className='addText' />
+          </div>
         </div>
         <input type='button' value='submit' className='popUpButton' onClick={this.submit.bind(this)} />
 

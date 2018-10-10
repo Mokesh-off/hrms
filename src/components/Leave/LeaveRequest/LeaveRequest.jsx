@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 import './LeaveRequest.css'
-import Popup from 'reactjs-popup'
 
 class LeaveRequest extends React.Component {
   constructor (props) {
@@ -19,8 +18,11 @@ class LeaveRequest extends React.Component {
       ReqestId: moment(),
       status: '',
       comment: '',
-      open: '',
-      errText: ''
+      errdate: '',
+      dateErr: '',
+      erroption: '',
+      opText: '',
+      Err: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -32,18 +34,11 @@ class LeaveRequest extends React.Component {
   validation () { //  validating the input values
     if (this.state.TotalDays === '' || this.state.FromDate === '' ||
       this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
-      this.setState({ open: true, errText: 'Fields can not be empty ' })
-      // alert("Fields can't be empty ")
+      this.setState({ Err: 'Fields can not be empty ' })
       return (false)
     }
-    if (this.state.FromDate._d >= this.state.ToDate._d) {
-      this.setState({ open: true, errText: 'From date need to be proper ' })
-      // alert('From date need to be proper')
-      return (false)
-    }
-    if (this.state.TotalDays === '^[0-9]*$') {
-      this.setState({ open: true, errText: 'Only numbers in this field' })
-      // alert('Only numbers in this field')
+    if (this.state.FromDate._d > this.state.ToDate._d) {
+      this.setState({ errdate: '1px solid red', dateErr: 'From date need to be proper' })
       return (false)
     }
     var data = JSON.parse(window.localStorage.getItem('Data'))
@@ -53,41 +48,30 @@ class LeaveRequest extends React.Component {
     for (var i = 0; i < data.length; i++) {
       if (data[i].EmpId === parseInt(currentUserId)) {
         if (this.state.LeaveType === 'Casual Leave') {
-          // const numOfDays = this.state.TotalDays
           if (data[i].PendingLeaves.Planned < this.state.TotalDays) {
-            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.Planned + ' number days' })
+            this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Planned + ' days', erroption: '1px solid red' })
             return false
           }
         } else if (this.state.LeaveType === 'Emergency Leave') {
           if (this.state.TotalDays > data[i].PendingLeaves.EmergencyLeave) {
-            console.log(data[i].PendingLeaves.EmergencyLeave + '-----------' + this.state.TotalDays)
-            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.EmergencyLeave + ' number days' })
+            this.setState({ opText: 'You have only ' + data[i].PendingLeaves.EmergencyLeave + ' days', erroption: '1px solid red' })
             return (false)
           }
         } else if (this.state.LeaveType === 'Sick leave') {
           if (this.state.TotalDays > data[i].PendingLeaves.Sick) {
-            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.Sick + ' number days' })
+            this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Sick + ' days', erroption: '1px solid red' })
             return (false)
           }
         } else if (this.state.LeaveType === 'Earned Leave') {
           if (this.state.TotalDays > data[i].PendingLeaves.Privilage) {
-            this.setState({ open: true, errText: 'You have only ' + data[i].PendingLeaves.Privilage + ' number days' })
+            this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Privilage + ' days', erroption: '1px solid red' })
             return (false)
           }
         }
       }
     }
-    // if (!this.state.FromDate._d.match(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i)) {
-    //   alert('date need to be in the formet of (yyyy-mm-dd)')
-    //   return (false)
-    // }
     return (true)
   }
-
-  closeModal (e) {
-    this.setState({ open: false })
-  }
-
   handleChange (e) { // To set the values to the state
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -115,7 +99,6 @@ class LeaveRequest extends React.Component {
           data.leaveRequest[data.leaveRequest.length] = this.state
           window.localStorage.setItem('Data', JSON.stringify(data))
           this.calldispatch()
-          this.setState({ open: true, errText: 'Submmited successfully' })
         })
       } else {
         // If not then create a key and append the value
@@ -124,13 +107,14 @@ class LeaveRequest extends React.Component {
           data.leaveRequest[data.leaveRequest.length] = this.state
           window.localStorage.setItem('Data', JSON.stringify(data))
           this.calldispatch()
-          this.setState({ open: true, errText: 'Submmited successfully' })
         })
       }
     }
   }
   calldispatch () {
     // set the functions to its initial state
+    document.getElementById('success').style.opacity = 1
+    setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 3000)
     this.setState({
       FromDate: moment(),
       ToDate: moment(),
@@ -199,103 +183,103 @@ class LeaveRequest extends React.Component {
     holidayList = holidayList.holidays
 
     return (
-      <div className='rightContent'>
-        <div className='leaveRequestMain'>
-          <div className='container'>
-            <h2>Leave Request</h2>
-            <form >
-              <div className='row'>
-                <div className='row-1'>
-                  <label htmlFor='drop'>Type</label>
-                </div>
-                <div className='row-2'>
-                  <select name='LeaveType' value={this.state.LeaveType} onChange={this.handleChange}>
-                    <option value='' disabled>select your option</option>
-                    <option value='Casual Leave'>Casual Leave</option>
-                    <option value='Emergency Leave'>Emergency Leave</option>
-                    <option value='Sick leave'>Sick leave</option>
-                    <option value='Earned Leave'>Earned Leave</option>
-                    <option value='LOP'>LOP</option>
-                    {/* <option value='Other Leave'>Other Leave</option> */}
-                  </select>
-                </div>
-              </div>
-              <div className='row'>
-                <div className='row-1'>
-                  <label htmlFor='drop'>From</label>
-                </div>
-                <div className='row-2' value={this.state.FromDate} name='From' >
-                  <DatePicker className='Dp'
-                    selected={this.state.FromDate}
-                    filterDate={this.isWeekday}
-                    showYearDropdown
-                    scrollableYearDropdown
-                    dateFormat='DD/MM/YYYY'
-                    minDate={moment()}
-                    maxDate={moment().add(24, 'months')}
-                    showDisabledMonthNavigation
-                    onChange={e => this.DateFromChange(e)}
-                    yearDropdownItemNumber={2}
-                    excludeDates={holidayList}
-                    isClearable
-                    placeholderText='Select a weekday'
-                    name='From' />
-                </div>
-              </div>
-              <div className='row'>
-                <div className='row-1'>
-                  <label htmlFor='drop'>To</label>
-                </div>
-                <div className='row-2' name='To' value={this.state.ToDate} >
-                  <DatePicker className='Dp'
-                    selected={this.state.ToDate}
-                    filterDate={this.isWeekday}
-                    showYearDropdown
-                    dateFormat='DD/MM/YYYY'
-                    onChange={e => this.DateToChange(e)}
-                    scrollableYearDropdown
-                    minDate={this.state.FromDate}
-                    maxDate={moment(this.state.FromDate).add(24, 'months')}
-                    showDisabledMonthNavigation
-                    yearDropdownItemNumber={2}
-                    excludeDates={holidayList}
-                    isClearable
-                    placeholderText='Select a weekday'
-                    name='To' />
-                </div>
-              </div>
-              <div className='row'>
-                <div className='row-1'>
-                  <label htmlFor='Number_of_Days'>Number_of_Days</label>
-                </div>
-                <div className='row-2' >
-                  <input type='text' value={this.state.TotalDays} disabled id='TotalDays' size='40' name='TotalDays' />
-                </div>
-              </div>
-              <div className='row'>
-                <div className='row-1'>
-                  <label htmlFor='drop'>Reason</label>
-                </div>
-                <div className='row-3' name='LeaveReason' value={this.state.LeaveReason} onChange={e => this.handleChange(e)}>
-                  <textarea placeholder='Reason' name='LeaveReason' />
-                </div>
-              </div>
-              <div className='row' >
-                <button
-                  className='Button' onClick={this.handleSubmit}>Submit
-                </button>
-              </div>
-            </form>
-          </div>
+      <div className='rightContainer'>
+        <div id='success'>
+          <h3 id='changed'>Successfully submitted</h3>
         </div>
-        <Popup open={this.state.open}>
-          <div className='modal'>
-            <a className='close' onClick={e => this.closeModal(e)}>
-                      &times;
-            </a>
-            {this.state.errText}
+        <div>
+          <div className='head'>
+            <h2>Leave Request</h2>
           </div>
-        </Popup>
+          <form className='reqForm'>
+            <div className='reqRow'>
+              <div className='reqText'>
+                <label htmlFor='drop'>Type</label>
+              </div>
+              <div className='reqInput'>
+                <select name='LeaveType' className='reqOptions width' value={this.state.LeaveType}
+                  onChange={this.handleChange} style={{ border: this.state.erroption }}>
+                  <option value='' disabled>select your option</option>
+                  <option value='Casual Leave'>Casual Leave</option>
+                  <option value='Emergency Leave'>Emergency Leave</option>
+                  <option value='Sick leave'>Sick leave</option>
+                  <option value='Earned Leave'>Earned Leave</option>
+                  <option value='LOP'>LOP</option>
+                </select>
+              </div>
+              <div className='err'>{this.state.opText}</div>
+            </div>
+            <div className='reqRow'>
+              <div className='reqText'>
+                <label htmlFor='drop'>From</label>
+              </div>
+              <div value={this.state.FromDate} name='From'>
+                <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
+                  selected={this.state.FromDate}
+                  filterDate={this.isWeekday}
+                  showYearDropdown
+                  scrollableYearDropdown
+                  dateFormat='DD/MM/YYYY'
+                  minDate={moment()}
+                  maxDate={moment().add(24, 'months')}
+                  showDisabledMonthNavigation
+                  onChange={e => this.DateFromChange(e)}
+                  yearDropdownItemNumber={2}
+                  excludeDates={holidayList}
+                  isClearable
+                  placeholderText='Select a weekday'
+                  name='From' />
+              </div>
+              <div className='err'>{this.state.dateErr}</div>
+            </div>
+            <div className='reqRow'>
+              <div className='reqText'>
+                <label htmlFor='drop'>To</label>
+              </div>
+              <div name='To' value={this.state.ToDate} className='reqInput'>
+                <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
+                  selected={this.state.ToDate}
+                  filterDate={this.isWeekday}
+                  showYearDropdown
+                  dateFormat='DD/MM/YYYY'
+                  onChange={e => this.DateToChange(e)}
+                  scrollableYearDropdown
+                  minDate={this.state.FromDate}
+                  maxDate={moment(this.state.FromDate).add(24, 'months')}
+                  showDisabledMonthNavigation
+                  yearDropdownItemNumber={2}
+                  excludeDates={holidayList}
+                  isClearable
+                  placeholderText='Select a weekday'
+                  name='To' />
+              </div>
+              <div className='err'>{this.state.dateErr}</div>
+            </div>
+            <div className='reqRow'>
+              <div className='reqText'>
+                <label htmlFor='Number_of_Days'>Number of Days</label>
+              </div>
+              <div className='reqInput'>
+                <input className='reqOptions disable' type='text' value={this.state.TotalDays} disabled id='TotalDays' name='TotalDays' />
+              </div>
+            </div>
+            <div className='reqRow'>
+              <div className='reqText'>
+                <label htmlFor='drop'>Reason</label>
+              </div>
+              <div name='LeaveReason' className='reqInput'
+                onChange={e => this.handleChange(e)}>
+                <textarea className='reqOptions' value={this.state.LeaveReason} placeholder='Reason' name='LeaveReason' />
+              </div>
+              <div className='err'>{this.state.Err}</div>
+            </div>
+            <div >
+              <button className='reqButton'
+                onClick={this.handleSubmit}>Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>// rightContainer done
     )
   }

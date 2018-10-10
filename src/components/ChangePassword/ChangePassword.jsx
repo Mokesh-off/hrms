@@ -25,7 +25,15 @@ class ChangePassword extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
   visible (e) {
-    return (this.setState({ [e.target.name]: e.target.value }))
+    if (e.target.name === 'flag') {
+      return (this.setState({ [e.target.name]: !this.state.flag }))
+    }
+    if (e.target.name === 'flag1') {
+      return (this.setState({ [e.target.name]: !this.state.flag1 }))
+    }
+    if (e.target.name === 'flag2') {
+      return (this.setState({ [e.target.name]: !this.state.flag2 }))
+    }
   }
   validation () {
     this.setState({ err: '', errText: '', passborder: '1px solid #737373', newpassborder: '1px solid #737373' })
