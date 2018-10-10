@@ -14,6 +14,7 @@ import LeavePolicy from './components/LeavePolicy/LeavePolicy';
 import Profile from './components/Profile/Profile';
 import LeaveRecord from './components/LeaveRecord/LeaveRecord';
 import AddUser from './components/AddUser/AddUser';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 import EditProfileApproval from './components/Profile/EditProfileApproval';
 
 class App extends Component {
@@ -76,6 +77,12 @@ class App extends Component {
                   component={LeavePolicy}
                 />
                 <Route exact strict path='/profile' component={Profile} />
+                <Route
+                  exact
+                  strict
+                  path='/changepassword'
+                  component={ChangePassword}
+                />
                 <Route exact strict path='/addUser' component={AddUser} />
                 <Route
                   exact
