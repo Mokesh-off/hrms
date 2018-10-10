@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import './AddingHoliday.css'
-import Popup from 'reactjs-popup'
-import DatePicker from 'react-datepicker'
-import moment from 'moment'
-import 'react-datepicker/dist/react-datepicker.css'
+import React, { Component } from 'react';
+import './AddingHoliday.css';
+import Popup from 'reactjs-popup';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 class AddingHoliday extends Component {
   constructor (props) {
     super(props)
@@ -18,30 +18,40 @@ class AddingHoliday extends Component {
     this.validation = this.validation.bind(this)
     this.DateChange = this.DateChange.bind(this)
   }
-  change (e) { // set values to the state variable
+  change (e) {
+    // set values to the state variable
     this.setState({ [e.target.name]: e.target.value })
   }
-  validation () { // validation for the input character
-    if (this.state.date === '' && this.state.day === '' && this.state.occasion === '') {
+  validation () {
+    // validation for the input character
+    if (
+      this.state.date === '' &&
+      this.state.day === '' &&
+      this.state.occasion === ''
+    ) {
       this.setState({ open: true, errText: 'fields can not be empty' })
-      return (false)
+      return false
     }
-    if ((/^[a-zA-Z]+$/i).test(this.state.occasion) === false) {
+    if (/^[a-zA-Z]+$/i.test(this.state.occasion) === false) {
       this.setState({ open: true, errText: 'please specify the Occasion' })
       // alert('please specify the Occasion')
-      return (false)
+      return false
     }
-    return (true)
+    return true
   }
   closeModal (e) {
     this.setState({ open: false })
   }
 
-  submit () { // To update the value to the local storage
+  submit () {
+    // To update the value to the local storage
     var subdate = this.state.date._d
     subdate = JSON.stringify(subdate).substr(1, 10)
     var subday = this.state.date._locale._weekdays[this.state.date._d.getDay()]
-    this.setState({ date: this.state.date = subdate, day: this.state.day = subday })
+    this.setState({
+      date: (this.state.date = subdate),
+      day: (this.state.day = subday)
+    })
     // this.validation()
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
@@ -67,11 +77,15 @@ class AddingHoliday extends Component {
       window.location.reload()
       return true
     } else {
-      this.setState({ open: true, errText: 'data were incorrect....can not update the value' })
+      this.setState({
+        open: true,
+        errText: 'data were incorrect....can not update the value'
+      })
       // alert("data were incorrect....can't update the value")
     }
   }
-  DateChange (dat) { // Update the date from user input
+  DateChange (dat) {
+    // Update the date from user input
     this.setState({ date: dat })
   }
   isWeekday (date) {
@@ -85,7 +99,8 @@ class AddingHoliday extends Component {
     return (
       <div className='adding'>
         <div className='calendar'>
-          <DatePicker className='Dp'
+          <DatePicker
+            className='Dp'
             selected={this.state.date}
             filterDate={this.isWeekday}
             showYearDropdown
@@ -99,22 +114,33 @@ class AddingHoliday extends Component {
             excludeDates={holidayList}
             inline
             placeholderText='Select a weekday'
-            name='date' />
+            name='date'
+          />
         </div>
         <div>
           <div>
             <label htmlFor='Occasion'>Occasion : </label>
           </div>
           <div>
-            <textarea type='text' name='occasion' onChange={this.change} className='addText' />
+            <textarea
+              type='text'
+              name='occasion'
+              onChange={this.change}
+              className='addText'
+            />
           </div>
         </div>
-        <input type='button' value='submit' className='popUpButton' onClick={this.submit.bind(this)} />
+        <input
+          type='button'
+          value='submit'
+          className='popUpButton'
+          onClick={this.submit.bind(this)}
+        />
 
         <Popup open={this.state.open}>
           <div className='modal'>
             <a className='close' onClick={e => this.closeModal(e)}>
-                      &times;
+              &times;
             </a>
             {this.state.errText}
           </div>

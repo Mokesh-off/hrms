@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import './LeaveRequests.css'
-import Popup from 'reactjs-popup'
+import React, { Component } from 'react';
+import './LeaveRequests.css';
+import Popup from 'reactjs-popup';
 // import ReactDOM from 'react-dom'
 class LeaveRequests extends Component {
   constructor (props) {
@@ -24,7 +24,7 @@ class LeaveRequests extends Component {
   }
   closePopup (e) {
     var index = this.state.index
-    this.setState({ open: false }, () => (this.delete(index)))
+    this.setState({ open: false }, () => this.delete(index))
   }
   // Onclicking view button select the respective request to see the details
   sendReqId (e, i) {
@@ -54,7 +54,7 @@ class LeaveRequests extends Component {
     let newState = Object.assign({}, this.state)
     // console.log(newState)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
+    newState.LeaveRecord.leaveRequest[index].status = 'Rejected';
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true, index: i })
     this.setState({ status: 'Rejected' })
@@ -74,26 +74,26 @@ class LeaveRequests extends Component {
     let newState = Object.assign({}, this.state)
     // alert(emp + "" + type)
     const newObject = this.state.LeaveRecord.Employee.map((data, i) => {
-    // Compare employee ID and change the respective pending leaves
+      // Compare employee ID and change the respective pending leaves
       if (data.EmpId === emp) {
         if (type === 'Casual Leave') {
           leave = leave - days
-          leave > 0 ? leave = leave : leave = 0
+          leave > 0 ? (leave = leave) : (leave = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Planed = leave
         }
         if (type === 'Emergency leave') {
           leave1 = leave1 - days
-          leave1 > 0 ? leave1 = leave1 : leave1 = 0
+          leave1 > 0 ? (leave1 = leave1) : (leave1 = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.LOP = leave1
         }
         if (type === 'Sick leave') {
           leave2 = leave2 - days
-          leave2 > 0 ? leave2 = leave2 : leave2 = 0
+          leave2 > 0 ? (leave2 = leave2) : (leave2 = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Sick = leave2
         }
         if (type === 'Earned Leave') {
           leave3 = leave3 - days
-          leave3 > 0 ? leave3 = leave3 : leave3 = 0
+          leave3 > 0 ? (leave3 = leave3) : (leave3 = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.PriL = leave3
         }
       }
@@ -107,7 +107,7 @@ class LeaveRequests extends Component {
     let newState = Object.assign({}, this.state)
     console.log(newState)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Approved'
+    newState.LeaveRecord.leaveRequest[index].status = 'Approved';
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ status: 'Approved' })
     this.reduceLeaves(index)
@@ -137,8 +137,11 @@ class LeaveRequests extends Component {
     for (var i = 0; i < this.state.checkedValue.length; ++i) {
       let index = parseInt(this.state.checkedValue[i])
       let newState = Object.assign({}, this.state)
-      newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
-      window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+      newState.LeaveRecord.leaveRequest[index].status = 'Rejected';
+      window.localStorage.setItem(
+        'Data',
+        JSON.stringify(this.state.LeaveRecord)
+      )
     }
     this.setState({ open: true, status: 'Rejected' })
     for (var i = 0; i < this.state.checkedValue.length; ++i) {
@@ -158,8 +161,11 @@ class LeaveRequests extends Component {
     for (var i = 0; i < this.state.checkedValue.length; ++i) {
       let index = parseInt(this.state.checkedValue[i])
       let newState = Object.assign({}, this.state)
-      newState.LeaveRecord.leaveRequest[index].status = 'Approved'
-      window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+      newState.LeaveRecord.leaveRequest[index].status = 'Approved';
+      window.localStorage.setItem(
+        'Data',
+        JSON.stringify(this.state.LeaveRecord)
+      )
       this.reduceLeaves(index)
     }
     this.setState({ open: true, status: 'Approved' })
@@ -174,11 +180,15 @@ class LeaveRequests extends Component {
     let data = JSON.parse(localStorage.getItem('Data'))
     if (data.leaveRequest) {
       return (
-      // List of leave requests
+        // List of leave requests
         <div className='leaveRecord'>
           <div>
-            <button onClick={e => this.selectAll(e)} ref='select'>SelectAll</button>
-            <button onClick={e => this.clearAll(e)} ref='clear'>clearAll</button>
+            <button onClick={e => this.selectAll(e)} ref='select'>
+              SelectAll
+            </button>
+            <button onClick={e => this.clearAll(e)} ref='clear'>
+              clearAll
+            </button>
             <button onClick={e => this.rejectAll(e)}>Reject</button>
             <button onClick={e => this.approveAll(e)}>Approve</button>
           </div>
@@ -199,10 +209,16 @@ class LeaveRequests extends Component {
             </thead>
             <tbody>
               {data.leaveRequest.map((record, i) => {
-                return this.state.deletedRow.indexOf(record.ReqestId) === -1
-                  ? <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'><input type='checkbox'
-                      data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td>
+                return this.state.deletedRow.indexOf(record.ReqestId) === -1 ? (
+                  <tr key={i} className='tdStyle'>
+                    <td className='tdStyle'>
+                      <input
+                        type='checkbox'
+                        data-id={i}
+                        className='selectcheckbox'
+                        defaultChecked={this.state.ischecked}
+                      />
+                    </td>
                     <td className='tdStyle'>{record.EmpId}</td>
                     <td className='tdStyle'>{record.EmpName}</td>
                     <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
@@ -212,26 +228,40 @@ class LeaveRequests extends Component {
                     <td className='tdStyle'>{record.TotalDays}</td>
                     <td className='tdStyle'>{record.LeaveReason}</td>
                     <td className='tdStyle'>
-                      <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button><span>&nbsp;</span>
-                      <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button>
+                      <button
+                        className='RejectButton'
+                        onClick={e => this.changeToReject(e, i)}
+                      >
+                        Reject
+                      </button>
+                      <span>&nbsp;</span>
+                      <button
+                        className='ApproveButton'
+                        onClick={e => this.changeToApprove(e, i)}
+                      >
+                        Approve
+                      </button>
                     </td>
                   </tr>
-                  : ''
+                ) : (
+                  ''
+                )
               })}
             </tbody>
           </table>
           <Popup open={this.state.open} closeOnDocumentClick modal>
             <div>
-              <span>{this.state.status} successfully</span><br />
-              <button className='button' onClick={e => this.closePopup(e)}>OK</button>
+              <span>{this.state.status} successfully</span>
+              <br />
+              <button className='button' onClick={e => this.closePopup(e)}>
+                OK
+              </button>
             </div>
           </Popup>
         </div>
       )
     } else {
-      return (
-        <div className='noRequset'>No requests</div>
-      )
+      return <div className='noRequset'>No requests</div>
     }
   }
 }
