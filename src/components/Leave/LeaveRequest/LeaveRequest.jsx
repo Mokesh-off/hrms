@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 import './LeaveRequest.css'
-import Popup from 'reactjs-popup'
 
 class LeaveRequest extends React.Component {
   constructor (props) {
@@ -120,7 +119,7 @@ class LeaveRequest extends React.Component {
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
-      LeaveReason: '',
+      LeaveReason: null,
       TotalDays: ''
     })
   }
