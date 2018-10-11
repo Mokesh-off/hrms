@@ -59,6 +59,13 @@ class EditProfileApproval extends Component {
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
     var data1 = JSON.parse(window.localStorage.getItem('Data'))
     data1 = data1.edittedProfile
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
       <div className='editProfileApproval'>
         <div className='editProfile'>
@@ -109,6 +116,7 @@ class EditProfileApproval extends Component {
         </div>
       </div>
     )
+            }
   }
 }
 export default EditProfileApproval

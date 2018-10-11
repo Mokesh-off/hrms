@@ -28,6 +28,13 @@ export default class Profile extends React.Component {
 
   render () {
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
     /* --    User Profile   -- */
 
@@ -120,5 +127,6 @@ export default class Profile extends React.Component {
         </Modal>
       </div>
     )
+              }
   }
 }

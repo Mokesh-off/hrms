@@ -45,7 +45,9 @@ class AddUser extends Component {
     if(this.state.EmpName === ''|| this.state.EmpId ===''
     || this.state.gender ==='' || this.state.Dob ==='' 
     || this.state.gender ==='' || this.state.EmailId ==='' 
-    || this.state.ContactNum ==='' || this.state.Dep ==='')
+    || this.state.ContactNum ==='' || this.state.Dep ===''
+    || this.state.Role ==='' || this.state.Doj ===''
+    || this.state.wl ==='' || this.state.Address === '')
     {
       alert('fields cannot be empty');
       return false;
@@ -94,6 +96,14 @@ class AddUser extends Component {
   };
 
   render () {
+    
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     
     return (
       <div id='addUserContainer'>
@@ -230,6 +240,7 @@ class AddUser extends Component {
         </div>
       </div>
     )
+              }
     }
   }
 export default AddUser
