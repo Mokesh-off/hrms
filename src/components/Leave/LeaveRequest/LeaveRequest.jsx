@@ -32,6 +32,13 @@ class LeaveRequest extends React.Component {
     this.validation = this.validation.bind(this)
   }
   validation () { //  validating the input values
+    this.setState({
+      errdate: '',
+      dateErr: '',
+      erroption: '',
+      opText: '',
+      Err: ''
+    })
     if (this.state.TotalDays === '' || this.state.FromDate === '' ||
       this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
       this.setState({ Err: 'Fields can not be empty ' })
@@ -119,7 +126,7 @@ class LeaveRequest extends React.Component {
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
-      LeaveReason: null,
+      LeaveReason: '',
       TotalDays: ''
     })
   }
@@ -281,7 +288,7 @@ class LeaveRequest extends React.Component {
               <div className='err'>{this.state.Err}</div>
             </div>
             <div >
-              <button className='reqButton'
+              <button className='levAddbutton'
                 onClick={this.handleSubmit}>Submit
               </button>
             </div>
