@@ -62,25 +62,21 @@ class AddUser extends Component {
     this.state.ContactNum === '' || this.state.Dep === '' ||
     this.state.Role === '' || this.state.Doj === '' ||
     this.state.wl === '' || this.state.Address === '') {
-      alert('fields cannot be empty')
       this.setState({ empty: 'Fields can not be empty ' })
       return false
     }
     if ((/^[a-zA-Z ]+$/.test(this.state.EmpName)) === false) {
-      alert('name is invalid')
       this.setState({ errname: 'Only characters', nameborder: '1px solid red' })
       return false
     }
     if (/^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$/
       .test(this.state.EmailId) === false) {
         this.setState({ errmail: 'Need to have "@" and "."', mailborder:'1px solid red' })
-      alert('EmailId is invalid')
       return false
     }
     if (/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
       .test(this.state.ContactNum) === false) {
         this.setState({ errnum: 'only number', numborder: '1px solid red' })
-      alert('ContactNum is invalid')
       return false
     }
     return true
