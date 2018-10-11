@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './LeaveRequests.css';
-import Popup from 'reactjs-popup';
+import React, { Component } from 'react'
+import './LeaveRequests.css'
+import Popup from 'reactjs-popup'
 // import ReactDOM from 'react-dom'
 class LeaveRequests extends Component {
   constructor (props) {
@@ -11,6 +11,7 @@ class LeaveRequests extends Component {
       deletedRow: [],
       open: false,
       ischecked: false,
+      allchecked: false,
       checkedValue: [],
       index: ''
     }
@@ -54,7 +55,7 @@ class LeaveRequests extends Component {
     let newState = Object.assign({}, this.state)
     // console.log(newState)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Rejected';
+    newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true, index: i })
     this.setState({ status: 'Rejected' })
@@ -107,7 +108,7 @@ class LeaveRequests extends Component {
     let newState = Object.assign({}, this.state)
     console.log(newState)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Approved';
+    newState.LeaveRecord.leaveRequest[index].status = 'Approved'
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ status: 'Approved' })
     this.reduceLeaves(index)
@@ -119,6 +120,7 @@ class LeaveRequests extends Component {
     var inputElements = document.getElementsByClassName('selectcheckbox')
     for (var i = 0; inputElements[i]; ++i) {
       inputElements[i].checked = true
+      this.setState({ ischecked: this.state.ischecked = true })
     }
   }
   clearAll (e) {
@@ -137,7 +139,7 @@ class LeaveRequests extends Component {
     for (var i = 0; i < this.state.checkedValue.length; ++i) {
       let index = parseInt(this.state.checkedValue[i])
       let newState = Object.assign({}, this.state)
-      newState.LeaveRecord.leaveRequest[index].status = 'Rejected';
+      newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
       window.localStorage.setItem(
         'Data',
         JSON.stringify(this.state.LeaveRecord)
@@ -161,7 +163,7 @@ class LeaveRequests extends Component {
     for (var i = 0; i < this.state.checkedValue.length; ++i) {
       let index = parseInt(this.state.checkedValue[i])
       let newState = Object.assign({}, this.state)
-      newState.LeaveRecord.leaveRequest[index].status = 'Approved';
+      newState.LeaveRecord.leaveRequest[index].status = 'Approved'
       window.localStorage.setItem(
         'Data',
         JSON.stringify(this.state.LeaveRecord)
@@ -175,6 +177,29 @@ class LeaveRequests extends Component {
     }
     this.setState({ checkedValue: [] })
   }
+  check () {
+    this.setState({ allchecked: !this.state.allchecked }, () =>
+      (this.state.allchecked)
+        ? this.selectAll() : this.clearAll()
+    )
+  }
+  ischeck () {
+    this.setState({ ischecked: this.state.ischecked = !this.state.ischecked })
+    var inputElements = document.getElementsByClassName('selectcheckbox')
+    var allcheck = document.getElementById('Id')
+    var len = inputElements.length
+    var count = 0
+    for (var i = 0; inputElements[i]; ++i) {
+      count++
+      if (inputElements[i].checked === false) {
+        allcheck.checked = false
+        count--
+      }
+    }
+    if (count === len) {
+      allcheck.checked = true
+    }
+  }
 
   render () {
     let data = JSON.parse(localStorage.getItem('Data'))
@@ -183,19 +208,21 @@ class LeaveRequests extends Component {
         // List of leave requests
         <div className='leaveRecord'>
           <div>
-            <button onClick={e => this.selectAll(e)} ref='select'>
-              SelectAll
-            </button>
-            <button onClick={e => this.clearAll(e)} ref='clear'>
-              clearAll
-            </button>
-            <button onClick={e => this.rejectAll(e)}>Reject</button>
-            <button onClick={e => this.approveAll(e)}>Approve</button>
+            <button className='LevReqbutton RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
+            <button className='LevReqbutton ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
           </div>
           <table>
             <thead className='thead1'>
               <tr className='thead1'>
-                <td className='tdStyle'>&nbsp;</td>
+                <td className='tdStyle'>
+                  <input
+                    type='checkbox'
+                    id='Id'
+                    defaultChecked={this.state.allchecked}
+                    onChange={this.check.bind(this)}
+                    value={this.state.allchecked}
+                  />
+                </td>
                 <td className='tdStyle'>EmpID</td>
                 <td className='tdStyle'>EmpName</td>
                 <td className='tdStyle'>Applied On</td>
@@ -217,6 +244,7 @@ class LeaveRequests extends Component {
                         data-id={i}
                         className='selectcheckbox'
                         defaultChecked={this.state.ischecked}
+                        onChange={this.ischeck.bind(this)}
                       />
                     </td>
                     <td className='tdStyle'>{record.EmpId}</td>
