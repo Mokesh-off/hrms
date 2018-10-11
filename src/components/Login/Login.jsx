@@ -30,7 +30,7 @@ class Login extends Component {
     this.setState({ currentUserId: this.state.currentUserId = userId })
     this.setState({ currentUserRole: this.state.currentUserRole = userRole })
     this.setState({ currentUserName: this.state.currentUserName = userName })
-    localStorage.setItem('currentUserId', JSON.stringify(this.state.currentUserId))
+    localStorage.setItem('currentUserId', this.state.currentUserId)
     localStorage.setItem('currentUserRole', JSON.stringify(this.state.currentUserRole))
     localStorage.setItem('currentUserName', JSON.stringify(this.state.currentUserName))
   }

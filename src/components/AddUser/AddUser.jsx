@@ -19,6 +19,13 @@ class AddUser extends Component {
       validation: false,
       Role: '',
       EmpId: '',
+      empty: '',
+      errname: '',
+      nameborder: '',
+      errmail: '',
+      mailborder: '',
+      errnum: '',
+      numborder: '',
       Address: '',
       PendingLeaves: {
         Planned: 10,
@@ -40,26 +47,39 @@ class AddUser extends Component {
   }
 
   validate () {
+    this.setState({
+      empty: '',
+      errname: '',
+      nameborder: '',
+      errmail: '',
+      mailborder: '',
+      errnum: '',
+      numborder: ''
+    })
     if (this.state.EmpName === '' || this.state.EmpId === '' ||
-    this.state.gender === '' || this.state.Dob === ''
-    || this.state.gender === '' || this.state.EmailId === ''
-    || this.state.ContactNum === '' || this.state.Dep === ''
-    || this.state.Role === '' || this.state.Doj === ''
-    || this.state.wl === '' || this.state.Address === '') {
+    this.state.gender === '' || this.state.Dob === '' ||
+    this.state.gender === '' || this.state.EmailId === '' ||
+    this.state.ContactNum === '' || this.state.Dep === '' ||
+    this.state.Role === '' || this.state.Doj === '' ||
+    this.state.wl === '' || this.state.Address === '') {
       alert('fields cannot be empty')
+      this.setState({ empty: 'Fields can not be empty ' })
       return false
     }
     if ((/^[a-zA-Z ]+$/.test(this.state.EmpName)) === false) {
       alert('name is invalid')
+      this.setState({ errname: 'Only characters', nameborder: '1px solid red' })
       return false
     }
     if (/^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-.]+$/
-    .test(this.state.EmailId) === false) {
+      .test(this.state.EmailId) === false) {
+        this.setState({ errmail: 'Need to have "@" and "."', mailborder:'1px solid red' })
       alert('EmailId is invalid')
       return false
     }
     if (/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
-    .test(this.state.ContactNum) === false) {
+      .test(this.state.ContactNum) === false) {
+        this.setState({ errnum: 'only number', numborder: '1px solid red' })
       alert('ContactNum is invalid')
       return false
     }
@@ -78,7 +98,6 @@ class AddUser extends Component {
         window.localStorage.setItem('Data', JSON.stringify(Data))
         console.log('new Employee added')
         alert('New user added')
-
       } else {
         Data['Employee'] = []
         Data.Employee[Data.Employee.length] = this.state
@@ -97,12 +116,13 @@ class AddUser extends Component {
             <div className='form'>
               <h1>Employee registration form</h1>
               <div className='divider' />
+              <div className='err'>{this.state.empty}</div>
               <div className='row'>
                 <div className='left'>Employee ID:</div>
                 <div className='right'>
                   <input className='box' type='number' name='EmpId'
-                      placeholder='Employee ID..' style={{ border: this.state.passborder }}
-                      onChange={e => this.change(e)} />
+                    placeholder='Employee ID..'
+                    onChange={e => this.change(e)} />
                 </div>
               </div>
 
@@ -110,16 +130,18 @@ class AddUser extends Component {
                 <div className='left'>Name:</div>
                 <div className='right'>
                   <input className='box' type='text' name='EmpName'
-                    placeholder='Employee name...' style={{ border: this.state.passborder }}
+                    placeholder='Employee name...' style={{ border: this.state.nameborder }}
                     onChange={e => this.change(e)} />
                 </div>
+                <div className='err'>{this.state.errname}</div>
               </div>
 
               <div className='row'>
                 <div className='left'>E-mail:</div>
                 <div className='right'><input className='box'
-                  type='EmailId' name='EmailId' style={{ border: this.state.passborder }}
+                  type='EmailId' name='EmailId' style={{ border: this.state.mailborder }}
                   onChange={e => this.change(e)} /></div>
+                <div className='err'>{this.state.errmail}</div>
               </div>
 
               <div className='row'>
@@ -140,7 +162,8 @@ class AddUser extends Component {
               <div className='row'>
                 <div className='left'>ContactNum:</div>
                 <div className='right'><input className='box' type='number' name='ContactNum'
-                  onChange={e => this.change(e)} style={{ border: this.state.passborder }} /></div>
+                  onChange={e => this.change(e)} style={{ border: this.state.numborder }} /></div>
+                <div className='err'>{this.state.errnum}</div>
               </div>
 
               <div className='row'>
@@ -208,7 +231,7 @@ class AddUser extends Component {
 
               <div className='row'>
                 <div className='left' />
-
+                <div className='err'>{this.state.empty}</div>
                 <div className='rowSeven'>
                   <div className='right'><button className='rowSevenButton'
                     onClick={this.reset}> Reset
