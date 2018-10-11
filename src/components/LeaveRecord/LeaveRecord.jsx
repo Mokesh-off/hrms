@@ -140,13 +140,20 @@ class LeaveRecord extends Component {
   }
 
   render () {
+
     var newData = JSON.parse(localStorage.getItem('Data'))
     if (this.state.visible) {
       var data = this.state.newRecord
     } else {
       var data = newData.leaveRequest
     }
-
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
       <div className='leaveRecord'>
         <button onClick={e => this.getNewRecord()}>Get</button> <span>&nbsp;</span>
@@ -228,6 +235,7 @@ class LeaveRecord extends Component {
         </Popup>
       </div>
     )
+    }
   }
 }
 export default LeaveRecord

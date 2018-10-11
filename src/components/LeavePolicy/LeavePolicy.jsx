@@ -83,7 +83,13 @@ class LeavePolicy extends Component {
     })
 
     /* --   Employer Execution part    -- */
-
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     if (role === 'Employer') {
       return (
         <div className='policy'>
@@ -255,6 +261,7 @@ class LeavePolicy extends Component {
         </div>
       )
     }
+  }
   }
 }
 

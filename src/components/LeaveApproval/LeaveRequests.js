@@ -203,6 +203,13 @@ class LeaveRequests extends Component {
 
   render () {
     let data = JSON.parse(localStorage.getItem('Data'))
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     if (data.leaveRequest) {
       return (
         // List of leave requests
@@ -291,6 +298,7 @@ class LeaveRequests extends Component {
     } else {
       return <div className='noRequset'>No requests</div>
     }
+  }
   }
 }
 
