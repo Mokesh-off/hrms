@@ -153,7 +153,7 @@ class LeaveRecord extends Component {
         {/* <button onClick={e => this.getAllRecord()}>All</button> */}
         Fromdate
         <div className='displayDate' value={this.state.FromDate} name='From' >
-          <DatePicker className='Dp'
+          <DatePicker
             selected={this.state.FromDate}
             showYearDropdown
             scrollableYearDropdown
@@ -167,7 +167,7 @@ class LeaveRecord extends Component {
         </div><span>&nbsp;</span>
         Todate
         <div className='displayDate2' name='To' value={this.state.ToDate}>
-          <DatePicker className='Dp'
+          <DatePicker
             selected={this.state.ToDate}
             showYearDropdown
             dateFormat='DD/MM/YYYY'

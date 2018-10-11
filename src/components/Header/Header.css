@@ -34,8 +34,7 @@
 
 .dropdown-content {
 	text-align: center;
-	/* display: none; */
-	/* position: absolute; */
+	display: none;
 	background-color: #f9f9f9;
 	min-width: 130px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -56,14 +55,18 @@ img{
 .profile-outer{
 	display: flex;
 	text-decoration: none;
-	color: black;
 }
+
 .profile-img{
   padding: 10px;
 }
 .profile-name{
   padding: 18px;
   color: #337ab7;
+}
+
+.profile-name:hover{
+  color: #23527c;
 }
 .logoutbutton {
 	padding: 2% 32%;

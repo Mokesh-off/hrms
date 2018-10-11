@@ -275,7 +275,7 @@ class LeaveRequest extends React.Component {
               <div className='err'>{this.state.Err}</div>
             </div>
             <div >
-              <button className='reqButton'
+              <button className='levAddbutton'
                 onClick={this.handleSubmit}>Submit
               </button>
             </div>
