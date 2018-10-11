@@ -18,3 +18,17 @@
  }
  
  
+.noRequset{
+  margin-top: 11%;
+  margin-left: 50%;
+  position: fixed;
+}
+.LevReqbutton {
+  padding: 1% 2%;
+  margin: 1%;
+  border-radius: 25%;
+  float: right;
+  border: none;
+  background-color: #337ab7;
+  cursor: pointer;
+}

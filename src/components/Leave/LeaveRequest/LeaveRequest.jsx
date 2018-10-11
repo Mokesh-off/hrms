@@ -128,6 +128,7 @@ class LeaveRequest extends React.Component {
     const day = date._d.getDay()
     return day !== 0 && day !== 6
   }
+
   numOfDays () {
     // To generate number of holiday days
     if (this.state.FromDate === null || this.state.ToDate === null) {

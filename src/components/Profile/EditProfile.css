@@ -1,0 +1,25 @@
+.profileEditButton {
+  height: 40px;
+  width: 100px;
+  border-radius: 19px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(63, 115, 198);
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 280px;
+}
+
+.popUpAddress > label {
+  margin: 10px;
+  width: 40%;
+}
+
+.popUpAddress > input {
+  width: 42%;
+  padding: 11px;
+  border: 1px solid #d5c9c9;
+  border-radius: 4px;
+  margin-left: 10px;
+}
