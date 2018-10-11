@@ -23,7 +23,12 @@
   margin-left: 50%;
   position: fixed;
 }
-input[type="checkbox"]{
-  width: 25px; 
-  height: 25px; 
+.LevReqbutton {
+  padding: 1% 2%;
+  margin: 1%;
+  border-radius: 25%;
+  float: right;
+  border: none;
+  background-color: #337ab7;
+  cursor: pointer;
 }

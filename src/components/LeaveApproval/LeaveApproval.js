@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import './LeaveApproval.css'
-import { NavLink } from 'react-router-dom'
-import Popup from 'reactjs-popup'
+import React, { Component } from 'react';
+import './LeaveApproval.css';
+import { NavLink } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 class LeaveApproval extends Component {
   constructor (props) {
     super(props)
@@ -27,7 +27,7 @@ class LeaveApproval extends Component {
     let newState = Object.assign({}, this.state)
     console.log(newState)
     let index = window.localStorage.getItem('currentRequestID')
-    newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
+    newState.LeaveRecord.leaveRequest[index].status = 'Rejected';
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Rejected' })
@@ -49,22 +49,22 @@ class LeaveApproval extends Component {
       if (data.EmpId === emp) {
         if (type === 'Casual Leave') {
           leave = leave - days
-          leave > 0 ? leave = leave : leave = 0
+          leave > 0 ? (leave = leave) : (leave = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Planed = leave
         }
         if (type === 'Emergency leave') {
           leave1 = leave1 - days
-          leave1 > 0 ? leave1 = leave1 : leave1 = 0
+          leave1 > 0 ? (leave1 = leave1) : (leave1 = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.LOP = leave1
         }
         if (type === 'Sick leave') {
           leave2 = leave2 - days
-          leave2 > 0 ? leave2 = leave2 : leave2 = 0
+          leave2 > 0 ? (leave2 = leave2) : (leave2 = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Sick = leave2
         }
         if (type === 'Earned Leave') {
           leave3 = leave3 - days
-          leave3 > 0 ? leave3 = leave3 : leave3 = 0
+          leave3 > 0 ? (leave3 = leave3) : (leave3 = 0)
           newState.LeaveRecord.Employee[emp - 1].PendingLeaves.PriL = leave3
         }
       }
@@ -78,7 +78,7 @@ class LeaveApproval extends Component {
     let newState = Object.assign({}, this.state)
     console.log(newState)
     let index = window.localStorage.getItem('currentRequestID')
-    newState.LeaveRecord.leaveRequest[index].status = 'Approved'
+    newState.LeaveRecord.leaveRequest[index].status = 'Approved';
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Approved' })
@@ -97,7 +97,7 @@ class LeaveApproval extends Component {
   render () {
     let index = window.localStorage.getItem('currentRequestID')
     return (
-    // Details of leave request
+      // Details of leave request
       <div className='leaveRecord'>
         <table>
           <thead className='thead1'>
@@ -128,14 +128,20 @@ class LeaveApproval extends Component {
                 </tr>
               })}
           </tbody>
-        </table><br />
+        </table>
+        <br />
         <div className='backButton'>
-          <NavLink to='/leavelist'><button>Back</button> </NavLink>
+          <NavLink to='/leavelist'>
+            <button>Back</button>
+          </NavLink>
         </div>
         <Popup open={this.state.open} closeOnDocumentClick modal>
           <div>
-            <span>{this.state.status} successfully</span><br />
-            <button className='button' onClick={e => this.closePopup(e)}>OK</button>
+            <span>{this.state.status} successfully</span>
+            <br />
+            <button className='button' onClick={e => this.closePopup(e)}>
+              OK
+            </button>
           </div>
         </Popup>
       </div>

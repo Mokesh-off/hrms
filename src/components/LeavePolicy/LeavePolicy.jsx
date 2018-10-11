@@ -1,26 +1,51 @@
-import React, { Component } from "react";
-import "./LeavePolicy.css";
-import Modal from "react-awesome-modal";
-import LeaveDetails from "./LeaveDetails";
+import React, { Component } from 'react';
+import './LeavePolicy.css';
+import AddingPolicy from './AddingPolicy';
+import Modal from 'react-awesome-modal';
+import LeaveDetails from './LeaveDetails';
 class LeavePolicy extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      LeavePolicy: JSON.parse(localStorage.getItem('Data'))
+      LeavePolicy: JSON.parse(localStorage.getItem('Data')),
+      flag: false
     }
     this.change = this.change.bind(this)
   }
 
-  openModal() {
+  openModalView () {
     this.setState({
-      visible: true
-    });
+      visibleView: true
+    })
   }
 
-  closeModal() {
+  closeModalView () {
     this.setState({
-      visible: false
-    });
+      visibleView: false
+    })
+  }
+  openModalAdd () {
+    this.setState({
+      visibleAdd: true
+    })
+  }
+
+  closeModalAdd () {
+    this.setState({
+      visibleAdd: false
+    })
+  }
+
+  /* --------Deletes the changes in table -------- */
+
+  delete (e, i) {
+    for (var j = 0; j <= this.state.LeavePolicy.leavePolicy.length; j++) {
+      if (j === i) {
+        this.state.LeavePolicy.leavePolicy.splice(i, 1)
+      }
+    }
+    window.localStorage.setItem('Data', JSON.stringify(this.state.LeavePolicy))
+    this.setState({ flag: true })
   }
 
   /* --   Onchange Function   -- */
@@ -34,7 +59,7 @@ class LeavePolicy extends Component {
 
     /* --   Storing values in LocalStorage   -- */
 
-    const newObject = this.state.LeavePolicy.leavePolicyJSON.map(
+    const newObject = this.state.LeavePolicy.leavePolicy.map(
       (leavePolicy, j) => {
         for (var key in leavePolicy) {
           if (key === item.name && j === item.targetIndex) {
@@ -44,13 +69,13 @@ class LeavePolicy extends Component {
         return leavePolicy
       }
     )
-    this.setState({ [this.state.LeavePolicy.leavePolicyJSON]: newObject })
+    this.setState({ [this.state.LeavePolicy.leavePolicy]: newObject })
     localStorage.setItem('Data', JSON.stringify(this.state.LeavePolicy))
   }
   render () {
     var data = JSON.parse(localStorage.getItem('Data'))
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
-    let role = ''
+    let role = '';
     data.Employee.map((list, index) => {
       if (list.EmpId === empId) {
         role = list.Role
@@ -62,30 +87,45 @@ class LeavePolicy extends Component {
     if (role === 'Employer') {
       return (
         <div className='policy'>
-          <h1 className='headerLeavePolicy'>Leave Policy(2018)</h1>
-
+          <div className='headerPolicy'>
+            <h1 className='headerLeavePolicy'>Leave Policy(2018)</h1>
+            <input
+              type='button'
+              className='policyViewButton'
+              value='Details'
+              onClick={() => this.openModalView()}
+            />
+            <Modal
+              visible={this.state.visibleView}
+              width='800'
+              height='500'
+              margin-bottom='20'
+              color='white'
+              onClickAway={() => this.closeModalView()}
+            >
+              <div id='modalView'>
+                <LeaveDetails />
+                <a
+                  href='javascript:void(0);'
+                  onClick={() => this.closeModalView()}
+                >
+                  Close
+                </a>
+              </div>
+            </Modal>
+          </div>
           <table id='leavePolicy'>
             <thead>
-              <tr className="thead1">
-                <th className="tdStyle"> Leave Type</th>
-                <th className="tdStyle">Leave Name</th>
-                <th className="tdStyle">NO.of Days</th>
-                <th className="tdStyle">Terms</th>
-                <th className="tdStyle">Details</th>
+              <tr className='thead1'>
+                <th className='tdStyle'>Leave Name</th>
+                <th className='tdStyle'>NO.of Days</th>
+                <th className='tdStyle'>Terms</th>
+                <th className='tdStyle'>Function</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.LeavePolicy.leavePolicyJSON.map((data, i) => (
+              {this.state.LeavePolicy.leavePolicy.map((data, i) => (
                 <tr key={data.id}>
-                  <td className='tdStyle'>
-                    <textarea
-                      className='tdStyle'
-                      name='Type'
-                      onChange={e => this.change(e, i)}
-                    >
-                      {data.Type}
-                    </textarea>
-                  </td>
                   <td className='tdStyle'>
                     <textarea
                       className='tdStyle'
@@ -113,35 +153,49 @@ class LeavePolicy extends Component {
                       {data.Terms}
                     </textarea>
                   </td>
-                  <td className="tdStyle">
-                    <input
-                      type="button"
-                      value="view"
-                      onClick={() => this.openModal()}
-                    />
-                    <Modal
-                      visible={this.state.visible}
-                      width="800"
-                      height="500"
-                      margin-bottom="20"
-                      color="white"
-                      onClickAway={() => this.closeModal()}
+                  <td className='tdStyle'>
+                    <button
+                      onClick={e => this.delete(e, i)}
+                      className='policyDeleteButton'
                     >
-                      <div id="modal">
-                        <LeaveDetails />
-                        <a
-                          href="javascript:void(0);"
-                          onClick={() => this.closeModal()}
-                        >
-                          Close
-                        </a>
-                      </div>
-                    </Modal>
+                      Delete Row
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <p className='mandatory'>
+            Note: The employee will encounter/incur a"double LOP" for leaves
+            taken without any prior intimation.
+          </p>
+          <input
+            type='button'
+            className='policyAddButton'
+            value='Add'
+            onClick={() => this.openModalAdd()}
+          />
+          <Modal
+            visible={this.state.visibleAdd}
+            width='800'
+            height='350'
+            margin-bottom='20'
+            color='white'
+            onClickAway={() => this.closeModalAdd()}
+          >
+            <div id='modalView'>
+              <div id='modal'>
+                <a
+                  href='javascript:void(0);'
+                  onClick={() => this.closeModalAdd()}
+                >
+                  &times;
+                </a>
+              </div>
+
+              <AddingPolicy />
+            </div>
+          </Modal>
         </div>
       )
     } else {
@@ -149,53 +203,55 @@ class LeavePolicy extends Component {
 
       return (
         <div className='policy'>
-          <h1 className='header'>Leave Policy(2018)</h1>
+          <div className='headerPolicy'>
+            <h1 className='headerLeavePolicy'>Leave Policy(2018)</h1>
+            <input
+              type='button'
+              className='policyViewButton'
+              value='Details'
+              onClick={() => this.openModalView()}
+            />
+            <Modal
+              visible={this.state.visibleView}
+              width='800'
+              height='500'
+              margin-bottom='20'
+              color='white'
+              onClickAway={() => this.closeModalView()}
+            >
+              <div id='modal'>
+                <LeaveDetails />
+                <a
+                  href='javascript:void(0);'
+                  onClick={() => this.closeModalView()}
+                >
+                  Close
+                </a>
+              </div>
+            </Modal>
+          </div>
           <table id='leavePolicy'>
             <thead>
-              <tr className="thead1">
-                <th className="tdStyle">Leave Type</th>
-                <th className="tdStyle">Leave Name</th>
-                <th className="tdStyle">NO.of Days</th>
-                <th className="tdStyle">Terms</th>
-                <th className="tdStyle">Details</th>
+              <tr className='thead1'>
+                <th className='tdStyle'>Leave Name</th>
+                <th className='tdStyle'>NO.of Days</th>
+                <th className='tdStyle'>Terms</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.LeavePolicy.leavePolicyJSON.map((data, i) => (
+              {this.state.LeavePolicy.leavePolicy.map((data, i) => (
                 <tr key={data.id}>
-                  <td className="tdStyle">{data.Type}</td>
-                  <td className="tdStyle"> {data.Name}</td>
-                  <td className="tdStyle">{data.Days}</td>
-                  <td className="tdStyle">{data.Terms}</td>
-                  <td className="tdStyle">
-                    <input
-                      type="button"
-                      value="view"
-                      onClick={() => this.openModal()}
-                    />
-                    <Modal
-                      visible={this.state.visible}
-                      width="800"
-                      height="500"
-                      margin-bottom="20"
-                      color="white"
-                      onClickAway={() => this.closeModal()}
-                    >
-                      <div id="modal">
-                        <LeaveDetails />
-                        <a
-                          href="javascript:void(0);"
-                          onClick={() => this.closeModal()}
-                        >
-                          Close
-                        </a>
-                      </div>
-                    </Modal>
-                  </td>
+                  <td className='tdStyle'> {data.Name}</td>
+                  <td className='tdStyle'>{data.Days}</td>
+                  <td className='tdStyle'>{data.Terms}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <p className='mandatory'>
+            Note: The employee will encounter/incur a"double LOP" for leaves
+            taken without any prior intimation.
+          </p>
         </div>
       )
     }

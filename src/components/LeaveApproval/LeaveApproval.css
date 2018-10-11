@@ -40,7 +40,7 @@
      border-radius: 12px;
      border: none;
      font-weight: bold;
-     background-color:  rgb(63, 115, 198);
+     background-color:  #337ab7;
      color: white
     
  }
@@ -48,8 +48,9 @@
  .ApproveButton{
   height: 40px;
   border-radius: 12px;
+  margin: 0.5%;
   border: none;
   font-weight: bold;
-  background-color:  rgb(63, 115, 198);
+  background-color:  #337ab7;
   color: white
  }

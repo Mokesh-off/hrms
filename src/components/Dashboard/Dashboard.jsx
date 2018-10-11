@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Redirect } from 'react-router-dom'
-import LeaveRequests from '../LeaveApproval/LeaveRequests'
-import './Dashboard.css'
-import AvailableLeaves from './AvailableLeaves'
-import PendingLeaves from '../PendingLeaves/PendingLeaves'
+import React, { Component } from 'react';
+import { BrowserRouter as Redirect } from 'react-router-dom';
+import LeaveRequests from '../LeaveApproval/LeaveRequests';
+import './Dashboard.css';
+import AvailableLeaves from './AvailableLeaves';
+import PendingLeaves from '../PendingLeaves/PendingLeaves';
 
 class Dashboard extends Component {
   constructor (props) {
@@ -44,9 +44,10 @@ class Dashboard extends Component {
 
             <div className='viewDetails cursor' onClick={this.employerCard}>
               <div>view details</div>
-              <div><i class='fa fa-arrow-circle-right' /></div>
+              <div>
+                <i class='fa fa-arrow-circle-right' />
+              </div>
             </div>
-
           </div>
 
           <div />
