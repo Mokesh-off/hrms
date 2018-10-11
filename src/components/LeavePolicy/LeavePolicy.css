@@ -10,9 +10,67 @@
   color: white;
   position: relative;
   top: 15px;
+  left: 400px;
+}
+
+#modalView > a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+  top: 20px;
+  left: 400px;
 }
 
 .policy > textarea {
   width: 150px;
   height: 20px;
+}
+
+.headerLeavePolicy {
+  text-align: center;
+}
+
+.policyViewButton {
+  float: right;
+  margin-top: -60px;
+  height: 40px;
+  width: 100px;
+  border-radius: 19px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(63, 115, 198);
+  color: white;
+}
+
+.policyDeleteButton {
+  margin-top: -60px;
+  height: 40px;
+  width: 100px;
+  border-radius: 19px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(63, 115, 198);
+  color: white;
+}
+
+.headerPolicy {
+  display: list-item;
+}
+
+.mandatory {
+  color: red;
+  margin-top: 10px;
+}
+
+.policyAddButton {
+  height: 40px;
+  width: 100px;
+  border-radius: 19px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(63, 115, 198);
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 460px;
 }

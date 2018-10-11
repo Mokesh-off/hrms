@@ -1,35 +1,30 @@
-import React, { Component } from 'react'
-import './Profile.css'
-
+import React, { Component } from 'react';
+import './Profile.css';
+import Modal from 'react-awesome-modal';
+import EditProfile from './EditProfile';
 export default class Profile extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      Data: JSON.parse(localStorage.getItem('Data'))
+      Data: JSON.parse(localStorage.getItem('Data')),
+      flag: false,
+      image: ''
     }
-    this.change = this.change.bind(this)
   }
 
-  change (e, i) {
-    var item = {
-      value: e.target.value,
-      name: e.target.name,
-      targetIndex: i
-    }
-
-    /* --    Storing values in LocalStorage    -- */
-
-    const newObject = this.state.Data.Employee.map((data, j) => {
-      for (var key in data) {
-        if (key === item.name && j === item.targetIndex) {
-          data[key] = item.value
-        }
-      }
-      return data
+  openModalView () {
+    this.setState({
+      visibleView: true
     })
-    this.setState({ [this.state.Data.Employee]: newObject })
-    localStorage.setItem('Data', JSON.stringify(this.state.Data))
   }
+
+  closeModalView () {
+    this.setState({
+      visibleView: false
+    })
+  }
+
+  /* --------UI part for User Profile -------- */
 
   render () {
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
@@ -43,49 +38,86 @@ export default class Profile extends React.Component {
             (data, i) =>
               data.EmpId === empId ? (
                 <div key={i}>
-                  <label>Employee Id</label>
-                  {data.EmpId} <br />
-                  <label>Employee Name</label>
-                  {data.EmpName}
-                  <br />
-                  <label>Employee Role</label>
-                  {data.Role}
-                  <br />
-                  <label>Employee Domain</label>
-                  {data.Dep} <br />
-                  <label>E-mail Id</label>
-                  {data.EmailId}
-                  <br />
-                  <label>Employee Password</label>
-                  {data.Password}
-                  <br />
-                  <label>Employee Contact Number</label>
-                  <textarea
-                    className='textArea'
-                    name='ContactNum'
-                    onChange={e => this.change(e, i)}
-                  >
-                    {data.ContactNum}
-                  </textarea>
-                  <br />
-                  <label>Date of Birth</label>
-                  {data.Dob} <br />
-                  <label>Date of Joining</label>
-                  {data.Doj} <br />
-                  <label>Employee Address</label>
-                  <textarea
-                    className='textArea'
-                    name='Address'
-                    onChange={e => this.change(e, i)}
-                  >
-                    {data.Address}
-                  </textarea>
+                  <div className='userForm'>
+                    <div className='imageProfile'>
+                      <img
+                        className='profileImage'
+                        src={require('../../Assets/images/profile_icon.png')}
+                      />
+                    </div>
+                    <hr />
+                    <div>
+                      <div>
+                        <label className='inputLabel'>Employee Id</label>
+                        <span className='input'>{data.EmpId}</span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>Employee Name</label>
+                        <span className='input'>{data.EmpName}</span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>Employee Role</label>
+                        <span className='input'> {data.Role}</span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>Employee Domain</label>
+                        <span className='input'>{data.Dep} </span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>E-mail Id</label>
+                        <span className='input'>{data.EmailId} </span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>Employee Password</label>
+                        <span className='input'> {data.Password}</span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>
+                          Employee Contact Number
+                        </label>
+                        <span className='input'> {data.ContactNum}</span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>Date of Birth</label>
+                        <span className='input'>{data.Dob} </span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>Date of Joining</label>
+                        <span className='input'> {data.Doj}</span>
+                      </div>
+                      <div>
+                        <label className='inputLabel'>Employee Address</label>
+                        <span className='input'>{data.Address}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 ''
               )
           )}
         </form>
+        <input
+          type='button'
+          className='requestProfileEditButton'
+          value='Request Profile Change'
+          onClick={() => this.openModalView()}
+        />
+        <Modal
+          visible={this.state.visibleView}
+          width='700'
+          height='400'
+          margin-bottom='20'
+          color='white'
+          onClickAway={() => this.closeModalView()}
+        >
+          <div id='modalEditProfile'>
+            <EditProfile />
+            <a href='javascript:void(0);' onClick={() => this.closeModalView()}>
+              X
+            </a>
+          </div>
+        </Modal>
       </div>
     )
   }

@@ -6,7 +6,6 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 class SideNav extends Component {
-  
   constructor (props) {
     super(props)
     this.state = {
@@ -16,17 +15,17 @@ class SideNav extends Component {
       cssShape: 'triangle-right',
       HomeCss: '',
       prevState: null,
-      currentUserRoleVar : JSON.parse(localStorage.getItem('currentUserRole'))
-    };
-    this.showButtonsFunction = this.showButtonsFunction.bind(this);
+      currentUserRoleVar: JSON.parse(localStorage.getItem('currentUserRole'))
+    }
+    this.showButtonsFunction = this.showButtonsFunction.bind(this)
   }
-  
-  showButtonsFunction() {
+
+  showButtonsFunction () {
     if (this.state.showButtons === 'sidenavHide') {
       this.setState({
         showButtons: (this.state.showButtons = 'sidenavDisplay sidenav'),
         cssShape: (this.state.cssShape = 'triangle-down')
-      });
+      })
     } else if (
       this.state.showButtons === 'sidenavDisplay sidenav' ||
       this.state.showButtons === 'sidenavDisplay'
@@ -34,16 +33,16 @@ class SideNav extends Component {
       this.setState({
         showButtons: (this.state.showButtons = 'sidenavHide'),
         cssShape: (this.state.cssShape = 'triangle-right')
-      });
+      })
     }
   }
 
-  componentWillMount() {
-    var visibilityVar = JSON.parse(localStorage.getItem('currentUserRole'));
+  componentWillMount () {
+    var visibilityVar = JSON.parse(localStorage.getItem('currentUserRole'))
     visibilityVar === 'Employee' &&
       this.setState({
         employeeVisibility: (this.state.employeeVisibility = 'employeeCss')
-      });
+      })
   }
 
   componentDidUpdate() {
@@ -96,21 +95,21 @@ class SideNav extends Component {
     }
 
   }
-  componentDidMount() {
+  componentDidMount () {
     if (window.location.pathname === '/dashboard') {
       this.setState({
         showButtons: (this.state.showButtons = 'sidenavHide'),
         cssShape: (this.state.cssShape = 'triangle-right')
-      });
+      })
     } else {
       this.setState({
         showButtons: (this.state.showButtons = 'sidenavDisplay'),
         cssShape: (this.state.cssShape = 'triangle-down')
-      });
+      })
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Header />
@@ -127,31 +126,32 @@ class SideNav extends Component {
             <Link to='/MyLeaves'>
               <button ref='MyLeaves'> My Leave </button>
             </Link>
-            <div id='divider'/>
+            <div id='divider' />
             <Link to='/addUser'>
               <button ref='addUser'> Add User </button>
             </Link>
-            <div id='divider'/>
+            <div id='divider' />
             <Link to='/leaveRecords'>
               <button ref='leaveRecord'> Leave Records </button>
             </Link>
-            <div id='divider'/>
+            <div id='divider' />
             <Link to='/LeavePolicy'>
               <button ref='LeavePolicy'> Leave Policy </button>
             </Link>
-            <div id='divider'/>
+            <div id='divider' />
             <Link to='/leaveplan'>
               <button ref='leaveplan'> Leave plan </button>
             </Link>
-            <div id='divider'/>
-
+            <div id='divider' />
+            <Link to='/approveProfile'>
+              <button ref='approveProfile'> Approve Profile </button>
+            </Link>
+            <div id='divider' />
           </div>
-          
-          :
+          : (
           <div className='sidenav'>
-
             <Link to='/dashboard'>
-                <button ref='dashboard'> Dashboard </button>
+              <button ref='dashboard'> Dashboard </button>
             </Link>
             <Link to='/leaverequest'>
               <button ref='leaverequest'> Leave Request </button>
@@ -165,9 +165,8 @@ class SideNav extends Component {
             <Link to='/leaveplan'>
               <button ref='leaveplan'> Leave plan </button>
             </Link>
-
-          </div>  
-        }
+          </div>
+        )}
 
         <Footer />
       </div>

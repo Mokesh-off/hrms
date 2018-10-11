@@ -5,15 +5,56 @@
   padding-bottom: 3%;
 }
 
-.profile label {
-  width: 30%;
-  margin-left: 320px;
-}
-
 .profile h1 {
   text-align: center;
 }
 
 .textArea {
   width: 200px;
+}
+
+.userForm {
+  display: inline-flex;
+}
+
+.profileImage {
+  height: 150px;
+  width: 150px;
+  margin-left: 100px;
+}
+.input {
+  margin-left: 100px;
+  width: 50%;
+  height: 50px;
+}
+
+.inputLabel {
+  margin-left: 100px;
+  width: 218px;
+}
+
+hr {
+  margin-left: 100px;
+}
+
+.requestProfileEditButton {
+  height: 40px;
+  width: 200px;
+  border-radius: 19px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(63, 115, 198);
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 460px;
+}
+
+#modalEditProfile > a {
+  text-decoration: none;
+  color: black;
+  position: relative;
+  left: 646px;
+  font-size: 25px;
+  top: -350px;
 }

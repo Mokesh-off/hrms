@@ -7,9 +7,32 @@ class LeavePlan extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      Holiday: JSON.parse(window.localStorage.getItem("Data"))
-    };
-    this.change = this.change.bind(this);
+      Holiday: JSON.parse(window.localStorage.getItem('Data')),
+      flag: false
+    }
+    this.change = this.change.bind(this)
+  }
+  delete (e, i) {
+    for (var j = 0; j <= this.state.Holiday.holidayList.length; j++) {
+      if (j === i) {
+        // console.log(j)
+        // console.log(i + '---------------------')
+        var date = this.state.Holiday.holidayList[i].date
+        console.log(date + '......................')
+        for (var k = 0; k <= this.state.Holiday.holidays.length; k++) {
+          if (this.state.Holiday.holidays[k] === date) {
+            console.log(this.state.Holiday.holidays[k], date)
+            this.state.Holiday.holidays.splice(k, 1)
+          }
+        }
+        this.state.Holiday.holidayList.splice(i, 1)
+        // window.location.reload('/leaveplan')
+      }
+      // console.log(JSON.stringify(this.state.Holiday.holidayList) + '--------- afr if')
+    }
+    // console.log(JSON.stringify(this.state.Holiday.holidayList) + '--------- afr for')
+    window.localStorage.setItem('Data', JSON.stringify(this.state.Holiday))
+    this.setState({ flag: true })
   }
   change (e, i) { // To Update the value to the Local Storage
     var item = {
@@ -58,46 +81,47 @@ class LeavePlan extends Component {
           </table>
         </div>
       )
-    } else {
+    } else if (role === 'Employer' || this.state.flag === true) {
       return (
         <div className='Leaveplan'>
           <table>
             <caption className='captions'>Holiday List</caption>
             <thead className='thead1'>
               <tr className='thead1'>
-                <td className='tr'>Dates</td>
-                <td className='tr'>days</td>
-                <td className='tr'>Occasion</td>
+                <td className='trE'>Dates</td>
+                <td className='trE'>days</td>
+                <td className='trE'>Occasion</td>
+                <td className='trE'>Action</td>
               </tr>
             </thead>
             <tbody>
               {
                 this.state.Holiday.holidayList.map((holiday, i) =>
-                  <tr key={holiday[i]} className='tr'>
-                    <td className='tr' >
-                      <textarea name='date' className='textarea'
-                        onChange={e => this.change(e, i)}>
-                        {holiday.date}
-                      </textarea>
+                  <tr key={holiday[i]} className='trE'>
+                    <td className='trE' >
+                      <input type='text' name='date' className='levtextarea'
+                        onChange={e => this.change(e, i)}
+                        value={holiday.date} />
                     </td>
-                    <td className='tr' >
-                      <textarea name='day' className='textarea'
-                        onChange={e => this.change(e, i)}>
-                        {holiday.day}
-                      </textarea>
+                    <td className='trE' >
+                      <input type='text' name='day' className='levtextarea'
+                        onChange={e => this.change(e, i)}
+                        value={holiday.day} />
                     </td>
-                    <td className='tr' >
-                      <textarea name='occasion' className='textarea'
-                        onChange={e => this.change(e, i)}>
-                        {holiday.occasion}
-                      </textarea>
+                    <td className='trE' >
+                      <input type='text' name='occasion' className='levtextarea'
+                        onChange={e => this.change(e, i)}
+                        value={holiday.occasion} />
+                    </td>
+                    <td className='trE'>
+                      <input type='button' onClick={e => this.delete(e, i)} className='levbutton' value='Delete' />
                     </td>
                   </tr>
                 )
               }
             </tbody>
           </table>
-          <Popup trigger={<button className='popUpButton' >Add</button>} modal>
+          <Popup trigger={<button className='levAddbutton' >Add</button>} modal>
             {
               close => (
                 <div id='sec'>

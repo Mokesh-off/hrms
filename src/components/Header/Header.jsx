@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import './Header.css'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import './Header.css';
+import { Link } from 'react-router-dom';
 class Header extends Component {
   constructor (props) {
     super(props)
@@ -35,7 +35,10 @@ class Header extends Component {
             </div>
           </Link>
           <div className='dropdown-content'>
-            <span onClick={this.logOutFunction}>Logout</span>
+            <div>
+              <Link to='/changepassword' className='changePass'> Change Password</Link>
+            </div>
+            <input type='button' className='logoutbutton' onClick={this.logOutFunction} value='Logout' />
           </div>
         </div>
       </div>

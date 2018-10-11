@@ -1,0 +1,62 @@
+#modal > a {
+  text-decoration: none;
+  color: black;
+  position: relative;
+  top: 10px;
+  left: 740px;
+  font-size: 25px;
+}
+
+.policySubmitButton {
+  height: 40px;
+  width: 100px;
+  border-radius: 19px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(63, 115, 198);
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 460px;
+}
+
+.popUpAdd {
+  margin-top: 40px;
+}
+
+.popUpAddName > label {
+  margin: 10px;
+  width: 30%;
+}
+.popUpAddDays > label {
+  margin: 10px;
+  width: 30%;
+}
+.popUpAddTerms > label {
+  margin: 10px;
+  width: 30%;
+}
+
+.popUpAddName > input {
+  width: 60%;
+  padding: 11px;
+  border: 1px solid #d5c9c9;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.popUpAddDays > input {
+  width: 60%;
+  padding: 11px;
+  border: 1px solid #d5c9c9;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.popUpAddTerms > input {
+  width: 60%;
+  padding: 11px;
+  border: 1px solid #d5c9c9;
+  border-radius: 4px;
+  margin-left: 10px;
+}
