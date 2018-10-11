@@ -24,7 +24,7 @@ class LeaveRequests extends Component {
   }
   closePopup (e) {
     var index = this.state.index
-    this.setState({ open: false }, () => (this.delete(index)))
+    // this.setState({ open: false }, () => (this.delete(index)))
   }
   // Onclicking view button select the respective request to see the details
   sendReqId (e, i) {
@@ -58,7 +58,7 @@ class LeaveRequests extends Component {
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true, index: i })
     this.setState({ status: 'Rejected' })
-    // this.delete(index)
+    this.delete(index)
     console.log()
   }
 
@@ -112,7 +112,7 @@ class LeaveRequests extends Component {
     this.setState({ status: 'Approved' })
     this.reduceLeaves(index)
     this.setState({ open: true, index: i })
-    // this.delete(index)
+    this.delete(index)
   }
 
   selectAll (e) {
@@ -134,18 +134,22 @@ class LeaveRequests extends Component {
         this.state.checkedValue.push(inputElements[i].getAttribute('data-id'))
       }
     }
-    for (var i = 0; i < this.state.checkedValue.length; ++i) {
-      let index = parseInt(this.state.checkedValue[i])
-      let newState = Object.assign({}, this.state)
-      newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
-      window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    if (this.state.checkedValue.length > 0) {
+      for (var i = 0; i < this.state.checkedValue.length; ++i) {
+        let index = parseInt(this.state.checkedValue[i])
+        let newState = Object.assign({}, this.state)
+        newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
+        window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+      }
+      this.setState({ open: true, status: 'Rejected' })
+      for (var i = 0; i < this.state.checkedValue.length; ++i) {
+        let index = parseInt(this.state.checkedValue[i])
+        this.delete(index)
+      }
+      this.setState({ checkedValue: [] })
+    } else {
+      alert('Select record first')
     }
-    this.setState({ open: true, status: 'Rejected' })
-    for (var i = 0; i < this.state.checkedValue.length; ++i) {
-      let index = parseInt(this.state.checkedValue[i])
-      this.delete(index)
-    }
-    this.setState({ checkedValue: [] })
   }
   // *********************************************************
   approveAll (e) {
@@ -155,19 +159,23 @@ class LeaveRequests extends Component {
         this.state.checkedValue.push(inputElements[i].getAttribute('data-id'))
       }
     }
-    for (var i = 0; i < this.state.checkedValue.length; ++i) {
-      let index = parseInt(this.state.checkedValue[i])
-      let newState = Object.assign({}, this.state)
-      newState.LeaveRecord.leaveRequest[index].status = 'Approved'
-      window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
-      this.reduceLeaves(index)
+    if (this.state.checkedValue.length > 0) {
+      for (var i = 0; i < this.state.checkedValue.length; ++i) {
+        let index = parseInt(this.state.checkedValue[i])
+        let newState = Object.assign({}, this.state)
+        newState.LeaveRecord.leaveRequest[index].status = 'Approved'
+        window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+        this.reduceLeaves(index)
+      }
+      this.setState({ open: true, status: 'Approved' })
+      for (var i = 0; i < this.state.checkedValue.length; ++i) {
+        let index = parseInt(this.state.checkedValue[i])
+        this.delete(index)
+      }
+      this.setState({ checkedValue: [] })
+    }else{
+      alert('Select record first')
     }
-    this.setState({ open: true, status: 'Approved' })
-    for (var i = 0; i < this.state.checkedValue.length; ++i) {
-      let index = parseInt(this.state.checkedValue[i])
-      this.delete(index)
-    }
-    this.setState({ checkedValue: [] })
   }
 
   render () {

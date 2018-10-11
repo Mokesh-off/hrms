@@ -42,11 +42,11 @@ class LeaveRecord extends Component {
   }
 
   getNewRecord () {
-    if (this.state.FromDate._d >= this.state.ToDate._d) {
+    if (this.state.FromDate._d > this.state.ToDate._d) {
       alert('Fromdate should proper...')
     } else {
       this.setState({ newRecord: [] }, () => {
-        this.state.LeaveRecord.leaveRequest.map((record, i) => {
+        this.state.LeaveRecord.leaveRequest.map((record, _i) => {
           var fromDate = record.ReqestId.substr(0, 10)
           console.log('fromdate -----------' + fromDate)
           if (this.validateDate(fromDate)) {
@@ -71,72 +71,115 @@ class LeaveRecord extends Component {
     this.setState({ ToDate: date })
   }
 
-  closePopup (e) {
+  closePopup (_e) {
     this.setState({ open: false })
   }
-  sendReqId (e, i) {
+  sendReqId (_e, i) {
     localStorage.setItem('currentRequestID', i)
   }
 
-  changeToReject (e, i) {
+  changeToReject (_e, i) {
     let newState = Object.assign({}, this.state)
     // console.log(newState)
     let index = i
     newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
+    let id = parseInt(this.state.LeaveRecord.leaveRequest[index].EmpId)
+    let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
+    let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Rejected' })
+    this.addLeaves(id, type, days)
   }
   // Approve leave request
-  changeToApprove (e, i) {
+  changeToApprove (_e, i) {
     let newState = Object.assign({}, this.state)
     console.log(newState)
     let index = i
     newState.LeaveRecord.leaveRequest[index].status = 'Approved'
+    let id = parseInt(this.state.LeaveRecord.leaveRequest[index].EmpId)
+    let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
+    let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true })
     this.setState({ status: 'Approved' })
-    this.reduceLeaves(index)
+    this.reduceLeaves(id, type, days)
   }
 
   // Reduce number of days from employee's pending leaves, if request is approved
-  reduceLeaves (index) {
-    let emp = parseInt(this.state.LeaveRecord.leaveRequest[index].EmpId, 10)
-    let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
-    let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
-    let leave = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.Planed
-    let leave1 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.LOP
-    let leave2 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.Sick
-    let leave3 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.PriL
+  reduceLeaves (id, type, days) {
+    let data = this.state.LeaveRecord.Employee
+    let leave, leave1, leave2, leave3
     let newState = Object.assign({}, this.state)
-    // alert(emp + "" + type)
-    const newObject = this.state.LeaveRecord.Employee.map((data, i) => {
-    // Compare employee ID and change the respective pending leaves
-      if (data.EmpId === emp) {
+
+    for (var i = 0; i < data.length; ++i) {
+      if (data[i].EmpId === id) {
+        leave = data[i].PendingLeaves.Planed
+        leave1 = data[i].PendingLeaves.LOP
+        leave2 = data[i].PendingLeaves.Sick
+        leave3 = data[i].PendingLeaves.PriL
         if (type === 'Casual Leave') {
           leave = leave - days
           leave > 0 ? leave = leave : leave = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Planed = leave
+          newState.LeaveRecord.Employee[i].PendingLeaves.Planed = leave
         }
         if (type === 'Emergency leave') {
           leave1 = leave1 - days
           leave1 > 0 ? leave1 = leave1 : leave1 = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.LOP = leave1
+          newState.LeaveRecord.Employee[i].PendingLeaves.LOP = leave1
         }
         if (type === 'Sick leave') {
           leave2 = leave2 - days
           leave2 > 0 ? leave2 = leave2 : leave2 = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Sick = leave2
+          newState.LeaveRecord.Employee[i].PendingLeaves.Sick = leave2
         }
         if (type === 'Earned Leave') {
           leave3 = leave3 - days
           leave3 > 0 ? leave3 = leave3 : leave3 = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.PriL = leave3
+          newState.LeaveRecord.Employee[i].PendingLeaves.PriL = leave3
         }
+        this.setState({ [this.state.LeaveRecord.Employee]: newState })
+        localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
       }
-    })
-    this.setState({ [this.state.LeaveRecord.Employee]: newObject })
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    }
+  }
+
+  // Reduce number of days from employee's pending leaves, if request is approved
+  addLeaves (id, type, days) {
+    let data = this.state.LeaveRecord.Employee
+    let leave, leave1, leave2, leave3
+    let newState = Object.assign({}, this.state)
+
+    for (var i = 0; i < data.length; ++i) {
+      if (data[i].EmpId === id) {
+        leave = data[i].PendingLeaves.Planed
+        leave1 = data[i].PendingLeaves.LOP
+        leave2 = data[i].PendingLeaves.Sick
+        leave3 = data[i].PendingLeaves.PriL
+        if (type === 'Casual Leave') {
+          leave = leave + days
+          // leave > 10 ? leave = leave : leave = 0
+          newState.LeaveRecord.Employee[i].PendingLeaves.Planed = leave
+        }
+        if (type === 'Emergency leave') {
+          leave1 = leave1 + days
+          // leave1 > 10 ? leave1 = leave1 : leave1 = 0
+          newState.LeaveRecord.Employee[i].PendingLeaves.LOP = leave1
+        }
+        if (type === 'Sick leave') {
+          leave2 = leave2 + days
+          // leave2 > 10 ? leave2 = leave2 : leave2 = 0
+          newState.LeaveRecord.Employee[i].PendingLeaves.Sick = leave2
+        }
+        if (type === 'Earned Leave') {
+          leave3 = leave3 + days
+          // leave3 > 10 ? leave3 = leave3 : leave3 = 0
+          newState.LeaveRecord.Employee[i].PendingLeaves.PriL = leave3
+        }
+        this.setState({ [this.state.LeaveRecord.Employee]: newState })
+        localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+      }
+    }
   }
 
   render () {
@@ -149,35 +192,43 @@ class LeaveRecord extends Component {
 
     return (
       <div className='leaveRecord'>
-        <button onClick={e => this.getNewRecord()}>Get</button> <span>&nbsp;</span>
-        {/* <button onClick={e => this.getAllRecord()}>All</button> */}
-        Fromdate
-        <div className='displayDate' value={this.state.FromDate} name='From' >
-          <DatePicker className='Dp'
-            selected={this.state.FromDate}
-            showYearDropdown
-            scrollableYearDropdown
-            dateFormat='DD/MM/YYYY'
-            showDisabledMonthNavigation
-            onChange={e => this.DateFromChange(e)}
-            yearDropdownItemNumber={2}
-            isClearable
-            placeholderText='Select a weekday'
-            name='From' />
-        </div><span>&nbsp;</span>
-        Todate
-        <div className='displayDate2' name='To' value={this.state.ToDate}>
-          <DatePicker className='Dp'
-            selected={this.state.ToDate}
-            showYearDropdown
-            dateFormat='DD/MM/YYYY'
-            onChange={e => this.DateToChange(e)}
-            scrollableYearDropdown
-            showDisabledMonthNavigation
-            yearDropdownItemNumber={2}
-            isClearable
-            placeholderText='Select a weekday'
-            name='To' />
+        <div className='head'><h2>Leave Record</h2></div>
+        <div className='row'>
+          <div className='col'>
+            <div className='col2'><label>From Date</label></div>
+            <div className='displayDate' value={this.state.FromDate} name='From' >
+              <div className='col'><DatePicker className='Dp'
+                selected={this.state.FromDate}
+                showYearDropdown
+                scrollableYearDropdown
+                dateFormat='DD/MM/YYYY'
+                showDisabledMonthNavigation
+                onChange={e => this.DateFromChange(e)}
+                yearDropdownItemNumber={2}
+                isClearable
+                placeholderText='Select a weekday'
+                name='From' />
+              </div>
+            </div>
+          </div>
+          <div className='col'>
+            <div className='col2'><label>To Date</label></div>
+            <div className='displayDate' name='To' value={this.state.ToDate}>
+              <div className='col'><DatePicker className='Dp'
+                selected={this.state.ToDate}
+                showYearDropdown
+                dateFormat='DD/MM/YYYY'
+                onChange={e => this.DateToChange(e)}
+                scrollableYearDropdown
+                showDisabledMonthNavigation
+                yearDropdownItemNumber={2}
+                isClearable
+                placeholderText='Select a weekday'
+                name='To' />
+              </div>
+            </div>
+          </div>
+          <div className='col'> <button onClick={() => this.getNewRecord()} className='get'>Search</button></div>
         </div>
         <table>
           <thead className='thead1'>
@@ -186,6 +237,8 @@ class LeaveRecord extends Component {
               <td className='tdStyle'>EmpName</td>
               <td className='tdStyle'>Applied On</td>
               <td className='tdStyle'>LeaveType</td>
+              <td className='tdStyle'>From Date / To Date</td>
+              <td className='tdStyle'>Days</td>
               <td className='tdStyle'>status</td>
               <td className='tdStyle'>LeaveReason</td>
               <td className='tdStyle'>Action</td>
@@ -200,6 +253,8 @@ class LeaveRecord extends Component {
                     <td className='tdStyle'>{record.EmpName}</td>
                     <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
+                    <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
+                    <td className='tdStyle'>{record.TotalDays}</td>
                     <td className='tdStyle'>{record.status}</td>
                     <td className='tdStyle'>{record.LeaveReason}</td>
                     <td className='tdStyle'>
@@ -211,6 +266,8 @@ class LeaveRecord extends Component {
                     <td className='tdStyle'>{record.EmpName}</td>
                     <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
+                    <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
+                    <td className='tdStyle'>{record.TotalDays}</td>
                     <td className='tdStyle'>{record.status}</td>
                     <td className='tdStyle'>{record.LeaveReason}</td>
                     <td className='tdStyle'>

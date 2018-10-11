@@ -22,14 +22,14 @@
    cursor: pointer;
  }
  .RejectButton:hover {
-   background-color: red;
+   background-color:#d43f3a;
   cursor: pointer;
   color: white;
 
  }
 
  .ApproveButton:hover {
-  background-color: green;
+  background-color: #398439;
   cursor: pointer;
   color: white;
   

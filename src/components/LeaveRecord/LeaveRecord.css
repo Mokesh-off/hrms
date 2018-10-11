@@ -1,3 +1,6 @@
+* {
+	box-sizing: border-box;
+}
 .rightComponent{
   margin-top: 50px;
   margin-left: 15vw;
@@ -16,3 +19,44 @@
 	border: 1px solid #ddd !important;
 	padding: 8px;
 }
+.react-datepicker__close-icon {
+	top: 3px;
+	left:134px;
+}
+.row{
+    /* margin-right: -15px; */
+		margin-left: 1px;
+}
+.displayDate{
+	float: left;
+	width: 30%;
+	padding: 10px;
+	}
+	.col{
+		float: left;
+		width: 32%;
+		padding: 10px;
+		}
+		.col2{
+			margin-top: 13px;
+			float: left;
+			width: 32%;
+			padding: 10px;
+			}
+			.get{
+				width: 67px;
+				margin-top: 10px;
+				height: 40px;
+				border-radius: 12px;
+				border: none;
+				font-weight: bold;
+				background-color: rgb(63, 115, 198);
+				color: white;
+		}
+
+
+
+
+
+
+	

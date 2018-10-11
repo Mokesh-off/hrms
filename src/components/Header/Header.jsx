@@ -34,10 +34,12 @@ class Header extends Component {
               <div className='profile-name'>{userName}</div>
             </div>
           </Link>
+         
           <div className='dropdown-content'>
             <div>
               <Link to='/changepassword' className='changePass'> Change Password</Link>
             </div>
+            <div id='divider'/>
             <input type='button' className='logoutbutton' onClick={this.logOutFunction} value='Logout' />
           </div>
         </div>

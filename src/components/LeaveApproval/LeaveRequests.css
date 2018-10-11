@@ -23,3 +23,7 @@
   margin-left: 50%;
   position: fixed;
 }
+input[type="checkbox"]{
+  width: 25px; 
+  height: 25px; 
+}
