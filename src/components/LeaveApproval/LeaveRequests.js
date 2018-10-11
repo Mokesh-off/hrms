@@ -208,8 +208,8 @@ class LeaveRequests extends Component {
         // List of leave requests
         <div className='leaveRecord'>
           <div>
-            <button className='LevReqbutton RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
-            <button className='LevReqbutton ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
+            <button className=' RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
+            <button className=' ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
           </div>
           <table>
             <thead className='thead1'>
