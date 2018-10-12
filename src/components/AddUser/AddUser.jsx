@@ -41,14 +41,8 @@ class AddUser extends Component {
       [e.target.name]: e.target.value
     });
   }
-<<<<<<< HEAD
   reset () {
     window.location.assign('/addUser')
-=======
-  reset() {
-    console.log("reset called");
-    window.location.assign("/addUser");
->>>>>>> develop
   }
 
   validate() {
