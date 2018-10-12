@@ -107,29 +107,16 @@ class AddUser extends Component {
     return true;
   }
 
-<<<<<<< HEAD
   onSubmit (e) {
     e.preventDefault()
-=======
-  onSubmit(e) {
-    console.log("state ..........     " + JSON.stringify(this.state));
-    e.preventDefault();
->>>>>>> develop
     if (this.validate()) {
       this.setState({ validation: true });
       var Data = JSON.parse(window.localStorage.getItem("Data"));
 
       if (Data.Employee) {
-<<<<<<< HEAD
         Data.Employee[Data.Employee.length] = this.state
         window.localStorage.setItem('Data', JSON.stringify(Data))
         alert('New user added')
-=======
-        Data.Employee[Data.Employee.length] = this.state;
-        window.localStorage.setItem("Data", JSON.stringify(Data));
-        console.log("new Employee added");
-        alert("New user added");
->>>>>>> develop
       } else {
         Data["Employee"] = [];
         Data.Employee[Data.Employee.length] = this.state;
@@ -139,7 +126,6 @@ class AddUser extends Component {
     }
   }
 
-<<<<<<< HEAD
   render () {
     if(!localStorage.getItem('currentUserId'))
     {
@@ -149,9 +135,6 @@ class AddUser extends Component {
     }
     else{
     
-=======
-  render() {
->>>>>>> develop
     return (
       <div id="addUserContainer">
         <div className="addUserMainContainer">
