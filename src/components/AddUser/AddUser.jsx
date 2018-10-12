@@ -42,7 +42,6 @@ class AddUser extends Component {
     })
   }
   reset () {
-    console.log('reset called')
     window.location.assign('/addUser')
   }
 
@@ -83,7 +82,6 @@ class AddUser extends Component {
   }
 
   onSubmit (e) {
-    console.log('state ..........     ' + JSON.stringify(this.state))
     e.preventDefault()
     if (this.validate()) {
       this.setState({ validation: true })
@@ -92,7 +90,6 @@ class AddUser extends Component {
       if (Data.Employee) {
         Data.Employee[Data.Employee.length] = this.state
         window.localStorage.setItem('Data', JSON.stringify(Data))
-        console.log('new Employee added')
         alert('New user added')
       } else {
         Data['Employee'] = []
@@ -104,6 +101,14 @@ class AddUser extends Component {
   };
 
   render () {
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
+    
     return (
       <div id='addUserContainer'>
 
@@ -146,7 +151,7 @@ class AddUser extends Component {
                   {/* <input className='box' list='Role'name='Role'
                 onChange={e=>this.change(e)} /> */}
                   <select id='Role' list='Role'name='Role'
-                    value={this.state.Dep}
+                    value={this.state.Role}
                     onChange={e => this.change(e)}>
                     <option value='' disabled> select your option </option>
                     <option value='Employee'> Employee </option>
@@ -205,9 +210,7 @@ class AddUser extends Component {
               <div className='row'>
                 <div className='left'>Working location:</div>
                 <div className='right'>
-                  {/* <input className='box' list='wl'name='wl'
-                onChange={e=>this.change(e)} /> */}
-                  <select id='wl' list='wl'name='wl' value={this.state.Dep}
+                  <select id='wl' list='wl'name='wl' value={this.state.wl}
                     onChange={e => this.change(e)} >
                     <option value='' disabled> select your option </option>
                     <option value='Chennai'>Chennai</option>
@@ -243,6 +246,7 @@ class AddUser extends Component {
         </div>
       </div>
     )
+    }
   }
 }
 export default AddUser

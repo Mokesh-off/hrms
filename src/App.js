@@ -15,46 +15,10 @@ import LeaveRecord from './components/LeaveRecord/LeaveRecord';
 import AddUser from './components/AddUser/AddUser';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 import EditProfileApproval from './components/Profile/EditProfileApproval';
+import NoMatch from './components/NoMatch/NoMatch';
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      authenticated:'false'
-    }
-    //this.state.authenticated = this.state.authenticated.bind(this)
-  }
-  componentWillMount() {
-    
-    console.log('Component WILL MOUNT!')
- }
- componentDidMount() {
-  if(localStorage.getItem('currentUserId'))
-  {
-    console.log(this.state.authenticated+'before')
-    this.setState({authenticated : this.state.authenticated = true})
-    console.log(this.state.authenticated+'after')
-  }
-    console.log('Component DID MOUNT!')
- }
- componentWillReceiveProps(newProps) {    
-    console.log('Component WILL RECIEVE PROPS!')
- }
- shouldComponentUpdate(newProps, newState) {
-    return true;
- }
- componentWillUpdate(nextProps, nextState) {
-    console.log('Component WILL UPDATE!');
- }
-
- componentWillUnmount() {
-    console.log('Component WILL UNMOUNT!')
- }
-  componentDidUpdate(){
-    console.log('routing ----------------------')
-  }
   render () {
-console.log(this.state.authenticated+'auth')
     return (
       <div>
         <Router>
@@ -121,6 +85,7 @@ console.log(this.state.authenticated+'auth')
                   path='/approveProfile'
                   component={EditProfileApproval}
                 />
+                <Route component={NoMatch} />
               </Switch>
             </div>
           </div>

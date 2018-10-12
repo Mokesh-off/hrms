@@ -203,9 +203,9 @@ class LeaveRecord extends Component {
               data.map((record, i) =>
                 record.status === 'Approved'
                   ? <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>{record.EmpId}</td>
+                    <td className='tdStyle'>{ ()=>{parseInt(record.EmpId)} }</td>
                     <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
+                    <td className='tdStyle'>{record.EmpId.substr(1,(record.EmpId.length-2))}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
                     <td className='tdStyle'>{record.status}</td>
                     <td className='tdStyle'>{record.LeaveReason}</td>
@@ -214,7 +214,7 @@ class LeaveRecord extends Component {
                     </td>
                   </tr>
                   : <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>{record.EmpId}</td>
+                    <td className='tdStyle'>{record.EmpId.substr(1,(record.EmpId.length-2))}</td>
                     <td className='tdStyle'>{record.EmpName}</td>
                     <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
