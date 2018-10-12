@@ -1,19 +1,40 @@
 .profileEditButton {
   height: 40px;
   width: 100px;
-  border-radius: 19px;
+  border-radius: 11px;
   border: none;
   font-weight: bold;
-  background-color: rgb(63, 115, 198);
-  color: white;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-left: 280px;
+  margin-left: 300px;
+}
+
+.profileEditButton:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.popUpAddress {
+  margin-left: 23px;
+  margin-top: 34px;
+}
+
+.popUpAddProfile {
+  margin-top: 95px;
 }
 
 .popUpAddress > label {
-  margin: 10px;
+  float: left;
   width: 40%;
+  margin-top: 4px;
+}
+
+.popUpAddress > span {
+  margin-left: 15px;
 }
 
 .popUpAddress > input {

@@ -47,45 +47,45 @@ export default class Profile extends React.Component {
                     </div>
                     <hr />
                     <div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Employee Id</label>
                         <span className='input'>{data.EmpId}</span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Employee Name</label>
                         <span className='input'>{data.EmpName}</span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Employee Role</label>
                         <span className='input'> {data.Role}</span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Employee Domain</label>
                         <span className='input'>{data.Dep} </span>
                       </div>
-                      <div>
-                        <label className='inputLabel'>E-mail Id</label>
-                        <span className='input'>{data.EmailId} </span>
+                      <div className='profileInfoEmail'>
+                        <label className='inputLabelEmail'>E-mail Id</label>
+                        <span className='inputEmail'>{data.EmailId} </span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Employee Password</label>
                         <span className='input'> {data.Password}</span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>
                           Employee Contact Number
                         </label>
                         <span className='input'> {data.ContactNum}</span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Date of Birth</label>
                         <span className='input'>{data.Dob} </span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Date of Joining</label>
                         <span className='input'> {data.Doj}</span>
                       </div>
-                      <div>
+                      <div className='profileInfo'>
                         <label className='inputLabel'>Employee Address</label>
                         <span className='input'>{data.Address}</span>
                       </div>
@@ -100,7 +100,7 @@ export default class Profile extends React.Component {
         <input
           type='button'
           className='requestProfileEditButton'
-          value='Request Profile Change'
+          value='Profile Change Request'
           onClick={() => this.openModalView()}
         />
         <Modal
