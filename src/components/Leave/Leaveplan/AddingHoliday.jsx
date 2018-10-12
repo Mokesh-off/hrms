@@ -122,7 +122,12 @@ class AddingHoliday extends Component {
             <label htmlFor='Occasion'>Occasion : </label>
           </div>
           <div>
-            <textarea type='text' name='occasion' onChange={this.change} className='addText' />
+            <textarea
+              type='text'
+              name='occasion'
+              onChange={this.change}
+              className='addText'
+            />
           </div>
         </div>
         <input

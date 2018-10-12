@@ -45,38 +45,39 @@ class SideNav extends Component {
       })
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
+    if (this.state.currentUserRoleVar === 'Employer') {
+      ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
+      ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '';
+      ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '';
+      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '';
+      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '';
+      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
+      ReactDOM.findDOMNode(this.refs.addUser).style.background = '';
+      ReactDOM.findDOMNode(this.refs.approveProfile).style.background = '';
 
-      if(this.state.currentUserRoleVar==='Employer'){
-
-        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
-        ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '';
-        ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '';
-        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '';
-        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '';
-        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
-        ReactDOM.findDOMNode(this.refs.addUser).style.background = '';
-
-        if (window.location.pathname === '/leaveRecords') {
-          ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '#EDEDED';
-        } else if (window.location.pathname === '/leaverequest') {
-          ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '#EDEDED';
-        } else if (window.location.pathname === '/dashboard') {
-          ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED';
-        } else if (window.location.pathname === '/MyLeaves') {
-          ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED';
-        } else if (window.location.pathname === '/LeavePolicy') {
-          ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '#EDEDED';
-        } else if (window.location.pathname === '/leaveplan') {
-          ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED';
-        } else if (window.location.pathname === '/addUser') {
-          ReactDOM.findDOMNode(this.refs.addUser).style.background = '#EDEDED';
-        }
-
+      if (window.location.pathname === '/leaveRecords') {
+        ReactDOM.findDOMNode(this.refs.leaveRecord).style.background =
+          '#EDEDED';
+      } else if (window.location.pathname === '/leaverequest') {
+        ReactDOM.findDOMNode(this.refs.leaverequest).style.background =
+          '#EDEDED';
+      } else if (window.location.pathname === '/dashboard') {
+        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED';
+      } else if (window.location.pathname === '/MyLeaves') {
+        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED';
+      } else if (window.location.pathname === '/LeavePolicy') {
+        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background =
+          '#EDEDED';
+      } else if (window.location.pathname === '/leaveplan') {
+        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED';
+      } else if (window.location.pathname === '/addUser') {
+        ReactDOM.findDOMNode(this.refs.addUser).style.background = '#EDEDED';
+      } else if (window.location.pathname === '/approveProfile') {
+        ReactDOM.findDOMNode(this.refs.approveProfile).style.background =
+          '#EDEDED';
       }
-
-    else if(this.state.currentUserRoleVar==='Employee'){
-
+    } else if (this.state.currentUserRoleVar === 'Employee') {
       ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
       ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '';
       ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '';
@@ -87,13 +88,12 @@ class SideNav extends Component {
       } else if (window.location.pathname === '/MyLeaves') {
         ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED';
       } else if (window.location.pathname === '/LeavePolicy') {
-        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background =
+          '#EDEDED';
       } else if (window.location.pathname === '/leaveplan') {
         ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED';
       }
-
     }
-
   }
   componentDidMount () {
     if (window.location.pathname === '/dashboard') {
@@ -113,10 +113,8 @@ class SideNav extends Component {
     return (
       <div>
         <Header />
-        {
-          (this.state.currentUserRoleVar==='Employer') ?
+        {this.state.currentUserRoleVar === 'Employer' ? (
           <div className='sidenav'>
-
             <Link to='/dashboard'>
               <button ref='dashboard'> Dashboard </button>
             </Link>
@@ -148,7 +146,7 @@ class SideNav extends Component {
             </Link>
             <div id='divider' />
           </div>
-          : (
+        ) : (
           <div className='sidenav'>
             <Link to='/dashboard'>
               <button ref='dashboard'> Dashboard </button>

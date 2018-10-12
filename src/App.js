@@ -26,63 +26,65 @@ class App extends Component {
             <SideNav />
             <div>
               <Switch>
-                <Route exact strict path='/' component={Login} />
-                <Route exact strict path='/dashboard' component={Dashboard} />
+                <Route exact strict path="/" component={Login} />
+                <Route exact strict path="/dashboard" component={Dashboard} />
                 <Route
                   exact
                   strict
-                  path='/leavelist'
+                  path="/leavelist"
                   component={LeaveRequests}
                 />
 
-                
-                <Route exact strict
-                  path='/leaverequest' component={ LeaveRequest } />
-                
+                <Route
+                  exact
+                  strict
+                  path="/leaverequest"
+                  component={LeaveRequest}
+                />
 
                 <Route
                   exact
                   strict
-                  path='/myLeaves'
+                  path="/myLeaves"
                   component={MyLeavesIndex}
                 />
 
                 <Route
                   exact
                   strict
-                  path='/pendingleaves'
+                  path="/pendingleaves"
                   component={PendingLeaves}
                 />
                 <Route
                   exact
                   strict
-                  path='/leaveRecords'
+                  path="/leaveRecords"
                   component={LeaveRecord}
                 />
                 <Route
                   exact
                   strict
-                  path='/leaveplan'
+                  path="/leaveplan"
                   component={HolidayIndex}
                 />
                 <Route
                   exact
                   strict
-                  path='/leavePolicy'
+                  path="/leavePolicy"
                   component={LeavePolicy}
                 />
-                <Route exact strict path='/profile' component={Profile} />
+                <Route exact strict path="/profile" component={Profile} />
                 <Route
                   exact
                   strict
-                  path='/changepassword'
+                  path="/changepassword"
                   component={ChangePassword}
                 />
-                <Route exact strict path='/addUser' component={AddUser} />
+                <Route exact strict path="/addUser" component={AddUser} />
                 <Route
                   exact
                   strict
-                  path='/approveProfile'
+                  path="/approveProfile"
                   component={EditProfileApproval}
                 />
                 <Route component={NoMatch} />
@@ -91,8 +93,8 @@ class App extends Component {
           </div>
         </Router>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
