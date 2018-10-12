@@ -11,6 +11,7 @@ class LeaveRequests extends Component {
       deletedRow: [],
       open: false,
       ischecked: false,
+      allchecked: false,
       checkedValue: [],
       index: ''
     }
@@ -119,6 +120,7 @@ class LeaveRequests extends Component {
     var inputElements = document.getElementsByClassName('selectcheckbox')
     for (var i = 0; inputElements[i]; ++i) {
       inputElements[i].checked = true
+      this.setState({ ischecked: (this.state.ischecked = true) })
     }
   }
   clearAll (e) {
@@ -175,93 +177,140 @@ class LeaveRequests extends Component {
     }
     this.setState({ checkedValue: [] })
   }
+  check () {
+    this.setState(
+      { allchecked: !this.state.allchecked },
+      () => (this.state.allchecked ? this.selectAll() : this.clearAll())
+    )
+  }
+  ischeck () {
+    this.setState({
+      ischecked: (this.state.ischecked = !this.state.ischecked)
+    })
+    var inputElements = document.getElementsByClassName('selectcheckbox')
+    var allcheck = document.getElementById('Id')
+    var len = inputElements.length
+    var count = 0
+    for (var i = 0; inputElements[i]; ++i) {
+      count++
+      if (inputElements[i].checked === false) {
+        allcheck.checked = false
+        count--
+      }
+    }
+    if (count === len) {
+      allcheck.checked = true
+    }
+  }
 
   render () {
     let data = JSON.parse(localStorage.getItem('Data'))
-    if (data.leaveRequest) {
-      return (
-        // List of leave requests
-        <div className='leaveRecord'>
-          <div>
-            <button onClick={e => this.selectAll(e)} ref='select'>
-              SelectAll
-            </button>
-            <button onClick={e => this.clearAll(e)} ref='clear'>
-              clearAll
-            </button>
-            <button onClick={e => this.rejectAll(e)}>Reject</button>
-            <button onClick={e => this.approveAll(e)}>Approve</button>
-          </div>
-          <table>
-            <thead className='thead1'>
-              <tr className='thead1'>
-                <td className='tdStyle'>&nbsp;</td>
-                <td className='tdStyle'>EmpID</td>
-                <td className='tdStyle'>EmpName</td>
-                <td className='tdStyle'>Applied On</td>
-                <td className='tdStyle'>LeaveType</td>
-                <td className='tdStyle'>From Date</td>
-                <td className='tdStyle'>To Date</td>
-                <td className='tdStyle'>Days</td>
-                <td className='tdStyle'>Reason</td>
-                <td className='tdStyle'>Action</td>
-              </tr>
-            </thead>
-            <tbody>
-              {data.leaveRequest.map((record, i) => {
-                return this.state.deletedRow.indexOf(record.ReqestId) === -1 ? (
-                  <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>
-                      <input
-                        type='checkbox'
-                        data-id={i}
-                        className='selectcheckbox'
-                        defaultChecked={this.state.ischecked}
-                      />
-                    </td>
-                    <td className='tdStyle'>{record.EmpId}</td>
-                    <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.LeaveType}</td>
-                    <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.TotalDays}</td>
-                    <td className='tdStyle'>{record.LeaveReason}</td>
-                    <td className='tdStyle'>
-                      <button
-                        className='RejectButton'
-                        onClick={e => this.changeToReject(e, i)}
-                      >
-                        Reject
-                      </button>
-                      <span>&nbsp;</span>
-                      <button
-                        className='ApproveButton'
-                        onClick={e => this.changeToApprove(e, i)}
-                      >
-                        Approve
-                      </button>
-                    </td>
-                  </tr>
-                ) : (
-                  ''
-                )
-              })}
-            </tbody>
-          </table>
-          <Popup open={this.state.open} closeOnDocumentClick modal>
+    if (!localStorage.getItem('currentUserId')) {
+      return window.location.replace('/')
+    } else {
+      if (data.leaveRequest) {
+        return (
+          // List of leave requests
+          <div className='leaveRecord'>
             <div>
-              <span>{this.state.status} successfully</span>
-              <br />
-              <button className='button' onClick={e => this.closePopup(e)}>
-                OK
+              <button
+                className=' RejectButton'
+                onClick={e => this.rejectAll(e)}
+              >
+                Reject
+              </button>
+              <button
+                className=' ApproveButton'
+                onClick={e => this.approveAll(e)}
+              >
+                Approve
               </button>
             </div>
-          </Popup>
-        </div>
-      )
-    } else {
-      return <div className='noRequset'>No requests</div>
+            <table>
+              <thead className='thead1'>
+                <tr className='thead1'>
+                  <td className='tdStyle'>
+                    <input
+                      type='checkbox'
+                      id='Id'
+                      defaultChecked={this.state.allchecked}
+                      onChange={this.check.bind(this)}
+                      value={this.state.allchecked}
+                    />
+                  </td>
+                  <td className='tdStyle'>EmpID</td>
+                  <td className='tdStyle'>EmpName</td>
+                  <td className='tdStyle'>Applied On</td>
+                  <td className='tdStyle'>LeaveType</td>
+                  <td className='tdStyle'>From Date</td>
+                  <td className='tdStyle'>To Date</td>
+                  <td className='tdStyle'>Days</td>
+                  <td className='tdStyle'>Reason</td>
+                  <td className='tdStyle'>Action</td>
+                </tr>
+              </thead>
+              <tbody>
+                {data.leaveRequest.map((record, i) => {
+                  return this.state.deletedRow.indexOf(record.ReqestId) ===
+                    -1 ? (
+                      <tr key={i} className='tdStyle'>
+                        <td className='tdStyle'>
+                          <input
+                            type='checkbox'
+                            data-id={i}
+                            className='selectcheckbox'
+                            defaultChecked={this.state.ischecked}
+                            onChange={this.ischeck.bind(this)}
+                          />
+                        </td>
+                        <td className='tdStyle'>{record.EmpId}</td>
+                        <td className='tdStyle'>{record.EmpName}</td>
+                        <td className='tdStyle'>
+                          {record.ReqestId.substr(0, 10)}
+                        </td>
+                        <td className='tdStyle'>{record.LeaveType}</td>
+                        <td className='tdStyle'>
+                          {record.FromDate.substr(0, 10)}
+                        </td>
+                        <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
+                        <td className='tdStyle'>{record.TotalDays}</td>
+                        <td className='tdStyle'>{record.LeaveReason}</td>
+                        <td className='tdStyle'>
+                          <button
+                            className='RejectButton'
+                            onClick={e => this.changeToReject(e, i)}
+                          >
+                          Reject
+                          </button>
+                          <span>&nbsp;</span>
+                          <button
+                            className='ApproveButton'
+                            onClick={e => this.changeToApprove(e, i)}
+                          >
+                          Approve
+                          </button>
+                        </td>
+                      </tr>
+                    ) : (
+                      ''
+                    )
+                })}
+              </tbody>
+            </table>
+            <Popup open={this.state.open} closeOnDocumentClick modal>
+              <div>
+                <span>{this.state.status} successfully</span>
+                <br />
+                <button className='button' onClick={e => this.closePopup(e)}>
+                  OK
+                </button>
+              </div>
+            </Popup>
+          </div>
+        )
+      } else {
+        return <div className='noRequset'>No requests</div>
+      }
     }
   }
 }

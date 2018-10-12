@@ -140,20 +140,27 @@ class LeaveRecord extends Component {
   }
 
   render () {
+
     var newData = JSON.parse(localStorage.getItem('Data'))
     if (this.state.visible) {
       var data = this.state.newRecord
     } else {
       var data = newData.leaveRequest
     }
-
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
       <div className='leaveRecord'>
         <button onClick={e => this.getNewRecord()}>Get</button> <span>&nbsp;</span>
         {/* <button onClick={e => this.getAllRecord()}>All</button> */}
         Fromdate
         <div className='displayDate' value={this.state.FromDate} name='From' >
-          <DatePicker className='Dp'
+          <DatePicker
             selected={this.state.FromDate}
             showYearDropdown
             scrollableYearDropdown
@@ -167,7 +174,7 @@ class LeaveRecord extends Component {
         </div><span>&nbsp;</span>
         Todate
         <div className='displayDate2' name='To' value={this.state.ToDate}>
-          <DatePicker className='Dp'
+          <DatePicker
             selected={this.state.ToDate}
             showYearDropdown
             dateFormat='DD/MM/YYYY'
@@ -228,6 +235,7 @@ class LeaveRecord extends Component {
         </Popup>
       </div>
     )
+    }
   }
 }
 export default LeaveRecord

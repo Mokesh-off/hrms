@@ -19,8 +19,10 @@ class Dashboard extends Component {
     window.location.assign('/pendingleaves')
   }
   render () {
-    if (JSON.parse(localStorage.getItem('currentUserId')) === null) {
-      return <Redirect to='/' />
+    if (JSON.parse(localStorage.getItem('currentUserId')) === null || '') {
+      console.log('test --------->')
+      window.location.assign('/')
+      // return <Redirect to='/' />
     }
     var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
     leaveRequestCount = leaveRequestCount.leaveRequest.length
