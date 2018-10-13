@@ -196,7 +196,13 @@ class LeaveRequest extends React.Component {
   render () {
     var holidayList = JSON.parse(window.localStorage.getItem('Data'))
     holidayList = holidayList.holidays
-
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
       <div className='rightContainer'>
         <div id='success'>
@@ -297,6 +303,7 @@ class LeaveRequest extends React.Component {
         </div>
       </div>// rightContainer done
     )
+  }
   }
 }
 export default LeaveRequest

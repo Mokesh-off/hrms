@@ -170,13 +170,20 @@ class LeaveRecord extends Component {
   }
 
   render () {
+
     var newData = JSON.parse(localStorage.getItem('Data'))
     if (this.state.visible) {
       var data = this.state.newRecord
     } else {
       var data = newData.leaveRequest
     }
-
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
       <div className='leaveRecord'>
         <div className='head'><h2>Leave Record</h2></div>
@@ -236,7 +243,7 @@ class LeaveRecord extends Component {
               data.map((record, i) =>
                 record.status === 'Approved'
                   ? <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>{record.EmpId}</td>
+                    <td className='tdStyle'>{ ()=>{parseInt(record.EmpId)} }</td>
                     <td className='tdStyle'>{record.EmpName}</td>
                     <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
@@ -249,7 +256,7 @@ class LeaveRecord extends Component {
                     </td>
                   </tr>
                   : <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>{record.EmpId}</td>
+                    <td className='tdStyle'>{record.EmpId.substr(1,(record.EmpId.length-2))}</td>
                     <td className='tdStyle'>{record.EmpName}</td>
                     <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
@@ -272,6 +279,7 @@ class LeaveRecord extends Component {
         </Popup>
       </div>
     )
+    }
   }
 }
 export default LeaveRecord

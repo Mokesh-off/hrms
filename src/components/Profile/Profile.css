@@ -21,6 +21,7 @@
   height: 150px;
   width: 150px;
   margin-left: 100px;
+  margin-top: 70px;
 }
 .input {
   margin-left: 100px;
@@ -29,8 +30,17 @@
 }
 
 .inputLabel {
-  margin-left: 100px;
+  float: left;
   width: 218px;
+  margin-left: 100px;
+}
+
+.profileInfoEmail {
+  margin-left: 122px;
+}
+
+.inputEmail {
+  margin-left: 241px;
 }
 
 hr {
@@ -40,14 +50,21 @@ hr {
 .requestProfileEditButton {
   height: 40px;
   width: 200px;
-  border-radius: 19px;
+  border-radius: 11px;
   border: none;
   font-weight: bold;
-  background-color: rgb(63, 115, 198);
-  color: white;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 460px;
+}
+
+.requestProfileEditButton:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
 }
 
 #modalEditProfile > a {
@@ -56,5 +73,14 @@ hr {
   position: relative;
   left: 646px;
   font-size: 25px;
-  top: -350px;
+  top: -357px;
+}
+
+.profileInfo {
+  padding: 10px;
+  margin: 10px;
+}
+
+.popUpAddMainProfile {
+  margin-top: 95px;
 }

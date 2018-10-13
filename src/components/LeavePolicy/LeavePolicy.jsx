@@ -189,7 +189,7 @@ class LeavePolicy extends Component {
                   href='javascript:void(0);'
                   onClick={() => this.closeModalAdd()}
                 >
-                  &times;
+                  X
                 </a>
               </div>
 

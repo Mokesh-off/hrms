@@ -20,6 +20,13 @@ class PendingLeaves extends Component {
     // let emp = this.state.LeavePolicy.Employee[id - 1]
     // iterate the loop and match id and EmpId
     //  List of available leaves for employee
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
       <div className='leaveRecord'>
         <h2>Available Leaves</h2>
@@ -56,6 +63,7 @@ class PendingLeaves extends Component {
         </table>
       </div>
     )
+  }
   }
 }
 

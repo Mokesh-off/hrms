@@ -77,6 +77,13 @@ class ChangePassword extends Component {
     }
   }
   render () {
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
     return (
       <div id='parent'>
         {/* <div className={'default ' + this.state.visible ? 'fadeIn' : 'fadeOut'} > */}
@@ -136,6 +143,7 @@ class ChangePassword extends Component {
         </div>
       </div>
     )
+  }
   }
 }
 export default ChangePassword

@@ -52,7 +52,7 @@ class LeaveRequests extends Component {
   changeToReject (e, i) {
     let newState = Object.assign({}, this.state)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
+    newState.LeaveRecord.leaveRequest[index].status = 'Rejected';
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true, index: i })
     this.setState({ status: 'Rejected' })
@@ -100,7 +100,7 @@ class LeaveRequests extends Component {
   changeToApprove (e, i) {
     let newState = Object.assign({}, this.state)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Approved'
+    newState.LeaveRecord.leaveRequest[index].status = 'Approved';
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     let id = this.state.LeaveRecord.leaveRequest[index].EmpId
     let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
@@ -115,6 +115,10 @@ class LeaveRequests extends Component {
     var inputElements = document.getElementsByClassName('selectcheckbox')
     for (var i = 0; inputElements[i]; ++i) {
       inputElements[i].checked = true
+<<<<<<< HEAD
+=======
+      this.setState({ ischecked: (this.state.ischecked = true) })
+>>>>>>> develop
     }
   }
   clearAll (e) {
