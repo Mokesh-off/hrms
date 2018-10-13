@@ -32,3 +32,23 @@
   background-color: #337ab7;
   cursor: pointer;
 }
+.RejectButton{
+  height: 40px;
+  width: 66px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  background-color:  #337ab7;
+  color: white
+ 
+}
+
+.ApproveButton{
+height: 40px;
+border-radius: 12px;
+margin: 0.5%;
+border: none;
+font-weight: bold;
+background-color:  #337ab7;
+color: white
+}

@@ -79,3 +79,6 @@ img{
 	text-decoration: none;
     color: black;
 }
+#divider{
+	border-bottom: 1px solid #337ab7;
+  }
