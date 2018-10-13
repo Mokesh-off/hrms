@@ -18,6 +18,7 @@ class AvailableLeaves extends Component {
       }
     })
 
+
     return (
       <div>
 
@@ -33,7 +34,7 @@ class AvailableLeaves extends Component {
             </div>
             <div className='right'>
               <div className='icon-count'>{plannedLeavesVar}</div>
-              <div className='icon-text'>Planned holidays</div>
+              <div className='icon-text'>Planned Holidays</div>
             </div>
           </div>
 
@@ -53,7 +54,7 @@ class AvailableLeaves extends Component {
             </div>
             <div className='right'>
               <div className='icon-count'>{privilegeLeavesVar}</div>
-              <div className='icon-text'>Sick Leaves</div>
+              <div className='icon-text'>Earned Leaves</div>
             </div>
           </div>
 
@@ -63,7 +64,7 @@ class AvailableLeaves extends Component {
             </div>
             <div className='right'>
               <div className='icon-count'>{sickLeavesVar}</div>
-              <div className='icon-text'>Earned Leaves</div>
+              <div className='icon-text'>Sick Leaves</div>
             </div>
           </div>
 

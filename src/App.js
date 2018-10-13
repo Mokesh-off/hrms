@@ -31,7 +31,7 @@ class App extends Component {
                 <Route
                   exact
                   strict
-                  path="/leavelist"
+                  path="/dashboard/leavelist"
                   component={LeaveRequests}
                 />
 

@@ -10,7 +10,7 @@ class Dashboard extends Component {
     }
   }
   employerCard () {
-    window.location.assign('/leavelist')
+    window.location.assign('/dashboard/leavelist')
   }
   employeeCard () {
     window.location.assign('/pendingleaves')
@@ -25,8 +25,7 @@ class Dashboard extends Component {
     else{
 
       var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
-      leaveRequestCount = leaveRequestCount.leaveRequest.length
-      console.log('leave request count: ' + JSON.stringify(leaveRequestCount))
+      leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
       if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
         return (
           <div className='dashboardRightComponent'>
