@@ -18,6 +18,7 @@ class LeaveRequest extends React.Component {
       ReqestId: moment(),
       appliedOn: moment(),
       status: '',
+      appliedOn: moment(),
       comment: '',
       errdate: '',
       dateErr: '',
@@ -54,7 +55,8 @@ class LeaveRequest extends React.Component {
     this.setState({ EmpId: currentUserId })
     data = data.Employee
     for (var i = 0; i < data.length; i++) {
-      if (data[i].EmpId === parseInt(currentUserId)) {
+      console.log(data[i].EmpId, parseInt(currentUserId))
+      if (data[i].EmpId === currentUserId) {
         if (this.state.LeaveType === 'Casual Leave') {
           if (data[i].PendingLeaves.Planned < this.state.TotalDays) {
             this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Planned + ' days', erroption: '1px solid red' })
@@ -99,9 +101,8 @@ class LeaveRequest extends React.Component {
     event.preventDefault()
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
-      var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
+      var currentUserId = parseInt(window.localStorage.getItem('currentUserId'))
       var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
-      // console.log(this.state.ReqestId._d.getTime())
       this.setState({ ReqestId: this.state.appliedOn = this.state.appliedOn._d })
       this.setState({ ReqestId: this.state.ReqestId = this.state.ReqestId._d.getTime() })
       if (data.leaveRequest) {
@@ -109,6 +110,8 @@ class LeaveRequest extends React.Component {
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
           window.localStorage.setItem('Data', JSON.stringify(data))
+          document.getElementById('success').style.opacity = 1
+          setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
           this.calldispatch()
         })
       } else {
@@ -117,6 +120,8 @@ class LeaveRequest extends React.Component {
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
           window.localStorage.setItem('Data', JSON.stringify(data))
+          document.getElementById('success').style.opacity = 1
+          setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
           this.calldispatch()
         })
       }
@@ -125,8 +130,6 @@ class LeaveRequest extends React.Component {
   }
   calldispatch () {
     // set the functions to its initial state
-    document.getElementById('success').style.opacity = 1
-    setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
     this.setState({
       FromDate: moment(),
       ToDate: moment(),
@@ -134,6 +137,8 @@ class LeaveRequest extends React.Component {
       appliedOn: moment(),
       LeaveType: '',
       LeaveReason: '',
+      ReqestId: moment(),
+      appliedOn: moment(),
       TotalDays: ''
     })
   }

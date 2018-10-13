@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import './SideNav.css';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import ReactDOM from 'react-dom'
+import './SideNav.css'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 
 class SideNav extends Component {
   constructor (props) {
@@ -84,14 +84,13 @@ class SideNav extends Component {
       ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
 
       if (window.location.pathname === '/dashboard') {
-        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED'
       } else if (window.location.pathname === '/MyLeaves') {
-        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED'
       } else if (window.location.pathname === '/LeavePolicy') {
-        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background =
-          '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '#EDEDED'
       } else if (window.location.pathname === '/leaveplan') {
-        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED'
       }
     }
   }
