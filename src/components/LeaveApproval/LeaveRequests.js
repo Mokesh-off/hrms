@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './LeaveRequests.css'
 import Popup from 'reactjs-popup'
-// import ReactDOM from 'react-dom'
+import moment from 'moment'
+
 class LeaveRequests extends Component {
   constructor (props) {
     super(props)
@@ -17,14 +18,14 @@ class LeaveRequests extends Component {
   }
   componentDidMount () {
     let data = JSON.parse(localStorage.getItem('Data'))
-    // this.setState({ LeaveRecord: data.leaveRequest })
     if (data.deletedRow) {
       this.setState({ deletedRow: data.deletedRow })
+      var date1 = moment()
+      console.log(date1)
     }
   }
   closePopup (e) {
-    var index = this.state.index
-    // this.setState({ open: false }, () => (this.delete(index)))
+    this.setState({ open: false })
   }
   // Onclicking view button select the respective request to see the details
   sendReqId (e, i) {
@@ -32,7 +33,6 @@ class LeaveRequests extends Component {
   }
   // Delete the request from the list but not from the JSON
   delete (index) {
-    // if (!this.state.open) {
     var data = JSON.parse(localStorage.getItem('Data'))
     let reqId = this.state.LeaveRecord.leaveRequest[index].ReqestId
     if (data.deletedRow) {
@@ -45,73 +45,69 @@ class LeaveRequests extends Component {
       this.state.deletedRow.push(reqId)
       localStorage.setItem('Data', JSON.stringify(data))
     }
-    // }
     window.location.reload(1)
   }
 
   // Reject leave request
   changeToReject (e, i) {
     let newState = Object.assign({}, this.state)
-    // console.log(newState)
     let index = i
     newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true, index: i })
     this.setState({ status: 'Rejected' })
     this.delete(index)
-    console.log()
   }
 
   // Reduce number of days from employee's pending leaves, if request is approved
-  reduceLeaves (index) {
-    let emp = parseInt(this.state.LeaveRecord.leaveRequest[index].EmpId, 10)
-    let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
-    let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
-    let leave = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.Planed
-    let leave1 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.LOP
-    let leave2 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.Sick
-    let leave3 = this.state.LeaveRecord.Employee[emp - 1].PendingLeaves.PriL
+  reduceLeaves (id, type, days) {
+    let data = this.state.LeaveRecord.Employee
+    let leave, leave1, leave2, leave3
     let newState = Object.assign({}, this.state)
-    // alert(emp + "" + type)
-    const newObject = this.state.LeaveRecord.Employee.map((data, i) => {
-    // Compare employee ID and change the respective pending leaves
-      if (data.EmpId === emp) {
+    for (var i = 0; i < data.length; ++i) {
+      if (data[i].EmpId === id) {
+        leave = data[i].PendingLeaves.Planned
+        leave1 = data[i].PendingLeaves.EmergencyLeave
+        leave2 = data[i].PendingLeaves.Sick
+        leave3 = data[i].PendingLeaves.Privilege
         if (type === 'Casual Leave') {
           leave = leave - days
           leave > 0 ? leave = leave : leave = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Planed = leave
+          newState.LeaveRecord.Employee[i].PendingLeaves.Planned = leave
         }
-        if (type === 'Emergency leave') {
+        if (type === 'Emergency Leave') {
           leave1 = leave1 - days
           leave1 > 0 ? leave1 = leave1 : leave1 = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.LOP = leave1
+          newState.LeaveRecord.Employee[i].PendingLeaves.EmergencyLeave = leave1
         }
-        if (type === 'Sick leave') {
+        if (type === 'Sick Leave') {
           leave2 = leave2 - days
           leave2 > 0 ? leave2 = leave2 : leave2 = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.Sick = leave2
+          newState.LeaveRecord.Employee[i].PendingLeaves.Sick = leave2
         }
         if (type === 'Earned Leave') {
           leave3 = leave3 - days
           leave3 > 0 ? leave3 = leave3 : leave3 = 0
-          newState.LeaveRecord.Employee[emp - 1].PendingLeaves.PriL = leave3
+          newState.LeaveRecord.Employee[i].PendingLeaves.Privilege = leave3
         }
+        this.setState({ [this.state.LeaveRecord.Employee]: newState })
+        localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
       }
-    })
-    this.setState({ [this.state.LeaveRecord.Employee]: newObject })
-    localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    }
   }
 
   // Approve leave request
   changeToApprove (e, i) {
     let newState = Object.assign({}, this.state)
-    console.log(newState)
     let index = i
     newState.LeaveRecord.leaveRequest[index].status = 'Approved'
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
+    let id = this.state.LeaveRecord.leaveRequest[index].EmpId
+    let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
+    let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
     this.setState({ status: 'Approved' })
-    this.reduceLeaves(index)
-    this.setState({ open: true, index: i })
+    this.reduceLeaves(id, type, days)
+    this.setState({ open: true })
     this.delete(index)
   }
 
@@ -159,13 +155,17 @@ class LeaveRequests extends Component {
         this.state.checkedValue.push(inputElements[i].getAttribute('data-id'))
       }
     }
+   
     if (this.state.checkedValue.length > 0) {
       for (var i = 0; i < this.state.checkedValue.length; ++i) {
         let index = parseInt(this.state.checkedValue[i])
         let newState = Object.assign({}, this.state)
         newState.LeaveRecord.leaveRequest[index].status = 'Approved'
+        let id = this.state.LeaveRecord.leaveRequest[index].EmpId
+        let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
+        let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
         window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
-        this.reduceLeaves(index)
+        this.reduceLeaves(id, type, days)
       }
       this.setState({ open: true, status: 'Approved' })
       for (var i = 0; i < this.state.checkedValue.length; ++i) {
@@ -173,7 +173,7 @@ class LeaveRequests extends Component {
         this.delete(index)
       }
       this.setState({ checkedValue: [] })
-    }else{
+    } else {
       alert('Select record first')
     }
   }
@@ -185,15 +185,16 @@ class LeaveRequests extends Component {
       // List of leave requests
         <div className='leaveRecord'>
           <div>
-            <button onClick={e => this.selectAll(e)} ref='select'>SelectAll</button>
-            <button onClick={e => this.clearAll(e)} ref='clear'>clearAll</button>
-            <button onClick={e => this.rejectAll(e)}>Reject</button>
-            <button onClick={e => this.approveAll(e)}>Approve</button>
+            <button className='RejectButton' onClick={e => this.selectAll(e)}>selectAll</button>
+            <button className='ApproveButton' onClick={e => this.clearAll(e)}>rejectAll</button>
+            <button className='RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
+            <button className='ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
           </div>
           <table>
             <thead className='thead1'>
               <tr className='thead1'>
-                <td className='tdStyle'>&nbsp;</td>
+                <td className='tdStyle' />
+                <td className='tdStyle'>ReqID</td>
                 <td className='tdStyle'>EmpID</td>
                 <td className='tdStyle'>EmpName</td>
                 <td className='tdStyle'>Applied On</td>
@@ -209,11 +210,12 @@ class LeaveRequests extends Component {
               {data.leaveRequest.map((record, i) => {
                 return this.state.deletedRow.indexOf(record.ReqestId) === -1
                   ? <tr key={i} className='tdStyle'>
+                    <td className='tdStyle'>{record.ReqestId}</td>
                     <td className='tdStyle'><input type='checkbox'
                       data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td>
                     <td className='tdStyle'>{record.EmpId}</td>
                     <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
+                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
                     <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>

@@ -37,7 +37,6 @@ class LeaveRecord extends Component {
     var chekDate = new Date(str3)
 
     var flag = chekDate >= minDate && chekDate <= maxDate
-    console.log(flag)
     return flag
   }
 
@@ -47,13 +46,11 @@ class LeaveRecord extends Component {
     } else {
       this.setState({ newRecord: [] }, () => {
         this.state.LeaveRecord.leaveRequest.map((record, _i) => {
-          var fromDate = record.ReqestId.substr(0, 10)
-          console.log('fromdate -----------' + fromDate)
+          var fromDate = record.appliedOn.substr(0, 10)
           if (this.validateDate(fromDate)) {
             this.state.newRecord.push(record)
           }
         })
-        console.log(this.state.newRecord)
         this.setState({ visible: true })
       })
     }
@@ -65,7 +62,6 @@ class LeaveRecord extends Component {
 
   DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date })
-    console.log(this.state.FromDate)
   }
   DateToChange (date) { // Update the To date from the User input
     this.setState({ ToDate: date })
@@ -74,16 +70,12 @@ class LeaveRecord extends Component {
   closePopup (_e) {
     this.setState({ open: false })
   }
-  sendReqId (_e, i) {
-    localStorage.setItem('currentRequestID', i)
-  }
 
   changeToReject (_e, i) {
     let newState = Object.assign({}, this.state)
-    // console.log(newState)
     let index = i
     newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
-    let id = parseInt(this.state.LeaveRecord.leaveRequest[index].EmpId)
+    let id = this.state.LeaveRecord.leaveRequest[index].EmpId
     let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
     let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
@@ -92,12 +84,11 @@ class LeaveRecord extends Component {
     this.addLeaves(id, type, days)
   }
   // Approve leave request
-  changeToApprove (_e, i) {
+  changeToApprove (e, i) {
     let newState = Object.assign({}, this.state)
-    console.log(newState)
     let index = i
     newState.LeaveRecord.leaveRequest[index].status = 'Approved'
-    let id = parseInt(this.state.LeaveRecord.leaveRequest[index].EmpId)
+    let id = this.state.LeaveRecord.leaveRequest[index].EmpId
     let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
     let days = parseInt(this.state.LeaveRecord.leaveRequest[index].TotalDays)
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
@@ -111,24 +102,24 @@ class LeaveRecord extends Component {
     let data = this.state.LeaveRecord.Employee
     let leave, leave1, leave2, leave3
     let newState = Object.assign({}, this.state)
-
+     
     for (var i = 0; i < data.length; ++i) {
       if (data[i].EmpId === id) {
-        leave = data[i].PendingLeaves.Planed
-        leave1 = data[i].PendingLeaves.LOP
+        leave = data[i].PendingLeaves.Planned
+        leave1 = data[i].PendingLeaves.EmergencyLeave
         leave2 = data[i].PendingLeaves.Sick
-        leave3 = data[i].PendingLeaves.PriL
+        leave3 = data[i].PendingLeaves.Privilege
         if (type === 'Casual Leave') {
           leave = leave - days
           leave > 0 ? leave = leave : leave = 0
-          newState.LeaveRecord.Employee[i].PendingLeaves.Planed = leave
+          newState.LeaveRecord.Employee[i].PendingLeaves.Planned = leave
         }
-        if (type === 'Emergency leave') {
+        if (type === 'Emergency Leave') {
           leave1 = leave1 - days
           leave1 > 0 ? leave1 = leave1 : leave1 = 0
-          newState.LeaveRecord.Employee[i].PendingLeaves.LOP = leave1
+          newState.LeaveRecord.Employee[i].PendingLeaves.EmergencyLeave = leave1
         }
-        if (type === 'Sick leave') {
+        if (type === 'Sick Leave') {
           leave2 = leave2 - days
           leave2 > 0 ? leave2 = leave2 : leave2 = 0
           newState.LeaveRecord.Employee[i].PendingLeaves.Sick = leave2
@@ -136,7 +127,7 @@ class LeaveRecord extends Component {
         if (type === 'Earned Leave') {
           leave3 = leave3 - days
           leave3 > 0 ? leave3 = leave3 : leave3 = 0
-          newState.LeaveRecord.Employee[i].PendingLeaves.PriL = leave3
+          newState.LeaveRecord.Employee[i].PendingLeaves.Privilege = leave3
         }
         this.setState({ [this.state.LeaveRecord.Employee]: newState })
         localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
@@ -152,29 +143,25 @@ class LeaveRecord extends Component {
 
     for (var i = 0; i < data.length; ++i) {
       if (data[i].EmpId === id) {
-        leave = data[i].PendingLeaves.Planed
-        leave1 = data[i].PendingLeaves.LOP
+        leave = data[i].PendingLeaves.Planned
+        leave1 = data[i].PendingLeaves.EmergencyLeave
         leave2 = data[i].PendingLeaves.Sick
-        leave3 = data[i].PendingLeaves.PriL
+        leave3 = data[i].PendingLeaves.Privilege
         if (type === 'Casual Leave') {
           leave = leave + days
-          // leave > 10 ? leave = leave : leave = 0
-          newState.LeaveRecord.Employee[i].PendingLeaves.Planed = leave
+          newState.LeaveRecord.Employee[i].PendingLeaves.Planned = leave
         }
-        if (type === 'Emergency leave') {
+        if (type === 'Emergency Leave') {
           leave1 = leave1 + days
-          // leave1 > 10 ? leave1 = leave1 : leave1 = 0
-          newState.LeaveRecord.Employee[i].PendingLeaves.LOP = leave1
+          newState.LeaveRecord.Employee[i].PendingLeaves.EmergencyLeave = leave1
         }
-        if (type === 'Sick leave') {
+        if (type === 'Sick Leave') {
           leave2 = leave2 + days
-          // leave2 > 10 ? leave2 = leave2 : leave2 = 0
           newState.LeaveRecord.Employee[i].PendingLeaves.Sick = leave2
         }
         if (type === 'Earned Leave') {
           leave3 = leave3 + days
-          // leave3 > 10 ? leave3 = leave3 : leave3 = 0
-          newState.LeaveRecord.Employee[i].PendingLeaves.PriL = leave3
+          newState.LeaveRecord.Employee[i].PendingLeaves.Privilege = leave3
         }
         this.setState({ [this.state.LeaveRecord.Employee]: newState })
         localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
@@ -251,7 +238,7 @@ class LeaveRecord extends Component {
                   ? <tr key={i} className='tdStyle'>
                     <td className='tdStyle'>{record.EmpId}</td>
                     <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
+                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
                     <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.TotalDays}</td>
@@ -264,7 +251,7 @@ class LeaveRecord extends Component {
                   : <tr key={i} className='tdStyle'>
                     <td className='tdStyle'>{record.EmpId}</td>
                     <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.ReqestId.substr(0, 10)}</td>
+                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
                     <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.TotalDays}</td>

@@ -11,7 +11,14 @@ class MyLeaves extends Component {
 
   render () {
     let id = JSON.parse(localStorage.getItem('currentUserId'))
-
+    console.log('type of==='+typeof(this.state.LeaveRecord.Employee[2].EmpId))
+    console.log(typeof(id))
+    console.log('type of==='+(this.state.LeaveRecord.Employee[2].EmpId))
+    console.log((id))
+    // alert(typeof(id))
+    if((this.state.LeaveRecord.Employee[2].EmpId)===id){
+      console.log('new console')
+    }
     return (
 
       <div className='leaveRecord'>
@@ -32,7 +39,7 @@ class MyLeaves extends Component {
             <tbody>
               {
                 this.state.LeaveRecord.leaveRequest.map((record, i) =>
-                  (record.EmpId == id) ? <tr key={i} className='tdStyle' >
+                  (record.EmpId === id) ? <tr key={i} className='tdStyle' >
                     <td className='tdStyle'>{record.EmpName}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
                     <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>

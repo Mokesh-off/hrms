@@ -16,6 +16,7 @@ class LeaveRequest extends React.Component {
       LeaveType: '',
       LeaveReason: '',
       ReqestId: moment(),
+      appliedOn: moment(),
       status: '',
       comment: '',
       errdate: '',
@@ -64,7 +65,7 @@ class LeaveRequest extends React.Component {
             this.setState({ opText: 'You have only ' + data[i].PendingLeaves.EmergencyLeave + ' days', erroption: '1px solid red' })
             return (false)
           }
-        } else if (this.state.LeaveType === 'Sick leave') {
+        } else if (this.state.LeaveType === 'Sick Leave') {
           if (this.state.TotalDays > data[i].PendingLeaves.Sick) {
             this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Sick + ' days', erroption: '1px solid red' })
             return (false)
@@ -98,8 +99,11 @@ class LeaveRequest extends React.Component {
     event.preventDefault()
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
-      var currentUserId = window.localStorage.getItem('currentUserId')
+      var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
       var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
+      // console.log(this.state.ReqestId._d.getTime())
+      this.setState({ ReqestId: this.state.appliedOn = this.state.appliedOn._d })
+      this.setState({ ReqestId: this.state.ReqestId = this.state.ReqestId._d.getTime() })
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
@@ -117,14 +121,17 @@ class LeaveRequest extends React.Component {
         })
       }
     }
+    console.log(this.state)
   }
   calldispatch () {
     // set the functions to its initial state
     document.getElementById('success').style.opacity = 1
-    setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 3000)
+    setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
     this.setState({
       FromDate: moment(),
       ToDate: moment(),
+      ReqestId: moment(),
+      appliedOn: moment(),
       LeaveType: '',
       LeaveReason: '',
       TotalDays: ''
@@ -210,7 +217,7 @@ class LeaveRequest extends React.Component {
                   <option value='' disabled>select your option</option>
                   <option value='Casual Leave'>Casual Leave</option>
                   <option value='Emergency Leave'>Emergency Leave</option>
-                  <option value='Sick leave'>Sick leave</option>
+                  <option value='Sick Leave'>Sick leave</option>
                   <option value='Earned Leave'>Earned Leave</option>
                   <option value='LOP'>LOP</option>
                 </select>
