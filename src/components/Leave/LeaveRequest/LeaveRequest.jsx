@@ -17,6 +17,7 @@ class LeaveRequest extends React.Component {
       LeaveReason: '',
       ReqestId: moment(),
       status: '',
+      appliedOn: moment(),
       comment: '',
       errdate: '',
       dateErr: '',
@@ -49,11 +50,12 @@ class LeaveRequest extends React.Component {
       return (false)
     }
     var data = JSON.parse(window.localStorage.getItem('Data'))
-    var currentUserId = window.localStorage.getItem('currentUserId')
+    var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
     this.setState({ EmpId: currentUserId })
     data = data.Employee
     for (var i = 0; i < data.length; i++) {
-      if (data[i].EmpId === parseInt(currentUserId)) {
+      console.log(data[i].EmpId, parseInt(currentUserId))
+      if (data[i].EmpId === currentUserId) {
         if (this.state.LeaveType === 'Casual Leave') {
           if (data[i].PendingLeaves.Planned < this.state.TotalDays) {
             this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Planned + ' days', erroption: '1px solid red' })
@@ -64,7 +66,7 @@ class LeaveRequest extends React.Component {
             this.setState({ opText: 'You have only ' + data[i].PendingLeaves.EmergencyLeave + ' days', erroption: '1px solid red' })
             return (false)
           }
-        } else if (this.state.LeaveType === 'Sick leave') {
+        } else if (this.state.LeaveType === 'Sick Leave') {
           if (this.state.TotalDays > data[i].PendingLeaves.Sick) {
             this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Sick + ' days', erroption: '1px solid red' })
             return (false)
@@ -98,13 +100,17 @@ class LeaveRequest extends React.Component {
     event.preventDefault()
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
-      var currentUserId = window.localStorage.getItem('currentUserId')
+      var currentUserId = parseInt(window.localStorage.getItem('currentUserId'))
       var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
+      this.setState({ ReqestId: this.state.appliedOn = this.state.appliedOn._d })
+      this.setState({ ReqestId: this.state.ReqestId = this.state.ReqestId._d.getTime() })
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
           window.localStorage.setItem('Data', JSON.stringify(data))
+          document.getElementById('success').style.opacity = 1
+          setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
           this.calldispatch()
         })
       } else {
@@ -113,6 +119,8 @@ class LeaveRequest extends React.Component {
         this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
           window.localStorage.setItem('Data', JSON.stringify(data))
+          document.getElementById('success').style.opacity = 1
+          setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
           this.calldispatch()
         })
       }
@@ -120,13 +128,13 @@ class LeaveRequest extends React.Component {
   }
   calldispatch () {
     // set the functions to its initial state
-    document.getElementById('success').style.opacity = 1
-    setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 3000)
     this.setState({
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
       LeaveReason: '',
+      ReqestId: moment(),
+      appliedOn: moment(),
       TotalDays: ''
     })
   }
@@ -210,7 +218,7 @@ class LeaveRequest extends React.Component {
                   <option value='' disabled>select your option</option>
                   <option value='Casual Leave'>Casual Leave</option>
                   <option value='Emergency Leave'>Emergency Leave</option>
-                  <option value='Sick leave'>Sick leave</option>
+                  <option value='Sick Leave'>Sick leave</option>
                   <option value='Earned Leave'>Earned Leave</option>
                   <option value='LOP'>LOP</option>
                 </select>

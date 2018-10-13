@@ -49,12 +49,6 @@ class App extends Component {
                 <Route
                   exact
                   strict
-                  path='/approvals'
-                  component={ApprovalIndex}
-                />
-                <Route
-                  exact
-                  strict
                   path='/pendingleaves'
                   component={PendingLeaves}
                 />
