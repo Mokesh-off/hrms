@@ -16,6 +16,7 @@ class LeaveRequest extends React.Component {
       LeaveType: '',
       LeaveReason: '',
       ReqestId: moment(),
+      appliedOn: moment(),
       status: '',
       appliedOn: moment(),
       comment: '',
@@ -72,8 +73,8 @@ class LeaveRequest extends React.Component {
             return (false)
           }
         } else if (this.state.LeaveType === 'Earned Leave') {
-          if (this.state.TotalDays > data[i].PendingLeaves.Privilage) {
-            this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Privilage + ' days', erroption: '1px solid red' })
+          if (this.state.TotalDays > data[i].PendingLeaves.Privilege) {
+            this.setState({ opText: 'You have only ' + data[i].PendingLeaves.Privilege + ' days', erroption: '1px solid red' })
             return (false)
           }
         }
@@ -125,12 +126,15 @@ class LeaveRequest extends React.Component {
         })
       }
     }
+    console.log(this.state)
   }
   calldispatch () {
     // set the functions to its initial state
     this.setState({
       FromDate: moment(),
       ToDate: moment(),
+      ReqestId: moment(),
+      appliedOn: moment(),
       LeaveType: '',
       LeaveReason: '',
       ReqestId: moment(),
@@ -197,107 +201,110 @@ class LeaveRequest extends React.Component {
   render () {
     var holidayList = JSON.parse(window.localStorage.getItem('Data'))
     holidayList = holidayList.holidays
-
-    return (
-      <div className='rightContainer'>
-        <div id='success'>
-          <h3 id='changed'>Successfully submitted</h3>
-        </div>
-        <div>
-          <div className='head'>
-            <h2>Leave Request</h2>
+    if (!localStorage.getItem('currentUserId')) {
+      return (
+        window.location.replace('/')
+      )
+    } else {
+      return (
+        <div className='rightContainer'>
+          <div id='success'>
+            <h3 id='changed'>Successfully submitted</h3>
           </div>
-          <form className='reqForm'>
-            <div className='reqRow'>
-              <div className='reqText'>
-                <label htmlFor='drop'>Type</label>
-              </div>
-              <div className='reqInput'>
-                <select name='LeaveType' className='reqOptions width' value={this.state.LeaveType}
-                  onChange={this.handleChange} style={{ border: this.state.erroption }}>
-                  <option value='' disabled>select your option</option>
-                  <option value='Casual Leave'>Casual Leave</option>
-                  <option value='Emergency Leave'>Emergency Leave</option>
-                  <option value='Sick Leave'>Sick leave</option>
-                  <option value='Earned Leave'>Earned Leave</option>
-                  <option value='LOP'>LOP</option>
-                </select>
-              </div>
-              <div className='err'>{this.state.opText}</div>
+          <div>
+            <div className='head'>
+              <h2>Leave Request</h2>
             </div>
-            <div className='reqRow'>
-              <div className='reqText'>
-                <label htmlFor='drop'>From</label>
+            <form className='reqForm'>
+              <div className='reqRow'>
+                <div className='reqText'>
+                  <label htmlFor='drop'>Type</label>
+                </div>
+                <div className='reqInput'>
+                  <select name='LeaveType' className='reqOptions width' value={this.state.LeaveType}
+                    onChange={this.handleChange} style={{ border: this.state.erroption }}>
+                    <option value='' disabled>select your option</option>
+                    <option value='Casual Leave'>Casual Leave</option>
+                    <option value='Emergency Leave'>Emergency Leave</option>
+                    <option value='Sick Leave'>Sick leave</option>
+                    <option value='Earned Leave'>Earned Leave</option>
+                    <option value='LOP'>LOP</option>
+                  </select>
+                </div>
+                <div className='err'>{this.state.opText}</div>
               </div>
-              <div value={this.state.FromDate} name='From'>
-                <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
-                  selected={this.state.FromDate}
-                  filterDate={this.isWeekday}
-                  showYearDropdown
-                  scrollableYearDropdown
-                  dateFormat='DD/MM/YYYY'
-                  minDate={moment()}
-                  maxDate={moment().add(24, 'months')}
-                  showDisabledMonthNavigation
-                  onChange={e => this.DateFromChange(e)}
-                  yearDropdownItemNumber={2}
-                  excludeDates={holidayList}
-                  isClearable
-                  placeholderText='Select a weekday'
-                  name='From' />
+              <div className='reqRow'>
+                <div className='reqText'>
+                  <label htmlFor='drop'>From</label>
+                </div>
+                <div value={this.state.FromDate} name='From'>
+                  <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
+                    selected={this.state.FromDate}
+                    filterDate={this.isWeekday}
+                    showYearDropdown
+                    scrollableYearDropdown
+                    dateFormat='DD/MM/YYYY'
+                    minDate={moment()}
+                    maxDate={moment().add(24, 'months')}
+                    showDisabledMonthNavigation
+                    onChange={e => this.DateFromChange(e)}
+                    yearDropdownItemNumber={2}
+                    excludeDates={holidayList}
+                    placeholderText='Select a weekday'
+                    name='From' />
+                </div>
+                <div className='err'>{this.state.dateErr}</div>
               </div>
-              <div className='err'>{this.state.dateErr}</div>
-            </div>
-            <div className='reqRow'>
-              <div className='reqText'>
-                <label htmlFor='drop'>To</label>
+              <div className='reqRow'>
+                <div className='reqText'>
+                  <label htmlFor='drop'>To</label>
+                </div>
+                <div name='To' value={this.state.ToDate} className='reqInput'>
+                  <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
+                    selected={this.state.ToDate}
+                    filterDate={this.isWeekday}
+                    showYearDropdown
+                    dateFormat='DD/MM/YYYY'
+                    onChange={e => this.DateToChange(e)}
+                    scrollableYearDropdown
+                    minDate={this.state.FromDate}
+                    maxDate={moment(this.state.FromDate).add(24, 'months')}
+                    showDisabledMonthNavigation
+                    yearDropdownItemNumber={2}
+                    excludeDates={holidayList}
+                    placeholderText='Select a weekday'
+                    name='To' />
+                </div>
+                <div className='err'>{this.state.dateErr}</div>
               </div>
-              <div name='To' value={this.state.ToDate} className='reqInput'>
-                <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
-                  selected={this.state.ToDate}
-                  filterDate={this.isWeekday}
-                  showYearDropdown
-                  dateFormat='DD/MM/YYYY'
-                  onChange={e => this.DateToChange(e)}
-                  scrollableYearDropdown
-                  minDate={this.state.FromDate}
-                  maxDate={moment(this.state.FromDate).add(24, 'months')}
-                  showDisabledMonthNavigation
-                  yearDropdownItemNumber={2}
-                  excludeDates={holidayList}
-                  isClearable
-                  placeholderText='Select a weekday'
-                  name='To' />
+              <div className='reqRow'>
+                <div className='reqText'>
+                  <label htmlFor='Number_of_Days'>Number of Days</label>
+                </div>
+                <div className='reqInput'>
+                  <input className='reqOptions disable' type='text' value={this.state.TotalDays} disabled id='TotalDays' name='TotalDays' />
+                </div>
               </div>
-              <div className='err'>{this.state.dateErr}</div>
-            </div>
-            <div className='reqRow'>
-              <div className='reqText'>
-                <label htmlFor='Number_of_Days'>Number of Days</label>
+              <div className='reqRow'>
+                <div className='reqText'>
+                  <label htmlFor='drop'>Reason</label>
+                </div>
+                <div name='LeaveReason' className='reqInput'
+                  onChange={e => this.handleChange(e)}>
+                  <textarea className='reqOptions' value={this.state.LeaveReason} placeholder='Reason' name='LeaveReason' />
+                </div>
+                <div className='err'>{this.state.Err}</div>
               </div>
-              <div className='reqInput'>
-                <input className='reqOptions disable' type='text' value={this.state.TotalDays} disabled id='TotalDays' name='TotalDays' />
+              <div >
+                <button className='levAddbutton'
+                  onClick={this.handleSubmit}>Submit
+                </button>
               </div>
-            </div>
-            <div className='reqRow'>
-              <div className='reqText'>
-                <label htmlFor='drop'>Reason</label>
-              </div>
-              <div name='LeaveReason' className='reqInput'
-                onChange={e => this.handleChange(e)}>
-                <textarea className='reqOptions' value={this.state.LeaveReason} placeholder='Reason' name='LeaveReason' />
-              </div>
-              <div className='err'>{this.state.Err}</div>
-            </div>
-            <div >
-              <button className='levAddbutton'
-                onClick={this.handleSubmit}>Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>// rightContainer done
-    )
+            </form>
+          </div>
+        </div>// rightContainer done
+      )
+    }
   }
 }
 export default LeaveRequest

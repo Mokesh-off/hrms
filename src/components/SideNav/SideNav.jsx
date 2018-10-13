@@ -47,34 +47,41 @@ class SideNav extends Component {
 
   componentDidUpdate () {
     if (this.state.currentUserRoleVar === 'Employer') {
-      ReactDOM.findDOMNode(this.refs.dashboard).style.background = ''
-      ReactDOM.findDOMNode(this.refs.leaverequest).style.background = ''
-      ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = ''
-      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = ''
-      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = ''
-      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = ''
-      ReactDOM.findDOMNode(this.refs.addUser).style.background = ''
+      ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
+      ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '';
+      ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '';
+      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '';
+      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '';
+      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
+      ReactDOM.findDOMNode(this.refs.addUser).style.background = '';
+      ReactDOM.findDOMNode(this.refs.approveProfile).style.background = '';
 
       if (window.location.pathname === '/leaveRecords') {
-        ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.leaveRecord).style.background =
+          '#EDEDED';
       } else if (window.location.pathname === '/leaverequest') {
-        ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.leaverequest).style.background =
+          '#EDEDED';
       } else if (window.location.pathname === '/dashboard') {
-        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED';
       } else if (window.location.pathname === '/MyLeaves') {
-        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED';
       } else if (window.location.pathname === '/LeavePolicy') {
-        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background =
+          '#EDEDED';
       } else if (window.location.pathname === '/leaveplan') {
-        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED';
       } else if (window.location.pathname === '/addUser') {
-        ReactDOM.findDOMNode(this.refs.addUser).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.addUser).style.background = '#EDEDED';
+      } else if (window.location.pathname === '/approveProfile') {
+        ReactDOM.findDOMNode(this.refs.approveProfile).style.background =
+          '#EDEDED';
       }
     } else if (this.state.currentUserRoleVar === 'Employee') {
-      ReactDOM.findDOMNode(this.refs.dashboard).style.background = ''
-      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = ''
-      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = ''
-      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = ''
+      ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
+      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '';
+      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '';
+      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
 
       if (window.location.pathname === '/dashboard') {
         ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED'
@@ -105,59 +112,58 @@ class SideNav extends Component {
     return (
       <div>
         <Header />
-        {
-          (this.state.currentUserRoleVar === 'Employer')
-            ? <div className='sidenav'>
-              <Link to='/dashboard'>
-                <button ref='dashboard'> Dashboard </button>
-              </Link>
-              <Link to='/leaverequest'>
-                <button ref='leaverequest'> Leave Request </button>
-              </Link>
-              <Link to='/MyLeaves'>
-                <button ref='MyLeaves'> My Leave </button>
-              </Link>
-              <div id='divider' />
-              <Link to='/addUser'>
-                <button ref='addUser'> Add User </button>
-              </Link>
-              <div id='divider' />
-              <Link to='/leaveRecords'>
-                <button ref='leaveRecord'> Leave Records </button>
-              </Link>
-              <div id='divider' />
-              <Link to='/LeavePolicy'>
-                <button ref='LeavePolicy'> Leave Policy </button>
-              </Link>
-              <div id='divider' />
-              <Link to='/leaveplan'>
-                <button ref='leaveplan'> Leave plan </button>
-              </Link>
-              <div id='divider' />
-              <Link to='/approveProfile'>
-                <button ref='approveProfile'> Approve Profile </button>
-              </Link>
-              <div id='divider' />
-            </div>
-            : (
-              <div className='sidenav'>
-                <Link to='/dashboard'>
-                  <button ref='dashboard'> Dashboard </button>
-                </Link>
-                <Link to='/leaverequest'>
-                  <button ref='leaverequest'> Leave Request </button>
-                </Link>
-                <Link to='/MyLeaves'>
-                  <button ref='MyLeaves'> My Leave </button>
-                </Link>
-                <Link to='/LeavePolicy'>
-                  <button ref='LeavePolicy'> Leave Policy </button>
-                </Link>
-                <Link to='/leaveplan'>
-                  <button ref='leaveplan'> Leave plan </button>
-                </Link>
-              </div>
-            )}
+        {this.state.currentUserRoleVar === 'Employer' ? (
+          <div className='sidenav'>
+            <Link to='/dashboard'>
+              <button ref='dashboard'> Dashboard </button>
+            </Link>
+            <Link to='/leaverequest'>
+              <button ref='leaverequest'> Leave Request </button>
+            </Link>
+            <Link to='/MyLeaves'>
+              <button ref='MyLeaves'> My Leave </button>
+            </Link>
+            <div id='divider' />
+            <Link to='/addUser'>
+              <button ref='addUser'> Add User </button>
+            </Link>
+            <div id='divider' />
+            <Link to='/leaveRecords'>
+              <button ref='leaveRecord'> Leave Records </button>
+            </Link>
+            <div id='divider' />
+            <Link to='/LeavePolicy'>
+              <button ref='LeavePolicy'> Leave Policy </button>
+            </Link>
+            <div id='divider' />
+            <Link to='/leaveplan'>
+              <button ref='leaveplan'> Leave plan </button>
+            </Link>
+            <div id='divider' />
+            <Link to='/approveProfile'>
+              <button ref='approveProfile'> Approve Profile </button>
+            </Link>
+            <div id='divider' />
+          </div>
+        ) : (
+          <div className='sidenav'>
+            <Link to='/dashboard'>
+              <button ref='dashboard'> Dashboard </button>
+            </Link>
+            <Link to='/leaverequest'>
+              <button ref='leaverequest'> Leave Request </button>
+            </Link>
+            <Link to='/MyLeaves'>
+              <button ref='MyLeaves'> My Leave </button>
+            </Link>
+            <Link to='/LeavePolicy'>
+              <button ref='LeavePolicy'> Leave Policy </button>
+            </Link>
+            <Link to='/leaveplan'>
+              <button ref='leaveplan'> Leave plan </button>
+            </Link>
+          </div>
+        )}
 
         <Footer />
       </div>
