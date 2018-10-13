@@ -9,7 +9,6 @@ class AvailableLeaves extends Component {
     var emergencyLeavesVar
     var privilegeLeavesVar
     var sickLeavesVar
-    console.log('currentId' + currentUserIdVar)
     (leaves.Employee).forEach(emp => {
       if (currentUserIdVar === JSON.stringify(emp.EmpId)) {
         plannedLeavesVar = emp.PendingLeaves.Planned

@@ -115,10 +115,6 @@ class LeaveRequests extends Component {
     var inputElements = document.getElementsByClassName('selectcheckbox')
     for (var i = 0; inputElements[i]; ++i) {
       inputElements[i].checked = true
-<<<<<<< HEAD
-=======
-      this.setState({ ischecked: (this.state.ischecked = true) })
->>>>>>> develop
     }
   }
   clearAll (e) {
@@ -197,8 +193,7 @@ class LeaveRequests extends Component {
           <table>
             <thead className='thead1'>
               <tr className='thead1'>
-                <td className='tdStyle' />
-                <td className='tdStyle'>ReqID</td>
+                <td className='tdStyle'>&nbsp;</td>
                 <td className='tdStyle'>EmpID</td>
                 <td className='tdStyle'>EmpName</td>
                 <td className='tdStyle'>Applied On</td>
@@ -214,7 +209,6 @@ class LeaveRequests extends Component {
               {data.leaveRequest.map((record, i) => {
                 return this.state.deletedRow.indexOf(record.ReqestId) === -1
                   ? <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>{record.ReqestId}</td>
                     <td className='tdStyle'><input type='checkbox'
                       data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td>
                     <td className='tdStyle'>{record.EmpId}</td>

@@ -102,7 +102,7 @@ class LeaveRecord extends Component {
     let data = this.state.LeaveRecord.Employee
     let leave, leave1, leave2, leave3
     let newState = Object.assign({}, this.state)
-     
+
     for (var i = 0; i < data.length; ++i) {
       if (data[i].EmpId === id) {
         leave = data[i].PendingLeaves.Planned
@@ -170,115 +170,112 @@ class LeaveRecord extends Component {
   }
 
   render () {
-
     var newData = JSON.parse(localStorage.getItem('Data'))
     if (this.state.visible) {
       var data = this.state.newRecord
     } else {
       var data = newData.leaveRequest
     }
-    if(!localStorage.getItem('currentUserId'))
-    {
-    return(
-     window.location.replace('/')
-    )
-    }
-    else{
-    return (
-      <div className='leaveRecord'>
-        <div className='head'><h2>Leave Record</h2></div>
-        <div className='row'>
-          <div className='col'>
-            <div className='col2'><label>From Date</label></div>
-            <div className='displayDate' value={this.state.FromDate} name='From' >
-              <div className='col'><DatePicker className='Dp'
-                selected={this.state.FromDate}
-                showYearDropdown
-                scrollableYearDropdown
-                dateFormat='DD/MM/YYYY'
-                showDisabledMonthNavigation
-                onChange={e => this.DateFromChange(e)}
-                yearDropdownItemNumber={2}
-                isClearable
-                placeholderText='Select a weekday'
-                name='From' />
+    if (!localStorage.getItem('currentUserId')) {
+      return (
+        window.location.replace('/')
+      )
+    } else {
+      return (
+        <div className='leaveRecord'>
+          <div className='head'><h2>Leave Record</h2></div>
+          <div className='row'>
+            <div className='col'>
+              <div className='col2'><label>From Date</label></div>
+              <div className='displayDate' value={this.state.FromDate} name='From' >
+                <div className='col'><DatePicker className='Dp'
+                  selected={this.state.FromDate}
+                  showYearDropdown
+                  scrollableYearDropdown
+                  dateFormat='DD/MM/YYYY'
+                  showDisabledMonthNavigation
+                  onChange={e => this.DateFromChange(e)}
+                  yearDropdownItemNumber={2}
+                  isClearable
+                  placeholderText='Select a weekday'
+                  name='From' />
+                </div>
               </div>
             </div>
-          </div>
-          <div className='col'>
-            <div className='col2'><label>To Date</label></div>
-            <div className='displayDate' name='To' value={this.state.ToDate}>
-              <div className='col'><DatePicker className='Dp'
-                selected={this.state.ToDate}
-                showYearDropdown
-                dateFormat='DD/MM/YYYY'
-                onChange={e => this.DateToChange(e)}
-                scrollableYearDropdown
-                showDisabledMonthNavigation
-                yearDropdownItemNumber={2}
-                isClearable
-                placeholderText='Select a weekday'
-                name='To' />
+            <div className='col'>
+              <div className='col2'><label>To Date</label></div>
+              <div className='displayDate' name='To' value={this.state.ToDate}>
+                <div className='col'><DatePicker className='Dp'
+                  selected={this.state.ToDate}
+                  showYearDropdown
+                  dateFormat='DD/MM/YYYY'
+                  onChange={e => this.DateToChange(e)}
+                  scrollableYearDropdown
+                  showDisabledMonthNavigation
+                  yearDropdownItemNumber={2}
+                  isClearable
+                  placeholderText='Select a weekday'
+                  name='To' />
+                </div>
               </div>
             </div>
+            <div className='col'><button onClick={() => this.getNewRecord()} className='get'>Search</button></div>
           </div>
-          <div className='col'> <button onClick={() => this.getNewRecord()} className='get'>Search</button></div>
+          <table>
+            <thead className='thead1'>
+              <tr className='thead1'>
+                <td className='tdStyle'>EmpId</td>
+                <td className='tdStyle'>EmpName</td>
+                <td className='tdStyle'>Applied On</td>
+                <td className='tdStyle'>LeaveType</td>
+                <td className='tdStyle'>From Date / To Date</td>
+                <td className='tdStyle'>Days</td>
+                <td className='tdStyle'>status</td>
+                <td className='tdStyle'>LeaveReason</td>
+                <td className='tdStyle'>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                data.map((record, i) =>
+                  record.status === 'Approved'
+                    ? <tr key={i} className='tdStyle'>
+                      <td className='tdStyle'>{record.EmpId} </td>
+                      <td className='tdStyle'>{record.EmpName}</td>
+                      <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
+                      <td className='tdStyle'>{record.LeaveType}</td>
+                      <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
+                      <td className='tdStyle'>{record.TotalDays}</td>
+                      <td className='tdStyle'>{record.status}</td>
+                      <td className='tdStyle'>{record.LeaveReason}</td>
+                      <td className='tdStyle'>
+                        <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button>
+                      </td>
+                    </tr>
+                    : <tr key={i} className='tdStyle'>
+                      <td className='tdStyle'>{record.EmpId}</td>
+                      <td className='tdStyle'>{record.EmpName}</td>
+                      <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
+                      <td className='tdStyle'>{record.LeaveType}</td>
+                      <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
+                      <td className='tdStyle'>{record.TotalDays}</td>
+                      <td className='tdStyle'>{record.status}</td>
+                      <td className='tdStyle'>{record.LeaveReason}</td>
+                      <td className='tdStyle'>
+                        <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button>
+                      </td>
+                    </tr>
+                )}
+            </tbody>
+          </table>
+          <Popup open={this.state.open} closeOnDocumentClick modal>
+            <div>
+              <span>{this.state.status} successfully</span><br />
+              <button className='button' onClick={e => this.closePopup(e)}>OK</button>
+            </div>
+          </Popup>
         </div>
-        <table>
-          <thead className='thead1'>
-            <tr className='thead1'>
-              <td className='tdStyle'>EmpId</td>
-              <td className='tdStyle'>EmpName</td>
-              <td className='tdStyle'>Applied On</td>
-              <td className='tdStyle'>LeaveType</td>
-              <td className='tdStyle'>From Date / To Date</td>
-              <td className='tdStyle'>Days</td>
-              <td className='tdStyle'>status</td>
-              <td className='tdStyle'>LeaveReason</td>
-              <td className='tdStyle'>Action</td>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              data.map((record, i) =>
-                record.status === 'Approved'
-                  ? <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>{ ()=>{parseInt(record.EmpId)} }</td>
-                    <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.LeaveType}</td>
-                    <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.TotalDays}</td>
-                    <td className='tdStyle'>{record.status}</td>
-                    <td className='tdStyle'>{record.LeaveReason}</td>
-                    <td className='tdStyle'>
-                      <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button>
-                    </td>
-                  </tr>
-                  : <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'>{record.EmpId.substr(1,(record.EmpId.length-2))}</td>
-                    <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.LeaveType}</td>
-                    <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.TotalDays}</td>
-                    <td className='tdStyle'>{record.status}</td>
-                    <td className='tdStyle'>{record.LeaveReason}</td>
-                    <td className='tdStyle'>
-                      <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button>
-                    </td>
-                  </tr>
-              )}
-          </tbody>
-        </table>
-        <Popup open={this.state.open} closeOnDocumentClick modal>
-          <div>
-            <span>{this.state.status} successfully</span><br />
-            <button className='button' onClick={e => this.closePopup(e)}>OK</button>
-          </div>
-        </Popup>
-      </div>
-    )
+      )
     }
   }
 }
