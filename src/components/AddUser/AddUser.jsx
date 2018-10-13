@@ -41,9 +41,8 @@ class AddUser extends Component {
       [e.target.name]: e.target.value
     });
   }
-  reset() {
-    console.log("reset called");
-    window.location.assign("/addUser");
+  reset () {
+    window.location.assign('/addUser')
   }
 
   validate() {
@@ -102,18 +101,16 @@ class AddUser extends Component {
     return true;
   }
 
-  onSubmit(e) {
-    console.log("state ..........     " + JSON.stringify(this.state));
-    e.preventDefault();
+  onSubmit (e) {
+    e.preventDefault()
     if (this.validate()) {
       this.setState({ validation: true });
       var Data = JSON.parse(window.localStorage.getItem("Data"));
 
       if (Data.Employee) {
-        Data.Employee[Data.Employee.length] = this.state;
-        window.localStorage.setItem("Data", JSON.stringify(Data));
-        console.log("new Employee added");
-        alert("New user added");
+        Data.Employee[Data.Employee.length] = this.state
+        window.localStorage.setItem('Data', JSON.stringify(Data))
+        alert('New user added')
       } else {
         Data["Employee"] = [];
         Data.Employee[Data.Employee.length] = this.state;
@@ -123,7 +120,15 @@ class AddUser extends Component {
     }
   }
 
-  render() {
+  render () {
+    if(!localStorage.getItem('currentUserId'))
+    {
+    return(
+     window.location.replace('/')
+    )
+    }
+    else{
+    
     return (
       <div id="addUserContainer">
         <div className="addUserMainContainer">
@@ -179,19 +184,12 @@ class AddUser extends Component {
                 <div className="right">
                   {/* <input className='box' list='Role'name='Role'
                 onChange={e=>this.change(e)} /> */}
-                  <select
-                    id="Role"
-                    list="Role"
-                    name="Role"
+                  <select id='Role' list='Role'name='Role'
                     value={this.state.Role}
-                    onChange={e => this.change(e)}
-                  >
-                    <option value="" disabled>
-                      {" "}
-                      select your option{" "}
-                    </option>
-                    <option value="Employee"> Employee </option>
-                    <option value="Employer"> Employer </option>
+                    onChange={e => this.change(e)}>
+                    <option value='' disabled> select your option </option>
+                    <option value='Employee'> Employee </option>
+                    <option value='Employer'> Employer </option>
                   </select>
                 </div>
               </div>
@@ -284,26 +282,16 @@ class AddUser extends Component {
                 </div>
               </div>
 
-              <div className="row">
-                <div className="left">Working location:</div>
-                <div className="right">
-                  {/* <input className='box' list='wl'name='wl'
-                onChange={e=>this.change(e)} /> */}
-                  <select
-                    id="wl"
-                    list="wl"
-                    name="wl"
-                    value={this.state.wl}
-                    onChange={e => this.change(e)}
-                  >
-                    <option value="" disabled>
-                      {" "}
-                      select your option{" "}
-                    </option>
-                    <option value="Chennai">Chennai</option>
-                    <option value="New Jersey">New Jersey</option>
-                    <option value="California">California</option>
-                    <option value="New york">New york</option>
+              <div className='row'>
+                <div className='left'>Working location:</div>
+                <div className='right'>
+                  <select id='wl' list='wl'name='wl' value={this.state.wl}
+                    onChange={e => this.change(e)} >
+                    <option value='' disabled> select your option </option>
+                    <option value='Chennai'>Chennai</option>
+                    <option value='New Jersey'>New Jersey</option>
+                    <option value='California'>California</option>
+                    <option value='New york'>New york</option>
                   </select>
                 </div>
               </div>
@@ -340,7 +328,8 @@ class AddUser extends Component {
           </div>
         </div>
       </div>
-    );
+    )
+    }
   }
 }
 export default AddUser;

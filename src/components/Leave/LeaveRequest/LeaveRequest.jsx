@@ -121,7 +121,7 @@ class LeaveRequest extends React.Component {
   calldispatch () {
     // set the functions to its initial state
     document.getElementById('success').style.opacity = 1
-    setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 3000)
+    setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
     this.setState({
       FromDate: moment(),
       ToDate: moment(),
