@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './Dashboard.css';
-import AvailableLeaves from './AvailableLeaves';
+import React, { Component } from 'react'
+import './Dashboard.css'
+import AvailableLeaves from './AvailableLeaves'
 
 class Dashboard extends Component {
   constructor (props) {
@@ -21,9 +21,7 @@ class Dashboard extends Component {
     } else {
       var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
       if (leaveRequestCount.deletedRow) {
-        leaveRequestCount =
-          leaveRequestCount.leaveRequest.length -
-          leaveRequestCount.deletedRow.length
+        leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
       } else {
         leaveRequestCount = leaveRequestCount.leaveRequest.length
       }
