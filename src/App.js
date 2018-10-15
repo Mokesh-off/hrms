@@ -16,6 +16,7 @@ import AddUser from './components/AddUser/AddUser';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 import EditProfileApproval from './components/Profile/EditProfileApproval';
 import NoMatch from './components/NoMatch/NoMatch';
+import Calendar from './components/Calendar/Calendar.jsx'
 
 class App extends Component {
   render () {
@@ -28,6 +29,7 @@ class App extends Component {
               <Switch>
                 <Route exact strict path="/" component={Login} />
                 <Route exact strict path="/dashboard" component={Dashboard} />
+                <Route exact strict path="/calendar" component={Calendar} />
                 <Route
                   exact
                   strict
