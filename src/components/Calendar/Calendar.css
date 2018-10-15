@@ -1,0 +1,11 @@
+#fullCalendarContainer{
+    display: flex;
+    margin-top: 53px;
+    margin-left: 15vw;
+    margin-bottom: 40px;
+    width: 80vw;
+    position: fixed;
+}
+#fullCalendarMainContainer{
+    overflow-y: scroll;
+}
