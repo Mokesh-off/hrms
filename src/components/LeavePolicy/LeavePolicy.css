@@ -21,9 +21,9 @@
   left: 400px;
 }
 
-.policy > textarea {
-  width: 150px;
-  height: 20px;
+.policyTextarea {
+  width: 250px;
+  height: 35px;
 }
 
 .headerLeavePolicy {

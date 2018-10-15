@@ -54,46 +54,56 @@ export default class Profile extends React.Component {
                           <label className='inputLabel'>Employee Id</label>
                           <span className='input'>{data.EmpId}</span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>Employee Name</label>
                           <span className='input'>{data.EmpName}</span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>Employee Role</label>
                           <span className='input'> {data.Role}</span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>Employee Domain</label>
                           <span className='input'>{data.Dep} </span>
                         </div>
+                        <hr />
                         <div className='profileInfoEmail'>
                           <label className='inputLabelEmail'>E-mail Id</label>
                           <span className='inputEmail'>{data.EmailId} </span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>
                             Employee Password
                           </label>
                           <span className='input'> {data.Password}</span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>
                             Employee Contact Number
                           </label>
                           <span className='input'> {data.ContactNum}</span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>Date of Birth</label>
                           <span className='input'>{data.Dob} </span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>Date of Joining</label>
                           <span className='input'> {data.Doj}</span>
                         </div>
+                        <hr />
                         <div className='profileInfo'>
                           <label className='inputLabel'>Employee Address</label>
                           <span className='input'>{data.Address}</span>
                         </div>
+                        <hr />
                       </div>
                     </div>
                   </div>

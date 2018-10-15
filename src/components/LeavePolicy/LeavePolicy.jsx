@@ -8,7 +8,8 @@ class LeavePolicy extends Component {
     super(props)
     this.state = {
       LeavePolicy: JSON.parse(localStorage.getItem('Data')),
-      flag: false
+      flag: false,
+      row: [{}]
     }
     this.change = this.change.bind(this)
   }
@@ -42,6 +43,7 @@ class LeavePolicy extends Component {
     for (var j = 0; j <= this.state.LeavePolicy.leavePolicy.length; j++) {
       if (j === i) {
         this.state.LeavePolicy.leavePolicy.splice(i, 1)
+        window.location.reload('/leavePolicy')
       }
     }
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeavePolicy))
@@ -84,7 +86,7 @@ class LeavePolicy extends Component {
 
     /* --   Employer Execution part    -- */
 
-    if (role === 'Employer') {
+    if (role === 'Employer' || this.state.flag === true) {
       return (
         <div className='policy'>
           <div className='headerPolicy'>
@@ -128,7 +130,7 @@ class LeavePolicy extends Component {
                 <tr key={data.id}>
                   <td className='tdStyle'>
                     <textarea
-                      className='tdStyle'
+                      className='policyTextarea'
                       name='Name'
                       onChange={e => this.change(e, i)}
                     >
@@ -137,7 +139,7 @@ class LeavePolicy extends Component {
                   </td>
                   <td className='tdStyle'>
                     <textarea
-                      className='tdStyle'
+                      className='policyTextarea'
                       name='Days'
                       onChange={e => this.change(e, i)}
                     >
@@ -146,7 +148,7 @@ class LeavePolicy extends Component {
                   </td>
                   <td className='tdStyle'>
                     <textarea
-                      className='tdStyle'
+                      className='policyTextarea'
                       name='Terms'
                       onChange={e => this.change(e, i)}
                     >
@@ -155,6 +157,7 @@ class LeavePolicy extends Component {
                   </td>
                   <td className='tdStyle'>
                     <button
+                      // onClick={this.handleRemoveSpecificRow(i)}
                       onClick={e => this.delete(e, i)}
                       className='policyDeleteButton'
                     >
