@@ -43,9 +43,7 @@ export default class EditProfile extends React.Component {
     event.preventDefault()
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
-      var currentUserId = JSON.parse(
-        window.localStorage.getItem('currentUserId')
-      )
+      var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
       var currentUser = JSON.parse(
         window.localStorage.getItem('currentUserName')
       )
@@ -81,7 +79,9 @@ export default class EditProfile extends React.Component {
 
   render () {
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
+    // alert("curreentUserId: " + empId);
     var data = JSON.parse(window.localStorage.getItem('Data'))
+    //alert(JSON.stringify(data));
     return (
       <div className='popUpAddProfile'>
         {data.Employee.map(

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import './Profile.css';
-import Modal from 'react-awesome-modal';
-import EditProfile from './EditProfile';
+import React, { Component } from 'react'
+import './Profile.css'
+import Modal from 'react-awesome-modal'
+import EditProfile from './EditProfile'
 export default class Profile extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       Data: JSON.parse(localStorage.getItem('Data')),
@@ -12,13 +12,13 @@ export default class Profile extends React.Component {
     }
   }
 
-  openModalView () {
+  openModalView() {
     this.setState({
       visibleView: true
     })
   }
 
-  closeModalView () {
+  closeModalView() {
     this.setState({
       visibleView: false
     })
@@ -26,13 +26,13 @@ export default class Profile extends React.Component {
 
   /* --------UI part for User Profile -------- */
 
-  render () {
+  render() {
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
     if (!localStorage.getItem('currentUserId')) {
       return window.location.replace('/')
     } else {
       return (
-      /* --    User Profile   -- */
+        /* --    User Profile   -- */
 
         <div className='profile'>
           <h1 className='UserProfile'>User Profile</h1>
@@ -108,8 +108,8 @@ export default class Profile extends React.Component {
                     </div>
                   </div>
                 ) : (
-                  ''
-                )
+                    ''
+                  )
             )}
           </form>
           <input

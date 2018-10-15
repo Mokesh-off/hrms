@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './LeavePolicy.css';
-import AddingPolicy from './AddingPolicy';
-import Modal from 'react-awesome-modal';
-import LeaveDetails from './LeaveDetails';
+import React, { Component } from 'react'
+import './LeavePolicy.css'
+import AddingPolicy from './AddingPolicy'
+import Modal from 'react-awesome-modal'
+import LeaveDetails from './LeaveDetails'
 class LeavePolicy extends Component {
   constructor (props) {
     super(props)
@@ -77,7 +77,7 @@ class LeavePolicy extends Component {
   render () {
     var data = JSON.parse(localStorage.getItem('Data'))
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
-    let role = '';
+    let role = ''
     data.Employee.map((list, index) => {
       if (list.EmpId === empId) {
         role = list.Role

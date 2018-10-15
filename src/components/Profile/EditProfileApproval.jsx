@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './EditProfileApproval.css';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react'
+import './EditProfileApproval.css'
+import { NavLink } from 'react-router-dom'
 
 class EditProfileApproval extends Component {
   constructor (props) {
@@ -19,7 +19,7 @@ class EditProfileApproval extends Component {
   changeToReject (e, i) {
     let newState = Object.assign({}, this.state)
     let index = i
-    newState.EditProfile.edittedProfile[index].status = 'Rejected';
+    newState.EditProfile.edittedProfile[index].status = 'Rejected'
     window.localStorage.setItem('Data', JSON.stringify(this.state.EditProfile))
     this.setState({ open: true })
     this.setState({ status: 'Rejected' })
@@ -30,7 +30,7 @@ class EditProfileApproval extends Component {
   changeToApprove (e, i) {
     let newState = Object.assign({}, this.state)
     let index = i
-    newState.EditProfile.edittedProfile[index].status = 'Approved';
+    newState.EditProfile.edittedProfile[index].status = 'Approved'
     window.localStorage.setItem('Data', JSON.stringify(this.state.EditProfile))
     this.setState({ open: true })
     this.setState({ status: 'Approved' })
