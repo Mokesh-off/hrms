@@ -15,10 +15,13 @@ class AddUser extends Component {
       EmailId: "",
       ContactNum: "",
       Dep: "",
-      Password: "tringapps",
-      validation: false,
       Role: "",
       EmpId: "",
+      Address: "",
+      maleChecked:false,
+      femaleChecked:false,
+      Password: "tringapps",
+      validation: false,
       empty: "",
       errname: "",
       nameborder: "",
@@ -26,7 +29,6 @@ class AddUser extends Component {
       mailborder: "",
       errnum: "",
       numborder: "",
-      Address: "",
       PendingLeaves: {
         Planned: 10,
         EmergencyLeave: 10,
@@ -35,14 +37,18 @@ class AddUser extends Component {
       }
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.reset = this.reset.bind(this);
+    this.emptyForm = this.emptyForm.bind(this);
   }
+
   change(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
+
   reset () {
-    window.location.assign('/addUser')
+    this.emptyForm()
   }
 
   validate() {
@@ -101,6 +107,27 @@ class AddUser extends Component {
     return true;
   }
 
+  emptyForm(){
+    console.log('empty form')
+    console.log(this.state.maleChecked)
+    console.log(this.state.femaleChecked)
+    this.setState({
+      EmpName:this.state.EmpName= "",
+      Dob:this.state.Dob= "",
+      Doj:this.state.Doj= "",
+      wl:this.state.wl= "",
+      gender:this.state.gender= "",
+      EmailId:this.state.EmailId= "",
+      ContactNum:this.state.ContactNum= "",
+      Dep:this.state.Dep= "",
+      Role:this.state.Role= "",
+      EmpId:this.state.EmpId= "",
+      Address:this.state.Address= ""
+    })
+    document.getElementById('radio1').checked = false;
+    document.getElementById('radio2').checked = false;
+  }
+
   onSubmit (e) {
     e.preventDefault()
     if (this.validate()) {
@@ -110,12 +137,14 @@ class AddUser extends Component {
       if (Data.Employee) {
         Data.Employee[Data.Employee.length] = this.state
         window.localStorage.setItem('Data', JSON.stringify(Data))
-        alert('New user added')
+        alert("New user added");
+        this.emptyForm()
       } else {
         Data["Employee"] = [];
         Data.Employee[Data.Employee.length] = this.state;
         window.localStorage.setItem("Data", JSON.stringify(Data));
         alert("New user added");
+        this.emptyForm()
       }
     }
   }
@@ -144,6 +173,7 @@ class AddUser extends Component {
                     className="box"
                     type="number"
                     name="EmpId"
+                    value={this.state.EmpId}
                     placeholder="Employee ID.."
                     onChange={e => this.change(e)}
                   />
@@ -157,6 +187,7 @@ class AddUser extends Component {
                     className="box"
                     type="text"
                     name="EmpName"
+                    value={this.state.EmpName}
                     placeholder="Employee name..."
                     style={{ border: this.state.nameborder }}
                     onChange={e => this.change(e)}
@@ -172,6 +203,7 @@ class AddUser extends Component {
                     className="box"
                     type="EmailId"
                     name="EmailId"
+                    value={this.state.EmailId}
                     style={{ border: this.state.mailborder }}
                     onChange={e => this.change(e)}
                   />
@@ -200,7 +232,7 @@ class AddUser extends Component {
                   <input
                     className="box"
                     type="number"
-                    name="ContactNum"
+                    name="ContactNum" value={this.state.ContactNum}
                     onChange={e => this.change(e)}
                     style={{ border: this.state.numborder }}
                   />
@@ -211,7 +243,7 @@ class AddUser extends Component {
               <div className="row">
                 <div className="left">Dob:</div>
                 <div className="right">
-                  <input
+                  <input value={this.state.Dob}
                     className="box"
                     type="date"
                     name="Dob"
@@ -224,9 +256,10 @@ class AddUser extends Component {
               <div className="row">
                 <div className="left">Gender:</div>
                 <div className="right">
-                  <input
+                  <input 
                     type="radio"
                     className="radio"
+                    id="radio1"
                     name="gender"
                     value="male"
                     onChange={e => this.change(e)}
@@ -236,6 +269,7 @@ class AddUser extends Component {
                   <input
                     type="radio"
                     className="radio"
+                    id="radio2"
                     name="gender"
                     value="female"
                     onChange={e => this.change(e)}
@@ -275,7 +309,7 @@ class AddUser extends Component {
                   <input
                     className="box"
                     type="date"
-                    name="Doj"
+                    name="Doj" value={this.state.Doj}
                     onChange={e => this.change(e)}
                     required
                   />
@@ -300,7 +334,7 @@ class AddUser extends Component {
                 <div className="left">Address:</div>
                 <div className="right">
                   <textarea
-                    className="box"
+                    className="box" value={this.state.Address}
                     name="Address"
                     onChange={e => this.change(e)}
                   />
