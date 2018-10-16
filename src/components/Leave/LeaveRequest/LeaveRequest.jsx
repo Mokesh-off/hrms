@@ -10,7 +10,7 @@ class LeaveRequest extends React.Component {
     this.state = {
       EmpId: '',
       EmpName: '',
-      TotalDays: '',
+      TotalDays: '1',
       FromDate: moment(),
       ToDate: moment(),
       LeaveType: '',
@@ -18,7 +18,6 @@ class LeaveRequest extends React.Component {
       ReqestId: moment(),
       appliedOn: moment(),
       status: '',
-      appliedOn: moment(),
       comment: '',
       errdate: '',
       dateErr: '',
@@ -138,8 +137,6 @@ class LeaveRequest extends React.Component {
       appliedOn: moment(),
       LeaveType: '',
       LeaveReason: '',
-      ReqestId: moment(),
-      appliedOn: moment(),
       TotalDays: ''
     })
   }
@@ -160,36 +157,54 @@ class LeaveRequest extends React.Component {
     this.setState({ end: this.state.ToDate._d })
     var loop = new Date(start)
     end = new Date(end)
-    var count = 0
+    var count = 1
     var flag = false
     var holiday = JSON.parse(window.localStorage.getItem('Data'))
     holiday = holiday.holidays
     if (loop <= end) {
       while (loop <= end) {
         var yyyy = loop.getFullYear()
-        var mm = loop.getDay()
+        var mm = loop.getMonth() + 1
         var d = loop.getDate()
-        var date = yyyy + '-' + mm + '-' + d
-        flag = holiday.map((ho) => // To check it's holiday
-          (ho === date)
-        );
+        var date
+        if (mm < 10) {
+          date = yyyy + '-' + '0' + mm + '-' + d
+        } else {
+          date = yyyy + '-' + mm + '-' + d
+        }
+        flag = false
+        holiday.map((holiday) => { // To check it's holiday
+          console.log(holiday, date)
+          if (holiday === date) {
+            flag = true
+          }
+        });
         (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
         var newDate = loop.setDate(loop.getDate() + 1)
         loop = new Date(newDate)
+        console.log(flag, count)
       }
-      this.setState({ TotalDays: count })
+      this.setState({ TotalDays: this.state.TotalDays = count })
       return count
     }
     if (loop >= end) {
       count = 0
       while (loop >= end) {
         var year = loop.getFullYear()
-        var mon = loop.getDay()
+        var mon = loop.getMonth() + 1
         var da = loop.getDate()
-        var dat = year + '-' + mon + '-' + da
-        flag = holiday.map((ho) => // To check it's holiday
-          (ho === dat)
-        );
+        var dat
+        if (mm < 10) {
+          dat = year + '-' + '0' + mon + '-' + da
+        } else {
+          dat = year + '-' + mon + '-' + da
+        }
+        flag = false
+        holiday.map((holiday) => { // To check it's holiday
+          if (holiday === dat) {
+            flag = true
+          }
+        });
         (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
         var newDat = loop.setDate(loop.getDate() - 1)
         loop = new Date(newDat)
@@ -202,7 +217,7 @@ class LeaveRequest extends React.Component {
   render () {
     var holidayList = JSON.parse(window.localStorage.getItem('Data'))
     holidayList = holidayList.holidays
-    if (!localStorage.getItem('currentUserId')) {
+    if (!window.localStorage.getItem('currentUserId')) {
       return (
         window.location.replace('/')
       )
