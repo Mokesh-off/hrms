@@ -4,8 +4,20 @@
     margin-left: 15vw;
     margin-bottom: 40px;
     width: 80vw;
-    position: fixed;
+    /* position: fixed; */
 }
 #fullCalendarMainContainer{
     overflow-y: scroll;
+}
+
+.fc-basic-view .fc-body .fc-row {
+    /* min-height: 0em !important; */
+}
+
+.fc-row {
+    /* height: 30px !important; */
+}
+
+#fullCalendarMainContainer::-webkit-scrollbar {
+    display: none;
 }

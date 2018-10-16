@@ -101,13 +101,13 @@ class LeaveRequest extends React.Component {
     event.preventDefault()
     if (this.validation()) {
       var data = JSON.parse(window.localStorage.getItem('Data'))
-      var currentUserId = parseInt(window.localStorage.getItem('currentUserId'))
+      var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
       var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
       this.setState({ ReqestId: this.state.appliedOn = this.state.appliedOn._d })
       this.setState({ ReqestId: this.state.ReqestId = this.state.ReqestId._d.getTime() })
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
-        this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
+        this.setState({ EmpId: this.state.EmpId = currentUserId, EmpName: this.state.EmpName = currentUser }, () => {
           data.leaveRequest[data.leaveRequest.length] = this.state
           window.localStorage.setItem('Data', JSON.stringify(data))
           document.getElementById('success').style.opacity = 1

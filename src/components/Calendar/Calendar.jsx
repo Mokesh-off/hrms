@@ -14,10 +14,10 @@ class Calendar extends React.Component {
     this.state = {
     calendarData:[],		
     }
+    this.calendarData=this.calendarData.bind(this)
   }
-   
-  render() {
 
+  calendarData(){
     var calendarData=JSON.parse(localStorage.getItem('Data'))
     calendarData=calendarData.leaveRequest
     var j=0
@@ -31,6 +31,16 @@ class Calendar extends React.Component {
         j++
       }
     });
+    console.log('state calendar: '+JSON.stringify(this.state.calendarData))
+    return this.state.calendarData
+  }
+
+  componentDidMount(){
+    console.log('did mount')
+    this.calendarData();
+    console.log('state did mount calendar: '+JSON.stringify(this.state.calendarData))
+  }
+  render() {
 
     return (
       <div id='fullCalendarMainContainer'>
@@ -43,7 +53,7 @@ class Calendar extends React.Component {
                 center: 'title',
                 right: 'month,basicWeek,basicDay'
             }}
-            defaultDate={'2017-09-12'}
+            defaultDate= {moment()}
             navLinks= {true} // can click day/week names to navigate views
             editable= {true}
             eventLimit= {true} // allow "more" link when too many calendarData
