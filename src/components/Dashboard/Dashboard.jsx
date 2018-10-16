@@ -25,7 +25,8 @@ class Dashboard extends Component {
     else{
 
       var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
-      leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
+      // leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
+      leaveRequestCount = leaveRequestCount.leaveRequest.length
       if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
         return (
           <div className='dashboardRightComponent'>
