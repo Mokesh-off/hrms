@@ -16,11 +16,7 @@ import AddUser from './components/AddUser/AddUser'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import EditProfileApproval from './components/Profile/EditProfileApproval'
 import NoMatch from './components/NoMatch/NoMatch'
-<<<<<<< HEAD
-import Calendar from './components/Calendar/Calendar';
-=======
 import Calendar from './components/Calendar/Calendar.jsx'
->>>>>>> develop
 
 class App extends Component {
   render () {
