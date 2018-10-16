@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './Dashboard.css';
-import AvailableLeaves from './AvailableLeaves';
+import React, { Component } from 'react'
+import './Dashboard.css'
+import AvailableLeaves from './AvailableLeaves'
 
 class Dashboard extends Component {
   constructor (props) {
@@ -16,17 +16,15 @@ class Dashboard extends Component {
     window.location.assign('/pendingleaves')
   }
   render () {
-    if(!localStorage.getItem('currentUserId'))
-    {
-    return(
-     window.location.replace('/')
-    )
-    }
-    else{
-
+    if (!localStorage.getItem('currentUserId')) {
+      return window.location.replace('/')
+    } else {
       var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
-      // leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
-      leaveRequestCount = leaveRequestCount.leaveRequest.length
+      if (leaveRequestCount.deletedRow) {
+        leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
+      } else {
+        leaveRequestCount = leaveRequestCount.leaveRequest.length
+      }
       if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
         return (
           <div className='dashboardRightComponent'>

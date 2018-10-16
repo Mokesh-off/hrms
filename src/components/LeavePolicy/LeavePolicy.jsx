@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import './LeavePolicy.css';
-import AddingPolicy from './AddingPolicy';
-import Modal from 'react-awesome-modal';
-import LeaveDetails from './LeaveDetails';
+import React, { Component } from 'react'
+import './LeavePolicy.css'
+import AddingPolicy from './AddingPolicy'
+import Modal from 'react-awesome-modal'
+import LeaveDetails from './LeaveDetails'
 class LeavePolicy extends Component {
   constructor (props) {
     super(props)
     this.state = {
       LeavePolicy: JSON.parse(localStorage.getItem('Data')),
-      flag: false
+      flag: false,
+      row: [{}]
     }
     this.change = this.change.bind(this)
   }
@@ -42,6 +43,7 @@ class LeavePolicy extends Component {
     for (var j = 0; j <= this.state.LeavePolicy.leavePolicy.length; j++) {
       if (j === i) {
         this.state.LeavePolicy.leavePolicy.splice(i, 1)
+        window.location.reload('/leavePolicy')
       }
     }
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeavePolicy))
@@ -75,7 +77,7 @@ class LeavePolicy extends Component {
   render () {
     var data = JSON.parse(localStorage.getItem('Data'))
     let empId = JSON.parse(localStorage.getItem('currentUserId'))
-    let role = '';
+    let role = ''
     data.Employee.map((list, index) => {
       if (list.EmpId === empId) {
         role = list.Role
@@ -84,7 +86,7 @@ class LeavePolicy extends Component {
 
     /* --   Employer Execution part    -- */
 
-    if (role === 'Employer') {
+    if (role === 'Employer' || this.state.flag === true) {
       return (
         <div className='policy'>
           <div className='headerPolicy'>
@@ -128,7 +130,7 @@ class LeavePolicy extends Component {
                 <tr key={data.id}>
                   <td className='tdStyle'>
                     <textarea
-                      className='tdStyle'
+                      className='policyTextarea'
                       name='Name'
                       onChange={e => this.change(e, i)}
                     >
@@ -137,7 +139,7 @@ class LeavePolicy extends Component {
                   </td>
                   <td className='tdStyle'>
                     <textarea
-                      className='tdStyle'
+                      className='policyTextarea'
                       name='Days'
                       onChange={e => this.change(e, i)}
                     >
@@ -146,7 +148,7 @@ class LeavePolicy extends Component {
                   </td>
                   <td className='tdStyle'>
                     <textarea
-                      className='tdStyle'
+                      className='policyTextarea'
                       name='Terms'
                       onChange={e => this.change(e, i)}
                     >
@@ -155,6 +157,7 @@ class LeavePolicy extends Component {
                   </td>
                   <td className='tdStyle'>
                     <button
+                      // onClick={this.handleRemoveSpecificRow(i)}
                       onClick={e => this.delete(e, i)}
                       className='policyDeleteButton'
                     >

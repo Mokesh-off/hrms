@@ -6,7 +6,7 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 
 class SideNav extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       navFlag: '',
@@ -20,7 +20,7 @@ class SideNav extends Component {
     this.showButtonsFunction = this.showButtonsFunction.bind(this)
   }
 
-  showButtonsFunction () {
+  showButtonsFunction() {
     if (this.state.showButtons === 'sidenavHide') {
       this.setState({
         showButtons: (this.state.showButtons = 'sidenavDisplay sidenav'),
@@ -37,7 +37,7 @@ class SideNav extends Component {
     }
   }
 
-  componentWillMount () {
+  componentWillMount() {
     var visibilityVar = JSON.parse(localStorage.getItem('currentUserRole'))
     visibilityVar === 'Employee' &&
       this.setState({
@@ -45,7 +45,7 @@ class SideNav extends Component {
       })
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     if (this.state.currentUserRoleVar === 'Employer') {
       ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
       ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '';
@@ -94,7 +94,7 @@ class SideNav extends Component {
       }
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     if (window.location.pathname === '/dashboard') {
       this.setState({
         showButtons: (this.state.showButtons = 'sidenavHide'),
@@ -108,7 +108,7 @@ class SideNav extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Header />
@@ -146,24 +146,24 @@ class SideNav extends Component {
             <div id='divider' />
           </div>
         ) : (
-          <div className='sidenav'>
-            <Link to='/dashboard'>
-              <button ref='dashboard'> Dashboard </button>
-            </Link>
-            <Link to='/leaverequest'>
-              <button ref='leaverequest'> Leave Request </button>
-            </Link>
-            <Link to='/MyLeaves'>
-              <button ref='MyLeaves'> My Leave </button>
-            </Link>
-            <Link to='/LeavePolicy'>
-              <button ref='LeavePolicy'> Leave Policy </button>
-            </Link>
-            <Link to='/leaveplan'>
-              <button ref='leaveplan'> Leave plan </button>
-            </Link>
-          </div>
-        )}
+            <div className='sidenav'>
+              <Link to='/dashboard'>
+                <button ref='dashboard'> Dashboard </button>
+              </Link>
+              <Link to='/leaverequest'>
+                <button ref='leaverequest'> Leave Request </button>
+              </Link>
+              <Link to='/MyLeaves'>
+                <button ref='MyLeaves'> My Leave </button>
+              </Link>
+              <Link to='/LeavePolicy'>
+                <button ref='LeavePolicy'> Leave Policy </button>
+              </Link>
+              <Link to='/leaveplan'>
+                <button ref='leaveplan'> Leave plan </button>
+              </Link>
+            </div>
+          )}
 
         <Footer />
       </div>
