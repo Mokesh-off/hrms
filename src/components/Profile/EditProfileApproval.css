@@ -1,8 +1,13 @@
 .editProfileApproval {
   margin-left: 18%;
   margin-right: 5%;
-  padding-top: 10%;
+  padding-top: 3%;
   padding-bottom: 3%;
+}
+
+.editProfile > h1 {
+  text-align: center;
+  color: cornflowerblue;
 }
 
 .approveProfileHeader {

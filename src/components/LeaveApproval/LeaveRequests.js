@@ -52,7 +52,7 @@ class LeaveRequests extends Component {
   changeToReject (e, i) {
     let newState = Object.assign({}, this.state)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Rejected';
+    newState.LeaveRecord.leaveRequest[index].status = 'Rejected'
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     this.setState({ open: true, index: i })
     this.setState({ status: 'Rejected' })
@@ -100,7 +100,7 @@ class LeaveRequests extends Component {
   changeToApprove (e, i) {
     let newState = Object.assign({}, this.state)
     let index = i
-    newState.LeaveRecord.leaveRequest[index].status = 'Approved';
+    newState.LeaveRecord.leaveRequest[index].status = 'Approved'
     window.localStorage.setItem('Data', JSON.stringify(this.state.LeaveRecord))
     let id = this.state.LeaveRecord.leaveRequest[index].EmpId
     let type = this.state.LeaveRecord.leaveRequest[index].LeaveType
@@ -155,7 +155,7 @@ class LeaveRequests extends Component {
         this.state.checkedValue.push(inputElements[i].getAttribute('data-id'))
       }
     }
-   
+
     if (this.state.checkedValue.length > 0) {
       for (var i = 0; i < this.state.checkedValue.length; ++i) {
         let index = parseInt(this.state.checkedValue[i])
@@ -182,7 +182,7 @@ class LeaveRequests extends Component {
     let data = JSON.parse(localStorage.getItem('Data'))
     if (data.leaveRequest) {
       return (
-      // List of leave requests
+        // List of leave requests
         <div className='leaveRecord'>
           <div>
             <button className='RejectButton' onClick={e => this.selectAll(e)}>selectAll</button>

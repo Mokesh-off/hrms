@@ -162,5 +162,6 @@
         "Days": "9",
         "Terms": "9 days for 12 months service"
       }
-    ]
+    ],
+    "deleteRow": []
   }
