@@ -20,18 +20,11 @@ class Dashboard extends Component {
       return window.location.replace('/')
     } else {
       var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
-<<<<<<< HEAD
-      if(leaveRequestCount.deletedRow)
-      leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
-      else
-      leaveRequestCount = leaveRequestCount.leaveRequest.length 
-=======
       if (leaveRequestCount.deletedRow) {
         leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
       } else {
         leaveRequestCount = leaveRequestCount.leaveRequest.length
       }
->>>>>>> develop
       if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
         return (
           <div className='dashboardRightComponent'>
