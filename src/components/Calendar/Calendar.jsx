@@ -28,22 +28,27 @@ class Calendar extends React.Component {
     var j=0,obj
 
     calendarData.forEach(i => {
-      if(i.status === 'Approved'){
+
+      if(i.status === 'Rejected'){
+        
+      }
         var endDate=new Date((i.ToDate).split("T")[0])
         endDate=endDate.setDate(endDate.getDate()+1)
         endDate=new Date(endDate)
         endDate=JSON.stringify(endDate).substr(1,10)
+
         obj = Object.assign ( {}, {title:i.EmpName,
          EmpId:i.EmpId, empName:i.EmpName,
          fromDate:(i.FromDate).split("T")[0],toDate:(i.ToDate).split("T")[0],
-         noOfDays:i.TotalDays,
+         noOfDays:i.TotalDays,className:i.status,
          reason:i.LeaveReason,status:i.status,
-         start:(i.FromDate).split("T")[0], end:endDate})
+         start:(i.FromDate).split("T")[0], end:endDate}
+         
+         )
         this.state.calendarData[this.state.calendarData.length]= obj
         j++
-      }
     });
-    return this.state.calendarData
+
   }
 
   popUpFunction(e,event){
@@ -63,7 +68,8 @@ class Calendar extends React.Component {
     })
 
   }
-  closePopUp(){
+  closePopUp(event){
+    console.log('close pop up')
     this.setState({
       display:'none'
     })
@@ -88,18 +94,20 @@ class Calendar extends React.Component {
             eventLimit= {true} 
             events = {this.state.calendarData}	
             eventClick={(e,event)=>this.popUpFunction(e,event)}
+            // eventMouseout={()=>this.closePopUp()}
         />
           </div>
-          <div className='fc-popover fc-more-popover' 
-          style= {{display:this.state.display,top:this.state.top,left:this.state.left}} >
-            {console.log(JSON.stringify(this.state.display,this.state.top,this.state.left))}
+          <div className='fc-popover fc-more-popover popUp' 
+          style= {{display:this.state.display,top:this.state.top,left:this.state.left}}
+          >
+          <span className='marginLeft' onClick={()=>this.closePopUp()}>X</span>
               <div>Name : {this.state.empName}</div>
               <div>From Date : {this.state.fromDate}</div>
               <div>To Date : {this.state.toDate}</div>
               <div>Total Days : {this.state.noOfDays}</div>
               <div>Reason : {this.state.reason}</div>
               <div>Status : {this.state.status}</div>
-              <button onClick={()=>this.closePopUp()}>close</button>
+              {/* <button onClick={()=>this.closePopUp()}>close</button> */}
             
           </div>
         </div>

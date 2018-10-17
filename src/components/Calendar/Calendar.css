@@ -1,33 +1,52 @@
 #fullCalendarContainer{
-    display: flex;
-    margin-top: 53px;
-    margin-left: 15vw;
-    margin-bottom: 40px;
-    width: 80vw;
+  display: flex;
+  margin-top: 53px;
+  margin-left: 15vw;
+  margin-bottom: 40px;
+  width: 80vw;
 }
 #fullCalendarMainContainer{
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 #fullCalendarMainContainer::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 .fc-popover{
-    height: 15% !important;
-    overflow-y: scroll;
-    background-color: #ffff;
-    border: 1px solid #EDEDED;
-    border-radius: 3px;
+  height: 15% !important;
+  overflow-y: scroll;
+  background-color: #ffff;
+  border: 1px solid #EDEDED;
+  border-radius: 3px;
 }
 .pop-overlay{
-    background: none !important;
+  background: none !important;
 }
+
 /* .popup-overlay{
     pointer-events: none;
 }
 .popup-content button{
     pointer-events: stroke;
 } */
-#popUp{
-    
+
+.popUp{
+  height: 21% !important;   
+  width: 15%;
+  overflow-y: hidden !important;
+  padding-left: 10px;
+}
+.popUp .marginLeft{
+  margin-left: 90%;
+  cursor: pointer;
+}
+
+.Approved{
+  background: #2e8c16;
+  border: #2e8c16 !important;
+}
+
+.Rejected{
+  background: #a81515 !important;
+  border:1px solid #a81515 !important;
 }
