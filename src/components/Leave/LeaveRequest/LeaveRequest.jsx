@@ -17,6 +17,7 @@ class LeaveRequest extends React.Component {
       LeaveReason: '',
       ReqestId: moment(),
       appliedOn: moment(),
+      exclude: [],
       status: '',
       comment: '',
       errdate: '',
@@ -41,8 +42,8 @@ class LeaveRequest extends React.Component {
       Err: ''
     })
     if (this.state.TotalDays === '' || this.state.FromDate === '' ||
-      this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
-      this.setState({ Err: 'Fields can not be empty ' })
+      this.state.ToDate === '' || this.state.LeaveType === '') {
+      this.setState({ Err: 'Leave type can not be empty ' })
       return (false)
     }
     if (this.state.FromDate._d > this.state.ToDate._d) {
@@ -54,7 +55,7 @@ class LeaveRequest extends React.Component {
     this.setState({ EmpId: currentUserId })
     data = data.Employee
     for (var i = 0; i < data.length; i++) {
-      console.log(data[i].EmpId, (currentUserId))
+      // console.log(data[i].EmpId, (currentUserId))
       if (data[i].EmpId === currentUserId) {
         if (this.state.LeaveType === 'Casual Leave') {
           if (data[i].PendingLeaves.Planned < this.state.TotalDays) {
@@ -81,8 +82,38 @@ class LeaveRequest extends React.Component {
     }
     return (true)
   }
+  componentDidMount () {
+    var data = JSON.parse(window.localStorage.getItem('Data'))
+    var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
+    // this.setState({})
+    var holi
+    data.Employee.map((holis) => {
+      if (holis.EmpId === currentUserId) {
+        if (holis.leaveTaken) {
+          // var holi = { ...holis.leaveTaken }
+          // console.log(holi)
+          holi = [ ...data.holidays, ...holis.leaveTaken ]
+          this.setState({
+            exclude: this.state.exclude = holi
+          }, () => {
+            // console.log(JSON.stringify(this.state.exclude) + 'sec')
+          })
+        } else {
+          holi = [ ...data.holidays ]
+          this.setState({
+            exclude: this.state.exclude = holi
+          }, () => {
+            // console.log(JSON.stringify(this.state.exclude) + 'sec')
+          })
+        }
+      }
+    })
+  }
   handleChange (e) { // To set the values to the state
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      this.validation()
+    })
+    // this.numOfDays()
   }
   DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date }, () => {
@@ -98,13 +129,12 @@ class LeaveRequest extends React.Component {
     // Calling the validation function and
     // Updating the value to the Local storage
     event.preventDefault()
-    if (this.validation()) {
+    if (this.state.LeaveReason !== '') {
       var data = JSON.parse(window.localStorage.getItem('Data'))
       var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
       var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
       this.setState({ ReqestId: this.state.appliedOn = this.state.appliedOn._d })
       this.setState({ ReqestId: this.state.ReqestId = this.state.ReqestId._d.getTime() })
-      console.log()
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
         this.setState({ EmpId: this.state.EmpId = currentUserId, EmpName: this.state.EmpName = currentUser }, () => {
@@ -125,8 +155,28 @@ class LeaveRequest extends React.Component {
           this.calldispatch()
         })
       }
+      var start = new Date(this.state.FromDate)
+      var end = new Date(this.state.ToDate)
+      while (start <= end) {
+        var leavDate = JSON.stringify(start).substr(1, 10)
+        data.Employee.map((dat) => {
+          if (dat.EmpId === currentUserId) {
+            if (dat.leaveTaken) {
+              dat.leaveTaken[dat.leaveTaken.length] = leavDate
+              window.localStorage.setItem('Data', JSON.stringify(data))
+            } else {
+              dat['leaveTaken'] = []
+              dat.leaveTaken[dat.leaveTaken.length] = leavDate
+              window.localStorage.setItem('Data', JSON.stringify(data))
+            }
+          }
+        })
+        var newDate = start.setDate(start.getDate() + 1)
+        start = new Date(newDate)
+      }
+    } else {
+      this.setState({ Err: 'Fields can not be empty ' })
     }
-    console.log(this.state)
   }
   calldispatch () {
     // set the functions to its initial state
@@ -137,6 +187,8 @@ class LeaveRequest extends React.Component {
       appliedOn: moment(),
       LeaveType: '',
       LeaveReason: '',
+      ReqestId: moment(),
+      appliedOn: moment(),
       TotalDays: ''
     })
   }
@@ -151,72 +203,48 @@ class LeaveRequest extends React.Component {
     if (this.state.FromDate === null || this.state.ToDate === null) {
       return this.setState({ TotalDays: 0 })
     }
-    var start = this.state.FromDate._d
-    this.setState({ start: this.state.FromDate._d })
-    var end = this.state.ToDate._d
-    this.setState({ end: this.state.ToDate._d })
-    var loop = new Date(start)
-    end = new Date(end)
-    var count = 1
+    var start = JSON.stringify(this.state.FromDate).substr(1, 10)
+    var end = new Date(this.state.ToDate)
     var flag = false
+    var loop = new Date(start)
+    var date, newDate, count
     var holiday = JSON.parse(window.localStorage.getItem('Data'))
-    holiday = holiday.holidays
+    var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
     if (loop <= end) {
-      while (loop <= end) {
-        var yyyy = loop.getFullYear()
-        var mm = loop.getMonth() + 1
-        var d = loop.getDate()
-        var date
-        if (mm < 10) {
-          date = yyyy + '-' + '0' + mm + '-' + d
-        } else {
-          date = yyyy + '-' + mm + '-' + d
-        }
-        flag = false
-        holiday.map((holiday) => { // To check it's holiday
-          console.log(holiday, date)
-          if (holiday === date) {
-            flag = true
-          }
-        });
-        (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
-        var newDate = loop.setDate(loop.getDate() + 1)
-        loop = new Date(newDate)
-        console.log(flag, count)
-      }
-      this.setState({ TotalDays: this.state.TotalDays = count })
-      return count
-    }
-    if (loop >= end) {
       count = 0
-      while (loop >= end) {
-        var year = loop.getFullYear()
-        var mon = loop.getMonth() + 1
-        var da = loop.getDate()
-        var dat
-        if (mm < 10) {
-          dat = year + '-' + '0' + mon + '-' + da
-        } else {
-          dat = year + '-' + mon + '-' + da
-        }
-        flag = false
-        holiday.map((holiday) => { // To check it's holiday
-          if (holiday === dat) {
+      while (loop <= end) {
+        date = JSON.stringify(loop).substr(1, 10)
+        holiday.holidays.map((holi) => { // To check it's holiday
+          if (holi === date) {
             flag = true
           }
-        });
-        (loop.getDay() === 0 || loop.getDay() === 6 || flag === true) ? (null) : (count++)
-        var newDat = loop.setDate(loop.getDate() - 1)
-        loop = new Date(newDat)
+        })
+        holiday.Employee.map((user, i) => {
+          if (user.EmpId === currentUserId) {
+            if (holiday.Employee[i].leaveTaken) {
+              holiday.Employee[i].leaveTaken.map((taken) => {
+                if (taken === date) {
+                  flag = true
+                }
+              })
+            }
+          }
+        })
+        if ((loop.getDay() === 0 || loop.getDay() === 6 || flag === true) === false) {
+          count++
+        }
+        flag = false
+        newDate = loop.setDate(loop.getDate() + 1)
+        loop = new Date(newDate)
       }
-      this.setState({ TotalDays: count })
-      return count
+    } else {
+      count = 0
     }
-    // this.setState({ TotalDays: count })
+    this.setState({ TotalDays: this.state.TotalDays = count }, () => {
+      this.validation()
+    })
   }
   render () {
-    var holidayList = JSON.parse(window.localStorage.getItem('Data'))
-    holidayList = holidayList.holidays
     if (!window.localStorage.getItem('currentUserId')) {
       return (
         window.location.replace('/')
@@ -265,7 +293,7 @@ class LeaveRequest extends React.Component {
                     showDisabledMonthNavigation
                     onChange={e => this.DateFromChange(e)}
                     yearDropdownItemNumber={2}
-                    excludeDates={holidayList}
+                    excludeDates={this.state.exclude}
                     placeholderText='Select a weekday'
                     name='From' />
                 </div>
@@ -287,7 +315,7 @@ class LeaveRequest extends React.Component {
                     maxDate={moment(this.state.FromDate).add(24, 'months')}
                     showDisabledMonthNavigation
                     yearDropdownItemNumber={2}
-                    excludeDates={holidayList}
+                    excludeDates={this.state.exclude}
                     placeholderText='Select a weekday'
                     name='To' />
                 </div>
