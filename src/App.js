@@ -20,34 +20,95 @@ import Calendar from './components/Calendar/Calendar.jsx'
 
 class App extends Component {
   render () {
-    return (
-      <div>
-        <Router>
-          <div>
-            <SideNav />
+    if (!window.localStorage.getItem('currentUserId')) {
+      return (
+        <div>
+          <Router>
             <div>
-              <Switch>
-                <Route exact strict path='/' component={Login} />
-                <Route exact strict path='/dashboard' component={Dashboard} />
-                <Route exact strict path='/calendar' component={Calendar} />
-                <Route exact strict path='/dashboard/leavelist' component={LeaveRequests} />
-                <Route exact strict path='/leaverequest' component={LeaveRequest} />
-                <Route exact strict path='/myLeaves' component={MyLeavesIndex} />
-                <Route exact strict path='/pendingleaves' component={PendingLeaves} />
-                <Route exact strict path='/leaveRecords' component={LeaveRecord} />
-                <Route exact strict path='/leaveplan' component={HolidayIndex} />
-                <Route exact strict path='/leavePolicy' component={LeavePolicy} />
-                <Route exact strict path='/profile' component={Profile} />
-                <Route exact strict path='/changepassword' component={ChangePassword} />
-                <Route exact strict path='/addUser' component={AddUser} />
-                <Route exact strict path='/approveProfile' component={EditProfileApproval} />
-                <Route component={NoMatch} />
-              </Switch>
+              <div>
+                <Switch>
+                  <Route exact strict path='/' component={Login} />
+                  <Route component={NoMatch} />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </Router>
-      </div>
-    )
+          </Router>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Router>
+            <div>
+              <SideNav />
+              <div>
+                <Switch>
+                  <Route exact strict path='/' component={Login} />
+                  <Route exact strict path='/dashboard' component={Dashboard} />
+                  <Route exact strict path='/calendar' component={Calendar} />
+                  <Route
+                    exact
+                    strict
+                    path='/dashboard/leavelist'
+                    component={LeaveRequests}
+                  />
+
+                  <Route exact strict
+                    path='/leaverequest' component={LeaveRequest} />
+
+                  <Route
+                    exact
+                    strict
+                    path='/myLeaves'
+                    component={MyLeavesIndex}
+                  />
+
+                  <Route
+                    exact
+                    strict
+                    path='/pendingleaves'
+                    component={PendingLeaves}
+                  />
+                  <Route
+                    exact
+                    strict
+                    path='/leaveRecords'
+                    component={LeaveRecord}
+                  />
+                  <Route
+                    exact
+                    strict
+                    path='/leaveplan'
+                    component={HolidayIndex}
+                  />
+                  <Route
+                    exact
+                    strict
+                    path='/leavePolicy'
+                    component={LeavePolicy}
+                  />
+                  <Route exact strict path='/profile' component={Profile} />
+                  <Route
+                    exact
+                    strict
+                    path='/changepassword'
+                    component={ChangePassword}
+                  />
+                  <Route exact strict path='/addUser' component={AddUser} />
+                  <Route
+                    exact
+                    strict
+                    path='/approveProfile'
+                    component={EditProfileApproval}
+                  />
+                  <Route component={NoMatch} />
+                </Switch>
+              </div>
+            </div>
+          </Router>
+        </div>
+      )
+    }
   }
 }
 

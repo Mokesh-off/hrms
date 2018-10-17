@@ -55,6 +55,7 @@ class SideNav extends Component {
       ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
       ReactDOM.findDOMNode(this.refs.addUser).style.background = '';
       ReactDOM.findDOMNode(this.refs.approveProfile).style.background = '';
+      ReactDOM.findDOMNode(this.refs.calendar).style.background = '';
 
       if (window.location.pathname === '/leaveRecords') {
         ReactDOM.findDOMNode(this.refs.leaveRecord).style.background =
@@ -75,6 +76,10 @@ class SideNav extends Component {
         ReactDOM.findDOMNode(this.refs.addUser).style.background = '#EDEDED';
       } else if (window.location.pathname === '/approveProfile') {
         ReactDOM.findDOMNode(this.refs.approveProfile).style.background =
+          '#EDEDED';
+      }
+      else if (window.location.pathname === '/calendar') {
+        ReactDOM.findDOMNode(this.refs.calendar).style.background =
           '#EDEDED';
       }
     } else if (this.state.currentUserRoleVar === 'Employee') {
@@ -122,6 +127,10 @@ class SideNav extends Component {
             </Link>
             <Link to='/MyLeaves'>
               <button ref='MyLeaves'> My Leave </button>
+            </Link>
+            <div id='divider' />
+            <Link to='/calendar'>
+              <button ref='calendar'> Calendar </button>
             </Link>
             <div id='divider' />
             <Link to='/addUser'>
