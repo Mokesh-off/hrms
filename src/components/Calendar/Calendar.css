@@ -4,20 +4,30 @@
     margin-left: 15vw;
     margin-bottom: 40px;
     width: 80vw;
-    /* position: fixed; */
 }
 #fullCalendarMainContainer{
     overflow-y: scroll;
 }
 
-.fc-basic-view .fc-body .fc-row {
-    /* min-height: 0em !important; */
-}
-
-.fc-row {
-    /* height: 30px !important; */
-}
-
 #fullCalendarMainContainer::-webkit-scrollbar {
     display: none;
+}
+.fc-popover{
+    height: 15% !important;
+    overflow-y: scroll;
+    background-color: #ffff;
+    border: 1px solid #EDEDED;
+    border-radius: 3px;
+}
+.pop-overlay{
+    background: none !important;
+}
+/* .popup-overlay{
+    pointer-events: none;
+}
+.popup-content button{
+    pointer-events: stroke;
+} */
+#popUp{
+    
 }

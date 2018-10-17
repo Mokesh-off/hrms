@@ -1,53 +1,82 @@
-// import React...
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment'
- 
-// ... and fullcalendar-reactwrapper.
+import Popup from 'reactjs-popup'
 import FullCalendar from 'fullcalendar-reactwrapper';
 import '../../../node_modules/fullcalendar-reactwrapper/dist/css/fullcalendar.min.css'
-// fullcalendar-reactwrapper/dist/css/fullcalendar.min.css
 import './Calendar.css'
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    calendarData:[],		
+    display:'none',
+    empName:'',
+    fromDate:'',
+    toDate:'',
+    noOfDays:'',
+    reason:'',
+    status:'',
+    left:'',
+    top:'',
+    calendarData:[]		
     }
-    this.calendarData=this.calendarData.bind(this)
   }
 
   calendarData(){
     var calendarData=JSON.parse(localStorage.getItem('Data'))
     calendarData=calendarData.leaveRequest
-    var j=0
-    console.log(calendarData)
+    var j=0,obj
+
     calendarData.forEach(i => {
       if(i.status === 'Approved'){
-        var obj = Object.assign ( {}, {title:i.EmpName,
-         EmpId:i.EmpId, EmpName:i.EmpName,
-         start:(i.FromDate).split("T")[0], end:(i.ToDate).split("T")[0]})
+        var endDate=new Date((i.ToDate).split("T")[0])
+        endDate=endDate.setDate(endDate.getDate()+1)
+        endDate=new Date(endDate)
+        endDate=JSON.stringify(endDate).substr(1,10)
+        obj = Object.assign ( {}, {title:i.EmpName,
+         EmpId:i.EmpId, empName:i.EmpName,
+         fromDate:(i.FromDate).split("T")[0],toDate:(i.ToDate).split("T")[0],
+         noOfDays:i.TotalDays,
+         reason:i.LeaveReason,status:i.status,
+         start:(i.FromDate).split("T")[0], end:endDate})
         this.state.calendarData[this.state.calendarData.length]= obj
         j++
       }
     });
-    console.log('state calendar: '+JSON.stringify(this.state.calendarData))
     return this.state.calendarData
   }
 
-  componentDidMount(){
-    console.log('did mount')
-    this.calendarData();
-    console.log('state did mount calendar: '+JSON.stringify(this.state.calendarData))
+  popUpFunction(e,event){
+    
+    
+    this.setState({
+
+      display : 'block',
+      empName:e.empName,
+      fromDate:e.fromDate,
+      toDate:e.toDate,
+      noOfDays:e.noOfDays,
+      reason:e.reason,
+      status:e.status,
+      left:event.pageX,
+      top:event.pageY
+    })
+
+  }
+  closePopUp(){
+    this.setState({
+      display:'none'
+    })
   }
   render() {
-
+    if((this.state.calendarData).length===0)
+    this.calendarData();
     return (
       <div id='fullCalendarMainContainer'>
         <div id='fullCalendarContainer'>
           <div id="example-component">
             <FullCalendar
-                id = "your-custom-ID"
+                id = "calendar"
             header = {{
                 left: 'prev,next today myCustomButton',
                 center: 'title',
@@ -56,9 +85,22 @@ class Calendar extends React.Component {
             defaultDate= {moment()}
             navLinks= {true} // can click day/week names to navigate views
             editable= {true}
-            eventLimit= {true} // allow "more" link when too many calendarData
+            eventLimit= {true} 
             events = {this.state.calendarData}	
+            eventClick={(e,event)=>this.popUpFunction(e,event)}
         />
+          </div>
+          <div className='fc-popover fc-more-popover' 
+          style= {{display:this.state.display,top:this.state.top,left:this.state.left}} >
+            {console.log(JSON.stringify(this.state.display,this.state.top,this.state.left))}
+              <div>Name : {this.state.empName}</div>
+              <div>From Date : {this.state.fromDate}</div>
+              <div>To Date : {this.state.toDate}</div>
+              <div>Total Days : {this.state.noOfDays}</div>
+              <div>Reason : {this.state.reason}</div>
+              <div>Status : {this.state.status}</div>
+              <button onClick={()=>this.closePopUp()}>close</button>
+            
           </div>
         </div>
       </div>
