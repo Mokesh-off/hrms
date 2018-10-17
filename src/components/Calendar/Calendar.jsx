@@ -5,6 +5,8 @@ import Popup from 'reactjs-popup'
 import FullCalendar from 'fullcalendar-reactwrapper';
 import '../../../node_modules/fullcalendar-reactwrapper/dist/css/fullcalendar.min.css'
 import './Calendar.css'
+import LeaveRequests from '../LeaveApproval/LeaveRequests.js'
+
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
@@ -108,7 +110,16 @@ class Calendar extends React.Component {
               <div>Reason : {this.state.reason}</div>
               <div>Status : {this.state.status}</div>
               {/* <button onClick={()=>this.closePopUp()}>close</button> */}
-            
+              {(this.state.status==='Approved')?
+              <button>Reject</button>
+              :(this.state.status==='Rejected')?
+              <button>Approve</button>
+              :
+              <div>
+              <button onClick={e=>this.changeToApprove(e)}>Approve</button>
+              <button>Reject</button>
+              </div>
+              }
           </div>
         </div>
       </div>
