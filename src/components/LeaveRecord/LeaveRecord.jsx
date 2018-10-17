@@ -41,6 +41,9 @@ class LeaveRecord extends Component {
   }
 
   getNewRecord () {
+    if(this.state.FromDate ===null || this.state.ToDate ===null){
+      alert('Select date')
+    }else{
     if (this.state.FromDate._d > this.state.ToDate._d) {
       alert('Fromdate should proper...')
     } else {
@@ -55,7 +58,7 @@ class LeaveRecord extends Component {
       })
     }
   }
-
+}
   getAllRecord () {
     this.setState({ visible: false })
   }
