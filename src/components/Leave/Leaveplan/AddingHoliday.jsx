@@ -61,7 +61,7 @@ class AddingHoliday extends Component {
         holiday[holiday.length] = this.state
         window.localStorage.setItem('Data', JSON.stringify(data))
       } else {
-        data['leaveRequest'] = []
+        data['holidayList'] = []
         holiday[holiday.length] = this.state
         window.localStorage.setItem('Data', JSON.stringify(data))
       }
