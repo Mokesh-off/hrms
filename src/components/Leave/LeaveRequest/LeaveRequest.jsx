@@ -20,6 +20,7 @@ class LeaveRequest extends React.Component {
       exclude: [],
       status: '',
       comment: '',
+      render: '',
       errdate: '',
       dateErr: '',
       erroption: '',
@@ -179,6 +180,7 @@ class LeaveRequest extends React.Component {
     }
   }
   calldispatch () {
+
     // set the functions to its initial state
     this.setState({
       FromDate: moment(),
@@ -186,6 +188,7 @@ class LeaveRequest extends React.Component {
       ReqestId: moment(),
       appliedOn: moment(),
       LeaveType: '',
+      render:true,
       LeaveReason: '',
       ReqestId: moment(),
       appliedOn: moment(),
@@ -249,7 +252,7 @@ class LeaveRequest extends React.Component {
       return (
         window.location.replace('/')
       )
-    } else {
+    } else if (window.localStorage.getItem('currentUserId') || this.state.render) {
       return (
         <div className='rightContainer'>
           <div id='success'>

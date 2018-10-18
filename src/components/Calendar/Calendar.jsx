@@ -18,27 +18,54 @@ class Calendar extends React.Component {
     status:'',
     left:'',
     top:'',
+    requestId:'',
     calendarData:[]		
     }
   }
 
+  changeToReject (e) {
+    console.log('e value state: '+this.state.requestId)
+    var calendarDataVar=JSON.parse(localStorage.getItem('Data'))
+    let newState = Object.assign({}, calendarDataVar)
+    calendarDataVar.leaveRequest.map((data,i) => {
+      if(data.ReqestId === this.state.requestId){
+        newState.leaveRequest[i].status = 'Rejected'
+        localStorage.setItem('Data',JSON.stringify(newState))
+        window.location.replace('/calendar')
+      }
+    });
+  }
+
+  changeToApprove (e) {
+    console.log('approve')
+    console.log('e value state: '+this.state.requestId)
+    var calendarDataVar=JSON.parse(localStorage.getItem('Data'))
+    let newState = Object.assign({}, calendarDataVar)
+    calendarDataVar.leaveRequest.map((data,i) => {
+      if(data.ReqestId === this.state.requestId){
+        newState.leaveRequest[i].status = 'Approved'
+        localStorage.setItem('Data',JSON.stringify(newState))
+        window.location.replace('/calendar')
+      }
+    });
+  }
+  
   calendarData(){
     var calendarData=JSON.parse(localStorage.getItem('Data'))
     calendarData=calendarData.leaveRequest
     var j=0,obj
-
+    
     calendarData.forEach(i => {
-
       if(i.status === 'Rejected'){
-        
       }
+
         var endDate=new Date((i.ToDate).split("T")[0])
         endDate=endDate.setDate(endDate.getDate()+1)
         endDate=new Date(endDate)
         endDate=JSON.stringify(endDate).substr(1,10)
 
         obj = Object.assign ( {}, {title:i.EmpName,
-         EmpId:i.EmpId, empName:i.EmpName,
+         EmpId:i.EmpId, empName:i.EmpName,requestId:i.ReqestId,
          fromDate:(i.FromDate).split("T")[0],toDate:(i.ToDate).split("T")[0],
          noOfDays:i.TotalDays,className:i.status,
          reason:i.LeaveReason,status:i.status,
@@ -52,7 +79,7 @@ class Calendar extends React.Component {
   }
 
   popUpFunction(e,event){
-    
+    console.log('inside popup'+e.requestId)
     
     this.setState({
 
@@ -64,7 +91,9 @@ class Calendar extends React.Component {
       reason:e.reason,
       status:e.status,
       left:event.pageX,
-      top:event.pageY
+      top:event.pageY,
+      requestId:e.requestId
+
     })
 
   }
@@ -94,7 +123,6 @@ class Calendar extends React.Component {
             eventLimit= {true} 
             events = {this.state.calendarData}	
             eventClick={(e,event)=>this.popUpFunction(e,event)}
-            // eventMouseout={()=>this.closePopUp()}
         />
           </div>
           <div className='fc-popover fc-more-popover popUp' 
@@ -107,17 +135,18 @@ class Calendar extends React.Component {
               <div>Total Days : {this.state.noOfDays}</div>
               <div>Reason : {this.state.reason}</div>
               <div>Status : {this.state.status}</div>
-              {/* <button onClick={()=>this.closePopUp()}>close</button> */}
+
               {(this.state.status==='Approved')?
-              <button>Reject</button>
+              <button onClick={e=>this.changeToReject(e)}>Reject</button>
               :(this.state.status==='Rejected')?
-              <button>Approve</button>
+              <button onClick={e=>this.changeToApprove(e)}>Approve</button>
               :
               <div>
-              <button onClick={e=>this.changeToApprove(e)}>Approve</button>
-              <button>Reject</button>
+              <button button onClick={e=>this.changeToApprove(e)}>Approve</button>
+              <button onClick={e=>this.changeToReject(e)}>Reject</button>
               </div>
               }
+
           </div>
         </div>
       </div>
