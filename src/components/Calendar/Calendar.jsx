@@ -5,8 +5,6 @@ import Popup from 'reactjs-popup'
 import FullCalendar from 'fullcalendar-reactwrapper';
 import '../../../node_modules/fullcalendar-reactwrapper/dist/css/fullcalendar.min.css'
 import './Calendar.css'
-import LeaveRequests from '../LeaveApproval/LeaveRequests.js'
-
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
