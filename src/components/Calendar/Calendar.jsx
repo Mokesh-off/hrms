@@ -23,28 +23,103 @@ class Calendar extends React.Component {
     }
   }
 
+
+  // Reduce number of days from employee's pending leaves, if request is approved
+  reduceLeaves (id, type, days) {
+    let empl = JSON.parse(localStorage.getItem('Data'))
+    let  data = empl.Employee
+    let leave, leave1, leave2, leave3
+    let newState = Object.assign({}, empl)
+
+    for (var i = 0; i < data.length; ++i) {
+      if (data[i].EmpId === id) {
+        leave = data[i].PendingLeaves.Planned
+        leave1 = data[i].PendingLeaves.EmergencyLeave
+        leave2 = data[i].PendingLeaves.Sick
+        leave3 = data[i].PendingLeaves.Privilege
+        if (type === 'Casual Leave') {
+          leave = leave - days
+          leave > 0 ? leave = leave : leave = 0
+          newState.Employee[i].PendingLeaves.Planned = leave
+        }
+        if (type === 'Emergency Leave') {
+          leave1 = leave1 - days
+          leave1 > 0 ? leave1 = leave1 : leave1 = 0
+          newState.Employee[i].PendingLeaves.EmergencyLeave = leave1
+        }
+        if (type === 'Sick Leave') {
+          leave2 = leave2 - days
+          leave2 > 0 ? leave2 = leave2 : leave2 = 0
+          newState.Employee[i].PendingLeaves.Sick = leave2
+        }
+        if (type === 'Earned Leave') {
+          leave3 = leave3 - days
+          leave3 > 0 ? leave3 = leave3 : leave3 = 0
+          newState.Employee[i].PendingLeaves.Privilege = leave3
+        }
+        // this.setState({ [this.state.LeaveRecord.Employee]: newState })
+        localStorage.setItem('Data', JSON.stringify(newState))
+      }
+    }
+    localStorage.setItem('Data', JSON.stringify(newState))
+  }
+
+  // Reduce number of days from employee's pending leaves, if request is approved
+  addLeaves (id, type, days) {
+    let empl = JSON.parse(localStorage.getItem('Data'))
+    let data = empl.Employee
+    let leave, leave1, leave2, leave3
+    let newState = Object.assign({}, empl)
+
+    for (var i = 0; i < data.length; ++i) {
+      if (data[i].EmpId === id) {
+        leave = data[i].PendingLeaves.Planned
+        leave1 = data[i].PendingLeaves.EmergencyLeave
+        leave2 = data[i].PendingLeaves.Sick
+        leave3 = data[i].PendingLeaves.Privilege
+        if (type === 'Casual Leave') {
+          leave = leave + days
+          newState.LeaveRecord.Employee[i].PendingLeaves.Planned = leave
+        }
+        if (type === 'Emergency Leave') {
+          leave1 = leave1 + days
+          newState.Employee[i].PendingLeaves.EmergencyLeave = leave1
+        }
+        if (type === 'Sick Leave') {
+          leave2 = leave2 + days
+          newState.Employee[i].PendingLeaves.Sick = leave2
+        }
+        if (type === 'Earned Leave') {
+          leave3 = leave3 + days
+          newState.Employee[i].PendingLeaves.Privilege = leave3
+        }
+      }
+    }
+    localStorage.setItem('Data', JSON.stringify(newState))
+  }
+
+
   changeToReject (e) {
-    console.log('e value state: '+this.state.requestId)
     var calendarDataVar=JSON.parse(localStorage.getItem('Data'))
     let newState = Object.assign({}, calendarDataVar)
     calendarDataVar.leaveRequest.map((data,i) => {
       if(data.ReqestId === this.state.requestId){
         newState.leaveRequest[i].status = 'Rejected'
         localStorage.setItem('Data',JSON.stringify(newState))
+        this.addLeaves(data.EmpId,data.LeaveType,data.TotalDays)
         window.location.replace('/calendar')
       }
     });
   }
 
   changeToApprove (e) {
-    console.log('approve')
-    console.log('e value state: '+this.state.requestId)
     var calendarDataVar=JSON.parse(localStorage.getItem('Data'))
     let newState = Object.assign({}, calendarDataVar)
     calendarDataVar.leaveRequest.map((data,i) => {
       if(data.ReqestId === this.state.requestId){
         newState.leaveRequest[i].status = 'Approved'
         localStorage.setItem('Data',JSON.stringify(newState))
+        this.reduceLeaves(data.EmpId,data.LeaveType,data.TotalDays)
         window.location.replace('/calendar')
       }
     });
@@ -78,9 +153,7 @@ class Calendar extends React.Component {
 
   }
 
-  popUpFunction(e,event){
-    console.log('inside popup'+e.requestId)
-    
+  popUpFunction(e,event){    
     this.setState({
 
       display : 'block',
@@ -98,7 +171,6 @@ class Calendar extends React.Component {
 
   }
   closePopUp(event){
-    console.log('close pop up')
     this.setState({
       display:'none'
     })
