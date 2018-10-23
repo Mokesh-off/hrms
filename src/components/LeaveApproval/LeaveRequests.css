@@ -33,22 +33,29 @@
   cursor: pointer;
 }
 .RejectButton{
-  height: 40px;
-  width: 66px;
-  border-radius: 12px;
-  border: none;
+    box-sizing: border-box;
+    height: 24px;
+    width: 24px;
+    border: 2px solid #A6A5B8;
   font-weight: bold;
   background-color:  #337ab7;
   color: white
  
 }
 
-.ApproveButton{
-height: 40px;
-border-radius: 12px;
-margin: 0.5%;
-border: none;
-font-weight: bold;
-background-color:  #337ab7;
-color: white
+.Approve{
+display: block;
+border-radius: 50%;
+border: 2px solid #A6A5B8;
+color: white;
+width: 53%;
+margin-left: 20%;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  color: #A6A5B8;
 }
