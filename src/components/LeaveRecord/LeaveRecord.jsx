@@ -186,9 +186,9 @@ class LeaveRecord extends Component {
       )
     } else {
       return (
-        <div>
+        <div id='leaveRecord'>
           <OngoingLeaves />
-          <div className='leaveRecord'>
+          <div className='leaveRec'>
             <div className='head'><h2>Leave Record</h2></div>
             <div className='row'>
               <div className='col'>
@@ -229,7 +229,7 @@ class LeaveRecord extends Component {
             </div>
           </div>
           <div className='tableDiv'>
-            <table>
+            <table className='tableContent'>
               <thead>
                 <tr className='recRow Head'>
                   <td className='recCell'>EmpName</td>
