@@ -187,26 +187,7 @@ class LeaveRecord extends Component {
     } else {
       return (
         <div>
-<<<<<<< HEAD
-        <OngoingLeaves />
-        <div className='leaveRecord'>
-          <div className='head'><h2>Leave Record</h2></div>
-          <div className='row'>
-            <div className='col'>
-              <div className='col2'><label>From Date</label></div>
-              <div className='displayDate' value={this.state.FromDate} name='From' >
-                <div className='col'><DatePicker className='Dp'
-                  selected={this.state.FromDate}
-                  showYearDropdown
-                  scrollableYearDropdown
-                  dateFormat='DD/MM/YYYY'
-                  showDisabledMonthNavigation
-                  onChange={e => this.DateFromChange(e)}
-                  yearDropdownItemNumber={2}
-                  isClearable
-                  placeholderText='Select a weekday'
-                  name='From' />
-=======
+          <OngoingLeaves />
           <div className='leaveRecord'>
             <div className='head'><h2>Leave Record</h2></div>
             <div className='row'>
@@ -225,7 +206,6 @@ class LeaveRecord extends Component {
                     placeholderText='Select a weekday'
                     name='From' />
                   </div>
->>>>>>> develop
                 </div>
               </div>
               <div className='col'>
@@ -306,7 +286,6 @@ class LeaveRecord extends Component {
               <button className='button' onClick={e => this.closePopup(e)}>OK</button>
             </div>
           </Popup>
-        </div>
         </div>
       )
     }

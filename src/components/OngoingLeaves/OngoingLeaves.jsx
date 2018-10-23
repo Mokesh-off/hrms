@@ -25,13 +25,9 @@ class OngoingLeaves extends Component {
       var endDate     = moment(record.ToDate);
       if((compareDate.isBetween(startDate, endDate)) || 
           compareDate===startDate || compareDate===endDate) {
-            count++;
-            console.log(count)
-            
+            count++;            
           }
-          this.setState({OngoingLeaves: this.state.OngoingLeaves = count}, () =>
-            console.log(this.state.OngoingLeaves + 'did mount=======================')
-            )
+          this.setState({OngoingLeaves: this.state.OngoingLeaves = count})
     })
   }
 
