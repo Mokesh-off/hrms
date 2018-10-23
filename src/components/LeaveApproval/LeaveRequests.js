@@ -212,10 +212,10 @@ class LeaveRequests extends Component {
                   ? <tr key={i} className='tdStyle'>
                     <td className='tdStyle'><input type='checkbox'
                       data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td>
-                    <td className='tdStyle'>{record.EmpId}</td>
                     <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
+                    <td className='tdStyle'>{record.EmpId}</td>
                     <td className='tdStyle'>{record.LeaveType}</td>
+                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
                     <td className='tdStyle'>{record.TotalDays}</td>

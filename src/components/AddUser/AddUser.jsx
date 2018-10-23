@@ -18,23 +18,23 @@ class AddUser extends Component {
       Role: '',
       EmpId: '',
       Address: '',
+      Password: 'tringapps',
+      PendingLeaves: {
+        Planned: 10,
+        EmergencyLeave: 10,
+        Sick: 10,
+        Privilege: 10
+      },
+      validation: false,
       maleChecked: false,
       femaleChecked: false,
-      Password: 'tringapps',
-      validation: false,
       empty: '',
       errname: '',
       nameborder: '',
       errmail: '',
       mailborder: '',
       errnum: '',
-      numborder: '',
-      PendingLeaves: {
-        Planned: 10,
-        EmergencyLeave: 10,
-        Sick: 10,
-        Privilege: 10
-      }
+      numborder: ''
     }
     this.onSubmit = this.onSubmit.bind(this)
     this.reset = this.reset.bind(this)
@@ -100,9 +100,6 @@ class AddUser extends Component {
   }
 
   emptyForm () {
-    console.log('empty form')
-    console.log(this.state.maleChecked)
-    console.log(this.state.femaleChecked)
     this.setState({
       EmpName: this.state.EmpName = '',
       Dob: this.state.Dob = '',
@@ -125,7 +122,27 @@ class AddUser extends Component {
     if (this.validate()) {
       this.setState({ validation: true })
       var Data = JSON.parse(window.localStorage.getItem('Data'))
-
+      var obj = Object.assign({}, {
+        EmpName: this.state.EmpName,
+        Dob: this.state.Dob,
+        Doj: this.state.Doj,
+        wl: this.state.wl,
+        gender: this.state.gender,
+        EmailId: this.state.EmailId,
+        ContactNum: this.state.ContactNum,
+        Dep: this.state.Dep,
+        Role: this.state.Role,
+        EmpId: this.state.EmailId,
+        Address: this.state.Address,
+        Password: 'tringapps',
+        PendingLeaves: {
+          Planned: 10,
+          EmergencyLeave: 10,
+          Sick: 10,
+          Privilege: 10
+        }
+      })
+      console.log(obj)
       if (Data.Employee) {
         Data.Employee[Data.Employee.length] = this.state
         window.localStorage.setItem('Data', JSON.stringify(Data))

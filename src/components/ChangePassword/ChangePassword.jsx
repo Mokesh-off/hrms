@@ -41,7 +41,7 @@ class ChangePassword extends Component {
       this.setState({ errText: 'The password need to be match', newpassborder: '1px solid red' })
       return false
     }
-    if ((/^([a-zA-Z0-9@*#]{8,15})$/i).test(this.state.newPassword) === false) {
+    if ((/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i).test(this.state.newPassword) === false) {
       this.setState({ errText: 'The Password need to be strong', newpassborder: '1px solid red' })
       return false
     }
