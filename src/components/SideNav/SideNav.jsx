@@ -47,55 +47,55 @@ class SideNav extends Component {
 
   componentDidUpdate() {
     if (this.state.currentUserRoleVar === 'Employer') {
-      ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
-      ReactDOM.findDOMNode(this.refs.leaverequest).style.background = '';
-      ReactDOM.findDOMNode(this.refs.leaveRecord).style.background = '';
-      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '';
-      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '';
-      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
-      ReactDOM.findDOMNode(this.refs.addUser).style.background = '';
-      ReactDOM.findDOMNode(this.refs.approveProfile).style.background = '';
-      ReactDOM.findDOMNode(this.refs.calendar).style.background = '';
+      ReactDOM.findDOMNode(this.refs.dashboard).style.color = '';
+      ReactDOM.findDOMNode(this.refs.leaverequest).style.color = '';
+      ReactDOM.findDOMNode(this.refs.leaveRecord).style.color = '';
+      ReactDOM.findDOMNode(this.refs.MyLeaves).style.color = '';
+      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.color = '';
+      ReactDOM.findDOMNode(this.refs.leaveplan).style.color = '';
+      ReactDOM.findDOMNode(this.refs.addUser).style.color = '';
+      ReactDOM.findDOMNode(this.refs.approveProfile).style.color = '';
+      ReactDOM.findDOMNode(this.refs.calendar).style.color = '';
 
       if (window.location.pathname === '/leaveRecords') {
-        ReactDOM.findDOMNode(this.refs.leaveRecord).style.background =
-          '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.leaveRecord).style.color =
+          '#FF7D27';
       } else if (window.location.pathname === '/leaverequest') {
-        ReactDOM.findDOMNode(this.refs.leaverequest).style.background =
-          '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.leaverequest).style.color =
+          '#FF7D27';
       } else if (window.location.pathname === '/dashboard') {
-        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.dashboard).style.color = '#FF7D27';
       } else if (window.location.pathname === '/MyLeaves') {
-        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.MyLeaves).style.color = '#FF7D27';
       } else if (window.location.pathname === '/LeavePolicy') {
-        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background =
-          '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.color =
+          '#FF7D27';
       } else if (window.location.pathname === '/leaveplan') {
-        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.leaveplan).style.color = '#FF7D27';
       } else if (window.location.pathname === '/addUser') {
-        ReactDOM.findDOMNode(this.refs.addUser).style.background = '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.addUser).style.color = '#FF7D27';
       } else if (window.location.pathname === '/approveProfile') {
-        ReactDOM.findDOMNode(this.refs.approveProfile).style.background =
-          '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.approveProfile).style.color =
+          '#FF7D27';
       }
       else if (window.location.pathname === '/calendar') {
-        ReactDOM.findDOMNode(this.refs.calendar).style.background =
-          '#EDEDED';
+        ReactDOM.findDOMNode(this.refs.calendar).style.color =
+          '#FF7D27';
       }
     } else if (this.state.currentUserRoleVar === 'Employee') {
-      ReactDOM.findDOMNode(this.refs.dashboard).style.background = '';
-      ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '';
-      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '';
-      ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '';
+      ReactDOM.findDOMNode(this.refs.dashboard).style.color = '';
+      ReactDOM.findDOMNode(this.refs.MyLeaves).style.color = '';
+      ReactDOM.findDOMNode(this.refs.LeavePolicy).style.color = '';
+      ReactDOM.findDOMNode(this.refs.leaveplan).style.color = '';
 
       if (window.location.pathname === '/dashboard') {
-        ReactDOM.findDOMNode(this.refs.dashboard).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.dashboard).style.color = '#FF7D27'
       } else if (window.location.pathname === '/MyLeaves') {
-        ReactDOM.findDOMNode(this.refs.MyLeaves).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.MyLeaves).style.color = '#FF7D27'
       } else if (window.location.pathname === '/LeavePolicy') {
-        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.LeavePolicy).style.color = '#FF7D27'
       } else if (window.location.pathname === '/leaveplan') {
-        ReactDOM.findDOMNode(this.refs.leaveplan).style.background = '#EDEDED'
+        ReactDOM.findDOMNode(this.refs.leaveplan).style.color = '#FF7D27'
       }
     }
   }
@@ -115,49 +115,42 @@ class SideNav extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
+      <div className='sidenav'>
+        {/* <Header /> */}
         {this.state.currentUserRoleVar === 'Employer' ? (
-          <div className='sidenav'>
+          <div>
             <Link to='/dashboard'>
-              <button ref='dashboard'> Dashboard </button>
+              <button ref='dashboard'> Home </button>
+            </Link>
+            <Link to='/leaveRecords'>
+              <button ref='leaveRecord'> Leave records </button>
+            </Link>
+            <Link to='/MyLeaves'>
+              <button ref='MyLeaves'> My Leaves </button>
+            </Link>
+            <Link to='/calendar'>
+              <button ref='calendar'> Calendar </button>
+            </Link>
+            <Link to='/addUser'>
+              <button ref='addUser'> Peoples </button>
+            </Link>
+            <Link to='/LeavePolicy'>
+              <button ref='LeavePolicy'> Leave Policy </button>
             </Link>
             <Link to='/leaverequest'>
               <button ref='leaverequest'> Leave Request </button>
             </Link>
-            <Link to='/MyLeaves'>
-              <button ref='MyLeaves'> My Leave </button>
-            </Link>
-            <div id='divider' />
-            <Link to='/calendar'>
-              <button ref='calendar'> Calendar </button>
-            </Link>
-            <div id='divider' />
-            <Link to='/addUser'>
-              <button ref='addUser'> Add User </button>
-            </Link>
-            <div id='divider' />
-            <Link to='/leaveRecords'>
-              <button ref='leaveRecord'> Leave Records </button>
-            </Link>
-            <div id='divider' />
-            <Link to='/LeavePolicy'>
-              <button ref='LeavePolicy'> Leave Policy </button>
-            </Link>
-            <div id='divider' />
             <Link to='/leaveplan'>
-              <button ref='leaveplan'> Leave plan </button>
+              <button ref='leaveplan'> Public holidays</button>
             </Link>
-            <div id='divider' />
             <Link to='/approveProfile'>
               <button ref='approveProfile'> Approve Profile </button>
             </Link>
-            <div id='divider' />
           </div>
         ) : (
             <div className='sidenav'>
               <Link to='/dashboard'>
-                <button ref='dashboard'> Dashboard </button>
+                <button ref='dashboard'> Home </button>
               </Link>
               <Link to='/leaverequest'>
                 <button ref='leaverequest'> Leave Request </button>
@@ -174,7 +167,7 @@ class SideNav extends Component {
             </div>
           )}
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }
