@@ -187,8 +187,6 @@ class LeaveRequest extends React.Component {
       appliedOn: moment(),
       LeaveType: '',
       LeaveReason: '',
-      ReqestId: moment(),
-      appliedOn: moment(),
       TotalDays: ''
     })
   }

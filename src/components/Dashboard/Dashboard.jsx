@@ -15,8 +15,11 @@ class Dashboard extends Component {
   employeeCard () {
     window.location.assign('/pendingleaves')
   }
+  componentDidMount () {
+    
+  }
   render () {
-    if (!localStorage.getItem('currentUserId')) {
+    if (!window.localStorage.getItem('currentUserId')) {
       return window.location.replace('/')
     } else {
       var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
