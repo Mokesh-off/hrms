@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './LeaveRecord.css'
 import Popup from 'reactjs-popup'
 import DatePicker from 'react-datepicker'
+import OngoingLeaves from '../OngoingLeaves/OngoingLeaves'
 
 class LeaveRecord extends Component {
   constructor (props) {
@@ -185,8 +186,9 @@ class LeaveRecord extends Component {
       )
     } else {
       return (
-        <div>
-          <div className='leaveRecord'>
+        <div id='leaveRecord'>
+        <OngoingLeaves />
+          <div className='leaveRec'>
             <div className='head'><h2>Leave Record</h2></div>
             <div className='row'>
               <div className='col'>
@@ -227,7 +229,7 @@ class LeaveRecord extends Component {
             </div>
           </div>
           <div className='tableDiv'>
-            <table>
+            <table className='tableContent'>
               <thead>
                 <tr className='recRow Head'>
                   <td className='recCell'>EmpName</td>
@@ -281,7 +283,7 @@ class LeaveRecord extends Component {
           <Popup open={this.state.open} closeOnDocumentClick modal>
             <div>
               <span>{this.state.status} successfully</span><br />
-              <button className='button' onClick={e => this.closePopup(e)}>OK</button>
+              <button onClick={e => this.closePopup(e)}>OK</button>
             </div>
           </Popup>
         </div>

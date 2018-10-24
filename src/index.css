@@ -3,3 +3,23 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+@font-face {
+	font-family: "muli-bold";
+	src: url("./Assets/Fonts/Muli/Muli-Bold.ttf");
+}
+
+@font-face {
+	font-family: "muli-regular";
+	src: url("./Assets/Fonts/Muli/Muli-Regular.ttf");
+}
+
+@font-face {
+  font-family: "muli-semi-bold";
+  src: url("./Assets/Fonts/Muli/Muli-SemiBold.ttf")
+}
+
+@font-face {
+  font-family : "muli-extra-bold";
+  src: url("./Assets/Fonts/Muli/Muli-ExtraBold.ttf")
+}

@@ -20,6 +20,7 @@ class LeaveRequest extends React.Component {
       exclude: [],
       status: '',
       comment: '',
+      render: '',
       errdate: '',
       dateErr: '',
       erroption: '',
@@ -32,6 +33,7 @@ class LeaveRequest extends React.Component {
     this.DateToChange = this.DateToChange.bind(this)
     this.numOfDays = this.numOfDays.bind(this)
     this.validation = this.validation.bind(this)
+    this.finalValidation = this.finalValidation.bind(this)
   }
   validation () { //  validating the input values
     this.setState({
@@ -41,11 +43,6 @@ class LeaveRequest extends React.Component {
       opText: '',
       Err: ''
     })
-    if (this.state.TotalDays === '' || this.state.FromDate === '' ||
-      this.state.ToDate === '' || this.state.LeaveType === '') {
-      this.setState({ Err: 'Leave type can not be empty ' })
-      return (false)
-    }
     if (this.state.FromDate._d > this.state.ToDate._d) {
       this.setState({ errdate: '1px solid red', dateErr: 'From date need to be proper' })
       return (false)
@@ -118,6 +115,7 @@ class LeaveRequest extends React.Component {
   DateFromChange (date) { // Update the From date from user input
     this.setState({ FromDate: date }, () => {
       this.numOfDays()
+      console.log(this.state.FromDate+'from')
     })
   }
   DateToChange (date) { // Update the To date from the User input
@@ -125,35 +123,67 @@ class LeaveRequest extends React.Component {
       this.numOfDays()
     })
   }
+  finalValidation () {
+    this.setState({
+      Err: '',
+      errdate: '',
+      dateErr: ''
+    })
+    if (this.state.TotalDays === '' || this.state.FromDate === '' ||
+      this.state.ToDate === '' || this.state.LeaveType === '' || this.state.LeaveReason === '') {
+      this.setState({ Err: 'Leave type can not be empty ' })
+      return (false)
+    }
+    var start = new Date(this.state.FromDate)
+    var end = new Date(this.state.ToDate)
+    while (start <= end) {
+      console.log(JSON.stringify(start).substr(1, 10))
+      if (this.state.exclude.indexOf(JSON.stringify(start).substr(1, 10)) !== -1) {
+        this.setState({ errdate: '1px solid red', dateErr: 'You cannot pick these date' })
+        return (false)
+      }
+      var newDate = start.setDate(start.getDate() + 1)
+      start = new Date(newDate)
+    }
+    return true
+  }
   handleSubmit (event) {
     // Calling the validation function and
     // Updating the value to the Local storage
     event.preventDefault()
-    if (this.state.LeaveReason !== '') {
+    if (this.finalValidation()===true) {
+       
       var data = JSON.parse(window.localStorage.getItem('Data'))
       var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
       var currentUser = JSON.parse(window.localStorage.getItem('currentUserName'))
-      this.setState({ ReqestId: this.state.appliedOn = this.state.appliedOn._d })
-      this.setState({ ReqestId: this.state.ReqestId = this.state.ReqestId._d.getTime() })
+      var obj = Object.assign({}, {
+        EmpId: currentUserId,
+        EmpName: currentUser,
+        ReqestId: this.state.ReqestId._d.getTime(),
+        appliedOn: this.state.appliedOn._d,
+        status: 'Pending',
+        FromDate: this.state.FromDate,
+        ToDate: this.state.ToDate,
+        TotalDays: this.state.TotalDays,
+        LeaveReason: this.state.LeaveReason,
+        LeaveType: this.state.LeaveType
+      })
+  
       if (data.leaveRequest) {
         // checked the key is present. If it's present than append the value
-        this.setState({ EmpId: this.state.EmpId = currentUserId, EmpName: this.state.EmpName = currentUser }, () => {
-          data.leaveRequest[data.leaveRequest.length] = this.state
+          data.leaveRequest[data.leaveRequest.length] = obj
           window.localStorage.setItem('Data', JSON.stringify(data))
           document.getElementById('success').style.opacity = 1
           setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
           this.calldispatch()
-        })
       } else {
         // If not then create a key and append the value
         data['leaveRequest'] = []
-        this.setState({ EmpId: currentUserId, EmpName: currentUser }, () => {
-          data.leaveRequest[data.leaveRequest.length] = this.state
+          data.leaveRequest[data.leaveRequest.length] = obj
           window.localStorage.setItem('Data', JSON.stringify(data))
           document.getElementById('success').style.opacity = 1
           setTimeout(function () { document.getElementById('success').style.opacity = 0 }, 1000)
           this.calldispatch()
-        })
       }
       var start = new Date(this.state.FromDate)
       var end = new Date(this.state.ToDate)
@@ -174,21 +204,17 @@ class LeaveRequest extends React.Component {
         var newDate = start.setDate(start.getDate() + 1)
         start = new Date(newDate)
       }
-    } else {
-      this.setState({ Err: 'Fields can not be empty ' })
-    }
+    } 
   }
   calldispatch () {
-    // set the functions to its initial state
     this.setState({
       FromDate: moment(),
       ToDate: moment(),
       ReqestId: moment(),
       appliedOn: moment(),
       LeaveType: '',
+      render:true,
       LeaveReason: '',
-      ReqestId: moment(),
-      appliedOn: moment(),
       TotalDays: ''
     })
   }
@@ -211,6 +237,7 @@ class LeaveRequest extends React.Component {
     var holiday = JSON.parse(window.localStorage.getItem('Data'))
     var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
     if (loop <= end) {
+      console.log('25-------------')
       count = 0
       while (loop <= end) {
         date = JSON.stringify(loop).substr(1, 10)
@@ -249,7 +276,7 @@ class LeaveRequest extends React.Component {
       return (
         window.location.replace('/')
       )
-    } else {
+    } else if (window.localStorage.getItem('currentUserId') || this.state.render===true) {
       return (
         <div className='rightContainer'>
           <div id='success'>

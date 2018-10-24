@@ -207,7 +207,8 @@ class LeaveRequests extends Component {
             </thead>
             <tbody>
               {data.leaveRequest.map((record, i) => {
-                return this.state.deletedRow.indexOf(record.ReqestId) === -1
+                return record.status === 'Pending'
+                // return this.state.deletedRow.indexOf(record.ReqestId) === -1
                   ? <tr key={i} className='tdStyle'>
                     <td className='tdStyle'><input type='checkbox'
                       data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td>
