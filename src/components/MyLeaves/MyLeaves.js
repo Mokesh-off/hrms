@@ -5,7 +5,6 @@ class MyLeaves extends Component {
     super(props)
     this.state = {
       LeaveRecord: JSON.parse(localStorage.getItem('Data'))
-
     }
   }
 
