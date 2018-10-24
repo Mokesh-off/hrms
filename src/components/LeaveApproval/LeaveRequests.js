@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './LeaveRequests.css'
 import Popup from 'reactjs-popup'
 import moment from 'moment'
+import '../OngoingLeaves/OngoingLeaves.css'
 
 class LeaveRequests extends Component {
   constructor (props) {
@@ -190,45 +191,57 @@ class LeaveRequests extends Component {
             <button className='RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
             <button className='ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
           </div>
-          <table>
-            <thead className='thead1'>
-              <tr className='thead1'>
-                <td className='tdStyle'>&nbsp;</td>
-                <td className='tdStyle'>EmpID</td>
-                <td className='tdStyle'>EmpName</td>
-                <td className='tdStyle'>Applied On</td>
-                <td className='tdStyle'>LeaveType</td>
-                <td className='tdStyle'>From Date</td>
-                <td className='tdStyle'>To Date</td>
-                <td className='tdStyle'>Days</td>
-                <td className='tdStyle'>Reason</td>
-                <td className='tdStyle'>Action</td>
-              </tr>
-            </thead>
-            <tbody>
-              {data.leaveRequest.map((record, i) => {
-                return record.status === 'Pending'
-                // return this.state.deletedRow.indexOf(record.ReqestId) === -1
-                  ? <tr key={i} className='tdStyle'>
-                    <td className='tdStyle'><input type='checkbox'
-                      data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td>
-                    <td className='tdStyle'>{record.EmpName}</td>
-                    <td className='tdStyle'>{record.EmpId}</td>
-                    <td className='tdStyle'>{record.LeaveType}</td>
-                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.TotalDays}</td>
-                    <td className='tdStyle'>{record.LeaveReason}</td>
-                    <td className='tdStyle'>
-                      <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button><span>&nbsp;</span>
-                      <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button>
-                    </td>
-                  </tr>
-                  : ''
-              })}
-            </tbody>
-          </table>
+          <div className='tableWrapper'>
+            <table className='tableCss'>
+              <thead className='thead1'>
+                <tr className='thead1'>
+                
+                  <td className='thClass'><i class='fa fa-search'></i>
+                  <input type="text" className='searchField' placeholder='Search'></input>
+                  </td>
+
+                  <td className='thClass'>Id</td>
+                  <td className='thClass'>Leave Type</td>
+                  <td className='thClass'>Applied on</td>
+                  <td className='thClass'>From</td>
+                  <td className='thClass'>To </td>
+                  <td className='thClass'>Days</td>
+                  <td className='thClass'>Action</td>
+                </tr>
+              </thead>
+              <tbody>
+                {data.leaveRequest.map((record, i) => {
+                  return record.status === 'Pending'
+                  // return this.state.deletedRow.indexOf(record.ReqestId) === -1
+                    ? <tr key={i} className='tdDivider'>
+                      {/* <td className='tdClass'><input type='checkbox'
+                        data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td> */}
+                      
+                      <td className='tdClass'>
+                      
+                      <input type='checkbox'
+                        data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} />
+
+                      <img src={require('../../Assets/images/profile_icon.png')} />
+                      <span className='empName'>{record.EmpName}</span></td>
+
+                      {/* <td className='tdClass'>{record.EmpName}</td> */}
+                      <td className='tdClass'>{record.EmpId}</td>
+                      <td className='tdClass'>{record.LeaveType}</td>
+                      <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
+                      <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
+                      <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
+                      <td className='tdClass'>{record.TotalDays}</td>
+                      <td className='tdClass'>
+                        <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button><span>&nbsp;</span>
+                        <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button>
+                      </td>
+                    </tr>
+                    : ''
+                })}
+              </tbody>
+            </table>
+          </div> {/* table wrapper closed */}
           <Popup open={this.state.open} closeOnDocumentClick modal>
             <div>
               <span>{this.state.status} successfully</span><br />

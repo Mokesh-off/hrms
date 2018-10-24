@@ -44,19 +44,21 @@ class OngoingLeaves extends Component {
       )
     } else {
       return (
-        <div className='leaveRecord'>
-          <span>Ongoing leaves{' '+this.state.OngoingLeaves}</span>
-          <table>
+        <div id='onGoingLeaves'>
+          <span className='tableLabels'>Ongoing leaves{' '+this.state.OngoingLeaves}</span>
+          <div className='tableWrapper'>
+          <table className='tableCss'>
             <thead className='thead1'>
               <tr className='thead1'>
-                <td className='tdStyle'>EmpId</td>
-                <td className='tdStyle'>EmpName</td>
-                <td className='tdStyle'>Applied On</td>
-                <td className='tdStyle'>LeaveType</td>
-                <td className='tdStyle'>From Date / To Date</td>
-                <td className='tdStyle'>Days</td>
-                <td className='tdStyle'>status</td>
-                <td className='tdStyle'>LeaveReason</td>
+                <td className='thClass'><i class='fa fa-search'></i>
+                <input type="text" className='searchField' placeholder='Search'></input>
+                </td>
+                <td className='thClass'>Id</td>
+                <td className='thClass'>Leave Type</td>
+                <td className='thClass'>Applied on</td>
+                <td className='thClass'>From</td>
+                <td className='thClass'>To</td>
+                <td className='thClass'>Days</td>
               </tr>
             </thead>
             <tbody>
@@ -68,26 +70,34 @@ class OngoingLeaves extends Component {
                   var startDate   = moment(record.FromDate);
                   var endDate     = moment(record.ToDate);
                   var x=compareDate.isBetween(startDate, endDate)
-              
-                  if((compareDate.isBetween(startDate, endDate)) || 
-                  compareDate===startDate || compareDate===endDate
+                  var compareDateStr=(JSON.stringify(compareDate).substr(1, 11))
+                  var startDatestr=(JSON.stringify(startDate).substr(1, 11))
+                  var endDatestr=(JSON.stringify(endDate).substr(1, 11))
+                  if( ( (compareDate.isBetween(startDate, endDate)) || 
+                  compareDateStr===startDatestr ||
+                  compareDateStr===endDatestr
+                  ) &&  record.status==='Approved'
                   ){
                   return(
-                    <tr key={i} className='tdStyle'>
-                      <td className='tdStyle'>{record.EmpId} </td>
-                      <td className='tdStyle'>{record.EmpName}</td>
-                      <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
-                      <td className='tdStyle'>{record.LeaveType}</td>
-                      <td className='tdStyle'>{record.FromDate.substr(0, 10)} / {record.ToDate.substr(0, 10)}</td>
-                      <td className='tdStyle'>{record.TotalDays}</td>
-                      <td className='tdStyle'>{record.status}</td>
-                      <td className='tdStyle'>{record.LeaveReason}</td>
+                    <tr key={i} className='tdDivider'>
+                      <td className='tdClass'>
+                      <img src={require('../../Assets/images/profile_icon.png')} />
+                      <span className='empName'>{record.EmpName}</span></td>
+                      <td className='tdClass'>{record.EmpId} </td>
+                      <td className='tdClass'>{record.LeaveType}</td>
+                      <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
+                      <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
+                      <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
+                      <td className='tdClass'>{record.TotalDays}</td>
+                      {/* <td className=''>{record.status}</td>
+                      <td className=''>{record.LeaveReason}</td> */}
                     </tr>
                   )
                   }
                 })}
             </tbody>
           </table>
+          </div>
         </div>
       )
     }

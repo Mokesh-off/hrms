@@ -1,16 +1,16 @@
-#leaveRecord .leaveRec{
-	margin-left: 18%;
-	margin-right: 2%;
+#leaveRecord{
+  padding: 2%;
+  height: 100%;
+  margin: 60px 0 0 200px;
+  background-color: #F6F5F9;
 }
+
 #leaveRecord .tableDiv {
-  margin-top:10%;
-	margin-left: 18%;
-  margin-right: 2%;
-  margin-bottom: 2%;
+  margin-top: 10%;
 	height: 100%;
-	border: 1px solid #DFDEE9;
+	/* border: 1px solid #DFDEE9;
 	background-color: #FFFFFF;
-	padding: 0 2% 0 2%;
+	padding: 0 2% 0 2%; */
 }
 .tableDiv .recRow {
 	border-bottom: 1px solid #DFDEE9;
@@ -49,8 +49,11 @@
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 	color: #A6A5B8;
-  }
-
+}
+#leaveRecord table{
+  font-family: 'muli-regular';
+  border-collapse: collapse;
+}
 
 
 
