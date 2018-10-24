@@ -33,22 +33,23 @@
   cursor: pointer;
 }
 .RejectButton{
-  height: 40px;
-  width: 66px;
-  border-radius: 12px;
-  border: none;
+    box-sizing: border-box;
+    height: 24px;
+    width: 90px;
+    border: 2px solid #A6A5B8;
   font-weight: bold;
   background-color:  #337ab7;
   color: white
  
 }
-
 .ApproveButton{
-height: 40px;
-border-radius: 12px;
-margin: 0.5%;
-border: none;
+  box-sizing: border-box;
+  height: 24px;
+  width: 90px;
+  border: 2px solid #A6A5B8;
 font-weight: bold;
 background-color:  #337ab7;
 color: white
+
 }
+

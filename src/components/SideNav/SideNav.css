@@ -1,76 +1,28 @@
 .sidenav {
-  width: 15vw;
   position: fixed;
-  background: #F8F8F8;
-  border: 1px solid #e7e7e7;
-  overflow-x: hidden;
-  padding: 0;
-  height: 86%;
-  margin-top: 4%;
-  -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
-  transition: height 2s;
-  
+  height: 100%;
+  margin-top: 63px;	
+  width: 200px;	
+  background-color: #FFFFFF !important;
 }
 
 .sidenav button{
-  padding: 15px;
+  padding: 30px 0 0 30px;
   width: 100%;
   border: none;
   cursor: pointer;
   transition: all 1s ;
+  font-family: 'muli-bold';
   text-align: unset;
   outline: none;
-  color:#337ab7;
+  background-color: #FFFFFF !important;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  color: #313E50;
 }
 
 .sidenav button:hover{
-  background:#EDEDED; 
-  color: #23527c;
-}
-
-.link{
-  padding: 15px;
-  width: 100%;
-  border: none;
-  cursor: pointer;
-  transition: all 1s ease-in;
-  
-}
-.background{
-  background-color: #ffe4c4 !important;
-}
-.employeeCss{
-  display: none;
-}
-.sidenavHide{
-  overflow: hidden;
-  height: 0;
-  -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
-  transition: height 2s;
-}
-.sidenavDisplay{
-  overflow: hidden;
-  height: 60vh;
-  margin-top: 0px !important;
-  -webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */
-  transition: height 2s;
-}
-.triangle-right {
-	width: 0;
-  height: 0;
-  display: inline-block;
-	border-top: 5px solid transparent;
-	border-left: 5px solid #337ab7;
-	border-bottom: 5px solid transparent;
-}
-.triangle-down {
-	width: 0;
-  height: 0;
-  display: inline-block;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-top: 5px solid  #337ab7;
-}
-#divider{
-  border-bottom: 1px solid #337ab7;
+  /* background:#EDEDED;  */
+  /* color: #23527c; */
 }

@@ -15,16 +15,21 @@ class Dashboard extends Component {
   employeeCard () {
     window.location.assign('/pendingleaves')
   }
+  componentDidMount () {
+    
+  }
   render () {
-    if (!localStorage.getItem('currentUserId')) {
+    if (!window.localStorage.getItem('currentUserId')) {
       return window.location.replace('/')
     } else {
-      var leaveRequestCount = JSON.parse(localStorage.getItem('Data'))
-      if (leaveRequestCount.deletedRow) {
-        leaveRequestCount = leaveRequestCount.leaveRequest.length - leaveRequestCount.deletedRow.length
-      } else {
-        leaveRequestCount = leaveRequestCount.leaveRequest.length
-      }
+      var DataVar=JSON.parse(localStorage.getItem('Data'))
+      var leaveRequestCount=0;
+      DataVar.leaveRequest.map((data,i) => {
+        if(data.status === 'Pending'){
+          leaveRequestCount++;
+        }
+      });
+
       if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
         return (
           <div className='dashboardRightComponent'>

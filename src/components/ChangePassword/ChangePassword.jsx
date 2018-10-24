@@ -41,20 +41,19 @@ class ChangePassword extends Component {
       this.setState({ errText: 'The password need to be match', newpassborder: '1px solid red' })
       return false
     }
-    if ((/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/i).test(this.state.newPassword) === false) {
+    if ((/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i).test(this.state.newPassword) === false) {
       this.setState({ errText: 'The Password need to be strong', newpassborder: '1px solid red' })
       return false
     }
     var data = (JSON.parse(window.localStorage.getItem('Data')))
     // console.log(JSON.stringify(data))
     // data.Employee = data.Employee.Employee
-    var currentUserId = window.localStorage.getItem('currentUserId')
-    currentUserId = parseInt(currentUserId)
+    var currentUserId = JSON.parse(window.localStorage.getItem('currentUserId'))
     for (var i = 0; i <= data.Employee.length - 1; i++) {
-      var x = parseInt(data.Employee[i].EmpId)
-      if (currentUserId === x && this.state.password === data.Employee[i].Password) {
+      if (currentUserId === data.Employee[i].EmpId && this.state.password === data.Employee[i].Password) {
         data.Employee[i].Password = this.state.newPassword
         window.localStorage.setItem('Data', JSON.stringify(data))
+        console.log('coming inside if loop')
         return true
       }
     } this.setState({ err: 'The password is incorrect', passborder: '1px solid red' })
@@ -110,7 +109,7 @@ class ChangePassword extends Component {
         <div className='passRow'>
           <label htmlFor='password' className='passText' >New password: </label>
           <span className='inputField' style={{ border: this.state.newpassborder }}>
-            <input type={this.state.flag ? ('text') : ('password')} name='newPassword'
+            <input type={this.state.flag1 ? ('text') : ('password')} name='newPassword'
               placeholder='New Password'
               value={this.state.newPassword} className='passwordText' onChange={this.change.bind(this)} />
             <button name='flag1' className='password passText' onClick={this.visible.bind(this)}>
@@ -123,7 +122,7 @@ class ChangePassword extends Component {
         <div className='passRow'>
           <label htmlFor='password' className='passText'>Conform password: </label>
           <span className='inputField' style={{ border: this.state.newpassborder }}>
-            <input type={this.state.flag ? ('text') : ('password')} name='ConformNewPassword'
+            <input type={this.state.flag2 ? ('text') : ('password')} name='ConformNewPassword'
               placeholder='Conform Password'
               value={this.state.ConformNewPassword} className='passwordText' onChange={this.change.bind(this)} />
             <button name='flag2' className='password passText' onClick={this.visible.bind(this)}>

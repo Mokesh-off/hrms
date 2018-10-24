@@ -18,27 +18,129 @@ class Calendar extends React.Component {
     status:'',
     left:'',
     top:'',
+    requestId:'',
     calendarData:[]		
     }
   }
 
+
+  // Reduce number of days from employee's pending leaves, if request is approved
+  reduceLeaves (id, type, days) {
+    let empl = JSON.parse(localStorage.getItem('Data'))
+    let  data = empl.Employee
+    let leave, leave1, leave2, leave3
+    let newState = Object.assign({}, empl)
+
+    for (var i = 0; i < data.length; ++i) {
+      if (data[i].EmpId === id) {
+        leave = data[i].PendingLeaves.Planned
+        leave1 = data[i].PendingLeaves.EmergencyLeave
+        leave2 = data[i].PendingLeaves.Sick
+        leave3 = data[i].PendingLeaves.Privilege
+        if (type === 'Casual Leave') {
+          leave = leave - days
+          leave > 0 ? leave = leave : leave = 0
+          newState.Employee[i].PendingLeaves.Planned = leave
+        }
+        if (type === 'Emergency Leave') {
+          leave1 = leave1 - days
+          leave1 > 0 ? leave1 = leave1 : leave1 = 0
+          newState.Employee[i].PendingLeaves.EmergencyLeave = leave1
+        }
+        if (type === 'Sick Leave') {
+          leave2 = leave2 - days
+          leave2 > 0 ? leave2 = leave2 : leave2 = 0
+          newState.Employee[i].PendingLeaves.Sick = leave2
+        }
+        if (type === 'Earned Leave') {
+          leave3 = leave3 - days
+          leave3 > 0 ? leave3 = leave3 : leave3 = 0
+          newState.Employee[i].PendingLeaves.Privilege = leave3
+        }
+        // this.setState({ [this.state.LeaveRecord.Employee]: newState })
+        localStorage.setItem('Data', JSON.stringify(newState))
+      }
+    }
+    localStorage.setItem('Data', JSON.stringify(newState))
+  }
+
+  // Reduce number of days from employee's pending leaves, if request is approved
+  addLeaves (id, type, days) {
+    let empl = JSON.parse(localStorage.getItem('Data'))
+    let data = empl.Employee
+    let leave, leave1, leave2, leave3
+    let newState = Object.assign({}, empl)
+
+    for (var i = 0; i < data.length; ++i) {
+      if (data[i].EmpId === id) {
+        leave = data[i].PendingLeaves.Planned
+        leave1 = data[i].PendingLeaves.EmergencyLeave
+        leave2 = data[i].PendingLeaves.Sick
+        leave3 = data[i].PendingLeaves.Privilege
+        if (type === 'Casual Leave') {
+          leave = leave + days
+          newState.LeaveRecord.Employee[i].PendingLeaves.Planned = leave
+        }
+        if (type === 'Emergency Leave') {
+          leave1 = leave1 + days
+          newState.Employee[i].PendingLeaves.EmergencyLeave = leave1
+        }
+        if (type === 'Sick Leave') {
+          leave2 = leave2 + days
+          newState.Employee[i].PendingLeaves.Sick = leave2
+        }
+        if (type === 'Earned Leave') {
+          leave3 = leave3 + days
+          newState.Employee[i].PendingLeaves.Privilege = leave3
+        }
+      }
+    }
+    localStorage.setItem('Data', JSON.stringify(newState))
+  }
+
+
+  changeToReject (e) {
+    var calendarDataVar=JSON.parse(localStorage.getItem('Data'))
+    let newState = Object.assign({}, calendarDataVar)
+    calendarDataVar.leaveRequest.map((data,i) => {
+      if(data.ReqestId === this.state.requestId){
+        newState.leaveRequest[i].status = 'Rejected'
+        localStorage.setItem('Data',JSON.stringify(newState))
+        this.addLeaves(data.EmpId,data.LeaveType,data.TotalDays)
+        window.location.replace('/calendar')
+      }
+    });
+  }
+
+  changeToApprove (e) {
+    var calendarDataVar=JSON.parse(localStorage.getItem('Data'))
+    let newState = Object.assign({}, calendarDataVar)
+    calendarDataVar.leaveRequest.map((data,i) => {
+      if(data.ReqestId === this.state.requestId){
+        newState.leaveRequest[i].status = 'Approved'
+        localStorage.setItem('Data',JSON.stringify(newState))
+        this.reduceLeaves(data.EmpId,data.LeaveType,data.TotalDays)
+        window.location.replace('/calendar')
+      }
+    });
+  }
+  
   calendarData(){
     var calendarData=JSON.parse(localStorage.getItem('Data'))
     calendarData=calendarData.leaveRequest
     var j=0,obj
-
+    
     calendarData.forEach(i => {
-
       if(i.status === 'Rejected'){
-        
       }
+
         var endDate=new Date((i.ToDate).split("T")[0])
         endDate=endDate.setDate(endDate.getDate()+1)
         endDate=new Date(endDate)
         endDate=JSON.stringify(endDate).substr(1,10)
 
         obj = Object.assign ( {}, {title:i.EmpName,
-         EmpId:i.EmpId, empName:i.EmpName,
+         EmpId:i.EmpId, empName:i.EmpName,requestId:i.ReqestId,
          fromDate:(i.FromDate).split("T")[0],toDate:(i.ToDate).split("T")[0],
          noOfDays:i.TotalDays,className:i.status,
          reason:i.LeaveReason,status:i.status,
@@ -51,9 +153,7 @@ class Calendar extends React.Component {
 
   }
 
-  popUpFunction(e,event){
-    
-    
+  popUpFunction(e,event){    
     this.setState({
 
       display : 'block',
@@ -64,12 +164,13 @@ class Calendar extends React.Component {
       reason:e.reason,
       status:e.status,
       left:event.pageX,
-      top:event.pageY
+      top:event.pageY,
+      requestId:e.requestId
+
     })
 
   }
   closePopUp(event){
-    console.log('close pop up')
     this.setState({
       display:'none'
     })
@@ -94,7 +195,6 @@ class Calendar extends React.Component {
             eventLimit= {true} 
             events = {this.state.calendarData}	
             eventClick={(e,event)=>this.popUpFunction(e,event)}
-            // eventMouseout={()=>this.closePopUp()}
         />
           </div>
           <div className='fc-popover fc-more-popover popUp' 
@@ -107,8 +207,18 @@ class Calendar extends React.Component {
               <div>Total Days : {this.state.noOfDays}</div>
               <div>Reason : {this.state.reason}</div>
               <div>Status : {this.state.status}</div>
-              {/* <button onClick={()=>this.closePopUp()}>close</button> */}
-            
+
+              {(this.state.status==='Approved')?
+              <button onClick={e=>this.changeToReject(e)}>Reject</button>
+              :(this.state.status==='Rejected')?
+              <button onClick={e=>this.changeToApprove(e)}>Approve</button>
+              :
+              <div>
+              <button button onClick={e=>this.changeToApprove(e)}>Approve</button>
+              <button onClick={e=>this.changeToReject(e)}>Reject</button>
+              </div>
+              }
+
           </div>
         </div>
       </div>

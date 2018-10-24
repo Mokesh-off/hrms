@@ -3,7 +3,7 @@ import './DashboardNew.css'
 import Popup from 'reactjs-popup'
 import moment from 'moment'
 
-class DashboardNew extends Component {
+class LeaveRequests extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -193,12 +193,12 @@ class DashboardNew extends Component {
         // List of leave requests
         <div className='mainContainer'>
           <div className='leaveRecord'>
-            <div>
+            {/* <div>
               <button className='RejectButton' onClick={e => this.selectAll(e)}>selectAll</button>
               <button className='ApproveButton' onClick={e => this.clearAll(e)}>rejectAll</button>
               <button className='RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
               <button className='ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
-            </div>
+            </div> */}
             <div className='leave-requests' >
               <p className='leave-requests-p'> Leave Requests ({ this.state.LeaveRequest}) </p>
 
@@ -212,10 +212,10 @@ class DashboardNew extends Component {
                       <th>ID</th>
                       {/* <td className='tdStyle'>EmpName</td> */}
 
-                      <th >LeaveType</th>
+                      <th >Leave Type</th>
                       <th >Applied On</th>
-                      <th >From Date</th>
-                      <th >To Date</th>
+                      <th >From</th>
+                      <th >To</th>
                       <th >Days</th>
                       {/* <td className='tdStyle'>Reason</td> */}
                       <th >Action</th>
@@ -267,6 +267,6 @@ class DashboardNew extends Component {
   }
 }
 
-export default DashboardNew
+export default LeaveRequests
 
 
