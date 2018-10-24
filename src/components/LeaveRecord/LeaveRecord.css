@@ -3,8 +3,10 @@
 	margin-right: 2%;
 }
 #leaveRecord .tableDiv {
+  margin-top:10%;
 	margin-left: 18%;
-	margin-right: 2%;
+  margin-right: 2%;
+  margin-bottom: 2%;
 	height: 100%;
 	border: 1px solid #DFDEE9;
 	background-color: #FFFFFF;
@@ -24,11 +26,11 @@
 	text-align: center;
 	height: 100%;
 	display: block;
-border-radius: 50%;
-border: 2px solid #A6A5B8;
-color: white;
-width: 53%;
-margin-left: 20%;
+  border-radius: 50%;
+  border: 2px solid #A6A5B8;
+  color: white;
+  width: 53%;
+  margin-left: 20%;
 }
 .tableDiv .recRow:hover, .tableDiv .normal:hover {
 	background-color: #F6F5F9;

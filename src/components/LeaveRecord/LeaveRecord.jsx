@@ -187,7 +187,7 @@ class LeaveRecord extends Component {
     } else {
       return (
         <div id='leaveRecord'>
-          <OngoingLeaves />
+        <OngoingLeaves />
           <div className='leaveRec'>
             <div className='head'><h2>Leave Record</h2></div>
             <div className='row'>
@@ -283,7 +283,7 @@ class LeaveRecord extends Component {
           <Popup open={this.state.open} closeOnDocumentClick modal>
             <div>
               <span>{this.state.status} successfully</span><br />
-              <button className='button' onClick={e => this.closePopup(e)}>OK</button>
+              <button onClick={e => this.closePopup(e)}>OK</button>
             </div>
           </Popup>
         </div>
