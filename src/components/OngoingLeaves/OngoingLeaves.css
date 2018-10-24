@@ -8,9 +8,6 @@
   position: fixed;
   }
 
-  /* #onGoingLeaves{
-  border-collapse: collapse;
-  } */
   .tableWrapper table{
   font-family: 'muli-regular';
   border-collapse: collapse;
@@ -62,22 +59,12 @@
     outline: none;
     margin-left: 5%;
   }
-  /* .tableCss td,th{
-  border-collapse: collapse;
-  } */
 
-  /* .tdStyle{
-  border: 1px solid #ddd !important;
-  padding: 8px;
-  } */
   .react-datepicker__close-icon {
   top: 3px;
   left:134px;
   }
-  /* .row{
-  margin-right: -15px;
-  margin-left: 1px;
-  } */
+
   .displayDate{
   float: left;
   width: 30%;

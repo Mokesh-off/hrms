@@ -1,16 +1,8 @@
-#leaveRecord{
-  padding: 2%;
-  height: 100%;
-  margin: 60px 0 0 200px;
-  background-color: #F6F5F9;
-}
+
 
 #leaveRecord .tableDiv {
   margin-top: 10%;
 	height: 100%;
-	/* border: 1px solid #DFDEE9;
-	background-color: #FFFFFF;
-	padding: 0 2% 0 2%; */
 }
 .tableDiv .recRow {
 	border-bottom: 1px solid #DFDEE9;

@@ -4,7 +4,6 @@ import Popup from 'reactjs-popup'
 import DatePicker from 'react-datepicker'
 import OngoingLeaves from '../OngoingLeaves/OngoingLeaves'
 import '../OngoingLeaves/OngoingLeaves.css'
-
 class LeaveRecord extends Component {
   constructor (props) {
     super(props)
@@ -187,127 +186,114 @@ class LeaveRecord extends Component {
       )
     } else {
       return (
-        <div id='leaveRecord'>
-        <OngoingLeaves />
-          <div className='leaveRec'>
-            <div className='head'><h2>Leave Record</h2></div>
-            <div className='row'>
-              <div className='col'>
-                <div className='col2'><label>From Date</label></div>
-                <div className='displayDate' value={this.state.FromDate} name='From' >
-                  <div className='col'><DatePicker className='Dp'
-                    selected={this.state.FromDate}
-                    showYearDropdown
-                    scrollableYearDropdown
-                    dateFormat='DD/MM/YYYY'
-                    showDisabledMonthNavigation
-                    onChange={e => this.DateFromChange(e)}
-                    yearDropdownItemNumber={2}
-                    isClearable
-                    placeholderText='Select a weekday'
-                    name='From' />
+        <div id='componentContainer'>
+          <div id='leaveRecord'>
+          <OngoingLeaves />
+            <div className='leaveRec'>
+              <div className='head'><h2>Leave Record</h2></div>
+              <div className='row'>
+                <div className='col'>
+                  <div className='col2'><label>From Date</label></div>
+                  <div className='displayDate' value={this.state.FromDate} name='From' >
+                    <div className='col'><DatePicker className='Dp'
+                      selected={this.state.FromDate}
+                      showYearDropdown
+                      scrollableYearDropdown
+                      dateFormat='DD/MM/YYYY'
+                      showDisabledMonthNavigation
+                      onChange={e => this.DateFromChange(e)}
+                      yearDropdownItemNumber={2}
+                      isClearable
+                      placeholderText='Select a weekday'
+                      name='From' />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className='col'>
-                <div className='col2'><label>To Date</label></div>
-                <div className='displayDate' name='To' value={this.state.ToDate}>
-                  <div className='col'><DatePicker className='Dp'
-                    selected={this.state.ToDate}
-                    showYearDropdown
-                    dateFormat='DD/MM/YYYY'
-                    onChange={e => this.DateToChange(e)}
-                    scrollableYearDropdown
-                    showDisabledMonthNavigation
-                    yearDropdownItemNumber={2}
-                    isClearable
-                    placeholderText='Select a weekday'
-                    name='To' />
+                <div className='col'>
+                  <div className='col2'><label>To Date</label></div>
+                  <div className='displayDate' name='To' value={this.state.ToDate}>
+                    <div className='col'><DatePicker className='Dp'
+                      selected={this.state.ToDate}
+                      showYearDropdown
+                      dateFormat='DD/MM/YYYY'
+                      onChange={e => this.DateToChange(e)}
+                      scrollableYearDropdown
+                      showDisabledMonthNavigation
+                      yearDropdownItemNumber={2}
+                      isClearable
+                      placeholderText='Select a weekday'
+                      name='To' />
+                    </div>
                   </div>
                 </div>
+                <div className='col'><button onClick={() => this.getNewRecord()} className='get'>Search</button></div>
               </div>
-              <div className='col'><button onClick={() => this.getNewRecord()} className='get'>Search</button></div>
             </div>
-          </div>
-          <div className='tableDiv tableWrapper'>
-            <table className='tableCss'>
-              {/* <thead className='thead1'>
+            <div className='tableDiv tableWrapper'>
+              <table className='tableCss'>
+                <thead className='thead1'>
                 <tr className='thead1'>
-                  <td className='tdClass'>EmpName</td>
-                  <td className='tdClass'>EmpId</td>
-                  <td className='tdClass'>LeaveType</td>
-                  <td className='tdClass'>Applied On</td>
-                  <td className='tdClass'>From Date</td>
-                  <td className='tdClass'>To Date</td>
-                  <td className='tdClass'>Days</td>
-                  <td className='tdClass'>status</td>
+                  <td className='thClass'><i class='fa fa-search'></i>
+                  <input type="text" className='searchField' placeholder='Search'></input>
+                  </td>
+                  <td className='thClass'>Id</td>
+                  <td className='thClass'>Leave Type</td>
+                  <td className='thClass'>Applied on</td>
+                  <td className='thClass'>From</td>
+                  <td className='thClass'>To</td>
+                  <td className='thClass'>Days</td>
+                  <td className='thClass'>Status</td>
                 </tr>
-              </thead> */}
-              <thead className='thead1'>
-              <tr className='thead1'>
-                <td className='thClass'><i class='fa fa-search'></i>
-                <input type="text" className='searchField' placeholder='Search'></input>
-                </td>
-                <td className='thClass'>Id</td>
-                <td className='thClass'>Leave Type</td>
-                <td className='thClass'>Applied on</td>
-                <td className='thClass'>From</td>
-                <td className='thClass'>To</td>
-                <td className='thClass'>Days</td>
-                <td className='thClass'>Status</td>
-              </tr>
-            </thead>
-              <tbody>
-                {
-                  data.map((record, i) =>
-                    record.status === 'Approved'
-                      ? <tr className={(data.length - 1 !== i) ? 'tdDivider' : ''} key={i}>
-                      
-                      <td className='tdClass'>
-                      <img src={require('../../Assets/images/profile_icon.png')} />
-                      <span className='empName'>{record.EmpName}</span></td>
-
-                        {/* <td className='tdClass'>{record.EmpName}</td> */}
-                        <td className='tdClass'>{record.EmpId} </td>
-
-                        <td className='tdClass'>{record.LeaveType}</td>
-                        <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.TotalDays}</td>
+              </thead>
+                <tbody>
+                  {
+                    data.map((record, i) =>
+                      record.status === 'Approved'
+                        ? <tr className={(data.length - 1 !== i) ? 'tdDivider' : ''} key={i}>
+                        
                         <td className='tdClass'>
-                          <span className='Approve' onClick={e => this.changeToReject(e, i)}>
-                            <i class='fa fa-times' aria-hidden='true' />
-                          </span>
-                        </td>
-                      </tr>
-                      : <tr className='tdDivider' key={i}>
-                      
-                      <td className='tdClass'>
-                      <img src={require('../../Assets/images/profile_icon.png')} />
-                      <span className='empName'>{record.EmpName}</span></td>
-                        <td className='tdClass'>{record.EmpId}</td>
-                        <td className='tdClass'>{record.LeaveType}</td>
-                        <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.TotalDays}</td>
+                        <img src={require('../../Assets/images/profile_icon.png')} />
+                        <span className='empName'>{record.EmpName}</span></td>
+                          <td className='tdClass'>{record.EmpId} </td>
+                          <td className='tdClass'>{record.LeaveType}</td>
+                          <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
+                          <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
+                          <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
+                          <td className='tdClass'>{record.TotalDays}</td>
+                          <td className='tdClass'>
+                            <span className='Approve' onClick={e => this.changeToReject(e, i)}>
+                              <i class='fa fa-times' aria-hidden='true' />
+                            </span>
+                          </td>
+                        </tr>
+                        : <tr className='tdDivider' key={i}>
+                        
                         <td className='tdClass'>
-                          <span className='Approve' onClick={e => this.changeToApprove(e, i)}>
-                            <i class='fa fa-check' aria-hidden='true' />
-                          </span>
-                        </td>
-                      </tr>
-                  )}
-              </tbody>
-            </table>
-          </div>
-          <Popup open={this.state.open} closeOnDocumentClick modal>
-            <div>
-              <span>{this.state.status} successfully</span><br />
-              <button onClick={e => this.closePopup(e)}>OK</button>
+                        <img src={require('../../Assets/images/profile_icon.png')} />
+                        <span className='empName'>{record.EmpName}</span></td>
+                          <td className='tdClass'>{record.EmpId}</td>
+                          <td className='tdClass'>{record.LeaveType}</td>
+                          <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
+                          <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
+                          <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
+                          <td className='tdClass'>{record.TotalDays}</td>
+                          <td className='tdClass'>
+                            <span className='Approve' onClick={e => this.changeToApprove(e, i)}>
+                              <i class='fa fa-check' aria-hidden='true' />
+                            </span>
+                          </td>
+                        </tr>
+                    )}
+                </tbody>
+              </table>
             </div>
-          </Popup>
+            <Popup open={this.state.open} closeOnDocumentClick modal>
+              <div>
+                <span>{this.state.status} successfully</span><br />
+                <button onClick={e => this.closePopup(e)}>OK</button>
+              </div>
+            </Popup>
+          </div>
         </div>
       )
     }
