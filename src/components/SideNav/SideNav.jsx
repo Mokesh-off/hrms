@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import './SideNav.css'
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
 
 class SideNav extends Component {
   constructor(props) {
@@ -116,7 +114,6 @@ class SideNav extends Component {
   render() {
     return (
       <div className='sidenav'>
-        {/* <Header /> */}
         {this.state.currentUserRoleVar === 'Employer' ? (
           <div>
             <Link to='/dashboard'>
@@ -166,8 +163,6 @@ class SideNav extends Component {
               </Link>
             </div>
           )}
-
-        {/* <Footer /> */}
       </div>
     )
   }

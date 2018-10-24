@@ -4,6 +4,13 @@ body {
   font-family: sans-serif;
 }
 
+#componentContainer{
+  padding: 2%;
+  height: 100%;
+  margin: 60px 0 0 200px;
+  background-color: #F6F5F9;
+}
+
 @font-face {
 	font-family: "muli-bold";
 	src: url("./Assets/Fonts/Muli/Muli-Bold.ttf");
