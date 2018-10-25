@@ -13,31 +13,31 @@ class MyLeaves extends Component {
     return (
 
       <div className='leaveRecord'>
-        <div className='head'><h2>My Leaves </h2></div>
-        <div className='myLeave'>
-          <table>
+        <div className='tableLabels'>My Leaves</div>
+        <div className='tableWrapper'>
+          <table className='tableCss'>
             <thead className='thead1'>
               <tr className='thead1'>
-                <td className='tdStyle'>Applied On</td>
-                <td className='tdStyle'>LeaveType</td>
-                <td className='tdStyle'>FromDate</td>
-                <td className='tdStyle'>ToDate</td>
-                <td className='tdStyle'>TotalDays</td>
-                <td className='tdStyle'>status</td>
-                <td className='tdStyle'>LeaveReason</td>
+                <td className='thClass'>Applied On</td>
+                <td className='thClass'>LeaveType</td>
+                <td className='thClass'>FromDate</td>
+                <td className='thClass'>ToDate</td>
+                <td className='thClass'>TotalDays</td>
+                <td className='thClass'>status</td>
+                <td className='thClass'>LeaveReason</td>
               </tr>
             </thead>
             <tbody>
               {
                 this.state.LeaveRecord.leaveRequest.map((record, i) =>
-                  (record.EmpId === id) ? <tr key={i} className='tdStyle' >
-                    <td className='tdStyle'>{record.appliedOn.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.LeaveType}</td>
-                    <td className='tdStyle'>{record.FromDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.ToDate.substr(0, 10)}</td>
-                    <td className='tdStyle'>{record.TotalDays}</td>
-                    <td className='tdStyle'>{record.status}</td>
-                    <td className='tdStyle'>{record.LeaveReason}</td>
+                  (record.EmpId === id) ? <tr key={i} className='tdDivider' >
+                    <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
+                    <td className='tdClass'>{record.LeaveType}</td>
+                    <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
+                    <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
+                    <td className='tdClass'>{record.TotalDays}</td>
+                    <td className='tdClass'>{record.status}</td>
+                    <td className='tdClass'>{record.LeaveReason}</td>
                   </tr>
                     : ''
                 )

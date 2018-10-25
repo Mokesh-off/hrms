@@ -68,27 +68,28 @@ class EditProfileApproval extends Component {
     if (data1.edittedProfile) {
       return (
         <div className='editProfileApproval'>
-          <div className='editProfile'>
-            <h1>Profile Change Request</h1>
-            <table>
+        <h1>Profile Change Request</h1>
+          <div className='tableWrapper'>
+            
+            <table className='tableCss'>
               <thead className='thead1'>
                 <tr className='thead1'>
-                  <td className='tdStyle'>Employee Id</td>
-                  <td className='tdStyle'>Employee Name</td>
-                  <td className='tdStyle'>Address</td>
-                  <td className='tdStyle'>Contact Number</td>
-                  <td className='tdStyle'>Option</td>
+                  <td className='thClass'>Employee Id</td>
+                  <td className='thClass'>Employee Name</td>
+                  <td className='thClass'>Address</td>
+                  <td className='thClass'>Contact Number</td>
+                  <td className='thClass'>Option</td>
                 </tr>
               </thead>
               <tbody>
                 {this.state.EditProfile.edittedProfile.map((data, i) => {
                   return (
-                    <tr key={i}>
-                      <td className='tdStyle'>{data.EmpId}</td>
-                      <td className='tdStyle'>{data.EmpName}</td>
-                      <td className='tdStyle'>{data.Address}</td>
-                      <td className='tdStyle'>{data.ContactNum}</td>
-                      <td className='tdStyle'>
+                    <tr key={i} className='tdDivider'>
+                      <td className='tdClass'>{data.EmpId}</td>
+                      <td className='tdClass'>{data.EmpName}</td>
+                      <td className='tdClass'>{data.Address}</td>
+                      <td className='tdClass'>{data.ContactNum}</td>
+                      <td className='tdClass'>
                         <button
                           className='rejectButtonProfile'
                           onClick={e => this.changeToReject(e, i)}
