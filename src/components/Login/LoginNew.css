@@ -15,7 +15,7 @@
 	height: 2.063em;
 	width: 5.313em;
 	color: #FF7D27;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 1.625em;
 	font-weight: bold;
 	letter-spacing: 0.013em;
@@ -32,7 +32,7 @@
 	height: 4.250em;
 	width: 25.375em;
 	color: #808080;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 1.125em;
 	font-weight: 600;
 	letter-spacing: 0.037em;
@@ -52,9 +52,9 @@
 .read-more {
 	margin: 0.313em 2.563em 0.313em 0.938em;
 	height: 1.125em;
-	width: 4.688em;
+	width: 5.688em;
 	color: #808080;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 0.875em;
 	letter-spacing: 0.029em;
 	line-height: 1.125em;
@@ -70,7 +70,7 @@
 
 .path-2 {
 	position: relative;
-	bottom: 1.713em;
+	bottom: 1.89em;
 	left: 3.1em;
 	/* margin: -49.5px 0.594em 0 5.625em; */
     /* margin: 11.5px 15.5px 10.5px 112px; */
@@ -89,7 +89,7 @@
 	/* height: 10.875em; */
 	/* width: 34.875em; */
 	color: #000000;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 2.625em;
 	font-weight: bold;
 	letter-spacing: 0.025em;
@@ -118,7 +118,7 @@
 	height: 1.125em;
 	width: 6.250em;
 	color: #000000;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 0.875em;
 	font-weight: bold;
 	letter-spacing: 0.063em;
@@ -134,7 +134,7 @@
 	height: 1.313em;
 	width: 15.625em;
 	color: #808080;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 1.063em;
 	font-weight: 600;
 	letter-spacing: 0.037em;
@@ -154,7 +154,7 @@
 	height: 1.313em;
 	width: 15.625em;
 	color: #808080;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 1.063em;
 	font-weight: 600;
 	letter-spacing: 0.037em	;
@@ -179,7 +179,7 @@
 	height: 1.188em;	
 	width: 12.500em;
 	color: #000000;	
-	font-family: Muli;	
+	font-family: muli-semi-bold;	
 	font-size: 0.938em;	
 	letter-spacing: 0.033em;	
 	line-height: 1.188em;
@@ -231,7 +231,7 @@
 	height: 1.313em;
 	width: 12.375em	;
 	color: #FFFFFF;
-	font-family: Muli;
+	font-family: muli-semi-bold;
 	font-size: 1.125em;
 	letter-spacing: 0.037em	;
 	line-height: 1.313em;
@@ -253,4 +253,7 @@
 	-webkit-box-shadow: 0 0.313em 0.750em 0 rgba(0,0,0,0.14);
 	box-shadow: 0 0.313em 0.750em 0 rgba(0,0,0,0.14);
 	color: white;
+}
+.oval{
+	cursor: pointer;
 }

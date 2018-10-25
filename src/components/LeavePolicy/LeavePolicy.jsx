@@ -88,7 +88,7 @@ class LeavePolicy extends Component {
 
     if (role === 'Employer' || this.state.flag === true) {
       return (
-        <div className='policy'>
+        <div className='componentContainer'>
           <div className='tableLabels'>
             Leave Policy(2018)
             <input
@@ -202,14 +202,15 @@ class LeavePolicy extends Component {
             </div>
           </Modal>
         </div>
+        
       )
     } else {
       /* --    Employee Execution part    -- */
 
       return (
-        <div className='policy'>
-          <div className='headerPolicy'>
-            <h1 className='headerLeavePolicy'>Leave Policy(2018)</h1>
+        <div className='componentContainer'>
+          <div className='tableLabels'>
+         Leave Policy(2018)
             <input
               type='button'
               className='policyViewButton'
@@ -239,9 +240,9 @@ class LeavePolicy extends Component {
             <table className='tableCss'>
               <thead className='thead1'>
                 <tr className='thead1'>
-                  <th className='thClass'>Leave Name</th>
-                  <th className='thClass'>NO.of Days</th>
-                  <th className='thClass'>Terms</th>
+                  <td className='thClass'>Leave Name</td>
+                  <td className='thClass'>NO.of Days</td>
+                  <td className='thClass'>Terms</td>
                 </tr>
               </thead>
               <tbody>

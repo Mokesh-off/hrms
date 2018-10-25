@@ -1,5 +1,6 @@
 
 
+
 #leaveRecord .tableDiv {
   margin-top: 10%;
 	height: 100%;
@@ -46,7 +47,25 @@
   font-family: 'muli-regular';
   border-collapse: collapse;
 }
+.col{
+	float: left;
+	width: 32%;
+	padding: 10px;
+}
+.col2{
+	margin-top:13px;
+	float: left;
+	width: 32%;
+	padding: 10px;
+}
 
-
-
-	
+.get{
+	width: 67px;
+	margin-top:10px;
+	height: 40px;
+	border-radius: 12px;
+	border:none;
+	font-weight: bold;
+	background-color: rgb(63, 115, 198);
+	color: white;
+}

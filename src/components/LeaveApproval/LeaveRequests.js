@@ -14,17 +14,32 @@ class LeaveRequests extends Component {
       open: false,
       ischecked: false,
       checkedValue: [],
-      index: ''
+      index: '',
+      LeaveRequestCount:0
     }
   }
-  componentDidMount () {
-    let data = JSON.parse(localStorage.getItem('Data'))
-    if (data.deletedRow) {
-      this.setState({ deletedRow: data.deletedRow })
-      var date1 = moment()
-      console.log(date1)
-    }
-  }
+
+componentDidMount () {
+  let data = JSON.parse(localStorage.getItem('Data'))
+  data = data.leaveRequest
+  var count = 0
+  data.map((record) => {
+    
+    if(record.status==='Pending')
+    count++
+
+         })
+         console.log(count)
+         this.setState({ LeaveRequestCount: this.state.LeaveRequestCount = count })
+}
+  // componentDidMount () {
+  //   let data = JSON.parse(localStorage.getItem('Data'))
+  //   if (data.deletedRow) {
+  //     this.setState({ deletedRow: data.deletedRow })
+  //     var date1 = moment()
+  //     console.log(date1)
+  //   }
+  // }
   closePopup (e) {
     this.setState({ open: false })
   }
@@ -184,9 +199,9 @@ class LeaveRequests extends Component {
     if (data.leaveRequest) {
       return (
         // List of leave requests
-        <div id='componentContainer'>
-          <div className=''>
-            <div>
+          <div>
+            <span className='tableLabels'>Leave Requests{' '+this.state.LeaveRequestCount}</span>
+            <div id='labelPadding'>
               <button className='RejectButton' onClick={e => this.selectAll(e)}>selectAll</button>
               <button className='ApproveButton' onClick={e => this.clearAll(e)}>rejectAll</button>
               <button className='RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
@@ -215,8 +230,6 @@ class LeaveRequests extends Component {
                     return record.status === 'Pending'
                     // return this.state.deletedRow.indexOf(record.ReqestId) === -1
                       ? <tr key={i} className='tdDivider'>
-                        {/* <td className='tdClass'><input type='checkbox'
-                          data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} /></td> */}
                         
                         <td className='tdClass'>
                         
@@ -233,9 +246,11 @@ class LeaveRequests extends Component {
                         <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
                         <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
                         <td className='tdClass'>{record.TotalDays}</td>
-                        <td className='tdClass'>
-                          <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button><span>&nbsp;</span>
-                          <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button>
+                        <td className='tdClass'> 
+                        <i class="fa fa-times-circle-o cross" onClick={e => this.changeToReject(e, i)} />
+                        <i class="fa fa-check-circle-o tick" onClick={e => this.changeToApprove(e, i)} />
+                          {/* <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button><span>&nbsp;</span> */}
+                          {/* <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button> */}
                         </td>
                       </tr>
                       : ''
@@ -250,7 +265,6 @@ class LeaveRequests extends Component {
               </div>
             </Popup>
           </div>
-        </div>
       )
     } else {
       return (

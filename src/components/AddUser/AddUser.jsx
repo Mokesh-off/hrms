@@ -132,7 +132,7 @@ class AddUser extends Component {
         ContactNum: this.state.ContactNum,
         Dep: this.state.Dep,
         Role: this.state.Role,
-        EmpId: this.state.EmailId,
+        EmpId: this.state.EmpId,
         Address: this.state.Address,
         Password: 'tringapps',
         PendingLeaves: {
@@ -142,15 +142,14 @@ class AddUser extends Component {
           Privilege: 10
         }
       })
-      console.log(obj)
       if (Data.Employee) {
-        Data.Employee[Data.Employee.length] = this.state
+        Data.Employee[Data.Employee.length] = obj
         window.localStorage.setItem('Data', JSON.stringify(Data))
         alert('New user added')
         this.emptyForm()
       } else {
         Data['Employee'] = []
-        Data.Employee[Data.Employee.length] = this.state
+        Data.Employee[Data.Employee.length] = obj
         window.localStorage.setItem('Data', JSON.stringify(Data))
         alert('New user added')
         this.emptyForm()
@@ -165,192 +164,193 @@ class AddUser extends Component {
       )
     } else {
       return (
-        <div id='addUserContainer'>
-          <div className='addUserMainContainer'>
-            <div className='formContainer'>
-              <div className='form'>
-                <h1>Employee registration form</h1>
-                <div className='divider' />
-                <div className='err'>{this.state.empty}</div>
-                <div className='row'>
-                  <div className='left'>Employee ID:</div>
-                  <div className='right'>
-                    <input className='box' type='number' name='EmpId' value={this.state.EmpId} placeholder='Employee ID..' onChange={e => this.change(e)} />
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Name:</div>
-                  <div className='right'>
-                    <input className='box' type='text' name='EmpName'
-                      value={this.state.EmpName}
-                      placeholder='Employee name...'
-                      style={{ border: this.state.nameborder }}
-                      onChange={e => this.change(e)}
-                    />
-                  </div>
-                  <div className='err'>{this.state.errname}</div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>E-mail:</div>
-                  <div className='right'>
-                    <input
-                      className='box'
-                      type='EmailId'
-                      name='EmailId'
-                      value={this.state.EmailId}
-                      style={{ border: this.state.mailborder }}
-                      onChange={e => this.change(e)}
-                    />
-                  </div>
-                  <div className='err'>{this.state.errmail}</div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Role:</div>
-                  <div className='right'>
-                    {/* <input className='box' list='Role'name='Role'
-                onChange={e=>this.change(e)} /> */}
-                    <select id='Role' list='Role' name='Role'
-                      value={this.state.Role}
-                      onChange={e => this.change(e)}>
-                      <option value='' disabled> select your option </option>
-                      <option value='Employee'> Employee </option>
-                      <option value='Employer'> Employer </option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>ContactNum:</div>
-                  <div className='right'>
-                    <input
-                      className='box'
-                      type='number'
-                      name='ContactNum' value={this.state.ContactNum}
-                      onChange={e => this.change(e)}
-                      style={{ border: this.state.numborder }}
-                    />
-                  </div>
-                  <div className='err'>{this.state.errnum}</div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Dob:</div>
-                  <div className='right'>
-                    <input value={this.state.Dob}
-                      className='box'
-                      type='date'
-                      name='Dob'
-                      onChange={e => this.change(e)}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Gender:</div>
-                  <div className='right'>
-                    <input
-                      type='radio'
-                      className='radio'
-                      id='radio1'
-                      name='gender'
-                      value='male'
-                      onChange={e => this.change(e)}
-                      ref='male'
-                    />
-                    Male
-                    <input
-                      type='radio'
-                      className='radio'
-                      id='radio2'
-                      name='gender'
-                      value='female'
-                      onChange={e => this.change(e)}
-                      ref='female'
-                    />
-                    Female
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Department:</div>
-                  <div className='right'>
-                    {/* <input className='box' list='Dep' name='Dep'
-                onChange={e=>this.change(e)} /> */}
-                    <select
-                      id='Dep'
-                      list='Dep'
-                      name='Dep'
-                      value={this.state.Dep}
-                      onChange={e => this.change(e)}
-                    >
-                      <option value='' disabled>
-
-                        select your option
-                      </option>
-                      <option value='WEB'> WEB </option>
-                      <option value='ANDROID'> ANDROID </option>
-                      <option value='TESTING'> TESTING </option>
-                      <option value='ROKU'> ROKU </option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Date of Joining:</div>
-                  <div className='right'>
-                    <input
-                      className='box'
-                      type='date'
-                      name='Doj' value={this.state.Doj}
-                      onChange={e => this.change(e)}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Working location:</div>
-                  <div className='right'>
-                    <select id='wl' list='wl' name='wl' value={this.state.wl}
-                      onChange={e => this.change(e)} >
-                      <option value='' disabled> select your option </option>
-                      <option value='Chennai'>Chennai</option>
-                      <option value='New Jersey'>New Jersey</option>
-                      <option value='California'>California</option>
-                      <option value='New york'>New york</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left'>Address:</div>
-                  <div className='right'>
-                    <textarea
-                      className='box' value={this.state.Address}
-                      name='Address'
-                      onChange={e => this.change(e)}
-                    />
-                  </div>
-                </div>
-
-                <div className='row'>
-                  <div className='left' />
+        <div className='componentContainer'>
+          <div id='addUserContainer'>
+            <div className='addUserMainContainer'>
+              <div className='formContainer'>
+                <div className='form'>
+                  <h1>Employee registration form</h1>
+                  <div className='divider' />
                   <div className='err'>{this.state.empty}</div>
-                  <div className='rowSeven'>
+                  <div className='row'>
+                    <div className='left'>Employee ID:</div>
                     <div className='right'>
-                      <button className='rowSevenButton' onClick={this.reset}>
-
-                        Reset
-                      </button>
+                      <input className='box' type='number' name='EmpId' value={this.state.EmpId} onChange={e => this.change(e)} />
                     </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Name:</div>
                     <div className='right'>
-                      <button className='rowSevenButton' onClick={this.onSubmit}>
-                        Submit
-                      </button>
+                      <input className='box' type='text' name='EmpName'
+                        value={this.state.EmpName}
+                        style={{ border: this.state.nameborder }}
+                        onChange={e => this.change(e)}
+                      />
+                    </div>
+                    <div className='err'>{this.state.errname}</div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>E-mail:</div>
+                    <div className='right'>
+                      <input
+                        className='box'
+                        type='EmailId'
+                        name='EmailId'
+                        value={this.state.EmailId}
+                        style={{ border: this.state.mailborder }}
+                        onChange={e => this.change(e)}
+                      />
+                    </div>
+                    <div className='err'>{this.state.errmail}</div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Role:</div>
+                    <div className='right'>
+                      {/* <input className='box' list='Role'name='Role'
+                  onChange={e=>this.change(e)} /> */}
+                      <select id='Role' list='Role' name='Role'
+                        value={this.state.Role}
+                        onChange={e => this.change(e)}>
+                        <option value='' disabled> select your option </option>
+                        <option value='Employee'> Employee </option>
+                        <option value='Employer'> Employer </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>ContactNum:</div>
+                    <div className='right'>
+                      <input
+                        className='box'
+                        type='number'
+                        name='ContactNum' value={this.state.ContactNum}
+                        onChange={e => this.change(e)}
+                        style={{ border: this.state.numborder }}
+                      />
+                    </div>
+                    <div className='err'>{this.state.errnum}</div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Dob:</div>
+                    <div className='right'>
+                      <input value={this.state.Dob}
+                        className='box'
+                        type='date'
+                        name='Dob'
+                        onChange={e => this.change(e)}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Gender:</div>
+                    <div className='right'>
+                      <input
+                        type='radio'
+                        className='radio'
+                        id='radio1'
+                        name='gender'
+                        value='male'
+                        onChange={e => this.change(e)}
+                        ref='male'
+                      />
+                      Male
+                      <input
+                        type='radio'
+                        className='radio'
+                        id='radio2'
+                        name='gender'
+                        value='female'
+                        onChange={e => this.change(e)}
+                        ref='female'
+                      />
+                      Female
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Department:</div>
+                    <div className='right'>
+                      {/* <input className='box' list='Dep' name='Dep'
+                  onChange={e=>this.change(e)} /> */}
+                      <select
+                        id='Dep'
+                        list='Dep'
+                        name='Dep'
+                        value={this.state.Dep}
+                        onChange={e => this.change(e)}
+                      >
+                        <option value='' disabled>
+
+                          select your option
+                        </option>
+                        <option value='WEB'> WEB </option>
+                        <option value='ANDROID'> ANDROID </option>
+                        <option value='TESTING'> TESTING </option>
+                        <option value='ROKU'> ROKU </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Date of Joining:</div>
+                    <div className='right'>
+                      <input
+                        className='box'
+                        type='date'
+                        name='Doj' value={this.state.Doj}
+                        onChange={e => this.change(e)}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Working location:</div>
+                    <div className='right'>
+                      <select id='wl' list='wl' name='wl' value={this.state.wl}
+                        onChange={e => this.change(e)} >
+                        <option value='' disabled> select your option </option>
+                        <option value='Chennai'>Chennai</option>
+                        <option value='New Jersey'>New Jersey</option>
+                        <option value='California'>California</option>
+                        <option value='New york'>New york</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left'>Address:</div>
+                    <div className='right'>
+                      <textarea
+                        className='box' value={this.state.Address}
+                        name='Address'
+                        onChange={e => this.change(e)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className='row'>
+                    <div className='left' />
+                    <div className='err'>{this.state.empty}</div>
+                    <div className='rowSeven'>
+                      <div className='right'>
+                        <button className='rowSevenButton' onClick={this.reset}>
+
+                          Reset
+                        </button>
+                      </div>
+                      <div className='right'>
+                        <button className='rowSevenButton' onClick={this.onSubmit}>
+                          Submit
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -24,7 +24,9 @@
   width: 13vw;
   margin: 15px;
 }
-
+.empDashboardWidth{
+  width: 84.4%;
+}
 .cardContainer {
   display: flex;
   background: #3770B7;

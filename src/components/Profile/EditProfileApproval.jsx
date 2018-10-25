@@ -67,8 +67,8 @@ class EditProfileApproval extends Component {
     // data1 = data1.edittedProfile;
     if (data1.edittedProfile) {
       return (
-        <div className='editProfileApproval'>
-        <h1>Profile Change Request</h1>
+        <div className='componentContainer absolute'>
+        <h1 className='muli-semi-bold'>Profile Change Request</h1>
           <div className='tableWrapper'>
             
             <table className='tableCss'>
@@ -90,7 +90,13 @@ class EditProfileApproval extends Component {
                       <td className='tdClass'>{data.Address}</td>
                       <td className='tdClass'>{data.ContactNum}</td>
                       <td className='tdClass'>
-                        <button
+                        <span className='Approve' onClick={e => this.changeToApprove(e, i)}>
+                          <i class="fa fa-check-circle-o tick"/>
+                        </span>
+                        <span className='Approve' onClick={e => this.changeToReject(e, i)}>
+                          <i class="fa fa-times-circle-o cross" />
+                        </span>
+                        {/* <button
                           className='rejectButtonProfile'
                           onClick={e => this.changeToReject(e, i)}
                         >
@@ -102,7 +108,7 @@ class EditProfileApproval extends Component {
                           onClick={e => this.changeToApprove(e, i)}
                         >
                           Accept
-                        </button>
+                        </button> */}
                       </td>
                     </tr>
                   )
@@ -112,7 +118,7 @@ class EditProfileApproval extends Component {
             <br />
             <div className='backButton'>
               <NavLink to='/profile'>
-                <button>Back</button>
+                <button className='rejectButtonProfile'>Back</button>
               </NavLink>
             </div>
           </div>
@@ -120,7 +126,7 @@ class EditProfileApproval extends Component {
       )
     } else {
       return (
-        <div>
+        <div className='componentContainer absolute'>
           <div className='approveProfileHeader'>No details</div>
         </div>
       )

@@ -24,6 +24,7 @@
 .policyTextarea {
   width: 250px;
   height: 35px;
+  font-family: muli-regular;
 }
 
 .headerLeavePolicy {

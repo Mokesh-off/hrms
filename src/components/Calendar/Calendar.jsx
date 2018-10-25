@@ -19,8 +19,11 @@ class Calendar extends React.Component {
     left:'',
     top:'',
     requestId:'',
-    calendarData:[]		
+    calendarData:[],
+    myLeavesData:[]
     }
+    this.calendarData=this.calendarData.bind(this)
+    this.myLeavesData=this.myLeavesData.bind(this)
   }
 
 
@@ -57,7 +60,6 @@ class Calendar extends React.Component {
           leave3 > 0 ? leave3 = leave3 : leave3 = 0
           newState.Employee[i].PendingLeaves.Privilege = leave3
         }
-        // this.setState({ [this.state.LeaveRecord.Employee]: newState })
         localStorage.setItem('Data', JSON.stringify(newState))
       }
     }
@@ -124,7 +126,49 @@ class Calendar extends React.Component {
       }
     });
   }
-  
+  // myLeavesData(){
+  //   var employeeId=JSON.parse(localStorage.getItem('currentUserId'))
+  //   var myLeavesVar=JSON.parse(localStorage.getItem('Data'))
+  //   myLeavesVar=myLeavesVar.Employee
+  //   // console.log(JSON.stringify(myLeavesVar)+'myLeavesVar')
+  //   myLeavesVar.forEach(element => {
+  //     if(JSON.stringify(element.EmpId) === JSON.stringify(employeeId) )
+  //     console.log('element'+JSON.stringify(element.leaveTaken))
+  //     this.setState({myLeavesData : this.state.myLeavesData=element.leaveTaken})
+  //     console.log('leaveTaken'+this.state.myLeavesData)
+  //   });
+  // }
+  myLeavesData(){
+    console.log('myleaves data')
+    var employeeId=JSON.parse(localStorage.getItem('currentUserId'))
+    var myLeavesData=JSON.parse(localStorage.getItem('Data'))
+    myLeavesData=myLeavesData.leaveRequest
+    var j=0,obj
+    
+    myLeavesData.forEach(i => {
+      if(i.status === 'Rejected'){
+      }
+      console.log('i.EmpId:'+i.EmpId+'employeeId:'+employeeId)
+      if(i.EmpId === employeeId){
+        var endDate=new Date((i.ToDate).split("T")[0])
+        endDate=endDate.setDate(endDate.getDate()+1)
+        endDate=new Date(endDate)
+        endDate=JSON.stringify(endDate).substr(1,10)
+
+        obj = Object.assign ( {}, {title:i.EmpName,
+         EmpId:i.EmpId, empName:i.EmpName,requestId:i.ReqestId,
+         fromDate:(i.FromDate).split("T")[0],toDate:(i.ToDate).split("T")[0],
+         noOfDays:i.TotalDays,className:i.status,
+         reason:i.LeaveReason,status:i.status,
+         start:(i.FromDate).split("T")[0], end:endDate}
+         
+         )
+        this.state.myLeavesData[this.state.myLeavesData.length]= obj
+        j++
+      }
+    });
+    console.log('my leaves data'+this.state.myLeavesData)
+  }
   calendarData(){
     var calendarData=JSON.parse(localStorage.getItem('Data'))
     calendarData=calendarData.leaveRequest
@@ -176,49 +220,63 @@ class Calendar extends React.Component {
     })
   }
   render() {
-    if((this.state.calendarData).length===0)
-    this.calendarData();
+
+if((this.state.myLeavesData).length===0)
+this.myLeavesData()
+
+if((this.state.calendarData).length===0)
+this.calendarData()
+
+    var employeeRole=JSON.parse(localStorage.getItem('currentUserRole'))
     return (
-      <div id='fullCalendarMainContainer'>
-        <div id='fullCalendarContainer'>
-          <div id="example-component">
-            <FullCalendar
-                id = "calendar"
-            header = {{
-                left: 'prev,next today myCustomButton',
-                center: 'title',
-                right: 'month,basicWeek,basicDay'
-            }}
-            defaultDate= {moment()}
-            navLinks= {true} // can click day/week names to navigate views
-            editable= {true}
-            eventLimit= {true} 
-            events = {this.state.calendarData}	
-            eventClick={(e,event)=>this.popUpFunction(e,event)}
-        />
-          </div>
-          <div className='fc-popover fc-more-popover popUp' 
-          style= {{display:this.state.display,top:this.state.top,left:this.state.left}}
-          >
-          <span className='marginLeft' onClick={()=>this.closePopUp()}>X</span>
-              <div>Name : {this.state.empName}</div>
-              <div>From Date : {this.state.fromDate}</div>
-              <div>To Date : {this.state.toDate}</div>
-              <div>Total Days : {this.state.noOfDays}</div>
-              <div>Reason : {this.state.reason}</div>
-              <div>Status : {this.state.status}</div>
+      <div className='componentContainer'>
+        <div id='fullCalendarMainContainer'>
+          <div id='fullCalendarContainer'>
+            <div id="example-component">
+              <FullCalendar
+                  id = "calendar"
+              header = {{
+                  left: 'prev,next today myCustomButton',
+                  center: 'title',
+                  right: 'month,basicWeek,basicDay'
+              }}
+              defaultDate= {moment()}
+              navLinks= {true} // can click day/week names to navigate views
+              editable= {true}
+              eventLimit= {true} 
+              events = {employeeRole==='Employee'?this.state.myLeavesData:this.state.calendarData}	
+              eventClick={(e,event)=>this.popUpFunction(e,event)}
+              
+          />
 
-              {(this.state.status==='Approved')?
-              <button onClick={e=>this.changeToReject(e)}>Reject</button>
-              :(this.state.status==='Rejected')?
-              <button onClick={e=>this.changeToApprove(e)}>Approve</button>
-              :
-              <div>
-              <button button onClick={e=>this.changeToApprove(e)}>Approve</button>
-              <button onClick={e=>this.changeToReject(e)}>Reject</button>
-              </div>
-              }
+            </div>
+            <div className='fc-popover fc-more-popover popUp' 
+            style= {{display:this.state.display,top:this.state.top,left:this.state.left}}
+            >
+            <span className='marginLeft' onClick={()=>this.closePopUp()}>X</span>
+                <div>Name : {this.state.empName}</div>
+                <div>From Date : {this.state.fromDate}</div>
+                <div>To Date : {this.state.toDate}</div>
+                <div>Total Days : {this.state.noOfDays}</div>
+                <div>Reason : {this.state.reason}</div>
+                <div>Status : {this.state.status}</div>
+                
+                {
+                (employeeRole==='Employer')?
+                  (this.state.status==='Approved')?
+                  <button onClick={e=>this.changeToReject(e)}>Reject</button>
+                  :(this.state.status==='Rejected')?
+                  <button onClick={e=>this.changeToApprove(e)}>Approve</button>
+                  :
+                  <div>
+                  <button button onClick={e=>this.changeToApprove(e)}>Approve</button>
+                  <button onClick={e=>this.changeToReject(e)}>Reject</button>
+                  </div>
+                :
+                ''
+                }
 
+            </div>
           </div>
         </div>
       </div>

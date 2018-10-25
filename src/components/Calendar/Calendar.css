@@ -1,9 +1,6 @@
 #fullCalendarContainer{
   display: flex;
-  margin-top: 53px;
-  margin-left: 15vw;
-  margin-bottom: 40px;
-  width: 80vw;
+  width: 100%;
 }
 #fullCalendarMainContainer{
   overflow-y: scroll;
@@ -31,8 +28,8 @@
 } */
 
 .popUp{
-  height: 25% !important;   
-  width: 15%;
+  height: 33% !important;   
+  width: 20%;
   overflow-y: hidden !important;
   padding-left: 10px;
 }
