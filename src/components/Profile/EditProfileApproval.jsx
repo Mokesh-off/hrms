@@ -67,59 +67,61 @@ class EditProfileApproval extends Component {
     // data1 = data1.edittedProfile;
     if (data1.edittedProfile) {
       return (
-        <div className='editProfileApproval'>
-          <div className='editProfile'>
-            <h1>Profile Change Request</h1>
-            <table>
-              <thead className='thead1'>
-                <tr className='thead1'>
-                  <td className='tdStyle'>Employee Id</td>
-                  <td className='tdStyle'>Employee Name</td>
-                  <td className='tdStyle'>Address</td>
-                  <td className='tdStyle'>Contact Number</td>
-                  <td className='tdStyle'>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.EditProfile.edittedProfile.map((data, i) => {
-                  return (
-                    <tr key={i}>
-                      <td className='tdStyle'>{data.EmpId}</td>
-                      <td className='tdStyle'>{data.EmpName}</td>
-                      <td className='tdStyle'>{data.Address}</td>
-                      <td className='tdStyle'>{data.ContactNum}</td>
-                      <td className='tdStyle'>
-                        <button
-                          className='rejectButtonProfile'
-                          onClick={e => this.changeToReject(e, i)}
-                        >
-                          Reject
-                        </button>
-                        <span>&nbsp;</span>
-                        <button
-                          className='approveButtonProfile'
-                          onClick={e => this.changeToApprove(e, i)}
-                        >
-                          Accept
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </table>
-            <br />
-            <div className='backButton'>
-              <NavLink to='/profile'>
-                <button>Back</button>
-              </NavLink>
+        <div  id='componentContainer'>
+          <div className=''>
+            <div className='editProfile'>
+              <h1>Profile Change Request</h1>
+              <table>
+                <thead className='thead1'>
+                  <tr className='thead1'>
+                    <td className='tdStyle'>Employee Id</td>
+                    <td className='tdStyle'>Employee Name</td>
+                    <td className='tdStyle'>Address</td>
+                    <td className='tdStyle'>Contact Number</td>
+                    <td className='tdStyle'>Option</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.EditProfile.edittedProfile.map((data, i) => {
+                    return (
+                      <tr key={i}>
+                        <td className='tdStyle'>{data.EmpId}</td>
+                        <td className='tdStyle'>{data.EmpName}</td>
+                        <td className='tdStyle'>{data.Address}</td>
+                        <td className='tdStyle'>{data.ContactNum}</td>
+                        <td className='tdStyle'>
+                          <button
+                            className='rejectButtonProfile'
+                            onClick={e => this.changeToReject(e, i)}
+                          >
+                            Reject
+                          </button>
+                          <span>&nbsp;</span>
+                          <button
+                            className='approveButtonProfile'
+                            onClick={e => this.changeToApprove(e, i)}
+                          >
+                            Accept
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+              <br />
+              <div className='backButton'>
+                <NavLink to='/profile'>
+                  <button>Back</button>
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>
       )
     } else {
       return (
-        <div>
+        <div id='componentContainer'>
           <div className='approveProfileHeader'>No details</div>
         </div>
       )

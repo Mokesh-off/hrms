@@ -23,8 +23,11 @@ class OngoingLeaves extends Component {
       var compareDate = moment()
       var startDate   = moment(record.FromDate);
       var endDate     = moment(record.ToDate);
+      var compareDateStr=(JSON.stringify(compareDate).substr(1, 10))
+      var startDateStr=(JSON.stringify(startDate).substr(1, 10))
+      var endDateStr=(JSON.stringify(endDate).substr(1, 10))
       if((compareDate.isBetween(startDate, endDate)) || 
-          compareDate===startDate || compareDate===endDate) {
+          compareDateStr===startDateStr || compareDateStr===endDateStr) {
             count++;            
           }
           this.setState({OngoingLeaves: this.state.OngoingLeaves = count})

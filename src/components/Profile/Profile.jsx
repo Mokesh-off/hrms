@@ -34,7 +34,7 @@ export default class Profile extends React.Component {
       return (
         /* --    User Profile   -- */
 
-        <div className='profile'>
+        <div id='componentContainer'>
           <h1 className='UserProfile'>User Profile</h1>
           <form className='profileForm'>
             {this.state.Data.Employee.map(

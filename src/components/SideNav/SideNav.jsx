@@ -149,6 +149,9 @@ class SideNav extends Component {
               <Link to='/dashboard'>
                 <button ref='dashboard'> Home </button>
               </Link>
+              <Link to='/calendar'>
+              <button ref='calendar'> Calendar </button>
+            </Link>
               <Link to='/leaverequest'>
                 <button ref='leaverequest'> Leave Request </button>
               </Link>

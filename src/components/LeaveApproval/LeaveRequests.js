@@ -184,8 +184,7 @@ class LeaveRequests extends Component {
     if (data.leaveRequest) {
       return (
         // List of leave requests
-        <div id='componentContainer'>
-          <div className=''>
+          <div>
             <div>
               <button className='RejectButton' onClick={e => this.selectAll(e)}>selectAll</button>
               <button className='ApproveButton' onClick={e => this.clearAll(e)}>rejectAll</button>
@@ -250,7 +249,6 @@ class LeaveRequests extends Component {
               </div>
             </Popup>
           </div>
-        </div>
       )
     } else {
       return (

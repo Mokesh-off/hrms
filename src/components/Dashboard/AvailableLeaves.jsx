@@ -22,7 +22,6 @@ class AvailableLeaves extends Component {
     return (
       <div>
 
-        <div className='divider' />
 
         <h2>Available Leaves</h2>
 

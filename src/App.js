@@ -47,14 +47,8 @@ class App extends Component {
               <div>
                 <Switch>
                   <Route exact strict path='/' component={Login} />
-                  <Route exact strict path='/dashboard' component={LeaveRequests} />
+                  <Route exact strict path='/dashboard' component={Dashboard} />
                   <Route exact strict path='/calendar' component={Calendar} />
-                  {/* <Route
-                    exact
-                    strict
-                    path='/dashboard/leavelist'
-                    component={LeaveRequests}
-                  /> */}
 
                   <Route exact strict
                     path='/leaverequest' component={LeaveRequest} />

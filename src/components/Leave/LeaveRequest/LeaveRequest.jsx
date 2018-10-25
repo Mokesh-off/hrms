@@ -278,7 +278,7 @@ class LeaveRequest extends React.Component {
       )
     } else if (window.localStorage.getItem('currentUserId') || this.state.render===true) {
       return (
-        <div className='rightContainer'>
+        <div id='componentContainer'>
           <div id='success'>
             <h3 id='changed'>Successfully submitted</h3>
           </div>

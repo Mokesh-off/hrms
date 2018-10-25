@@ -88,7 +88,8 @@ class LeavePolicy extends Component {
 
     if (role === 'Employer' || this.state.flag === true) {
       return (
-        <div className='policy'>
+        <div id='componentContainer'>
+        <div className=''>
           <div className='headerPolicy'>
             <h1 className='headerLeavePolicy'>Leave Policy(2018)</h1>
             <input
@@ -200,6 +201,7 @@ class LeavePolicy extends Component {
             </div>
           </Modal>
         </div>
+        </div>//component container ends
       )
     } else {
       /* --    Employee Execution part    -- */

@@ -12,7 +12,7 @@ class MyLeaves extends Component {
     let id = JSON.parse(localStorage.getItem('currentUserId'))
     return (
 
-      <div className='leaveRecord'>
+      <div className=''>
         <div className='head'><h2>My Leaves </h2></div>
         <div className='myLeave'>
           <table>
