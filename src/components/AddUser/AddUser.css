@@ -50,6 +50,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: #ffff;
 }
 
+.formContainer h1, div{
+  font-family: muli-semi-bold;
+} 
+
 .form input,
 textarea,
 select {

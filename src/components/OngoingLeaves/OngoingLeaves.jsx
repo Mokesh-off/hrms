@@ -26,8 +26,8 @@ class OngoingLeaves extends Component {
       var compareDateStr=(JSON.stringify(compareDate).substr(1, 10))
       var startDateStr=(JSON.stringify(startDate).substr(1, 10))
       var endDateStr=(JSON.stringify(endDate).substr(1, 10))
-      if((compareDate.isBetween(startDate, endDate)) || 
-          compareDateStr===startDateStr || compareDateStr===endDateStr) {
+      if(((compareDate.isBetween(startDate, endDate)) || 
+          compareDateStr===startDateStr || compareDateStr===endDateStr) && record.status==='Approved') {
             count++;            
           }
           this.setState({OngoingLeaves: this.state.OngoingLeaves = count})
@@ -92,8 +92,6 @@ class OngoingLeaves extends Component {
                       <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
                       <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
                       <td className='tdClass'>{record.TotalDays}</td>
-                      {/* <td className=''>{record.status}</td>
-                      <td className=''>{record.LeaveReason}</td> */}
                     </tr>
                   )
                   }

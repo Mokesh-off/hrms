@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import Login from './components/Login/Login'
+import Login from './components/Login/LoginNew'
 import Dashboard from './components/Dashboard/Dashboard'
 import MyLeavesIndex from './components/MyLeaves/MyLeavesIndex'
-import HolidayIndex from './components/Leave/Leaveplan/Index'
+import LeavePlan from './components/Leave/Leaveplan/LeavePlan'
 import SideNav from './components/SideNav/SideNav'
 import LeaveRequest from './components/Leave/LeaveRequest/LeaveRequest'
 import PendingLeaves from './components/PendingLeaves/PendingLeaves'
@@ -76,7 +76,7 @@ class App extends Component {
                     exact
                     strict
                     path='/leaveplan'
-                    component={HolidayIndex}
+                    component={LeavePlan}
                   />
                   <Route
                     exact

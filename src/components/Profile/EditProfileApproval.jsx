@@ -67,61 +67,66 @@ class EditProfileApproval extends Component {
     // data1 = data1.edittedProfile;
     if (data1.edittedProfile) {
       return (
-        <div  id='componentContainer'>
-          <div className=''>
-            <div className='editProfile'>
-              <h1>Profile Change Request</h1>
-              <table>
-                <thead className='thead1'>
-                  <tr className='thead1'>
-                    <td className='tdStyle'>Employee Id</td>
-                    <td className='tdStyle'>Employee Name</td>
-                    <td className='tdStyle'>Address</td>
-                    <td className='tdStyle'>Contact Number</td>
-                    <td className='tdStyle'>Option</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.EditProfile.edittedProfile.map((data, i) => {
-                    return (
-                      <tr key={i}>
-                        <td className='tdStyle'>{data.EmpId}</td>
-                        <td className='tdStyle'>{data.EmpName}</td>
-                        <td className='tdStyle'>{data.Address}</td>
-                        <td className='tdStyle'>{data.ContactNum}</td>
-                        <td className='tdStyle'>
-                          <button
-                            className='rejectButtonProfile'
-                            onClick={e => this.changeToReject(e, i)}
-                          >
-                            Reject
-                          </button>
-                          <span>&nbsp;</span>
-                          <button
-                            className='approveButtonProfile'
-                            onClick={e => this.changeToApprove(e, i)}
-                          >
-                            Accept
-                          </button>
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-              <br />
-              <div className='backButton'>
-                <NavLink to='/profile'>
-                  <button>Back</button>
-                </NavLink>
-              </div>
+        <div className='componentContainer absolute'>
+        <h1 className='muli-semi-bold'>Profile Change Request</h1>
+          <div className='tableWrapper'>
+            
+            <table className='tableCss'>
+              <thead className='thead1'>
+                <tr className='thead1'>
+                  <td className='thClass'>Employee Id</td>
+                  <td className='thClass'>Employee Name</td>
+                  <td className='thClass'>Address</td>
+                  <td className='thClass'>Contact Number</td>
+                  <td className='thClass'>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.EditProfile.edittedProfile.map((data, i) => {
+                  return (
+                    <tr key={i} className='tdDivider'>
+                      <td className='tdClass'>{data.EmpId}</td>
+                      <td className='tdClass'>{data.EmpName}</td>
+                      <td className='tdClass'>{data.Address}</td>
+                      <td className='tdClass'>{data.ContactNum}</td>
+                      <td className='tdClass'>
+                        <span className='Approve' onClick={e => this.changeToApprove(e, i)}>
+                          <i class="fa fa-check-circle-o tick"/>
+                        </span>
+                        <span className='Approve' onClick={e => this.changeToReject(e, i)}>
+                          <i class="fa fa-times-circle-o cross" />
+                        </span>
+                        {/* <button
+                          className='rejectButtonProfile'
+                          onClick={e => this.changeToReject(e, i)}
+                        >
+                          Reject
+                        </button>
+                        <span>&nbsp;</span>
+                        <button
+                          className='approveButtonProfile'
+                          onClick={e => this.changeToApprove(e, i)}
+                        >
+                          Accept
+                        </button> */}
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+            <br />
+            <div className='backButton'>
+              <NavLink to='/profile'>
+                <button className='rejectButtonProfile'>Back</button>
+              </NavLink>
             </div>
           </div>
         </div>
       )
     } else {
       return (
-        <div id='componentContainer'>
+        <div className='componentContainer absolute'>
           <div className='approveProfileHeader'>No details</div>
         </div>
       )

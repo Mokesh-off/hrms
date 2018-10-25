@@ -186,14 +186,14 @@ class LeaveRecord extends Component {
       )
     } else {
       return (
-        <div id='componentContainer'>
+        <div className='componentContainer'>
           <div id='leaveRecord'>
           <OngoingLeaves />
             <div className='leaveRec'>
-              <div className='head'><h2>Leave Record</h2></div>
+              <div className='head'><span className='tableLabels'>Leave Record</span></div>
               <div className='row'>
                 <div className='col'>
-                  <div className='col2'><label>From Date</label></div>
+                  <div className='col2'><label className='muli-semi-bold'>From Date</label></div>
                   <div className='displayDate' value={this.state.FromDate} name='From' >
                     <div className='col'><DatePicker className='Dp'
                       selected={this.state.FromDate}
@@ -210,7 +210,7 @@ class LeaveRecord extends Component {
                   </div>
                 </div>
                 <div className='col'>
-                  <div className='col2'><label>To Date</label></div>
+                  <div className='col2'><label className='muli-semi-bold'>To Date</label></div>
                   <div className='displayDate' name='To' value={this.state.ToDate}>
                     <div className='col'><DatePicker className='Dp'
                       selected={this.state.ToDate}
@@ -262,7 +262,7 @@ class LeaveRecord extends Component {
                           <td className='tdClass'>{record.TotalDays}</td>
                           <td className='tdClass'>
                             <span className='Approve' onClick={e => this.changeToReject(e, i)}>
-                              <i class='fa fa-times' aria-hidden='true' />
+                            <i class="fa fa-times-circle-o cross" />
                             </span>
                           </td>
                         </tr>
@@ -279,7 +279,7 @@ class LeaveRecord extends Component {
                           <td className='tdClass'>{record.TotalDays}</td>
                           <td className='tdClass'>
                             <span className='Approve' onClick={e => this.changeToApprove(e, i)}>
-                              <i class='fa fa-check' aria-hidden='true' />
+                            <i class="fa fa-check-circle-o tick"/>
                             </span>
                           </td>
                         </tr>

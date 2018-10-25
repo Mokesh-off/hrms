@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Dashboard.css'
 import AvailableLeaves from './AvailableLeaves'
 import LeaveRequests from '../LeaveApproval/LeaveRequests'
-
+import OngoingLeaves from '../OngoingLeaves/OngoingLeaves'
 class Dashboard extends Component {
   constructor (props) {
     super(props)
@@ -33,16 +33,19 @@ class Dashboard extends Component {
 
       if (JSON.parse(localStorage.getItem('currentUserRole')) === 'Employer') {
         return (
-          <div id='componentContainer'>
+          <div className='componentContainer'>
             <LeaveRequests />
-            <AvailableLeaves />
+            <OngoingLeaves />
+            {/* <AvailableLeaves /> */}
           </div>
         )
       } else {
         return (
-          <div id='componentContainer'>
-            <h1>Dashboard</h1>
-            <AvailableLeaves />
+          <div className='componentContainer absolute empDashboardWidth'>
+            <div>
+              <h1>Dashboard</h1>
+              <AvailableLeaves />
+            </div>
           </div>
         )
       }

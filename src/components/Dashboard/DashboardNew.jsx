@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import './LeaveRequests.css'
+import './DashboardNew.css'
 import Popup from 'reactjs-popup'
 import moment from 'moment'
-import '../OngoingLeaves/OngoingLeaves.css'
 
 class LeaveRequests extends Component {
   constructor (props) {
@@ -15,31 +14,25 @@ class LeaveRequests extends Component {
       ischecked: false,
       checkedValue: [],
       index: '',
-      LeaveRequestCount:0
+      LeaveRequestCount: 0
     }
   }
 
-componentDidMount () {
-  let data = JSON.parse(localStorage.getItem('Data'))
-  data = data.leaveRequest
-  var count = 0
-  data.map((record) => {
-    
-    if(record.status==='Pending')
-    count++
-
-         })
-         console.log(count)
-         this.setState({ LeaveRequestCount: this.state.LeaveRequestCount = count })
-}
-  // componentDidMount () {
-  //   let data = JSON.parse(localStorage.getItem('Data'))
-  //   if (data.deletedRow) {
-  //     this.setState({ deletedRow: data.deletedRow })
-  //     var date1 = moment()
-  //     console.log(date1)
-  //   }
-  // }
+  componentDidMount () {
+    let data = JSON.parse(localStorage.getItem('Data'))
+    data = data.leaveRequest
+    var count = 0
+    data.map((record) => {
+		  var compareDate = moment()
+      var startDate = moment(record.FromDate)
+			    var endDate = moment(record.ToDate)
+			    if ((compareDate.isBetween(startDate, endDate)) ||
+			         startDate || endDate) {
+			          count++
+			        }
+      this.setState({ LeaveRequest: this.state.LeaveRequest = count })
+			  })
+  }
   closePopup (e) {
     this.setState({ open: false })
   }
@@ -128,19 +121,19 @@ componentDidMount () {
   }
 
   selectAll (e) {
-    var inputElements = document.getElementsByClassName('selectcheckbox')
+    var inputElements = document.getElementsByClassName('selectCheckboxRequest')
     for (var i = 0; inputElements[i]; ++i) {
       inputElements[i].checked = true
     }
   }
   clearAll (e) {
-    var inputElements = document.getElementsByClassName('selectcheckbox')
+    var inputElements = document.getElementsByClassName('selectCheckboxRequest')
     for (var i = 0; inputElements[i]; ++i) {
       inputElements[i].checked = false
     }
   }
   rejectAll (e) {
-    var inputElements = document.getElementsByClassName('selectcheckbox')
+    var inputElements = document.getElementsByClassName('selectCheckboxRequest')
     for (var i = 0; inputElements[i]; ++i) {
       if (inputElements[i].checked) {
         this.state.checkedValue.push(inputElements[i].getAttribute('data-id'))
@@ -165,7 +158,7 @@ componentDidMount () {
   }
   // *********************************************************
   approveAll (e) {
-    var inputElements = document.getElementsByClassName('selectcheckbox')
+    var inputElements = document.getElementsByClassName('selectCheckboxRequest')
     for (var i = 0; inputElements[i]; ++i) {
       if (inputElements[i].checked) {
         this.state.checkedValue.push(inputElements[i].getAttribute('data-id'))
@@ -193,78 +186,78 @@ componentDidMount () {
       alert('Select record first')
     }
   }
-
   render () {
-    let data = JSON.parse(localStorage.getItem('Data'))
-    if (data.leaveRequest) {
+    var data = JSON.parse(localStorage.getItem('Data'))
+		    if (data.leaveRequest) {
       return (
         // List of leave requests
-          <div>
-            <span className='tableLabels'>Leave Requests{' '+this.state.LeaveRequestCount}</span>
-            <div id='labelPadding'>
+        <div className='mainContainer'>
+          <div className='leaveRecord'>
+            {/* <div>
               <button className='RejectButton' onClick={e => this.selectAll(e)}>selectAll</button>
               <button className='ApproveButton' onClick={e => this.clearAll(e)}>rejectAll</button>
               <button className='RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
               <button className='ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
-            </div>
-            <div className='tableWrapper'>
-              <table className='tableCss'>
-                <thead className='thead1'>
-                  <tr className='thead1'>
-                  
-                    <td className='thClass'><i class='fa fa-search'></i>
-                    <input type="text" className='searchField' placeholder='Search'></input>
-                    </td>
+            </div> */}
+            <div className='leave-requests' >
+              <p className='leave-requests-p'> Leave Requests ({ this.state.LeaveRequest}) </p>
 
-                    <td className='thClass'>Id</td>
-                    <td className='thClass'>Leave Type</td>
-                    <td className='thClass'>Applied on</td>
-                    <td className='thClass'>From</td>
-                    <td className='thClass'>To </td>
-                    <td className='thClass'>Days</td>
-                    <td className='thClass'>Action</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.leaveRequest.map((record, i) => {
-                    return record.status === 'Pending'
-                    // return this.state.deletedRow.indexOf(record.ReqestId) === -1
-                      ? <tr key={i} className='tdDivider'>
-                        
-                        <td className='tdClass'>
-                        
-                        <input type='checkbox'
-                          data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} />
+              <div className='leave-requests-12'>
+                <table className='rectangleTable'>
+                  <thead className='rowTableHead'>
+                    <tr className='rowTable'>
+                      {/* <i className='fa fa-search' /> */}
+                      <th> search</th>
+                      {/* <i class="fa fa-search" style="font-size:24px"> */}
+                      <th>ID</th>
+                      {/* <td className='tdStyle'>EmpName</td> */}
 
-                        <img src={require('../../Assets/images/profile_icon.png')} />
-                        <span className='empName'>{record.EmpName}</span></td>
-
-                        {/* <td className='tdClass'>{record.EmpName}</td> */}
-                        <td className='tdClass'>{record.EmpId}</td>
-                        <td className='tdClass'>{record.LeaveType}</td>
-                        <td className='tdClass'>{record.appliedOn.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
-                        <td className='tdClass'>{record.TotalDays}</td>
-                        <td className='tdClass'> 
-                        <i class="fa fa-times-circle-o cross" onClick={e => this.changeToReject(e, i)} />
-                        <i class="fa fa-check-circle-o tick" onClick={e => this.changeToApprove(e, i)} />
-                          {/* <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button><span>&nbsp;</span> */}
-                          {/* <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button> */}
-                        </td>
-                      </tr>
-                      : ''
-                  })}
-                </tbody>
-              </table>
-            </div> {/* table wrapper closed */}
-            <Popup open={this.state.open} closeOnDocumentClick modal>
-              <div>
-                <span>{this.state.status} successfully</span><br />
-                <button className='button' onClick={e => this.closePopup(e)}>OK</button>
+                      <th >Leave Type</th>
+                      <th >Applied On</th>
+                      <th >From</th>
+                      <th >To</th>
+                      <th >Days</th>
+                      {/* <td className='tdStyle'>Reason</td> */}
+                      <th >Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className='rowTableBody'>
+                    {data.leaveRequest.map((record, i) => {
+                      return this.state.deletedRow.indexOf(record.ReqestId) === -1
+                        ? <tr className='rowTable' key={i}>
+                          <td ><input type='checkbox'
+                            data-id={i} className='selectCheckboxRequest' defaultChecked={this.state.ischecked} />
+                            <img className='profile-avatar' src={require('../../Assets/images/profile_icon.png')} />
+                            {record.EmpName}
+                          {/* {record.Dep} */}
+                          </td>
+                          <td>{record.EmpId}</td>
+                          {/* <td className='tdStyle'>{record.EmpName}</td> */}
+                          <td >{record.LeaveType}</td>
+                          <td >{record.appliedOn.substr(0, 10)}</td>
+                          <td >{record.FromDate.substr(0, 10)}</td>
+                          <td >{record.ToDate.substr(0, 10)}</td>
+                          <td >{record.TotalDays}</td>
+                          <td>
+                            <i className='fa fa-times-circle-o' onClick={e => this.changeToReject(e, i)} />
+                            <span>&nbsp;</span>
+                            <i class='fa fa-check-circle' onClick={e => this.changeToApprove(e, i)} />
+                          </td>
+                        </tr>
+                        : ''
+                    })}
+                  </tbody>
+                </table>
               </div>
-            </Popup>
+            </div>
           </div>
+          <Popup open={this.state.open} closeOnDocumentClick modal>
+            <div>
+              <span>{this.state.status} successfully</span><br />
+              <button className='button' onClick={e => this.closePopup(e)}>OK</button>
+            </div>
+          </Popup>
+        </div>
       )
     } else {
       return (
@@ -275,3 +268,5 @@ componentDidMount () {
 }
 
 export default LeaveRequests
+
+

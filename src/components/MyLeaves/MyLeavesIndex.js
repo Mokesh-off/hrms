@@ -11,7 +11,7 @@ class MyLeavesIndex extends Component {
     }
     else{
     return (
-      <div id='componentContainer'>
+      <div className='componentContainer absolute'>
         <MyLeaves />
       </div>
     )

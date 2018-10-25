@@ -4,17 +4,46 @@ body {
   font-family: sans-serif;
 }
 
-#componentContainer{
+select {
+  font-family: muli-semi-bold;
+}
+
+.muli-regular{
+  font-family: muli-regular;
+}
+.muli-semi-bold{
+  font-family: muli-semi-bold;
+}
+.muli-extra-bold{
+  font-family: muli-extra-bold;
+}
+.componentContainer{
   padding: 2%;
   height: 100%;
   margin: 60px 0 0 200px;
   background-color: #F6F5F9;
 }
+.absolute{
+  position: absolute;
 
+}
 input::-webkit-input-placeholder {
   color:#9B9AB2;
   font-size: 16px;
   font-family: muli-regular;
+}
+
+.tick{
+	font-size: 24px !important;
+    color: green !important;
+    -webkit-text-stroke: 0px !important;
+  margin: 5%;
+}
+.cross{
+	font-size: 24px !important;
+    color: red !important;
+    -webkit-text-stroke: 0px !important;
+    margin: 5%;
 }
 
 @font-face {

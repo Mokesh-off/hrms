@@ -24,6 +24,7 @@
 .policyTextarea {
   width: 250px;
   height: 35px;
+  font-family: muli-regular;
 }
 
 .headerLeavePolicy {
@@ -32,7 +33,7 @@
 
 .policyViewButton {
   float: right;
-  margin-top: -60px;
+  /* margin-top: -60px; */
   height: 40px;
   width: 100px;
   border-radius: 11px;

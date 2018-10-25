@@ -132,7 +132,7 @@ class AddUser extends Component {
         ContactNum: this.state.ContactNum,
         Dep: this.state.Dep,
         Role: this.state.Role,
-        EmpId: this.state.EmailId,
+        EmpId: this.state.EmpId,
         Address: this.state.Address,
         Password: 'tringapps',
         PendingLeaves: {
@@ -164,7 +164,7 @@ class AddUser extends Component {
       )
     } else {
       return (
-        <div id='componentContainer'>
+        <div className='componentContainer'>
           <div id='addUserContainer'>
             <div className='addUserMainContainer'>
               <div className='formContainer'>

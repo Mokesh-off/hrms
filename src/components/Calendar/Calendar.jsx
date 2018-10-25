@@ -229,7 +229,7 @@ this.calendarData()
 
     var employeeRole=JSON.parse(localStorage.getItem('currentUserRole'))
     return (
-      <div id='componentContainer'>
+      <div className='componentContainer'>
         <div id='fullCalendarMainContainer'>
           <div id='fullCalendarContainer'>
             <div id="example-component">

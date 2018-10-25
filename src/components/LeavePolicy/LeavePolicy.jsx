@@ -88,17 +88,16 @@ class LeavePolicy extends Component {
 
     if (role === 'Employer' || this.state.flag === true) {
       return (
-        <div id='componentContainer'>
-        <div className=''>
-          <div className='headerPolicy'>
-            <h1 className='headerLeavePolicy'>Leave Policy(2018)</h1>
+        <div className='componentContainer'>
+          <div className='tableLabels'>
+            Leave Policy(2018)
             <input
               type='button'
               className='policyViewButton'
               value='Details'
               onClick={() => this.openModalView()}
             />
-            <Modal
+            <Modal 
               visible={this.state.visibleView}
               width='800'
               height='500'
@@ -117,58 +116,60 @@ class LeavePolicy extends Component {
               </div>
             </Modal>
           </div>
-          <table id='leavePolicy'>
-            <thead>
-              <tr className='thead1'>
-                <th className='tdStyle'>Leave Name</th>
-                <th className='tdStyle'>NO.of Days</th>
-                <th className='tdStyle'>Terms</th>
-                <th className='tdStyle'>Function</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.LeavePolicy.leavePolicy.map((data, i) => (
-                <tr key={data.id}>
-                  <td className='tdStyle'>
-                    <textarea
-                      className='policyTextarea'
-                      name='Name'
-                      onChange={e => this.change(e, i)}
-                    >
-                      {data.Name}
-                    </textarea>
-                  </td>
-                  <td className='tdStyle'>
-                    <textarea
-                      className='policyTextarea'
-                      name='Days'
-                      onChange={e => this.change(e, i)}
-                    >
-                      {data.Days}
-                    </textarea>
-                  </td>
-                  <td className='tdStyle'>
-                    <textarea
-                      className='policyTextarea'
-                      name='Terms'
-                      onChange={e => this.change(e, i)}
-                    >
-                      {data.Terms}
-                    </textarea>
-                  </td>
-                  <td className='tdStyle'>
-                    <button
-                      // onClick={this.handleRemoveSpecificRow(i)}
-                      onClick={e => this.delete(e, i)}
-                      className='policyDeleteButton'
-                    >
-                      Delete Row
-                    </button>
-                  </td>
+          <div className='tableWrapper'>
+            <table className='tableCss'>
+              <thead className='thead1'>
+                <tr className='thead1'>
+                  <td className='thClass'>Leave Name</td>
+                  <td className='thClass'>NO.of Days</td>
+                  <td className='thClass'>Terms</td>
+                  <td className='thClass'>Function</td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {this.state.LeavePolicy.leavePolicy.map((data, i) => (
+                  <tr key={data.id} className='tdDivider'>
+                    <td className='tdClass'>
+                      <textarea
+                        className='policyTextarea'
+                        name='Name'
+                        onChange={e => this.change(e, i)}
+                      >
+                        {data.Name}
+                      </textarea>
+                    </td>
+                    <td className='tdClass'>
+                      <textarea
+                        className='policyTextarea'
+                        name='Days'
+                        onChange={e => this.change(e, i)}
+                      >
+                        {data.Days}
+                      </textarea>
+                    </td>
+                    <td className='tdClass'>
+                      <textarea
+                        className='policyTextarea'
+                        name='Terms'
+                        onChange={e => this.change(e, i)}
+                      >
+                        {data.Terms}
+                      </textarea>
+                    </td>
+                    <td className='tdClass'>
+                      <button
+                      // onClick={this.handleRemoveSpecificRow(i)}
+                        onClick={e => this.delete(e, i)}
+                        className='policyDeleteButton'
+                      >
+                      Delete Row
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p className='mandatory'>
             Note: The employee will encounter/incur a"double LOP" for leaves
             taken without any prior intimation.
@@ -201,15 +202,15 @@ class LeavePolicy extends Component {
             </div>
           </Modal>
         </div>
-        </div>//component container ends
+        
       )
     } else {
       /* --    Employee Execution part    -- */
 
       return (
-        <div className='policy'>
-          <div className='headerPolicy'>
-            <h1 className='headerLeavePolicy'>Leave Policy(2018)</h1>
+        <div className='componentContainer'>
+          <div className='tableLabels'>
+         Leave Policy(2018)
             <input
               type='button'
               className='policyViewButton'
@@ -235,24 +236,26 @@ class LeavePolicy extends Component {
               </div>
             </Modal>
           </div>
-          <table id='leavePolicy'>
-            <thead>
-              <tr className='thead1'>
-                <th className='tdStyle'>Leave Name</th>
-                <th className='tdStyle'>NO.of Days</th>
-                <th className='tdStyle'>Terms</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.LeavePolicy.leavePolicy.map((data, i) => (
-                <tr key={data.id}>
-                  <td className='tdStyle'> {data.Name}</td>
-                  <td className='tdStyle'>{data.Days}</td>
-                  <td className='tdStyle'>{data.Terms}</td>
+          <div className='tableWrapper'>
+            <table className='tableCss'>
+              <thead className='thead1'>
+                <tr className='thead1'>
+                  <td className='thClass'>Leave Name</td>
+                  <td className='thClass'>NO.of Days</td>
+                  <td className='thClass'>Terms</td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {this.state.LeavePolicy.leavePolicy.map((data, i) => (
+                  <tr key={data.id} className='tdDivider'>
+                    <td className='tdClass'> {data.Name}</td>
+                    <td className='tdClass'>{data.Days}</td>
+                    <td className='tdClass'>{data.Terms}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p className='mandatory'>
             Note: The employee will encounter/incur a"double LOP" for leaves
             taken without any prior intimation.

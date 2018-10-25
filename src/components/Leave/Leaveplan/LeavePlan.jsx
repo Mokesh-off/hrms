@@ -59,78 +59,89 @@ class LeavePlan extends Component {
     // According to the role the view will be different
     if (role === 'Employee') {
       return (
-        <div id='componentContainer'>
-          <table>
-            <caption className='captions' >Holiday List</caption>
-            <thead className='thead1'>
-              <tr className='thead1'>
-                <td className='tr'>Dates</td>
-                <td className='tr'>days</td>
-                <td className='tr'>Occasion</td>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.Holiday.holidayList.map((holiday, i) => (
-                <tr key={holiday[i]} className='tr'>
-                  <td className='tr'>{holiday.date}</td>
-                  <td className='tr'>{holiday.day}</td>
-                  <td className='tr'>{holiday.occasion}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className='componentContainer'>
+          <div className='tableLabels'>
+              Holiday List
+            <div className='tableWrapper'>
+
+              <table className='tableCss'>
+
+                <thead className='thead1'>
+                  <tr className='thead1'>
+                    <td className='thClass'>Dates</td>
+                    <td className='thClass'>days</td>
+                    <td className='thClass'>Occasion</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.Holiday.holidayList.map((holiday, i) => (
+                    <tr key={holiday[i]} className='tdDivider'>
+                      <td className='tdClass'>{holiday.date}</td>
+                      <td className='tdClass'>{holiday.day}</td>
+                      <td className='tdClass'>{holiday.occasion}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       )
     } else if (role === 'Employer' || this.state.flag === true) {
       return (
-        <div id='componentContainer'>
-          <table>
-            <caption className='captions'>Holiday List</caption>
-            <thead className='thead1'>
-              <tr className='thead1'>
-                <td className='trE'>Dates</td>
-                <td className='trE'>days</td>
-                <td className='trE'>Occasion</td>
-                <td className='trE'>Action</td>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                this.state.Holiday.holidayList.map((holiday, i) =>
-                  <tr key={holiday[i]} className='trE'>
-                    <td className='trE' >
-                      <input type='text' name='date' className='levtextarea'
-                        onChange={e => this.change(e, i)}
-                        value={holiday.date} />
-                    </td>
-                    <td className='trE' >
-                      <input type='text' name='day' className='levtextarea'
-                        onChange={e => this.change(e, i)}
-                        value={holiday.day} />
-                    </td>
-                    <td className='trE' >
-                      <input type='text' name='occasion' className='levtextarea'
-                        onChange={e => this.change(e, i)}
-                        value={holiday.occasion} />
-                    </td>
-                    <td className='trE'>
-                      <input type='button' onClick={e => this.delete(e, i)} className='levbutton' value='Delete' />
-                    </td>
+        <div className='componentContainer'>
+          <div className='tableLabels'>
+        Holiday List
+            <div className='tableWrapper'>
+              <table className='tableCss'>
+
+                <thead className='thead1'>
+                  <tr className='thead1'>
+                    <td className='thClass'>Dates</td>
+                    <td className='thClass'>days</td>
+                    <td className='thClass'>Occasion</td>
+                    <td className='thClass'>Action</td>
                   </tr>
-                )
-              }
-            </tbody>
-          </table>
-          <Popup trigger={<button className='levAddbutton' >Add</button>} modal>
-            {
-              close => (
-                <div id='sec'>
-                  <a id='closebtn' onClick={close}>&times;</a>
-                  <AddingHoliday />
-                </div>
-              )
-            }
-          </Popup>
+                </thead>
+                <tbody>
+                  {
+                    this.state.Holiday.holidayList.map((holiday, i) =>
+                      <tr key={holiday[i]} className='tdDivider'>
+                        <td className='tdClass' >
+                          <input type='text' name='date' className='levtextarea'
+                            onChange={e => this.change(e, i)}
+                            value={holiday.date} />
+                        </td>
+                        <td className='tdClass' >
+                          <input type='text' name='day' className='levtextarea'
+                            onChange={e => this.change(e, i)}
+                            value={holiday.day} />
+                        </td>
+                        <td className='tdClass' >
+                          <input type='text' name='occasion' className='levtextarea'
+                            onChange={e => this.change(e, i)}
+                            value={holiday.occasion} />
+                        </td>
+                        <td className='tdClass'>
+                          <input type='button' onClick={e => this.delete(e, i)} className='levbutton' value='Delete' />
+                        </td>
+                      </tr>
+                    )
+                  }
+                </tbody>
+              </table>
+              <Popup trigger={<button className='levAddbutton' >Add</button>} modal>
+                {
+                  close => (
+                    <div id='sec'>
+                      <a id='closebtn' onClick={close}>&times;</a>
+                      <AddingHoliday />
+                    </div>
+                  )
+                }
+              </Popup>
+            </div>
+          </div>
         </div>
       )
     }

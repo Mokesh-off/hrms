@@ -16,7 +16,9 @@
    border: 1px solid #ddd !important;
    padding: 8px;
  }
- 
+ #labelPadding{
+   margin: 3% 0 3% 0;
+ }
  
 .noRequset{
   margin-top: 11%;
@@ -39,7 +41,8 @@
     border: 2px solid #A6A5B8;
   font-weight: bold;
   background-color:  #337ab7;
-  color: white
+  color: white;
+  margin-right: 2%;
  
 }
 .ApproveButton{
@@ -49,7 +52,11 @@
   border: 2px solid #A6A5B8;
 font-weight: bold;
 background-color:  #337ab7;
-color: white
-
+color: white;
+margin-right: 2%;
 }
-
+.selectcheckbox{
+  position: relative;
+  right: 1%;
+  top: -12px;
+}
