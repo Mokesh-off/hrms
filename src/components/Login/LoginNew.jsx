@@ -132,7 +132,7 @@ class Login extends Component {
                 <input type='checkbox' className='rectangleRemember' />
               Remember
               </div>
-              <span className='oval'>
+              <span className='oval'  data-test='submit' onClick={this.handleSubmit}>
                 <i className='rightOval' onClick={this.handleSubmit} />
               </span>
 
