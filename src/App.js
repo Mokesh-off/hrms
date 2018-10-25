@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Login from './components/Login/LoginNew'
 import Dashboard from './components/Dashboard/DashboardNew'
 import MyLeavesIndex from './components/MyLeaves/MyLeavesIndex'
-import HolidayIndex from './components/Leave/Leaveplan/Index'
+import LeavePlan from './components/Leave/Leaveplan/LeavePlan'
 import SideNav from './components/SideNav/SideNav'
 import LeaveRequest from './components/Leave/LeaveRequest/LeaveRequest'
 import PendingLeaves from './components/PendingLeaves/PendingLeaves'
@@ -82,7 +82,7 @@ class App extends Component {
                     exact
                     strict
                     path='/leaveplan'
-                    component={HolidayIndex}
+                    component={LeavePlan}
                   />
                   <Route
                     exact
