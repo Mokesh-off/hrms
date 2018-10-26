@@ -71,7 +71,7 @@ input[type=text],input,textarea{
 input[type=text]{
   border: none;
   background: none;
-  border-bottom: 0.1px solid #9B9AB2;
+  /* border-bottom: 0.1px solid #9B9AB2; */
   outline: none;
 }
 input[type=text]:hover,input[type=text]:active,input[type=text]:visited{
@@ -95,4 +95,64 @@ input[type=text]:hover,input[type=text]:active,input[type=text]:visited{
 @font-face {
   font-family : "muli-extra-bold";
   src: url("./Assets/Fonts/Muli/Muli-ExtraBold.ttf")
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  /* display: none; */
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.top{
+  top:20px !important;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border: 1px solid black;
+}
+
+/* .container:hover input ~ .checkmark {
+  background-color: #ccc;
+} */
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+left: 5px;
+  top: 2px;
+  width: 2px;
+  height: 5px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

@@ -130,31 +130,27 @@ class LeavePolicy extends Component {
                 {this.state.LeavePolicy.leavePolicy.map((data, i) => (
                   <tr key={data.id} className='tdDivider'>
                     <td className='tdClass'>
-                      <textarea
-                        className='policyTextarea'
+                    <input
+                        type='text'
                         name='Name'
                         onChange={e => this.change(e, i)}
-                      >
-                        {data.Name}
-                      </textarea>
+                        value={data.Name} />
+                    
                     </td>
                     <td className='tdClass'>
-                      <textarea
-                        className='policyTextarea'
+                      <input
+                        type='text'
                         name='Days'
                         onChange={e => this.change(e, i)}
-                      >
-                        {data.Days}
-                      </textarea>
+                        value={data.Days} />
                     </td>
                     <td className='tdClass'>
-                      <textarea
-                        className='policyTextarea'
+                      <input
+                      type='text'
                         name='Terms'
                         onChange={e => this.change(e, i)}
-                      >
-                        {data.Terms}
-                      </textarea>
+                        value={data.Terms}
+                      />
                     </td>
                     <td className='tdClass'>
                       <button

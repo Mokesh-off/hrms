@@ -32,14 +32,7 @@ componentDidMount () {
          console.log(count)
          this.setState({ LeaveRequestCount: this.state.LeaveRequestCount = count })
 }
-  // componentDidMount () {
-  //   let data = JSON.parse(localStorage.getItem('Data'))
-  //   if (data.deletedRow) {
-  //     this.setState({ deletedRow: data.deletedRow })
-  //     var date1 = moment()
-  //     console.log(date1)
-  //   }
-  // }
+
   closePopup (e) {
     this.setState({ open: false })
   }
@@ -205,7 +198,7 @@ componentDidMount () {
             </span>
             <div id='labelPadding'>
               <button className='RejectButton' onClick={e => this.selectAll(e)}>Select All</button>
-              <button className='ApproveButton' onClick={e => this.clearAll(e)}>Reject All</button>
+              <button className='ApproveButton' onClick={e => this.clearAll(e)}>Clear All</button>
               <button className='RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
               <button className='ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
             </div>
@@ -235,11 +228,18 @@ componentDidMount () {
                         
                         <td className='tdClass'>
                         
+                        <label className='container'>
+
                         <input type='checkbox'
                           data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} />
-
+                        <span className='checkmark top' 
+                        />
+                        </label>
+                        <span class='leaveRequestsImg'>
                         <img src={require('../../Assets/images/profile_icon.png')} />
-                        <span className='empName'>{record.EmpName}</span></td>
+                        <span className='empName'>{record.EmpName}</span>
+                        </span>
+                        </td>
 
                         {/* <td className='tdClass'>{record.EmpName}</td> */}
                         <td className='tdClass'>{record.EmpId}</td>
