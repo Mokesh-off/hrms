@@ -310,7 +310,7 @@ class LeaveRequest extends React.Component {
                     <label htmlFor='drop'>From</label>
                   </div>
                   <div value={this.state.FromDate} name='From'>
-                    <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
+                    <DatePicker className='reqOptions calendarIcon' style={{ border: this.state.errdate }}
                       selected={this.state.FromDate}
                       filterDate={this.isWeekday}
                       showYearDropdown
@@ -332,7 +332,7 @@ class LeaveRequest extends React.Component {
                     <label htmlFor='drop'>To</label>
                   </div>
                   <div name='To' value={this.state.ToDate} className='reqInput'>
-                    <DatePicker className='reqOptions' style={{ border: this.state.errdate }}
+                    <DatePicker className='reqOptions calendarIcon' style={{ border: this.state.errdate }}
                       selected={this.state.ToDate}
                       filterDate={this.isWeekday}
                       showYearDropdown

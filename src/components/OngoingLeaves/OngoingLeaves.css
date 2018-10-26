@@ -17,7 +17,7 @@
   }
   .tableCss tr:hover{
     background-color: #F6F5F9;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
   .tableCss .tdDivider{
   border-top: 1px solid #DFDEE9;
@@ -58,6 +58,9 @@
     border: none;
     outline: none;
     margin-left: 5%;
+  }
+  .searchField:hover{
+    background-color: #F6F5F9;
   }
 
   .react-datepicker__close-icon {

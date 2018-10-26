@@ -35,17 +35,48 @@ input::-webkit-input-placeholder {
 
 .tick{
 	font-size: 24px !important;
-    color: green !important;
-    -webkit-text-stroke: 0px !important;
+  color: green !important;
+  -webkit-text-stroke: 0px !important;
   margin: 5%;
 }
 .cross{
 	font-size: 24px !important;
-    color: red !important;
-    -webkit-text-stroke: 0px !important;
-    margin: 5%;
+  color: red !important;
+  -webkit-text-stroke: 0px !important;
+  margin: 5%;
+}
+input[type=checkbox], .tick, .cross{
+  cursor: pointer;
+}
+button, input[type=button]{
+  outline: none;
+  font-family: muli-semi-bold !important;
 }
 
+input[type=text],input,textarea{
+  font-family: muli-semi-bold;
+}
+
+.greyColor{
+  color:#9B9AB2;
+}
+
+.calendarIcon{
+  background: #fff
+  url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+  99% 50% no-repeat !important;
+  cursor: pointer;
+}
+
+input[type=text]{
+  border: none;
+  background: none;
+  border-bottom: 0.1px solid #9B9AB2;
+  outline: none;
+}
+input[type=text]:hover,input[type=text]:active,input[type=text]:visited{
+  background-color: #ffff;
+}
 @font-face {
 	font-family: "muli-bold";
 	src: url("./Assets/Fonts/Muli/Muli-Bold.ttf");

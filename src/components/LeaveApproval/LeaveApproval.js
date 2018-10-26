@@ -101,7 +101,7 @@ class LeaveApproval extends Component {
       <div className='leaveRecord'>
         <table>
           <thead className='thead1'>
-            <tr className='thead1'>
+            {/* <tr className='thead1'> */}
               <td className='tdStyle'>Name</td>
               <td className='tdStyle'>LeaveType</td>
               <td className='tdStyle'>FromDate</td>
@@ -109,7 +109,7 @@ class LeaveApproval extends Component {
               <td className='tdStyle'>TotalDays</td>
               <td className='tdStyle'>LeaveReason</td>
               <td className='tdStyle'>&nbsp;</td>
-            </tr>
+            {/* </tr> */}
           </thead>
           <tbody>
             {

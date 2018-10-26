@@ -6,12 +6,37 @@ class Header extends Component {
     super(props)
     this.state = {
       logOut: false,
-      display:'hide'
+      display:'hide',
+      popUpVisible:false
     }
     this.logOutFunction = this.logOutFunction.bind(this)
     this.display=this.display.bind(this)
+    this.handleClick=this.handleClick.bind(this)
+    this.handleOutsideClick=this.handleOutsideClick.bind(this)
   }
 
+  handleClick(){
+    if (!this.state.popupVisible) {
+      // attach/remove event handler
+      document.addEventListener('click', this.handleOutsideClick, false);
+    } else {
+      document.removeEventListener('click', this.handleOutsideClick, false);
+    }
+
+    this.setState(prevState => ({
+       popupVisible: this.state.popUpVisible=!prevState.popupVisible,
+       
+    }));
+    // console.log(this.state.popUpVisible)
+  }
+  handleOutsideClick(e) {
+    // ignore clicks on the component itself
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    
+    this.handleClick();
+  }
   logOutFunction () {
     window.localStorage.removeItem('currentUserId')
     window.localStorage.removeItem('currentUserName')
@@ -43,20 +68,22 @@ class Header extends Component {
                   <img src={require('../../Assets/images/profile_icon.png')} />
                 </div>
                 </Link>
-                {/* <div className='profile-name'>{userName}</div> */}
-                <div id='downArrow' onClick={this.display}><i class="fa fa-angle-down"></i></div>
+                <div id='downArrow' onClick={this.handleClick}><i class="fa fa-angle-down"></i></div>
               </div>
            
           </div>
         </div>
         
-        <div className= {this.state.display} id='dropdown-content'>
+        { this.state.popUpVisible &&
+          (<div id='dropdown-content' ref={node => { this.node = node; }}>
           <div>
             <Link to='/changepassword' className='changePass'> Change Password</Link>
           </div>
-          <div id='divider'/>
-          <input type='button' className='logoutbutton' onClick={this.logOutFunction} value='Logout' />
+          <div>
+            <input type='button' className='logoutbutton' onClick={this.logOutFunction} value='Logout' />
+          </div>
         </div>
+        )}
 
       </div>
     )

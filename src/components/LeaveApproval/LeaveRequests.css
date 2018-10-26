@@ -34,27 +34,19 @@
   background-color: #337ab7;
   cursor: pointer;
 }
-.RejectButton{
-    box-sizing: border-box;
-    height: 24px;
-    width: 90px;
-    border: 2px solid #A6A5B8;
-  font-weight: bold;
-  background-color:  #337ab7;
-  color: white;
-  margin-right: 2%;
- 
-}
-.ApproveButton{
-  box-sizing: border-box;
-  height: 24px;
+.RejectButton,.ApproveButton{
+  height: 32px;
   width: 90px;
-  border: 2px solid #A6A5B8;
-font-weight: bold;
-background-color:  #337ab7;
-color: white;
-margin-right: 2%;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(63, 115, 198);
+  color: white;
+  outline: none; 
+  margin-right: 3%;
+  cursor: pointer;
 }
+
 .selectcheckbox{
   position: relative;
   right: 1%;

@@ -67,11 +67,11 @@ class LeavePlan extends Component {
               <table className='tableCss'>
 
                 <thead className='thead1'>
-                  <tr className='thead1'>
+                  {/* <tr className='thead1'> */}
                     <td className='thClass'>Dates</td>
                     <td className='thClass'>days</td>
                     <td className='thClass'>Occasion</td>
-                  </tr>
+                  {/* </tr> */}
                 </thead>
                 <tbody>
                   {this.state.Holiday.holidayList.map((holiday, i) => (
@@ -96,12 +96,12 @@ class LeavePlan extends Component {
               <table className='tableCss'>
 
                 <thead className='thead1'>
-                  <tr className='thead1'>
+                  {/* <tr className='thead1'> */}
                     <td className='thClass'>Dates</td>
                     <td className='thClass'>days</td>
                     <td className='thClass'>Occasion</td>
                     <td className='thClass'>Action</td>
-                  </tr>
+                  {/* </tr> */}
                 </thead>
                 <tbody>
                   {

@@ -250,7 +250,7 @@ this.calendarData()
           />
 
             </div>
-            <div className='fc-popover fc-more-popover popUp' 
+            <div className='popUp popUpImp' 
             style= {{display:this.state.display,top:this.state.top,left:this.state.left}}
             >
             <span className='marginLeft' onClick={()=>this.closePopUp()}>X</span>

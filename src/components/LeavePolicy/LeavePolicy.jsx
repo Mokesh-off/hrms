@@ -119,12 +119,12 @@ class LeavePolicy extends Component {
           <div className='tableWrapper'>
             <table className='tableCss'>
               <thead className='thead1'>
-                <tr className='thead1'>
+                {/* <tr className='thead1'> */}
                   <td className='thClass'>Leave Name</td>
                   <td className='thClass'>NO.of Days</td>
                   <td className='thClass'>Terms</td>
                   <td className='thClass'>Function</td>
-                </tr>
+                {/* </tr> */}
               </thead>
               <tbody>
                 {this.state.LeavePolicy.leavePolicy.map((data, i) => (
@@ -239,11 +239,11 @@ class LeavePolicy extends Component {
           <div className='tableWrapper'>
             <table className='tableCss'>
               <thead className='thead1'>
-                <tr className='thead1'>
+                {/* <tr className='thead1'> */}
                   <td className='thClass'>Leave Name</td>
                   <td className='thClass'>NO.of Days</td>
                   <td className='thClass'>Terms</td>
-                </tr>
+                {/* </tr> */}
               </thead>
               <tbody>
                 {this.state.LeavePolicy.leavePolicy.map((data, i) => (

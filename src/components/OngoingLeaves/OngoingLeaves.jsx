@@ -48,11 +48,12 @@ class OngoingLeaves extends Component {
     } else {
       return (
         <div id='onGoingLeaves'>
-          <span className='tableLabels'>Ongoing leaves{' '+this.state.OngoingLeaves}</span>
+          <span className='tableLabels'>Ongoing leaves
+          <span className='greyColor'>{' '+'('+this.state.OngoingLeaves+')'}</span>
+          </span>
           <div className='tableWrapper'>
           <table className='tableCss'>
             <thead className='thead1'>
-              <tr className='thead1'>
                 <td className='thClass'><i class='fa fa-search'></i>
                 <input type="text" className='searchField' placeholder='Search'></input>
                 </td>
@@ -62,7 +63,6 @@ class OngoingLeaves extends Component {
                 <td className='thClass'>From</td>
                 <td className='thClass'>To</td>
                 <td className='thClass'>Days</td>
-              </tr>
             </thead>
             <tbody>
               
