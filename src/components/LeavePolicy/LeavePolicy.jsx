@@ -119,19 +119,19 @@ class LeavePolicy extends Component {
           <div className='tableWrapper'>
             <table className='tableCss'>
               <thead className='thead1'>
-                <tr className='thead1'>
+                {/* <tr className='thead1'> */}
                   <td className='thClass'>Leave Name</td>
                   <td className='thClass'>NO.of Days</td>
                   <td className='thClass'>Terms</td>
                   <td className='thClass'>Function</td>
-                </tr>
+                {/* </tr> */}
               </thead>
               <tbody>
                 {this.state.LeavePolicy.leavePolicy.map((data, i) => (
                   <tr key={data.id} className='tdDivider'>
                     <td className='tdClass'>
                     <input
-                        className='policyTextarea'
+                        type='text'
                         name='Name'
                         onChange={e => this.change(e, i)}
                         value={data.Name} />
@@ -139,14 +139,14 @@ class LeavePolicy extends Component {
                     </td>
                     <td className='tdClass'>
                       <input
-                        className='policyTextarea'
+                        type='text'
                         name='Days'
                         onChange={e => this.change(e, i)}
                         value={data.Days} />
                     </td>
                     <td className='tdClass'>
                       <input
-                        className='policyTextarea'
+                      type='text'
                         name='Terms'
                         onChange={e => this.change(e, i)}
                         value={data.Terms}
@@ -235,11 +235,11 @@ class LeavePolicy extends Component {
           <div className='tableWrapper'>
             <table className='tableCss'>
               <thead className='thead1'>
-                <tr className='thead1'>
+                {/* <tr className='thead1'> */}
                   <td className='thClass'>Leave Name</td>
                   <td className='thClass'>NO.of Days</td>
                   <td className='thClass'>Terms</td>
-                </tr>
+                {/* </tr> */}
               </thead>
               <tbody>
                 {this.state.LeavePolicy.leavePolicy.map((data, i) => (

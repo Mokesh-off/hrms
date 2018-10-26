@@ -73,13 +73,13 @@ class EditProfileApproval extends Component {
             
             <table className='tableCss'>
               <thead className='thead1'>
-                <tr className='thead1'>
+                {/* <tr className='thead1'> */}
                   <td className='thClass'>Employee Id</td>
                   <td className='thClass'>Employee Name</td>
                   <td className='thClass'>Address</td>
                   <td className='thClass'>Contact Number</td>
                   <td className='thClass'>Option</td>
-                </tr>
+                {/* </tr> */}
               </thead>
               <tbody>
                 {this.state.EditProfile.edittedProfile.map((data, i) => {

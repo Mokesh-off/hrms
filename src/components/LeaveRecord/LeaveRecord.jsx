@@ -232,7 +232,6 @@ class LeaveRecord extends Component {
             <div className='tableDiv tableWrapper'>
               <table className='tableCss'>
                 <thead className='thead1'>
-                <tr className='thead1'>
                   <td className='thClass'><i class='fa fa-search'></i>
                   <input type="text" className='searchField' placeholder='Search'></input>
                   </td>
@@ -243,7 +242,6 @@ class LeaveRecord extends Component {
                   <td className='thClass'>To</td>
                   <td className='thClass'>Days</td>
                   <td className='thClass'>Status</td>
-                </tr>
               </thead>
                 <tbody>
                   {

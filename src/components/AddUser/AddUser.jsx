@@ -2,6 +2,9 @@ import './AddUser.css'
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import ReactDOM from 'react-dom'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+import 'react-datepicker/dist/react-datepicker.css'
 
 class AddUser extends Component {
   constructor (props) {
@@ -42,6 +45,7 @@ class AddUser extends Component {
   }
 
   change (e) {
+    console.log('e value: '+e.target.name)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -116,7 +120,12 @@ class AddUser extends Component {
     document.getElementById('radio1').checked = false
     document.getElementById('radio2').checked = false
   }
-
+  dobChange(e){
+    this.setState({Dob:this.state.Dob=e})
+  }
+  dojChange(e){
+    this.setState({Doj:this.state.Doj=e})
+  }
   onSubmit (e) {
     e.preventDefault()
     if (this.validate()) {
@@ -124,8 +133,8 @@ class AddUser extends Component {
       var Data = JSON.parse(window.localStorage.getItem('Data'))
       var obj = Object.assign({}, {
         EmpName: this.state.EmpName,
-        Dob: this.state.Dob,
-        Doj: this.state.Doj,
+        Dob: JSON.stringify((this.state.Dob)._d).substr(1,10),
+        Doj:JSON.stringify((this.state.Doj)._d).substr(1,10),
         wl: this.state.wl,
         gender: this.state.gender,
         EmailId: this.state.EmailId,
@@ -238,12 +247,23 @@ class AddUser extends Component {
                   <div className='row'>
                     <div className='left'>Dob:</div>
                     <div className='right'>
-                      <input value={this.state.Dob}
+                      {/* <input value={this.state.Dob}
                         className='box'
                         type='date'
                         name='Dob'
                         onChange={e => this.change(e)}
                         required
+                      /> */}
+                      <DatePicker className='box calendarIcon' 
+                      selected={this.state.Dob}
+                      showYearDropdown
+                      scrollableYearDropdown
+                      dateFormat='DD/MM/YYYY'
+                      showDisabledMonthNavigation
+                      yearDropdownItemNumber={2}
+                      name='Dob' 
+                      onChange={e => this.dobChange(e)}
+                      required
                       />
                     </div>
                   </div>
@@ -301,12 +321,23 @@ class AddUser extends Component {
                   <div className='row'>
                     <div className='left'>Date of Joining:</div>
                     <div className='right'>
-                      <input
+                      {/* <input
                         className='box'
                         type='date'
                         name='Doj' value={this.state.Doj}
                         onChange={e => this.change(e)}
                         required
+                      /> */}
+                      <DatePicker className='box calendarIcon' 
+                      selected={this.state.Doj}
+                      showYearDropdown
+                      scrollableYearDropdown
+                      dateFormat='DD/MM/YYYY'
+                      showDisabledMonthNavigation
+                      yearDropdownItemNumber={2}
+                      name='Doj' 
+                      onChange={e => this.dojChange(e)}
+                      required
                       />
                     </div>
                   </div>

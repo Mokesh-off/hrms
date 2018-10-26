@@ -32,14 +32,7 @@ componentDidMount () {
          console.log(count)
          this.setState({ LeaveRequestCount: this.state.LeaveRequestCount = count })
 }
-  // componentDidMount () {
-  //   let data = JSON.parse(localStorage.getItem('Data'))
-  //   if (data.deletedRow) {
-  //     this.setState({ deletedRow: data.deletedRow })
-  //     var date1 = moment()
-  //     console.log(date1)
-  //   }
-  // }
+
   closePopup (e) {
     this.setState({ open: false })
   }
@@ -200,17 +193,19 @@ componentDidMount () {
       return (
         // List of leave requests
           <div>
-            <span className='tableLabels'>Leave Requests{' '+this.state.LeaveRequestCount}</span>
+            <span className='tableLabels'>Leave Requests
+            <span className='greyColor'>{' '+'('+this.state.LeaveRequestCount+')'}</span>
+            </span>
             <div id='labelPadding'>
-              <button className='RejectButton' onClick={e => this.selectAll(e)}>selectAll</button>
-              <button className='ApproveButton' onClick={e => this.clearAll(e)}>rejectAll</button>
+              <button className='RejectButton' onClick={e => this.selectAll(e)}>Select All</button>
+              <button className='ApproveButton' onClick={e => this.clearAll(e)}>Clear All</button>
               <button className='RejectButton' onClick={e => this.rejectAll(e)}>Reject</button>
               <button className='ApproveButton' onClick={e => this.approveAll(e)}>Approve</button>
             </div>
             <div className='tableWrapper'>
               <table className='tableCss'>
                 <thead className='thead1'>
-                  <tr className='thead1'>
+                  {/* <tr className='thead1'> */}
                   
                     <td className='thClass'><i class='fa fa-search'></i>
                     <input type="text" className='searchField' placeholder='Search'></input>
@@ -223,7 +218,7 @@ componentDidMount () {
                     <td className='thClass'>To </td>
                     <td className='thClass'>Days</td>
                     <td className='thClass'>Action</td>
-                  </tr>
+                  {/* </tr> */}
                 </thead>
                 <tbody>
                   {data.leaveRequest.map((record, i) => {
@@ -233,11 +228,18 @@ componentDidMount () {
                         
                         <td className='tdClass'>
                         
+                        <label className='container'>
+
                         <input type='checkbox'
                           data-id={i} className='selectcheckbox' defaultChecked={this.state.ischecked} />
-
+                        <span className='checkmark top' 
+                        />
+                        </label>
+                        <span class='leaveRequestsImg'>
                         <img src={require('../../Assets/images/profile_icon.png')} />
-                        <span className='empName'>{record.EmpName}</span></td>
+                        <span className='empName'>{record.EmpName}</span>
+                        </span>
+                        </td>
 
                         {/* <td className='tdClass'>{record.EmpName}</td> */}
                         <td className='tdClass'>{record.EmpId}</td>
@@ -247,10 +249,8 @@ componentDidMount () {
                         <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
                         <td className='tdClass'>{record.TotalDays}</td>
                         <td className='tdClass'> 
-                        <i class="fa fa-times-circle-o cross" onClick={e => this.changeToReject(e, i)} />
                         <i class="fa fa-check-circle-o tick" onClick={e => this.changeToApprove(e, i)} />
-                          {/* <button className='RejectButton' onClick={e => this.changeToReject(e, i)}>Reject</button><span>&nbsp;</span> */}
-                          {/* <button className='ApproveButton' onClick={e => this.changeToApprove(e, i)}>Approve</button> */}
+                        <i class="fa fa-times-circle-o cross" onClick={e => this.changeToReject(e, i)} />
                         </td>
                       </tr>
                       : ''

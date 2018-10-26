@@ -32,10 +32,10 @@ class PendingLeaves extends Component {
         <h2>Available Leaves</h2>
         <table>
           <thead className='thead1'>
-            <tr className='thead1'>
+            {/* <tr className='thead1'> */}
               <td className='tdStyle'>Leaves Type</td>
               <td className='tdStyle'>Leaves pending</td>
-            </tr>
+            {/* </tr> */}
           </thead>
           <tbody>
 

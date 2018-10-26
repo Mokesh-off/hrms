@@ -17,7 +17,7 @@ class MyLeaves extends Component {
         <div className='tableWrapper'>
           <table className='tableCss'>
             <thead className='thead1'>
-              <tr className='thead1'>
+              {/* <tr className='thead1'> */}
                 <td className='thClass'>Applied On</td>
                 <td className='thClass'>LeaveType</td>
                 <td className='thClass'>FromDate</td>
@@ -25,7 +25,7 @@ class MyLeaves extends Component {
                 <td className='thClass'>TotalDays</td>
                 <td className='thClass'>status</td>
                 <td className='thClass'>LeaveReason</td>
-              </tr>
+              {/* </tr> */}
             </thead>
             <tbody>
               {
