@@ -96,10 +96,12 @@ class Login extends Component {
             {/* <div className='bodylogin' /> */}
 
             <div className='text'>
-              <div className='human-resource-manag'> 
-                Human Resource management solutions for businesses
+              <div className='human-resource-manag'>
+                Human resource management solutions for businesses
               </div>
-              <div className='sample-text-lorem-ip' />
+              <div className='sample-text-lorem-ip' >
+              Sample text lorem ipsum nam portitor blandit accumsan. Ut vel dictum sem.
+              </div>
               <div className='rectangle '>
                 <div className='read-more '>Read more</div>
                 <span className='rectangle-5' />
@@ -118,27 +120,50 @@ class Login extends Component {
               <div className='sign-in'>
               SIGN IN
               </div>
+              <form>
 
-              <div className='email'>
-                <input type='email' placeholder='Email' data-test='email' value={this.state.email} onChange={this.handleEmailChange} />
-              </div>
-              <hr className='loginHr' />
-              <div className='passwordLogin'>
+                <div className='email'>
+                  <input type='email' placeholder='Email' data-test='email' value={this.state.email} onChange={this.handleEmailChange} />
+                </div>
+                <hr className='loginHr' />
+                <div className='passwordLogin'>
 
-                <input type='password' placeholder='Password' data-test='password' value={this.state.password} onChange={this.handlePassChange} />
-              </div>
-              <hr className='loginHr' />
-              <div className='remember'>
+                  <input type='password' placeholder='Password' data-test='password' value={this.state.password} onChange={this.handlePassChange} />
+                </div>
+                <hr className='loginHr' />
+
+                <div className='remember'>
+
+                  <label className='container'> Remember
+                    <input type='checkbox' />
+                    <span class='checkmark' />
+                  </label>
+                </div>
+                {/* <div className='remember'>
                 <input type='checkbox' className='rectangleRemember' />
-              Remember
-              </div>
-              <span className='oval'>
-                <i className='rightOval' onClick={this.handleSubmit} />
-              </span>
+                <p> Remember</p>
+              </div> */}
+                <span className='oval' onClick={this.handleSubmit} >
+                  <button className='submitButtonLogin' type='submit' data-test='submit' >
+                    <i className='rightOval' />
+                  </button>
+                </span>
+
+              </form>
 
             </div>
 
           </div>
+
+          <Popup open={this.state.open}>
+            <div className='modal'>
+              {this.state.errText}
+              <a className='close' onClick={e => this.closeModal(e)}>
+                      &times;
+              </a>
+
+            </div>
+          </Popup>
 
         </div>
 

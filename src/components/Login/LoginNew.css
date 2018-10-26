@@ -5,48 +5,46 @@
 }
 
 .hrmsLogin {
-	/* display: inline-flex; */
 	height: 100%;
 	width: 65%;
 }
 
 .hrms {
-	margin: 1.875em 0.938em 0.000em 2.500em;
-	height: 2.063em;
-	width: 5.313em;
-	color: #FF7D27;
-	font-family: muli-semi-bold;
-	font-size: 1.625em;
-	font-weight: bold;
-	letter-spacing: 0.013em;
-	line-height: 2.063em;
+    margin: 0.875em 0.938em 0.000em 2.500em;
+    height: 2.063em;
+    width: 5.313em;
+    color: #FF7D27;
+    font-family: muli-semi-bold;
+    font-size: 1.625em;
+    font-weight: bold;
+    letter-spacing: 0.013em;
+    line-height: 2.063em;
 }
-
 .text {
-	margin: 6.5em 43.250em 0.000em 1.563em;
+	margin: 5.5em 43.250em 0.000em 1.563em;
 	height: 21.750em;
 	width: 37.375em;
 }
 
 .sample-text-lorem-ip {
-	height: 4.250em;
-	width: 25.375em;
-	color: #808080;
-	font-family: muli-semi-bold;
-	font-size: 1.125em;
-	font-weight: 600;
-	letter-spacing: 0.037em;
-	line-height: 2.125em;
+	margin-bottom: 45px;	
+    height: 4.250em;
+    width: 19.375em;
+    color: #808080;
+    font-family: muli-semi-bold;
+    font-size: 1.125em;
+    font-weight: 600;
+    letter-spacing: 0.037em;
+    line-height: 2.125em;
+    margin-left: 8.5em;
 }
 
 .rectangle {
-	margin-left: 11em;
+	margin-left: 10em;
 	height: 1.750em;
 	width: 8.188em;
 	border: 1px solid #808080;
 	border-radius: 1.156em;
-	/* -webkit-box-shadow: 0 0.313em 0.750em 0 rgba(0,0,0,0.14); */
-	/* box-shadow: 0 0.313em 0.750em 0 rgba(0,0,0,0.14); */
 }
 
 .read-more {
@@ -70,37 +68,29 @@
 
 .path-2 {
 	position: relative;
-	bottom: 1.89em;
-	left: 3.1em;
-	/* margin: -49.5px 0.594em 0 5.625em; */
-    /* margin: 11.5px 15.5px 10.5px 112px; */
-    /* margin: -18px; */
-    /* box-sizing: border-box; */
-	height: 0.375em;
-	width: 0.219em;
-	font-size: 1.750em;
-    /* border: 1px solid #808080; */
+	bottom: 1.79em;
+    left: 3.1em;
+    color: #808080;
+    height: 0.375em;
+    width: 0.219em;
+    font-size: 1.750em;
 }
 
 .human-resource-manag {
 	margin-left: 4em;
-	/* margin-top: 45px; */
-	/* margin: 12.500em 43.250em 0.000em 1.563em; */
-	/* height: 10.875em; */
-	/* width: 34.875em; */
-	color: #000000;
-	font-family: muli-semi-bold;
-	font-size: 2.625em;
-	font-weight: bold;
-	letter-spacing: 0.025em;
-	/* line-height: 3.625em; */
+	margin-bottom: 45px;
+    color: #000000;
+    font-family: muli-semi-bold;
+    font-size: 38px;
+    font-weight: unset;
+    letter-spacing: 0.025em;
 }
 
 .rectangle-2 {
-	height: 41.813em;
-	width: 35%;
-	opacity: 0.9;
-	background-color: #4C48AC;
+    height: -webkit-fill-available;
+    width: 35%;
+    opacity: 0.9;
+    background-color: #4C48AC;
 }
 
 .bg {
@@ -118,14 +108,13 @@
 	height: 1.125em;
 	width: 6.250em;
 	color: #000000;
-	font-family: muli-semi-bold;
+    font-family: muli-bold;
 	font-size: 0.875em;
 	font-weight: bold;
 	letter-spacing: 0.063em;
 	line-height: 1.125em;
 	margin-left: 2.563em;
 	padding-top: 2.500em;
-	/* margin-top: 100px; */
 	margin-bottom: 4.375em;
 }
 
@@ -147,6 +136,7 @@
 	outline: none;
 	font-size: 1.125em;
 	height: 1.875em;
+	font-family: muli-regular;
 }
 
 .passwordLogin {
@@ -185,22 +175,72 @@
 	line-height: 1.188em;
 }
 
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    border: 1px solid black;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+	left: 5px;
+    top: 2px;
+    width: 2px;
+    height: 5px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 .rectangleRemember{
 	height: 0.938em;
 	width: 0.938em;
-	border: 0.063em	solid #979797;
-	background-color: #FFFFFF;
 }
 
 .oval {
 	margin-top: 0.750em; 
-    /* margin-bottom: 14px; */
 	margin-left: 15.625em;
 	margin-bottom: 0.875em;
-	/* margin: 55px 40px 0px 105px; */
 	padding: 1.250em	;
-	/* padding-top: 40px; */
-	/* padding-bottom: 20px; */
 	height: 3.750em;
 	width: 3.750em;
 	background-color: #FF7D27;
@@ -218,13 +258,26 @@
 	margin-bottom: -6px;
 }
 
-.oval > .rightOval {
+.submitButtonLogin{
+	border: solid white;
+	border-width: 0 0.188em 0.188em 0;
+	display: inline-block;
+	  padding: 0.188em;
+	  padding: 0.500em;
+	  margin-bottom: -6px;
+	background-color: transparent;
+	transform: rotate(-45deg);
+	position: relative;
+	top: -4px;
+}
+
+/* .submitButtonLogin > .rightOval {
 	margin-right: 0.375em;
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
 	padding: 0.500em	;
 	margin-bottom: -6px;
-}
+} */
 
 .don-t-have-an-accoun {	
 	margin: 2.250em 13.313em 0 1.813em;
@@ -238,22 +291,39 @@
 	text-align: right
 }
 
-.sign-up{
+.sign-up {
+	font-family: muli-bold;
+	cursor: pointer;
 	background-color: #4C48AC;
-	position: relative;
-	bottom: 1.688em;
-	left:4.688em;
-	margin: 0px 5.813em 0px 16.000em;
-	height: 1.750em;
-	width: 6.563em;
-	font-size: 0.875em;
-	font-weight: bold;
-	border: 0.063em solid #FFFFFF;
-	border-radius: 1.156em;
-	-webkit-box-shadow: 0 0.313em 0.750em 0 rgba(0,0,0,0.14);
-	box-shadow: 0 0.313em 0.750em 0 rgba(0,0,0,0.14);
-	color: white;
+    border: 1px solid #ffffff;
+    outline: none;
+    position: relative;
+    bottom: 1.688em;
+    left: 4.688em;
+    margin: 0px 5.813em 0px 16.000em;
+    height: 1.750em;
+    width: 6.563em;
+    font-size: 0.875em;
+    font-weight: bold;
+    border-radius: 1.156em;
+    color: white;
 }
+
 .oval{
 	cursor: pointer;
 }
+
+.modal > .close {
+	cursor: pointer;
+	position: absolute;
+	display: block;
+	padding: 2px 5px;
+	line-height: 20px;
+	right: -10px;
+	top: -10px;
+	font-size: 24px;
+	background: #ffffff;
+	border-radius: 18px;
+	border: 1px solid #cfcece;
+  }
+

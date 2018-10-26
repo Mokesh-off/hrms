@@ -22,8 +22,10 @@
 }
 
 .policyTextarea {
+  border-bottom: 1px solid black;
   width: 250px;
   height: 35px;
+  outline: none;
   font-family: muli-regular;
 }
 
