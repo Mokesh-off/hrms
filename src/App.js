@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Login from './components/Login/LoginNew'
-import Dashboard from './components/Dashboard/DashboardNew'
+import Dashboard from './components/Dashboard/Dashboard'
 import MyLeavesIndex from './components/MyLeaves/MyLeavesIndex'
 import LeavePlan from './components/Leave/Leaveplan/LeavePlan'
 import SideNav from './components/SideNav/SideNav'
@@ -47,14 +47,8 @@ class App extends Component {
               <div>
                 <Switch>
                   <Route exact strict path='/' component={Login} />
-                  <Route exact strict path='/dashboard' component={LeaveRequests} />
+                  <Route exact strict path='/dashboard' component={Dashboard} />
                   <Route exact strict path='/calendar' component={Calendar} />
-                  {/* <Route
-                    exact
-                    strict
-                    path='/dashboard/leavelist'
-                    component={LeaveRequests}
-                  /> */}
 
                   <Route exact strict
                     path='/leaverequest' component={LeaveRequest} />

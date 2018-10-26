@@ -23,8 +23,11 @@ class OngoingLeaves extends Component {
       var compareDate = moment()
       var startDate = moment(record.FromDate)
       var endDate = moment(record.ToDate)
-      if ((compareDate.isBetween(startDate, endDate)) ||
-          compareDate === startDate || compareDate === endDate) {
+      var compareDateStr = (JSON.stringify(compareDate).substr(1, 10))
+      var startDateStr = (JSON.stringify(startDate).substr(1, 10))
+      var endDateStr = (JSON.stringify(endDate).substr(1, 10))
+      if (((compareDate.isBetween(startDate, endDate)) ||
+          compareDateStr === startDateStr || compareDateStr === endDateStr) && record.status === 'Approved') {
         count++            
           }
       this.setState({ OngoingLeaves: this.state.OngoingLeaves = count })
@@ -80,7 +83,7 @@ class OngoingLeaves extends Component {
                       return (
                         <tr key={i} className='tdDivider'>
                           <td className='tdClass'>
-                            <img src={require('../../Assets/images/profile_icon.png')} />
+                        <img src={require('../../Assets/images/profile_icon.png')} />
                             <span className='empName'>{record.EmpName}</span></td>
                           <td className='tdClass'>{record.EmpId} </td>
                           <td className='tdClass'>{record.LeaveType}</td>
@@ -88,8 +91,6 @@ class OngoingLeaves extends Component {
                           <td className='tdClass'>{record.FromDate.substr(0, 10)}</td>
                           <td className='tdClass'>{record.ToDate.substr(0, 10)}</td>
                           <td className='tdClass'>{record.TotalDays}</td>
-                          {/* <td className=''>{record.status}</td>
-                      <td className=''>{record.LeaveReason}</td> */}
                         </tr>
                       )
                     }

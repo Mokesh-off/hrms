@@ -73,18 +73,18 @@ class SideNav extends Component {
       } else if (window.location.pathname === '/addUser') {
         ReactDOM.findDOMNode(this.refs.addUser).style.color = '#FF7D27';
       } else if (window.location.pathname === '/approveProfile') {
-        ReactDOM.findDOMNode(this.refs.approveProfile).style.color =
-          '#FF7D27';
+        ReactDOM.findDOMNode(this.refs.approveProfile).style.color ='#FF7D27';
+      }else if (window.location.pathname === '/calendar') {
+        ReactDOM.findDOMNode(this.refs.calendar).style.color ='#FF7D27';
       }
-      else if (window.location.pathname === '/calendar') {
-        ReactDOM.findDOMNode(this.refs.calendar).style.color =
-          '#FF7D27';
-      }
-    } else if (this.state.currentUserRoleVar === 'Employee') {
+    }
+     else if (this.state.currentUserRoleVar === 'Employee') {
       ReactDOM.findDOMNode(this.refs.dashboard).style.color = '';
       ReactDOM.findDOMNode(this.refs.MyLeaves).style.color = '';
       ReactDOM.findDOMNode(this.refs.LeavePolicy).style.color = '';
       ReactDOM.findDOMNode(this.refs.leaveplan).style.color = '';
+      ReactDOM.findDOMNode(this.refs.calendar).style.color = '';
+      ReactDOM.findDOMNode(this.refs.leaverequest).style.color = '';
 
       if (window.location.pathname === '/dashboard') {
         ReactDOM.findDOMNode(this.refs.dashboard).style.color = '#FF7D27'
@@ -94,6 +94,11 @@ class SideNav extends Component {
         ReactDOM.findDOMNode(this.refs.LeavePolicy).style.color = '#FF7D27'
       } else if (window.location.pathname === '/leaveplan') {
         ReactDOM.findDOMNode(this.refs.leaveplan).style.color = '#FF7D27'
+      }else if (window.location.pathname === '/calendar') {
+        ReactDOM.findDOMNode(this.refs.calendar).style.color ='#FF7D27';
+      }else if (window.location.pathname === '/leaverequest') {
+        ReactDOM.findDOMNode(this.refs.leaverequest).style.color =
+          '#FF7D27';
       }
     }
   }
@@ -145,10 +150,13 @@ class SideNav extends Component {
             </Link>
           </div>
         ) : (
-            <div className='sidenav'>
+            <div>
               <Link to='/dashboard'>
                 <button ref='dashboard'> Home </button>
               </Link>
+              <Link to='/calendar'>
+              <button ref='calendar'> Calendar </button>
+            </Link>
               <Link to='/leaverequest'>
                 <button ref='leaverequest'> Leave Request </button>
               </Link>
@@ -159,7 +167,7 @@ class SideNav extends Component {
                 <button ref='LeavePolicy'> Leave Policy </button>
               </Link>
               <Link to='/leaveplan'>
-                <button ref='leaveplan'> Leave plan </button>
+                <button ref='leaveplan'> Public Holidays </button>
               </Link>
             </div>
           )}

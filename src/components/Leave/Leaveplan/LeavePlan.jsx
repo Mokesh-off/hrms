@@ -59,7 +59,7 @@ class LeavePlan extends Component {
     // According to the role the view will be different
     if (role === 'Employee') {
       return (
-        <div className='LeavePlan'>
+        <div className='componentContainer'>
           <div className='tableLabels'>
               Holiday List
             <div className='tableWrapper'>
@@ -89,7 +89,7 @@ class LeavePlan extends Component {
       )
     } else if (role === 'Employer' || this.state.flag === true) {
       return (
-        <div className='LeavePlan'>
+        <div className='componentContainer'>
           <div className='tableLabels'>
         Holiday List
             <div className='tableWrapper'>

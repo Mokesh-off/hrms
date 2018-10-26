@@ -84,61 +84,65 @@ class ChangePassword extends Component {
     }
     else{
     return (
-      <div id='parent'>
-        {/* <div className={'default ' + this.state.visible ? 'fadeIn' : 'fadeOut'} > */}
-        <div id='success'>
-          <h3 id='changed'>Successfully submitted</h3>
-        </div>
-        <div className='topic'>
-          <h2 id='head'>Create Password</h2>
-          <p className='passText'>Create a new password and continue</p>
-        </div>
-        <div className='passRow'>
-          <label htmlFor='password' className='passText'>Current password: </label>
-          <span className='inputField' style={{ border: this.state.passborder }}>
-            <input type={this.state.flag ? ('text') : ('password')} name='password'
-              placeholder='Current Password'
-              value={this.state.password} className='passwordText' onChange={this.change.bind(this)} />
-            <button name='flag' className='password passText' onClick={this.visible.bind(this)}>
-              {this.state.flag ? ('Hide') : ('show')}</button>
-          </span>
-          <div className='error'>
-            {this.state.err}
+      <div className='parent componentContainer'>
+        <div id='changePasswordContainer'>
+          {/* <div className={'default ' + this.state.visible ? 'fadeIn' : 'fadeOut'} > */}
+          <div id='success'>
+            <h3 id='changed'>Successfully submitted</h3>
           </div>
-        </div>
-        <div className='passRow'>
-          <label htmlFor='password' className='passText' >New password: </label>
-          <span className='inputField' style={{ border: this.state.newpassborder }}>
-            <input type={this.state.flag1 ? ('text') : ('password')} name='newPassword'
-              placeholder='New Password'
-              value={this.state.newPassword} className='passwordText' onChange={this.change.bind(this)} />
-            <button name='flag1' className='password passText' onClick={this.visible.bind(this)}>
-              {this.state.flag1 ? ('Hide') : ('show')}</button>
-          </span>
-          <div className='error'>
-            {this.state.errText}
+          <div className='topic'>
+            <h2 id='head'>Create Password</h2>
+            <p className='passText'>Create a new password and continue</p>
           </div>
-        </div>
-        <div className='passRow'>
-          <label htmlFor='password' className='passText'>Conform password: </label>
-          <span className='inputField' style={{ border: this.state.newpassborder }}>
-            <input type={this.state.flag2 ? ('text') : ('password')} name='ConformNewPassword'
-              placeholder='Conform Password'
-              value={this.state.ConformNewPassword} className='passwordText' onChange={this.change.bind(this)} />
-            <button name='flag2' className='password passText' onClick={this.visible.bind(this)}>
-              {this.state.flag2 ? ('Hide') : ('show')}</button>
-          </span>
-          <div className='error'>
-            {this.state.errText}
+          <div className='passRow'>
+            <label htmlFor='password' className='passText'>Current password: </label>
+            <span className='inputField' style={{ border: this.state.passborder }}>
+              <input type={this.state.flag ? ('text') : ('password')} name='password'
+                placeholder='Current Password'
+                value={this.state.password} className='passwordText' onChange={this.change.bind(this)} />
+              <button name='flag' className='password passText' onClick={this.visible.bind(this)}>
+                {this.state.flag ? ('Hide') : ('show')}</button>
+            </span>
+            <div className='error'>
+              {this.state.err}
+            </div>
           </div>
-        </div>
-        <div className='passText topic'>
-          <p>
-            Note: Password must have atleast one lowercase, uppercase,numeric and special character
-          </p>
-        </div>
-        <div>
-          <input type='button' onClick={this.onsubmit.bind(this)} value='Change' className='Passbutton' />
+          <div className='passRowDivider' />
+          <div className='passRow'>
+            <label htmlFor='password' className='passText' >New password: </label>
+            <span className='inputField' style={{ border: this.state.newpassborder }}>
+              <input type={this.state.flag1 ? ('text') : ('password')} name='newPassword'
+                placeholder='New Password'
+                value={this.state.newPassword} className='passwordText' onChange={this.change.bind(this)} />
+              <button name='flag1' className='password passText' onClick={this.visible.bind(this)}>
+                {this.state.flag1 ? ('Hide') : ('show')}</button>
+            </span>
+            <div className='error'>
+              {this.state.errText}
+            </div>
+          </div>
+          <div className='passRowDivider' />
+          <div className='passRow'>
+            <label htmlFor='password' className='passText'>Conform password: </label>
+            <span className='inputField' style={{ border: this.state.newpassborder }}>
+              <input type={this.state.flag2 ? ('text') : ('password')} name='ConformNewPassword'
+                placeholder='Conform Password'
+                value={this.state.ConformNewPassword} className='passwordText' onChange={this.change.bind(this)} />
+              <button name='flag2' className='password passText' onClick={this.visible.bind(this)}>
+                {this.state.flag2 ? ('Hide') : ('show')}</button>
+            </span>
+            <div className='error'>
+              {this.state.errText}
+            </div>
+          </div>
+          <div className='passText topic'>
+            <p>
+              Note: Password must have atleast one lowercase, uppercase,numeric and special character
+            </p>
+          </div>
+          <div>
+            <input type='button' onClick={this.onsubmit.bind(this)} value='Change' className='Passbutton' />
+          </div>
         </div>
       </div>
     )

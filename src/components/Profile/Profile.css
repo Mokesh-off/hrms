@@ -6,6 +6,10 @@
   background-color: #efefef;
 }
 
+#userProfileContainer h2, .userForm, .UserProfile{
+  font-family: muli-semi-bold;
+}
+
 .UserProfile {
   text-align: center;
   color: cadetblue;

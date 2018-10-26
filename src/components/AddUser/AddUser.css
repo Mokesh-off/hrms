@@ -35,15 +35,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .addUserMainContainer {
   display: flex;
-  margin-top: 53px;
-  margin-left: 15vw;
-  margin-bottom: 40px;
   width: 85vw;
-  /* background: #F1F1F1; */
 }
 .addUserMainContainer > .formContainer {
   margin: auto;
-  /* margin:    margin: 18vh 20vw 5vh 35vw; */
   width: 80%;
 }
 
@@ -52,8 +47,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 2% 10%;
   border: 1px solid #eee;
   border-radius: 4px;
-  background-color: #f5f5f5;
+  background-color: #ffff;
 }
+
+.formContainer h1, div{
+  font-family: muli-semi-bold;
+} 
 
 .form input,
 textarea,
@@ -101,10 +100,6 @@ select {
   cursor: pointer;
   margin-right: 10px;
 }
-
-/* .dobPadding{
-  padding: 1px 3.5px !important;
-} */
 
 .rowSeven {
   display: flex;
