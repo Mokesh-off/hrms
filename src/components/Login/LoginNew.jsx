@@ -96,10 +96,12 @@ class Login extends Component {
             {/* <div className='bodylogin' /> */}
 
             <div className='text'>
-              <div className='human-resource-manag'> 
-                Human Resource management solutions for businesses
+              <div className='human-resource-manag'>
+                Human resource management solutions for businesses
               </div>
-              <div className='sample-text-lorem-ip' />
+              <div className='sample-text-lorem-ip' >
+              Sample text lorem ipsum nam portitor blandit accumsan. Ut vel dictum sem.
+              </div>
               <div className='rectangle '>
                 <div className='read-more '>Read more</div>
                 <span className='rectangle-5' />
@@ -128,10 +130,18 @@ class Login extends Component {
                 <input type='password' placeholder='Password' data-test='password' value={this.state.password} onChange={this.handlePassChange} />
               </div>
               <hr className='loginHr' />
+
               <div className='remember'>
-                <input type='checkbox' className='rectangleRemember' />
-              Remember
+
+                <label className='container'> Remember
+                  <input type='checkbox' />
+                  <span class='checkmark' />
+                </label>
               </div>
+              {/* <div className='remember'>
+                <input type='checkbox' className='rectangleRemember' />
+                <p> Remember</p>
+              </div> */}
               <span className='oval'>
                 <i className='rightOval' onClick={this.handleSubmit} />
               </span>
