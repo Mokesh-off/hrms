@@ -239,7 +239,6 @@ this.calendarData()
           />
 
             </div>
-<<<<<<< HEAD
             <div id='popUpId'>
               <div className='popUp popUpImp' 
               style= {{visibility:this.state.visibility,top:this.state.top,left:this.state.left}}
@@ -263,25 +262,6 @@ this.calendarData()
                     <button button onClick={e=>this.changeToApprove(e)}>Approve</button>
                     <button onClick={e=>this.changeToReject(e)}>Reject</button>
                     </div>
-=======
-            <div className='popUp popUpImp' 
-            style= {{display:this.state.display,top:this.state.top,left:this.state.left}}
-            >
-            <span className='marginLeft' onClick={()=>this.closePopUp()}>X</span>
-                <div>Name : {this.state.empName}</div>
-                <div>From Date : {this.state.fromDate}</div>
-                <div>To Date : {this.state.toDate}</div>
-                <div>Total Days : {this.state.noOfDays}</div>
-                <div>Reason : {this.state.reason}</div>
-                <div>Status : {this.state.status}</div>
-                
-                {
-                (employeeRole==='Employer')?
-                  (this.state.status==='Approved')?
-                  <button onClick={e=>this.changeToReject(e)}>Reject</button>
-                  :(this.state.status==='Rejected')?
-                  <button onClick={e=>this.changeToApprove(e)}>Approve</button>
->>>>>>> develop
                   :
                   ''
                   }
