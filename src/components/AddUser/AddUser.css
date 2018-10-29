@@ -87,6 +87,10 @@ select {
 }
 .row > .left {
   margin: 1%;
+  opacity: 0.5;
+}
+.radioName{
+  opacity: 0.5;
 }
 .rowSevenButton {
   padding: 12px 15px;

@@ -280,7 +280,7 @@ class AddUser extends Component {
                         onChange={e => this.change(e)}
                         ref='male'
                       />
-                      Male
+                      <span className='radioName'>Male</span>
                       <input
                         type='radio'
                         className='radio'
@@ -290,7 +290,7 @@ class AddUser extends Component {
                         onChange={e => this.change(e)}
                         ref='female'
                       />
-                      Female
+                      <span className='radioName'>Female</span>
                     </div>
                   </div>
 
