@@ -123,10 +123,10 @@ class ChangePassword extends Component {
           </div>
           <div className='passRowDivider' />
           <div className='passRow'>
-            <label htmlFor='password' className='passText'>Conform password: </label>
+            <label htmlFor='password' className='passText'>Confirm password: </label>
             <span className='inputField' style={{ border: this.state.newpassborder }}>
               <input type={this.state.flag2 ? ('text') : ('password')} name='ConformNewPassword'
-                placeholder='Conform Password'
+                placeholder='Confirm Password'
                 value={this.state.ConformNewPassword} className='passwordText' onChange={this.change.bind(this)} />
               <button name='flag2' className='password passText' onClick={this.visible.bind(this)}>
                 {this.state.flag2 ? ('Hide') : ('show')}</button>

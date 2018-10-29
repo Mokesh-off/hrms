@@ -67,6 +67,10 @@
   background-color: #ffff;
 }
 
+#leaveRequestContainer label{
+  opacity: 0.5;
+}
+
 /* .leaveRequestMain{
   display: flex;
   justify-content: center;

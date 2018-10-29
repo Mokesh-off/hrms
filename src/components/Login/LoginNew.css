@@ -68,7 +68,7 @@
 
 .path-2 {
 	position: relative;
-	bottom: 1.79em;
+	bottom: 1.88em;
     left: 3.1em;
     color: #808080;
     height: 0.375em;
@@ -214,7 +214,8 @@
 	background-color: transparent;
 	transform: rotate(-45deg);
 	position: relative;
-	top: -4px;
+	top: -6px;
+    left: -3px;
 }
 
 /* .submitButtonLogin > .rightOval {

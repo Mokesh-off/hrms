@@ -23,6 +23,10 @@ class EditProfileApproval extends Component {
     window.localStorage.setItem('Data', JSON.stringify(this.state.EditProfile))
     this.setState({ open: true })
     this.setState({ status: 'Rejected' })
+    var empId = this.state.EditProfile.edittedProfile[index].EmpId
+    var newAddress = this.state.EditProfile.edittedProfile[index].Address
+    var newContact = this.state.EditProfile.edittedProfile[index].ContactNum
+    this.updateData(empId, newAddress, newContact, index)
   }
 
   /* -------Approves the changes to be updated in User Profile -------- */
@@ -116,18 +120,32 @@ class EditProfileApproval extends Component {
               </tbody>
             </table>
             <br />
-            <div className='backButton'>
+          </div>
+            {/* <div className='backButton'>
               <NavLink to='/profile'>
                 <button className='rejectButtonProfile'>Back</button>
               </NavLink>
-            </div>
-          </div>
+            </div> */}
         </div>
       )
     } else {
       return (
         <div className='componentContainer absolute'>
-          <div className='approveProfileHeader'>No details</div>
+          <h1 className='muli-semi-bold'>Profile Change Request</h1>
+          <div className='tableWrapper'>
+            
+            <table className='tableCss'>
+              <thead className='thead1'>
+                {/* <tr className='thead1'> */}
+                  <td className='thClass'>Employee Id</td>
+                  <td className='thClass'>Employee Name</td>
+                  <td className='thClass'>Address</td>
+                  <td className='thClass'>Contact Number</td>
+                  <td className='thClass'>Option</td>
+                {/* </tr> */}
+              </thead>
+            </table>
+          </div>
         </div>
       )
     }
